@@ -4,6 +4,9 @@
     <meta charset="utf-8">
 
     <title>发送私信</title>
+
+    <link rel="shortcut icon" href="${basePath}/logo.ico">
+
     <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
 
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">

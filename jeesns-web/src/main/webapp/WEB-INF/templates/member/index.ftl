@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>个人中心</title>
+
+    <link rel="shortcut icon" href="${basePath}/logo.ico">
     <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
 
 

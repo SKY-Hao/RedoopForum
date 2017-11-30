@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <title>Redoop会员注册</title>
 
+
+    <link rel="shortcut icon" href="${basePath}/logo.ico">
+
     <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
 
 

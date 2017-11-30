@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>红象云腾社区</title>
 
-    <link rel="shortcut icon" href="logo.ico">
+    <link rel="shortcut icon" href="${basePath}/logo.ico">
     <link href="${basePath}/res/common/css/zui.min.css" rel="stylesheet">
     <link href="${basePath}/res/front/css/app.css" rel="stylesheet">
     <!--[if lt IE 9]>

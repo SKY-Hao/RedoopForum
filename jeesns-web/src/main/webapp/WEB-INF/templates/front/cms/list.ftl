@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title><#if articleCate??>${articleCate.name}<#else>文章列表</#if></title>
-    <link rel="shortcut icon" href="logo.ico">
+    <link rel="shortcut icon" href="${basePath}/logo.ico">
 
     <link href="${basePath}/res/common/css/zui.min.css" rel="stylesheet">
     <link href="${basePath}/res/front/css/app.css" rel="stylesheet">

@@ -2,12 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${WEIBO_ALIAS}中心 - ${SITE_NAME} - Powered By JEESNS</title>
-    <meta name="keywords" content="${SITE_KEYS}"/>
-    <meta name="description" content="${SITE_DESCRIPTION}"/>
-    <meta name="author" content="JEESNS"/>
+    <title>${WEIBO_ALIAS}中心 - ${SITE_NAME}</title>
+    <link rel="shortcut icon" href="${basePath}/logo.ico">
     <link href="${basePath}/res/common/css/zui.min.css" rel="stylesheet">
     <link href="${basePath}/res/front/css/app.css" rel="stylesheet">
     <link href="${basePath}/res/plugins/emoji/css/emoji.css" rel="stylesheet">

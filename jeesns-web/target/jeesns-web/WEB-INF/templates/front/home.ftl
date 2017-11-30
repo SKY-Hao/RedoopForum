@@ -5,8 +5,7 @@
 
     <title>主页</title>
 
-    <link rel="shortcut icon" href="logo.ico">
-
+    <link rel="shortcut icon" href="${basePath}/logo.ico">
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${basePath}/res/common/css/jeesns.css">

@@ -2,11 +2,14 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>页面找不到 - ${SITE_NAME} - Powered By JEESNS</title>
-    <meta name="keywords" content="${SITE_KEYS}"/>
+   <#-- <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>页面找不到 - ${SITE_NAME}</title>
+   <#-- <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
-    <meta name="author" content="JEESNS"/>
+    <meta name="author" content="JEESNS"/>-->
+
+    <link rel="shortcut icon" href="${basePath}/logo.ico">
+
     <script src="${basePath}/res/common/js/jquery-2.1.1.min.js"></script>
     <style type="text/css">
         *{margin:0;padding:0;list-style-type:none;}

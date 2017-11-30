@@ -8,7 +8,7 @@
     <meta name="description" content="${SITE_DESCRIPTION}"/>
     <meta name="author" content="JEESNS"/>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">-->
-
+    <link rel="shortcut icon" href="${basePath}/logo.ico">
     <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
 
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">

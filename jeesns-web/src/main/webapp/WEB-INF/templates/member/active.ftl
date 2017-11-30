@@ -4,6 +4,10 @@
     <meta charset="utf-8">
 
     <title>会员激活</title>
+
+
+    <link rel="shortcut icon" href="${basePath}/logo.ico">
+
     <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
 
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">

@@ -8,10 +8,8 @@
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
-    <title>JEESNS后台管理系统登录 - ${SITE_NAME} - Powered By JEESNS</title>
-    <meta name="keywords" content="${SITE_KEYS}"/>
-    <meta name="description" content="${SITE_DESCRIPTION}"/>
-    <meta name="author" content="JEESNS"/>
+    <title>RedoopForum后台管理系统登录 - ${SITE_NAME} </title>
+    <link rel="shortcut icon" href="${basePath}/logo.ico">
     <link href="${basePath}/res/manage/css/effect.css" rel="stylesheet">
     <link href="${basePath}/res/plugins/layer/skin/layer.css" rel="stylesheet">
     <script src="${basePath}/res/common/js/jquery-2.1.1.min.js"></script>
@@ -27,7 +25,7 @@
 <body>
 <div class='login'>
     <div class='login_title'>
-        <span>JEESNS管理员登录</span>
+        <span>RedoopForum管理员登录</span>
     </div>
     <div class='login_fields'>
         <div class='login_fields_user'>
@@ -55,8 +53,8 @@
     <div class='success'>
     </div>
     <div class='disclaimer'>
-        <p>欢迎登陆JEESNS后台管理系统 <a href="../">返回首页</a></p>
-        <p>Powered By <a href="http://www.jeesns.cn" target="_blank">JEESNS</a> CopyRight © 2012-2017</p>
+        <p>欢迎登陆RedoopForum后台管理系统 <a href="../">返回首页</a></p>
+        <p>Powered By <a href="http://www.redoop.com" target="_blank">redoop</a> </p>
     </div>
 </div>
 <div class='authent'>
