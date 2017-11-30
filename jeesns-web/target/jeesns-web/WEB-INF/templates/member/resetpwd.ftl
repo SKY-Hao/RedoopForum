@@ -5,7 +5,7 @@
     <title>重置密码 - ${SITE_NAME}</title>
 
     <link rel="shortcut icon" href="${basePath}/logo.ico">
-
+    <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/font-awesome.min.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/jeesns.css" rel="stylesheet">

@@ -5,7 +5,7 @@
     <title>主页</title>
 
     <link rel="shortcut icon" href="${basePath}/logo.ico">
-
+    <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${basePath}/res/common/css/jeesns.css">
@@ -52,9 +52,9 @@
                             <a class="label label-primary member-follows" member-id="${member.id}">
                                 <i class="fa fa-heart-o"></i> 关注
                             </a>
-                            <a class="label label-primary" href="${basePath}/member/sendMessageBox?mid=${member.id}" target="_jeesnsOpen" title="私信" height="285px">
+                            <#--<a class="label label-primary" href="${basePath}/member/sendMessageBox?mid=${member.id}" target="_jeesnsOpen" title="私信" height="285px">
                                 <i class="fa fa-comments"></i> 私信
-                            </a>
+                            </a>-->
                         </p>
                     </div>
                 </div>
@@ -122,13 +122,13 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="${basePath}/u/${member.id}/home/weibo">
+                                <#--<a href="${basePath}/u/${member.id}/home/weibo">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             微博
                                         </div>
                                     </div>
-                                </a>
+                                </a>-->
                                 <a href="${basePath}/u/${member.id}/home/group">
                                     <div class="feed-element">
                                         <div class="media-body">

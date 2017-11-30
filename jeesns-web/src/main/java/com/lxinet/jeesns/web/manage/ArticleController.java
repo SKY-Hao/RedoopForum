@@ -69,6 +69,8 @@ public class ArticleController extends BaseController {
         return responseModel;
     }
 
+
+
     @RequestMapping(value="${managePath}/cms/article/list",method = RequestMethod.GET)
     public String list(String key, @RequestParam(value = "cateid",defaultValue = "0",required = false) Integer cateid,
                        @RequestParam(value = "status",defaultValue = "2",required = false) Integer status,

@@ -39,7 +39,14 @@
                     <div class="box box-primary">
                         <div class="box-header">
                             <h3 class="box-title">
+
+                                <a href="${managePath}/group/applyAdd" target="_jeesnsOpen"
+                                   title="添加群组" width="1000px" height="600px">
+                                    <span class="label label-info">添加群组</span>
+                                </a>
+
                             </h3>
+                            <!--搜索-->
                             <div class="box-tools">
                                 <form method="get" action="${managePath}/group/index">
                                     <div class="input-group input-group-sm" style="width: 350px;">
@@ -53,6 +60,7 @@
                                 </form>
                             </div>
                         </div>
+                        <!--列表-->
                         <div class="box-body table-responsive no-padding">
                             <table class="table table-hover">
                                 <thead>
@@ -96,6 +104,8 @@
                                 </tbody>
                             </table>
                         </div>
+
+
                         <div class="box-footer clearfix">
                             <ul class="pagination pagination-sm no-margin pull-right"
                                 url="${managePath}/group/index?key=${key}"

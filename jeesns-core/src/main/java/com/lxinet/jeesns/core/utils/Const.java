@@ -2,7 +2,7 @@ package com.lxinet.jeesns.core.utils;
 
 public class Const {
 
-	public static final String SYSTEM_NAME = "JEESNS";
+	public static final String SYSTEM_NAME = "Redoop";
 	public static final String SYSTEM_VERSION = "1.2.0-正式版";
 	public static final String SYSTEM_UPDATE_TIME = "2017-10-31";
 	public static final String LAST_SYSTEM_VERSION = "1.2.0-正式版";

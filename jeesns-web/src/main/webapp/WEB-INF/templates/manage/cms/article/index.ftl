@@ -65,13 +65,15 @@
                 <div class="col-md-10">
                     <div class="box box-primary">
                         <div class="box-header">
+                            <!--添加文章-->
                             <h3 class="box-title">
                                 <a href="${managePath}/cms/article/add" target="_jeesnsOpen"
-                                   title="发布文章" width="1000px" height="680px">
+                                   title="发布文章" width="1000px" height="600px">
                                     <span class="label label-info">发布</span>
                                 </a>
                             </h3>
 
+                            <!--搜索-->
                             <div class="box-tools">
                                 <form method="get" action="${managePath}/cms/index">
                                     <div class="input-group input-group-sm" style="width: 350px;">
@@ -85,6 +87,7 @@
                                 </form>
                             </div>
                         </div>
+                        <!--列表-->
                         <div class="box-body table-responsive no-padding">
                             <table class="table table-hover">
                                 <thead>

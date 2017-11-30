@@ -3,8 +3,6 @@
 <head>
     <meta charset="utf-8">
     <title>修改头像</title>
-
-    <link rel="shortcut icon" href="${basePath}/logo.ico">
     <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
 
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">

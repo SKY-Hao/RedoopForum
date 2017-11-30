@@ -6,6 +6,9 @@
     <title>主页</title>
 
     <link rel="shortcut icon" href="${basePath}/logo.ico">
+
+    <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
+
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${basePath}/res/common/css/jeesns.css">
@@ -120,13 +123,13 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="${basePath}/u/${member.id}/home/weibo">
+                                <#--<a href="${basePath}/u/${member.id}/home/weibo">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             微博
                                         </div>
                                     </div>
-                                </a>
+                                </a>-->
                                 <a href="${basePath}/u/${member.id}/home/group">
                                     <div class="feed-element">
                                         <div class="media-body">

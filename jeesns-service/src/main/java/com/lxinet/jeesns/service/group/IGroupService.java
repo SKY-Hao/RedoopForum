@@ -16,6 +16,7 @@ public interface IGroupService {
     Group findById(int id);
 
     ResponseModel save(Member loginMember, Group group);
+    ResponseModel saveManageGroup(Member loginMember, Group group);
 
     ResponseModel update(Member loginMember, Group group);
 

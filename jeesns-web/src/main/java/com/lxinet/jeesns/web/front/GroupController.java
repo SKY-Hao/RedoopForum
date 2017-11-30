@@ -46,6 +46,12 @@ public class GroupController extends BaseController {
     @Resource
     private IMemberService memberService;
 
+    /**
+     * 前台群组列表
+     * @param key
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String index(String key,Model model) {
         Page page = new Page(request);
@@ -55,6 +61,13 @@ public class GroupController extends BaseController {
         return jeesnsConfig.getFrontTemplate() + "/group/index";
     }
 
+
+
+
+    /**
+     * 群组申请页
+     * @return
+     */
     @RequestMapping(value = "/apply",method = RequestMethod.GET)
     @Before(UserLoginInterceptor.class)
     public String apply(){
@@ -64,6 +77,22 @@ public class GroupController extends BaseController {
         }
         return jeesnsConfig.getFrontTemplate() + "/group/apply";
     }
+
+    /**
+     * 群组申请判断登录并保存
+     * @param group
+     * @return
+     */
+    @RequestMapping(value = "/apply",method = RequestMethod.POST)
+    @ResponseBody
+    public Object apply(Group group){
+        Member loginMember = MemberUtil.getLoginMember(request);
+        if(loginMember == null){
+            return new ResponseModel(-1,"请先登录");
+        }
+        return groupService.save(loginMember,group);
+    }
+
 
     /**
      * 群组详情页面
@@ -130,17 +159,13 @@ public class GroupController extends BaseController {
         return jeesnsConfig.getFrontTemplate() + "/group/detail";
     }
 
-    @RequestMapping(value = "/apply",method = RequestMethod.POST)
-    @ResponseBody
-    public Object apply(Group group){
-        Member loginMember = MemberUtil.getLoginMember(request);
-        if(loginMember == null){
-            return new ResponseModel(-1,"请先登录");
-        }
-        return groupService.save(loginMember,group);
-    }
 
-
+    /**
+     * 前台修改编辑帖子
+     * @param groupId
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/edit/{groupId}",method = RequestMethod.GET)
     public String edit(@PathVariable("groupId") Integer groupId,Model model){
         Member loginMember = MemberUtil.getLoginMember(request);
@@ -176,6 +201,11 @@ public class GroupController extends BaseController {
         return jeesnsConfig.getFrontTemplate() + "/group/edit";
     }
 
+    /**
+     * 前台修改 编辑帖子 保存
+     * @param group
+     * @return
+     */
     @RequestMapping(value = "/update",method = RequestMethod.POST)
     @ResponseBody
     public Object update(Group group){
@@ -186,6 +216,12 @@ public class GroupController extends BaseController {
         return groupService.update(loginMember,group);
     }
 
+    /**
+     * 相对应的群组里面帖子的 详情
+     * @param topicId
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/topic/{topicId}",method = RequestMethod.GET)
     public String topic(@PathVariable("topicId") Integer topicId,Model model){
         Member loginMember = MemberUtil.getLoginMember(request);
@@ -227,6 +263,12 @@ public class GroupController extends BaseController {
         return jeesnsConfig.getFrontTemplate() + "/group/topic";
     }
 
+    /**
+     * 去发帖子
+     * @param groupId
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/post/{groupId}",method = RequestMethod.GET)
     @Before(UserLoginInterceptor.class)
     public String post(@PathVariable("groupId") Integer groupId,Model model){
@@ -250,6 +292,11 @@ public class GroupController extends BaseController {
         return jeesnsConfig.getFrontTemplate() + "/group/post";
     }
 
+    /**
+     * 帖子保存发布
+     * @param groupTopic
+     * @return
+     */
     @RequestMapping(value = "/post",method = RequestMethod.POST)
     @ResponseBody
     public Object post(GroupTopic groupTopic){
@@ -260,6 +307,12 @@ public class GroupController extends BaseController {
         return groupTopicService.save(loginMember,groupTopic);
     }
 
+    /**
+     * 修改 编辑相对应的帖子
+     * @param topicId
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/topicEdit/{topicId}",method = RequestMethod.GET)
     @Before(UserLoginInterceptor.class)
     public String topicEdit(@PathVariable("topicId") Integer topicId,Model model){
@@ -280,6 +333,11 @@ public class GroupController extends BaseController {
         return jeesnsConfig.getFrontTemplate() + "/group/topicEdit";
     }
 
+    /**
+     * 保存上面修改 编辑过的帖子
+     * @param groupTopic
+     * @return
+     */
     @RequestMapping(value = "/topicUpdate",method = RequestMethod.POST)
     @ResponseBody
     public Object topicUpdate(GroupTopic groupTopic){
@@ -294,6 +352,21 @@ public class GroupController extends BaseController {
         }
         return responseModel;
     }
+
+
+    /**
+     * 删除帖子
+     * @param id
+     * @return
+     */
+    @RequestMapping(value="/delete/{id}",method = RequestMethod.GET)
+    @ResponseBody
+    public Object delete(@PathVariable("id") int id){
+        Member loginMember = MemberUtil.getLoginMember(request);
+        ResponseModel responseModel = groupTopicService.indexDelete(request,loginMember,id);
+        return responseModel;
+    }
+
 
     /**
      * 关注群组
@@ -352,13 +425,7 @@ public class GroupController extends BaseController {
         return groupTopicCommentService.listByGroupTopic(page,groupTopicId);
     }
 
-    @RequestMapping(value="/delete/{id}",method = RequestMethod.GET)
-    @ResponseBody
-    public Object delete(@PathVariable("id") int id){
-        Member loginMember = MemberUtil.getLoginMember(request);
-        ResponseModel responseModel = groupTopicService.indexDelete(request,loginMember,id);
-        return responseModel;
-    }
+
 
     /**
      * 未审核帖子列表

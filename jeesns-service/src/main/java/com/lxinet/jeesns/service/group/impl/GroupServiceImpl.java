@@ -130,6 +130,47 @@ public class GroupServiceImpl implements IGroupService {
         return new ResponseModel(-1,"操作失败，请重试");
     }
 
+
+    /**
+     * 后台群组添加
+     * @param loginMember
+     * @param group
+     * @return
+     */
+    @Override
+    public ResponseModel saveManageGroup(Member loginMember, Group group) {
+        Map<String,String> config = configService.getConfigToMap();
+        group.setCreator(loginMember.getId());
+        if(loginMember.getIsAdmin() > 0){
+            group.setStatus(1);
+        }else {
+            if("0".equals(config.get(ConfigUtil.GROUP_APPLY))){
+                return new ResponseModel(-1,"群组申请功能已关闭");
+            }
+            if("0".equals(config.get(ConfigUtil.GROUP_APPLY_REVIEW))){
+                group.setStatus(0);
+            }else {
+                group.setStatus(1);
+            }
+        }
+        //默认图标
+        if(StringUtils.isEmpty(group.getLogo())){
+            group.setLogo(Const.DEFAULT_IMG_URL);
+        }
+        //设置管理员
+        String managerIds = String.valueOf(loginMember.getId());
+        group.setManagers(managerIds);
+        group.setCanPost(1);
+        group.setTopicReview(0);
+        if(groupDao.save(group) == 1){
+            //创建者默认关注群组
+            groupFansService.save(loginMember,group.getId());
+            //申请群组奖励、扣款
+            scoreDetailService.scoreBonus(loginMember.getId(), ScoreRuleConsts.APPLY_GROUP, group.getId());
+            return new ResponseModel(3,"申请成功，请等待审核");
+        }
+        return new ResponseModel(-1,"操作失败，请重试");
+        }                                                                        
     @Override
     public ResponseModel update(Member loginMember, Group group) {
         Group findGroup = this.findById(group.getId());

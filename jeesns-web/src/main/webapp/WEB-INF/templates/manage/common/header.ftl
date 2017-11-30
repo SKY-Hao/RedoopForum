@@ -1,7 +1,7 @@
 <header class="main-header">
-    <a href="http://www.jeesns.cn" class="logo" target="_blank">
-        <span class="logo-mini"><b>JEE</b></span>
-        <span class="logo-lg"><b>JEESNS</b></span>
+    <a href="/" class="logo" target="_blank">
+        <span class="logo-mini"><b>Redoop</b></span>
+        <span class="logo-lg"><b>RedoopForum</b></span>
     </a>
     <nav class="navbar navbar-static-top">
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -90,6 +90,9 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="${managePath}/group/index" module="group"><i class="fa fa-circle-o"></i>群组列表</a></li>
+                   <#-- <li><a href="${managePath}/group/topic/index" module="group"><i class="fa fa-circle-o"></i>帖子列表</a></li>-->
+
+
                 </ul>
             </li>
             <li class="treeview" module="weibo">
