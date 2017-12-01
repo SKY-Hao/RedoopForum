@@ -30,21 +30,27 @@
         </ol>
         <div class="carousel-inner">
             <div class="item active">
+            <a href="http://www.redoop.com/front/onenew/40288a815f2974e1015f297f20e80000" target="_blank">
                 <img alt="First slide" src="${basePath}/res/front/images/banner3.jpg">
+            </a>
                 <div class="carousel-caption">
                     <h3></h3>
                     <p></p>
                 </div>
             </div>
             <div class="item">
-                <img alt="Second slide" src="${basePath}/res/front/images/banner1.jpg">
+               <a href="http://www.redoop.com/front/aboutus" target="_blank">
+                   <img alt="Second slide" src="${basePath}/res/front/images/banner1.jpg">
+               </a>
                 <div class="carousel-caption">
                     <h3></h3>
                     <p></p>
                 </div>
             </div>
             <div class="item">
-                <img alt="Third slide" src="${basePath}/res/front/images/banner2.jpg">
+               <a href="http://www.redoop.com/front/caseSpace" target="_blank">
+                   <img alt="Third slide" src="${basePath}/res/front/images/banner2.jpg">
+               </a>
                 <div class="carousel-caption">
                     <h3></h3>
                     <p></p>

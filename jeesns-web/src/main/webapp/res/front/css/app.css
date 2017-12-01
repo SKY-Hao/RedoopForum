@@ -170,8 +170,9 @@ a {
 }
 
 .article-list:hover {
-    border-bottom: solid #0499e2 1px;
-    border-left: solid #0499e2 1px;
+    border-bottom: solid #cc006a 1px;
+    border-left: solid #cc006a 1px;
+
 }
 
 .article-hot-list ul {
@@ -189,7 +190,7 @@ a {
 }
 
 .article-hot-list ul li a:hover {
-    color: #0499e2;
+    color: #cc006a;
     text-decoration-line: none;
 }
 
