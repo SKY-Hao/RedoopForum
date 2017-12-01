@@ -73,7 +73,7 @@ JEESNS是一款基于JAVA企业级平台研发的社交管理系统，依托企�
 6. 编译项目。在eclipse中，右键点击项目名，选择`Run as` - `Maven build...`，`Goals`填入`clean package`，然后点击`Run`，第一次运行需要下载jar包，请耐心等待。
 7. 部署项目。将项目部署到Tomcat7或以上版本，启动Tomcat。
 8. 访问系统。前台地址：[http://localhost:8080/](http://localhost:8080/)；用户名：admin，密码：redoopadmin，登录成功之后，在右上角展开有个'管理'，点击即可进入后台管理。
-
+9. 访问系统。后台地址：http://localhost:8080/manage/index/; 用户名:admin 密码redoopadmin
 ## 部署详细说明
 1. [JDK安装说明](https://my.oschina.net/zchuanzhao/blog/853387)
 2. [Maven安装说明](https://my.oschina.net/zchuanzhao/blog/853392)
