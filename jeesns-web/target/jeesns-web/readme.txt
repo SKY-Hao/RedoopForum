@@ -64,6 +64,6 @@ JAVA开发框架：Spring MVC+Spring+Mybatis
     managePath=manage
 
  4、重启Tomcat。
-  后台登录地址：http://域名/manage/
+  后台登录地址：http://域名/manage/index
   后台用户名：admin
-  密码：jeesns
+  密码：redoopadmin
