@@ -390,15 +390,15 @@ VALUES
   ('member_email_valid','0','邮箱验证，0不需要验证，1需要验证'),
   ('member_login_open','1','会员登录开关，0关闭，1开启'),
   ('member_register_open','1','会员注册开关，0关闭，1开启'),
-  ('site_description','JEESNS是一款基于JAVA企业级平台研发的社交管理系统，依托企业级JAVA的高效、安全、稳定等优势，开创国内JAVA版开源SNS先河。','网站描述'),
-  ('site_domain','http://www.jeesns.cn/','网站域名'),
-  ('site_keys','jeesns,sns,java','网站关键词'),
+  ('site_description','REDOOP是一款基于JAVA企业级平台研发的社交管理系统，依托企业级JAVA的高效、安全、稳定等优势，开创国内JAVA版开源SNS先河。','网站描述'),
+  ('site_domain','http://www.redoop.cn/','网站域名'),
+  ('site_keys','redoop,sns,java','网站关键词'),
   ('site_logo','/res/common/images/RedoopLogo.png','网站LOGO'),
-  ('site_name','JEESNS','网站名称'),
+  ('site_name','REDOOP','网站名称'),
   ('site_send_email_account','','发送邮箱账号'),
   ('site_send_email_password','','发送邮箱密码'),
   ('site_send_email_smtp','','发送邮箱SMTP服务器地址'),
-  ('site_seo_title','又一个JEESNS社区','SEO标题'),
+  ('site_seo_title','又一个REDOOP社区','SEO标题'),
   ('site_icp','闽ICP备12013573号','备案号'),
   ('site_copyright','Copyright © 2012 - 2017.','版权说明'),
   ('site_tongji','<script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "https://hm.baidu.com/hm.js?6e79d941db914e4195f4a839b06f2567";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script>','统计代码'),
@@ -409,7 +409,7 @@ VALUES
 
 INSERT INTO `tbl_member` (`id`, `group_id`, `name`, `email`, `phone`, `password`, `sex`, `avatar`, `create_time`, `regip`, `login_count`, `curr_login_time`, `curr_login_ip`, `last_login_time`, `last_login_ip`, `update_time`, `money`, `score`, `is_active`, `status`, `birthday`, `addprovince`, `addcity`, `addarea`, `address`, `qq`, `wechat`, `contact_phone`, `contact_email`, `website`, `introduce`, `is_admin`)
 VALUES
-  (1,0,'admin','admin@jeesns.cn','13800138000','56b0436e6dd61a1f5f6a636cdf790eee','女','/res/common/images/default-avatar.png',now(),'',0,now(),'127.0.0.1',now(),'127.0.0.1',NULL,0.00,0,1,0,'1971-12-20','','','','','8888888','admin','13800138000','admin@jeesns.cn','www.jeesns.cn','',2);
+  (1,0,'admin','huangtianhao@redoop.com','13800138000','56b0436e6dd61a1f5f6a636cdf790eee','女','/res/common/images/default-avatar.png',now(),'',0,now(),'127.0.0.1',now(),'127.0.0.1',NULL,0.00,0,1,0,'1971-12-20','','','','','8888888','admin','13800138000','huangtianhao@redoop.com','www.redoop.com','',2);
 
 INSERT INTO tbl_action(id, create_time, name, log, status, update_time) VALUES
   (1,now(),'会员注册','注册了账号',0,now()),

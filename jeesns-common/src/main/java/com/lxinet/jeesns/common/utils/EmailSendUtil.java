@@ -19,9 +19,9 @@ public class EmailSendUtil {
 	}
 
 	private static boolean sendMail(HttpServletRequest request, String email, String content,String title) {
-		final String account = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_SEND_EMAIL_ACCOUNT.toUpperCase());
-		final String passWord = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_SEND_EMAIL_PASSWORD.toUpperCase());
-		final String smtp = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_SEND_EMAIL_SMTP.toUpperCase());
+		final String account = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_SEND_EMAIL_ACCOUNT.toUpperCase());//本地发送人邮箱地址
+		final String passWord = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_SEND_EMAIL_PASSWORD.toUpperCase());//本地发送人邮箱密码
+		final String smtp = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_SEND_EMAIL_SMTP.toUpperCase());//发送邮箱SMTP服务器地址
 		Properties props = new Properties();
 		props.setProperty("mail.smtp.auth", "true");
 		props.setProperty("mail.transport.protocol", "smtp");
@@ -33,7 +33,7 @@ public class EmailSendUtil {
 		});
 
 		Message msg = new MimeMessage(session);
-		session.setDebug(false);// 查看调试信息:true,不查看：false;
+		session.setDebug(true);// 查看调试信息:true,不查看：false;
 		try {
 			msg.setFrom(new InternetAddress(account));
 			msg.setSubject(title);
@@ -45,7 +45,7 @@ public class EmailSendUtil {
 			//发送失败
 			return false;
 		}// 发送端
-		return true;
+		return true;//发送成功
 	}
 
 	/**
@@ -55,9 +55,18 @@ public class EmailSendUtil {
 	 * @return
 	 */
 	public static boolean activeMember(HttpServletRequest request, String email, String randomCode){
+
 		String siteName = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_NAME.toUpperCase());
 		String title = siteName + "会员账号激活";
-		String content = "欢迎加入"+siteName+"，您的账号激活验证码为：【"+randomCode+"】，30分钟内有效，请马上进行验证。若非本人操作，请忽略此邮件。";
+		//String content = "欢迎加入"+siteName+":\n 您的账号激活验证码为：【"+randomCode+"】，\n 30分钟内有效，请马上进行验证。若非本人操作，请忽略此邮件。\n致敬!\n红象云腾";
+		String content =
+				"<h4>您好，" + email + "：</h4>" +
+				"<p>欢迎加入" + siteName + ":<br  />" +
+				"您的账号激活验证码为：【" + randomCode + "】，30分钟内有效，请马上进行验证。" +
+				"若非本人操作，请忽略此邮件。<br  />" +
+				"致敬!<br  />" +
+				"红象云腾!<br  /><p>" ;
+
 		return sendMail(request, email, content, title);
 	}
 
@@ -69,11 +78,15 @@ public class EmailSendUtil {
 	 */
 	public static boolean forgetpwd(HttpServletRequest request, String email, String randomCode){
 		String siteName = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_NAME.toUpperCase());
-		String siteDomain = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_DOMAIN.toUpperCase());
+		//String siteDomain = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_DOMAIN.toUpperCase());
+		//String siteDomain="localhost:8080";
+		StringBuffer url = request.getRequestURL();
+		String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).append("/").toString();
+
 		String title = siteName + "找回密码";
 		String content = "<h4>您好，" + email + "：</h4><p>请点击下面的链接来重置您的密码<br  />" +
-				"<a href='" + siteDomain+"member/resetpwd?email=" + email + "&token=" + randomCode + "' target='_blank'>" +
-				siteDomain + "member/resetPwd?email=" + email + "&token=" + randomCode + "</a><br  />" +
+				"<a href='" + tempContextUrl+"/member/resetpwd?email=" + email + "&token=" + randomCode + "' target='_blank'>" +
+				tempContextUrl + "member/resetPwd?email=" + email + "&token=" + randomCode + "</a><br  />" +
 				"本链接30分钟内有效。<br />" +
 				"(如果点击链接无反应，请复制链接到浏览器里直接打开)<p>" ;
 		return sendMail(request, email, content, title);

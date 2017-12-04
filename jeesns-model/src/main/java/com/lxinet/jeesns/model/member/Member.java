@@ -394,4 +394,46 @@ public class Member implements Serializable {
 	public void setMessages(List<Message> messages) {
 		this.messages = messages;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Member{" +
+				"id=" + id +
+				", createTime=" + createTime +
+				", groupId=" + groupId +
+				", name='" + name + '\'' +
+				", email='" + email + '\'' +
+				", phone='" + phone + '\'' +
+				", password='" + password + '\'' +
+				", sex='" + sex + '\'' +
+				", avatar='" + avatar + '\'' +
+				", regip='" + regip + '\'' +
+				", loginCount=" + loginCount +
+				", currLoginTime=" + currLoginTime +
+				", currLoginIp='" + currLoginIp + '\'' +
+				", lastLoginTime=" + lastLoginTime +
+				", lastLoginIp='" + lastLoginIp + '\'' +
+				", updateTime=" + updateTime +
+				", money=" + money +
+				", score=" + score +
+				", isActive=" + isActive +
+				", status=" + status +
+				", birthday='" + birthday + '\'' +
+				", addprovince='" + addprovince + '\'' +
+				", addcity='" + addcity + '\'' +
+				", addarea='" + addarea + '\'' +
+				", address='" + address + '\'' +
+				", qq='" + qq + '\'' +
+				", wechat='" + wechat + '\'' +
+				", contactPhone='" + contactPhone + '\'' +
+				", contactEmail='" + contactEmail + '\'' +
+				", website='" + website + '\'' +
+				", introduce='" + introduce + '\'' +
+				", isAdmin=" + isAdmin +
+				", follows=" + follows +
+				", fans=" + fans +
+				", messages=" + messages +
+				'}';
+	}
 }

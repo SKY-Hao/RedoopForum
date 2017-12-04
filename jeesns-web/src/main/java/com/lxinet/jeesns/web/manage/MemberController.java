@@ -28,6 +28,12 @@ public class MemberController extends BaseController {
     @Resource
     private IMemberService memberService;
 
+    /**
+     * 会员列表
+     * @param key
+     * @param model
+     * @return
+     */
     @RequestMapping("${managePath}/member/index")
     @Before(AdminLoginInterceptor.class)
     public String index(String key,Model model) {

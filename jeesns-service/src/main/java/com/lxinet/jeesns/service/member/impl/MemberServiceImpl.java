@@ -6,6 +6,7 @@ import com.lxinet.jeesns.core.model.Page;
 import com.lxinet.jeesns.core.utils.*;
 import com.lxinet.jeesns.dao.member.IMemberDao;
 import com.lxinet.jeesns.common.utils.EmailSendUtil;
+
 import com.lxinet.jeesns.model.member.Member;
 import com.lxinet.jeesns.model.member.ValidateCode;
 import com.lxinet.jeesns.service.member.IMemberFansService;
@@ -46,6 +47,12 @@ public class MemberServiceImpl implements IMemberService {
     @Resource
     private IScoreDetailService scoreDetailService;
 
+    /**
+     * 登录
+     * @param member
+     * @param request
+     * @return
+     */
     @Override
     public ResponseModel login(Member member, HttpServletRequest request) {
         Map<String,String> config = configService.getConfigToMap();
@@ -92,6 +99,12 @@ public class MemberServiceImpl implements IMemberService {
         return memberDao.findById(id);
     }
 
+    /**
+     * 注册保存
+     * @param member
+     * @param request
+     * @return
+     */
     @Override
     @Transactional
     public ResponseModel register(Member member, HttpServletRequest request) {
@@ -101,10 +114,11 @@ public class MemberServiceImpl implements IMemberService {
         if(memberDao.findByEmail(member.getEmail()) != null){
             return new ResponseModel(-1,"该邮箱已被注册");
         }
-        member.setRegip(IpUtil.getIpAddress(request));
-        member.setPassword(Md5Util.getMD5Code(member.getPassword()));
-        member.setAvatar(Const.DEFAULT_AVATAR);
-        if(memberDao.register(member) == 1){
+        member.setRegip(IpUtil.getIpAddress(request));//IP地址
+        member.setPassword(Md5Util.getMD5Code(member.getPassword()));//密码
+        member.setAvatar(Const.DEFAULT_AVATAR);//头像
+
+        if(memberDao.register(member) == 1){//注册保存
             actionLogService.save(member.getRegip(),member.getId(),ActionUtil.MEMBER_REG);
             //注册奖励
             scoreDetailService.scoreBonus(member.getId(),ScoreRuleConsts.REG_INIT);
@@ -129,6 +143,11 @@ public class MemberServiceImpl implements IMemberService {
         return new ResponseModel(-1,"删除失败");
     }
 
+    /**
+     * 会员列表
+     * @param key
+     * @return
+     */
     @Override
     public ResponseModel<Member> listByPage(Page page, String key) {
         if (StringUtils.isNotBlank(key)){
@@ -140,6 +159,12 @@ public class MemberServiceImpl implements IMemberService {
         return model;
     }
 
+    /**
+     * 后台管理员列表
+     * @param page
+     * @param key
+     * @return
+     */
     @Override
     public ResponseModel<Member> managerList(Page page, String key) {
         if (StringUtils.isNotBlank(key)){
@@ -151,6 +176,11 @@ public class MemberServiceImpl implements IMemberService {
         return model;
     }
 
+    /**
+     * 授权管理员
+     * @param name
+     * @return
+     */
     @Override
     public ResponseModel managerAdd(Member loginMember, String name) {
         int isAdmin = 1;
@@ -176,6 +206,11 @@ public class MemberServiceImpl implements IMemberService {
         return new ResponseModel(3,"操作成功");
     }
 
+    /**
+     * 取消管理员
+     * @param id
+     * @return
+     */
     @Override
     public ResponseModel managerCancel(Member loginMember, int id) {
         Member findMember = this.findById(id);
@@ -331,6 +366,13 @@ public class MemberServiceImpl implements IMemberService {
         return memberDao.findByName(name);
     }
 
+
+    /**
+     * 开启邮箱验证 发送邮件去激活
+     * @param loginMember
+     * @param request
+     * @return
+     */
     @Override
     public ResponseModel sendEmailActiveValidCode(Member loginMember, HttpServletRequest request) {
         loginMember = this.findById(loginMember.getId());
@@ -344,9 +386,17 @@ public class MemberServiceImpl implements IMemberService {
                 return new ResponseModel(0,"邮件发送成功");
             }
         }
-        return new ResponseModel(-1,"邮件发送失败，请重试");
+        return new ResponseModel(-1,"邮件发送失败哦，请重试");
     }
 
+
+
+    /**
+     * 会员账号激活
+     * @param loginMember
+     * @param randomCode
+     * @return
+     */
     @Transactional
     @Override
     public ResponseModel active(Member loginMember, String randomCode, HttpServletRequest request) {
@@ -376,11 +426,23 @@ public class MemberServiceImpl implements IMemberService {
         }
     }
 
+    /**
+     * 查询姓名和邮箱（修改密码时候用）
+     * @param name
+     * @param email
+     * @return
+     */
     @Override
     public Member findByNameAndEmail(String name, String email) {
         return memberDao.findByNameAndEmail(name,email);
     }
 
+    /**
+     * 点击找回密码去发送邮件
+     * @param name
+     * @param email
+     * @return
+     */
     @Override
     public ResponseModel forgetpwd(String name, String email, HttpServletRequest request) {
         Member member = this.findByNameAndEmail(name,email);
@@ -397,6 +459,14 @@ public class MemberServiceImpl implements IMemberService {
         return new ResponseModel(-1,"邮件发送失败，请重试");
     }
 
+
+    /**
+     * 保存修改的密码
+     * @param email
+     * @param token
+     * @param password
+     * @return
+     */
     @Transactional
     @Override
     public ResponseModel resetpwd(String email,String token,String password, HttpServletRequest request) {
@@ -417,6 +487,12 @@ public class MemberServiceImpl implements IMemberService {
         return new ResponseModel(-1,"密码重置失败");
     }
 
+
+    /**
+     * 关注、取消关注
+     * @param followWhoId
+     * @return
+     */
     @Transactional
     @Override
     public ResponseModel follows(Member loginMember, Integer followWhoId) {
@@ -444,6 +520,11 @@ public class MemberServiceImpl implements IMemberService {
         }
     }
 
+    /**
+     * 关注、取消关注
+     * @param followWhoId
+     * @return
+     */
     @Override
     public ResponseModel isFollowed(Member loginMember, Integer followWhoId) {
         int loginMemberId = 0;

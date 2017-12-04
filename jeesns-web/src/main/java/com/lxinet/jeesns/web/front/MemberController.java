@@ -40,6 +40,12 @@ public class MemberController extends BaseController {
     @Resource
     private JeesnsConfig jeesnsConfig;
 
+    /**
+     * 登录
+     * @param model
+     * @param redirectUrl
+     * @return
+     */
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login(Model model,@RequestParam(value = "redirectUrl",required = false,defaultValue = "") String redirectUrl){
         Member loginMember = MemberUtil.getLoginMember(request);
@@ -61,6 +67,10 @@ public class MemberController extends BaseController {
         return responseModel;
     }
 
+    /**
+     * 去注册页面
+     * @return
+     */
     @RequestMapping(value = "/register",method = RequestMethod.GET)
     public String register(){
         Member loginMember = MemberUtil.getLoginMember(request);
@@ -70,9 +80,16 @@ public class MemberController extends BaseController {
         return MEMBER_FTL_PATH + "/register";
     }
 
+    /**
+     * 注册保存
+     * @param member
+     * @param repassword
+     * @return
+     */
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     @ResponseBody
     public ResponseModel register(Member member,String repassword){
+
         Map<String,String> config = configService.getConfigToMap();
         if("0".equals(config.get(ConfigUtil.MEMBER_REGISTER_OPEN))){
             return new ResponseModel(-1,"注册功能已关闭");
@@ -98,6 +115,10 @@ public class MemberController extends BaseController {
         return memberService.register(member,request);
     }
 
+    /**
+     *1. 开启邮箱验证之后进入验证页面
+     * @return
+     */
     @RequestMapping(value = "/active",method = RequestMethod.GET)
     public String active(){
         Member loginMember = MemberUtil.getLoginMember(request);
@@ -107,16 +128,11 @@ public class MemberController extends BaseController {
         return MEMBER_FTL_PATH + "/active";
     }
 
-    @RequestMapping(value = "/active",method = RequestMethod.POST)
-    @ResponseBody
-    public ResponseModel active(String randomCode){
-        Member loginMember = MemberUtil.getLoginMember(request);
-        if(loginMember == null){
-            return new ResponseModel(-1,"请先登录");
-        }
-        return memberService.active(loginMember,randomCode,request);
-    }
 
+    /**
+     * 2.进入激活页面后 获取验证码
+     * @return
+     */
     @RequestMapping(value = "/sendEmailActiveValidCode",method = RequestMethod.GET)
     @ResponseBody
     public ResponseModel sendEmailActiveValidCode(){
@@ -127,17 +143,51 @@ public class MemberController extends BaseController {
         return memberService.sendEmailActiveValidCode(loginMember, request);
     }
 
+    /**
+     * 3.发送完激活验证码后,会员账号激活
+     * @param randomCode
+     * @return
+     */
+    @RequestMapping(value = "/active",method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseModel active(String randomCode){
+        Member loginMember = MemberUtil.getLoginMember(request);
+        if(loginMember == null){
+            return new ResponseModel(-1,"请先登录");
+        }
+        return memberService.active(loginMember,randomCode,request);
+    }
+
+
+    /**
+     * 忘记密码
+     * @return
+     */
     @RequestMapping(value = "/forgetpwd",method = RequestMethod.GET)
     public String forgetpwd(){
         return MEMBER_FTL_PATH + "/forgetpwd";
     }
 
+    /**
+     * 点击找回密码去发送邮件
+     * @param name
+     * @param email
+     * @return
+     */
     @RequestMapping(value = "/forgetpwd",method = RequestMethod.POST)
     @ResponseBody
     public ResponseModel forgetpwd(String name,String email){
         return memberService.forgetpwd(name, email, request);
     }
 
+
+    /**
+     * 修改密码
+     * @param email
+     * @param token
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/resetpwd",method = RequestMethod.GET)
     public String resetpwd(String email,String token,Model model){
         model.addAttribute("email",email);
@@ -145,6 +195,14 @@ public class MemberController extends BaseController {
         return MEMBER_FTL_PATH + "/resetpwd";
     }
 
+    /**
+     * 保存修改的密码
+     * @param email
+     * @param token
+     * @param password
+     * @param repassword
+     * @return
+     */
     @RequestMapping(value = "/resetpwd",method = RequestMethod.POST)
     @ResponseBody
     public ResponseModel resetpwd(String email,String token,String password,String repassword){

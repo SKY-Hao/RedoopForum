@@ -35,7 +35,11 @@ public interface IMemberService {
     ResponseModel update(Member member);
 
     ResponseModel delete(int id);
-
+    /**
+     * 会员列表
+     * @param key
+     * @return
+     */
     ResponseModel<Member> listByPage(Page page, String key);
 
     /**
@@ -121,6 +125,10 @@ public interface IMemberService {
 
     Member findByName(String name);
 
+    /**
+     * 开启邮箱验证 后激活
+     * @return
+     */
     ResponseModel sendEmailActiveValidCode(Member loginMember, HttpServletRequest request);
 
     /**
@@ -131,10 +139,27 @@ public interface IMemberService {
      */
     ResponseModel active(Member loginMember, String randomCode, HttpServletRequest request);
 
+
+
+
     Member findByNameAndEmail(String name, String email);
 
+    /**
+     * 点击找回密码去发送邮件
+     * @param name
+     * @param email
+     * @return
+     */
     ResponseModel forgetpwd(String name, String email, HttpServletRequest request);
 
+
+    /**
+     * 保存修改的密码
+     * @param email
+     * @param token
+     * @param password
+     * @return
+     */
     ResponseModel resetpwd(String email, String token, String password, HttpServletRequest request);
 
     /**

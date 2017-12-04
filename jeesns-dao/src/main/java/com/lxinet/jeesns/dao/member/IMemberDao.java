@@ -37,6 +37,11 @@ public interface IMemberDao extends IBaseDao<Member> {
     int managerAddAndCancel(@Param("isAdmin") Integer isAdmin, @Param("id") Integer id);
 
 
+    /**
+     * 注册保存信息
+     * @param member
+     * @return
+     */
     int register(Member member);
 
     /**
@@ -76,8 +81,18 @@ public interface IMemberDao extends IBaseDao<Member> {
      */
     int editOtherInfo(Member member);
 
+    /**
+     * 查询用户名-- 注册时候
+     * @param name
+     * @return
+     */
     Member findByName(@Param("name") String name);
 
+    /**
+     * 查询邮箱--注册时候
+     * @param email
+     * @return
+     */
     Member findByEmail(@Param("email") String email);
 
     Member findByNameAndEmail(@Param("name") String name, @Param("email") String email);

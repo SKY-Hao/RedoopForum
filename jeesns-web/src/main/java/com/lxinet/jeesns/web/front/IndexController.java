@@ -62,7 +62,13 @@ public class IndexController extends BaseController{
     @Resource
     private ILinkService linkService;
 
-
+    /**
+     * 首页
+     * @param key
+     * @param cateid
+     * @param model
+     * @return
+     */
     @RequestMapping(value={"/", "index"},method = RequestMethod.GET)
     public String index(@RequestParam(value = "key",required = false,defaultValue = "") String key, Integer cateid,Model model) {
         Page page = new Page(request);
@@ -86,6 +92,12 @@ public class IndexController extends BaseController{
         return jeesnsConfig.getFrontTemplate() + "/index";
     }
 
+    /**
+     *  U.FTL  动态主页面
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "u/{id}",method = RequestMethod.GET)
     public String u(@PathVariable("id") Integer id, Model model){
         Page page = new Page(request);
@@ -101,6 +113,13 @@ public class IndexController extends BaseController{
         return jeesnsConfig.getFrontTemplate() + "/u";
     }
 
+    /**
+     * 主页面 左侧栏目跳转（属性跳转）例如:粉丝 跳fans页面 群组 跳group页面
+     * @param id
+     * @param type
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "u/{id}/home/{type}",method = RequestMethod.GET)
     public String home(@PathVariable("id") Integer id, @PathVariable("type") String type, Model model){
         Page page = new Page(request);
