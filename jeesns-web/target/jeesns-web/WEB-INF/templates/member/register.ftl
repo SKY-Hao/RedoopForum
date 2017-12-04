@@ -28,7 +28,7 @@
 
 </head>
 <body class="gray-bg">
-<#include "${basePath}/member/common/header.ftl"/>
+<#include "/member/common/header.ftl"/>
 <div class="animated fadeInDown">
     <div class="row login-panel">
         <div class="col-md-4"></div>
@@ -57,14 +57,14 @@
                     <p class="text-muted text-center">
                     <a href="forgetpwd">忘记密码?</a> |
                     <a href="login">我要登录</a>
-                    </div>
+
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<#include "${basePath}/member/common/footer.ftl"/>
+<#include "/member/common/footer.ftl"/>
 </body>
 
 </html>

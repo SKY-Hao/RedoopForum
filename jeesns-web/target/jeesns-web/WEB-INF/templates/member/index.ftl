@@ -5,8 +5,8 @@
     <title>个人中心</title>
 
     <link rel="shortcut icon" href="${basePath}/logo.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
-
 
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/font-awesome.min.css" rel="stylesheet">
@@ -30,7 +30,7 @@
 </head>
 
 <body class="gray-bg">
-<#include "${basePath}/member/common/header.ftl"/>
+<#include "/member/common/header.ftl"/>
 <div class="wrapper wrapper-content">
     <div class="member-banner" style="background-image: url(${basePath}/res/common/images/member_banner.png);">
         <div class="attempts"></div>
@@ -198,7 +198,7 @@
         </div>
     </div>
 </div>
-<#include "${basePath}/member/common/footer.ftl"/>
+<#include "/member/common/footer.ftl"/>
 <script type="text/javascript">
     $(function () {
         $(".pagination").jeesns_page("jeesnsPageForm");

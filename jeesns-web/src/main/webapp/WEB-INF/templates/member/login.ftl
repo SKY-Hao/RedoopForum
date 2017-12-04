@@ -6,8 +6,8 @@
     <title>Redoop用户登录</title>
     <#--<meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
-    <meta name="author" content="JEESNS"/>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">-->
+    <meta name="author" content="JEESNS"/>-->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="shortcut icon" href="${basePath}/logo.ico">
     <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
 
@@ -30,7 +30,7 @@
 </head>
 
 <body class="gray-bg">
-<#include "${basePath}/member/common/header.ftl"/>
+<#include "/member/common/header.ftl"/>
 <div class="animated fadeInDown">
     <div class="row login-panel">
         <div class="col-md-4"></div>
@@ -59,7 +59,7 @@
         </div>
     </div>
 </div>
-<#include "${basePath}/member/common/footer.ftl"/>
+<#include "/member/common/footer.ftl"/>
 </body>
 
 </html>
