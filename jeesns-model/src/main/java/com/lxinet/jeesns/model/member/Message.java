@@ -112,12 +112,8 @@ public class Message implements Serializable {
         this.type = type;
     }
 
-    public int getRelateKeyId() {
+    public Integer getRelateKeyId() {
         return relateKeyId;
-    }
-
-    public void setRelateKeyId(int relateKeyId) {
-        this.relateKeyId = relateKeyId;
     }
 
     public void setRelateKeyId(Integer relateKeyId) {
@@ -146,5 +142,27 @@ public class Message implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", createTime=" + createTime +
+                ", fromMemberId=" + fromMemberId +
+                ", fromMember=" + fromMember +
+                ", toMemberId=" + toMemberId +
+                ", toMember=" + toMember +
+                ", content='" + content + '\'' +
+                ", url='" + url + '\'' +
+                ", isread=" + isread +
+                ", appTag=" + appTag +
+                ", type=" + type +
+                ", relateKeyId=" + relateKeyId +
+                ", description='" + description + '\'' +
+                ", memberId=" + memberId +
+                ", member=" + member +
+                '}';
     }
 }

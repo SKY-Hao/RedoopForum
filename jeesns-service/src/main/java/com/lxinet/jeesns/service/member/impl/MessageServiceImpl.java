@@ -24,15 +24,21 @@ public class MessageServiceImpl implements IMessageService {
     @Resource
     private IMemberService memberService;
 
+    /**
+     * 发送信息
+     * @param content
+     * @return
+     */
     @Override
     public ResponseModel save(Integer fromMemberId, Integer toMemberId, String content) {
         if(fromMemberId.intValue() == toMemberId.intValue()){
             return new ResponseModel(-1, "不能发信息给自己");
         }
         Message message = new Message();
-        message.setFromMemberId(fromMemberId);
-        message.setToMemberId(toMemberId);
-        message.setContent(content);
+        message.setFromMemberId(fromMemberId);//发信人ID
+        message.setToMemberId(toMemberId);//收信人ID
+        message.setContent(content);//发送内容
+
         if(messageDao.save(message) == 1){
             return new ResponseModel(0, "信息发送成功");
         }

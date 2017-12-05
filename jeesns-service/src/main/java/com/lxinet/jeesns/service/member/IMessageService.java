@@ -11,6 +11,11 @@ import com.lxinet.jeesns.model.member.Message;
  */
 public interface IMessageService {
 
+    /**
+     * 发送信息
+     * @param content
+     * @return
+     */
     ResponseModel save(Integer fromMemberId, Integer toMemberId, String content);
 
     ResponseModel save(Integer toMemberId, String content, Integer appTag,Integer type,Integer relateKeyId,Integer memberId,String description);

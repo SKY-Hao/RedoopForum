@@ -79,12 +79,13 @@ public class EmailSendUtil {
 	public static boolean forgetpwd(HttpServletRequest request, String email, String randomCode){
 		String siteName = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_NAME.toUpperCase());
 		//String siteDomain = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_DOMAIN.toUpperCase());
-		//String siteDomain="localhost:8080";
+		//获取域名
 		StringBuffer url = request.getRequestURL();
 		String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).append("/").toString();
 
 		String title = siteName + "找回密码";
-		String content = "<h4>您好，" + email + "：</h4><p>请点击下面的链接来重置您的密码<br  />" +
+		String content = "<h4>您好，" + email + "：</h4>" +
+				"<p>请点击下面的链接来重置您的密码<br  />" +
 				"<a href='" + tempContextUrl+"/member/resetpwd?email=" + email + "&token=" + randomCode + "' target='_blank'>" +
 				tempContextUrl + "member/resetPwd?email=" + email + "&token=" + randomCode + "</a><br  />" +
 				"本链接30分钟内有效。<br />" +

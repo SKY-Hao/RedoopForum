@@ -90,10 +90,12 @@
     delete from tbl_message where (from_member_id = #{fromMemberId} AND to_member_id = #{toMemberId})
     OR (from_member_id = #{toMemberId} AND to_member_id = #{fromMemberId})
   </delete>
-  <insert id="save" parameterType="Message">
+
+  <insert id="save" parameterType="message">
     insert into tbl_message (create_time,from_member_id,to_member_id,content,url,isread,app_tag,type,relate_key_id,member_id,description)
     values (now(),#{fromMemberId},#{toMemberId},#{content},#{url},0,#{appTag},#{type},#{relateKeyId},#{memberId},#{description})
   </insert>
+
   <update id="setRead">
     update tbl_message SET isread = 1 WHERE isread = 0 AND to_member_id = #{toMemberId}
     <if test="fromMemberId != null">

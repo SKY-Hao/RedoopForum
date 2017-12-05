@@ -64,6 +64,7 @@
                 jeesnsDialog.errorTips("请输入私信内容");
                 return;
             }
+           // debugger;
             $.ajax({
                 url: "${basePath}/member/sendMessage",
                 type: "post",
@@ -78,6 +79,7 @@
                     index = jeesnsDialog.loading();
                 },
                 error: function () {
+
                     jeesnsDialog.close(index);
                     jeesnsDialog.errorTips("请求失败")
                 },

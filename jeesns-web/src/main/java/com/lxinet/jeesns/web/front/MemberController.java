@@ -218,7 +218,12 @@ public class MemberController extends BaseController {
         return memberService.resetpwd(email,token,password,request);
     }
 
-
+    /**
+     * (登录之后)
+     * 个人主页member/index
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/",method = RequestMethod.GET)
     @Before(UserLoginInterceptor.class)
     public String index(Model model){
@@ -230,13 +235,23 @@ public class MemberController extends BaseController {
         return MEMBER_FTL_PATH + "index";
     }
 
-
+    /**
+     * 去修改个人资料页面
+     * @return
+     */
     @RequestMapping(value = "/editInfo",method = RequestMethod.GET)
     @Before(UserLoginInterceptor.class)
     public String editInfo(){
         return MEMBER_FTL_PATH + "editInfo";
     }
 
+    /**
+     * 修改基本资料
+     * @param name
+     * @param sex
+     * @param introduce
+     * @return
+     */
     @RequestMapping(value = "/editBaseInfo",method = RequestMethod.POST)
     @ResponseBody
     public ResponseModel editBaseInfo(String name,String sex,String introduce){
@@ -244,6 +259,16 @@ public class MemberController extends BaseController {
         return memberService.editBaseInfo(loginMember,name,sex,introduce);
     }
 
+    /**
+     * 修改个人资料
+     * @param birthday
+     * @param qq
+     * @param wechat
+     * @param contactPhone
+     * @param contactEmail
+     * @param website
+     * @return
+     */
     @RequestMapping(value = "/editOtherInfo",method = RequestMethod.POST)
     @ResponseBody
     public ResponseModel editOtherInfo(String birthday,String qq,String wechat,String contactPhone,
@@ -251,6 +276,7 @@ public class MemberController extends BaseController {
         Member loginMember = MemberUtil.getLoginMember(request);
         return memberService.editOtherInfo(loginMember,birthday,qq,wechat,contactPhone,contactEmail,website);
     }
+
 
     @RequestMapping(value = "/avatar",method = RequestMethod.GET)
     @Before(UserLoginInterceptor.class)
@@ -327,10 +353,10 @@ public class MemberController extends BaseController {
             loginMemberId = loginMember.getId();
         }
         //获取联系人
-//        ResponseModel contactMembers = messageService.listContactMembers(page, loginMemberId);
-//        获取联系人
-//        ResponseModel contactMembers = messageService.listContactMembers(page, memberId, loginMemberId);
-//        model.addAttribute("model", contactMembers);
+      //  ResponseModel contactMembers = messageService.listContactMembers(page, loginMemberId);
+       // 获取联系人
+      //  ResponseModel contactMembers = messageService.listContactMembers(page, memberId, loginMemberId);
+       // model.addAttribute("model", contactMembers);
         return MEMBER_FTL_PATH + "message";
     }
 
