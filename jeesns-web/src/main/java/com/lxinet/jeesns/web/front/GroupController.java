@@ -56,6 +56,7 @@ public class GroupController extends BaseController {
     public String index(String key,Model model) {
         Page page = new Page(request);
         ResponseModel responseModel = groupService.listByPage(1,page,key);
+
         model.addAttribute("model",responseModel);
         model.addAttribute("key",key);
         return jeesnsConfig.getFrontTemplate() + "/group/index";

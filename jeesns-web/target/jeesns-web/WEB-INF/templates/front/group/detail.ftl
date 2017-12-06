@@ -32,7 +32,7 @@
             <div class="col-md-8">
                 <div class="group white-bg">
                     <div class="group-logo">
-                        <img alt="${group.name}" src="${basePath}${group.logo}" width="80px" height="80px"/>
+                        <img alt="${group.name}" src="${basePath}${group.logo}" width="80px" height="80px"style="border-radius: 50%;border: 1px solid #e6e6e6;"/>
                     </div>
                     <div class="group-detail">
                         <p>

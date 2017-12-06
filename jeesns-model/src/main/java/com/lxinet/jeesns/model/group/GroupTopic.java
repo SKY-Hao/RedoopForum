@@ -72,4 +72,18 @@ public class GroupTopic extends Archive {
     public void setIsEssence(Integer isEssence) {
         this.isEssence = isEssence;
     }
+
+
+    @Override
+    public String toString() {
+        return "GroupTopic{" +
+                "id=" + id +
+                ", collectTime=" + collectTime +
+                ", groupId=" + groupId +
+                ", group=" + group +
+                ", status=" + status +
+                ", isTop=" + isTop +
+                ", isEssence=" + isEssence +
+                '}';
+    }
 }

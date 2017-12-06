@@ -23,7 +23,10 @@ public interface IMessageService {
     ResponseModel<Message> listByPage(Page page, Integer fromMemberId, Integer toMemberId);
 
     ResponseModel<Message> messageRecords(Page page, Integer fromMemberId, Integer toMemberId);
-
+    /**
+     * 系统信息
+     * @return
+     */
     ResponseModel<Message> systemMessage(Page page, Integer toMemberId,String basePath);
 
     /**

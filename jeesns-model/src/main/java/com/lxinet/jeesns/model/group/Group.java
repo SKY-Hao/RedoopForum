@@ -139,4 +139,24 @@ public class Group implements Serializable {
     public void setFansCount(Integer fansCount) {
         this.fansCount = fansCount;
     }
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "id=" + id +
+                ", createTime=" + createTime +
+                ", name='" + name + '\'' +
+                ", logo='" + logo + '\'' +
+                ", creator=" + creator +
+                ", creatorMember=" + creatorMember +
+                ", managers='" + managers + '\'' +
+                ", tags='" + tags + '\'' +
+                ", introduce='" + introduce + '\'' +
+                ", status=" + status +
+                ", canPost=" + canPost +
+                ", topicReview=" + topicReview +
+                ", topicCount=" + topicCount +
+                ", fansCount=" + fansCount +
+                '}';
+    }
 }

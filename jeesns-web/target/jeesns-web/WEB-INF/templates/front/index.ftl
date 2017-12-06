@@ -107,7 +107,8 @@
                     <div class="panel-heading">
                         最新帖子
                         <span class="pull-right">
-                            <a class="btn btn-primary m-t-n4" href="${basePath}/group/">阅读更多</a>
+                           <#-- <a class="btn btn-primary m-t-n4" href="#" onclick="autorunA();">阅读更多</a>-->
+                            <a class="btn btn-primary m-t-n4" href="${basePath}/group/" );">阅读更多</a>
                         </span>
                     </div>
                     <div class="panel-body">
@@ -116,14 +117,22 @@
                                 <div class="article-hot-list">
                                     <ul>
                                     <@group_topic_list cid=0 num=15 day=100; groupTopic>
+                                        <!--左侧list列表-->
                                         <#list groupTopicList as groupTopic>
-                                            <li><i class="main-text-color"></i> <a href="${basePath}/group/topic/${groupTopic.id}">
-                                                <#if groupTopic.title?length &gt; 18>
-                                                ${groupTopic.title?substring(0,18)}...
-                                                <#else>
-                                                ${groupTopic.title}
-                                                </#if>
-                                            </a></li>
+                                            <li>
+                                                <i class="main-text-color"></i>
+                                                <a href="${basePath}/group/topic/${groupTopic.id}">
+                                                    <#if groupTopic.title?length &gt; 18>
+                                                    ${groupTopic.title?substring(0,18)}...
+                                                    <#else>
+                                                    ${groupTopic.title}
+                                                    </#if>
+                                                </a>
+                                            </li>
+                                            <span class="pull-right" style="display: none;">
+                                                <#--<button class="btn btn-primary m-t-n4">阅读更多</button>-->
+                                              <a class="btn btn-primary m-t-n4"  id='divTest' href="${basePath}/group/detail/${groupTopic.group.id}">隐藏的</a>
+                                           </span>
                                         </#list>
                                     </@group_topic_list>
                                     </ul>
@@ -132,6 +141,7 @@
                             <div class="col-md-8">
                                 <div class="items">
                                 <@group_topic_list gid=0 num=6 thumbnail=1; groupTopic>
+                                   <!--右侧list列表-->
                                     <#list groupTopicList as groupTopic>
                                         <div class="col-md-4">
                                             <div class="item index-article">
@@ -174,7 +184,7 @@
                                         <div class="group-detail">
                                             <div class="group-logo">
                                                 <a href="${basePath}/group/detail/${group.id}">
-                                                    <img alt="image" class="img-rounded" src="${basePath}${group.logo}" width="100px" height="100px">
+                                                    <img alt="image" class="img-rounded" src="${basePath}${group.logo}" width="100px" height="100px" style="border-radius: 50%;border: 1px solid #e6e6e6;">
                                                 </a>
                                             </div>
                                             <div class="group-info">
@@ -187,7 +197,7 @@
                                                     </#if>
                                                 </p>
                                                 <small class="text-muted">
-                                                    <#--${group.topicCount}篇文章 ·-->
+                                                   ${group.topicCount}篇文章 ·
 
                                                     ${group.fansCount}人关注
 
@@ -203,7 +213,7 @@
                 </div>
             </div>
             <!--友情链接-->
-            <div class="col-md-12">
+           <#-- <div class="col-md-12">
                 <div class="panel group-topic-list no-border">
                     <div class="panel-heading">
                         友情链接
@@ -219,7 +229,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
@@ -228,6 +238,11 @@
     $(function () {
         $(".pagination").jeesns_page("jeesnsPageForm");
     });
+    function autorunA()//帖子点查看更多的时候跳转隐藏的那个GroupId去查询,仅限一个群组的时候
+    {
+        var dtx=document.getElementById('divTest');
+        dtx.click();
+    }
 </script>
 </body>
 </html>

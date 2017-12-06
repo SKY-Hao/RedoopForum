@@ -35,7 +35,7 @@
                 <div class="group-detail">
                     <div class="group-logo">
                         <a href="${basePath}/group/detail/${group.id}">
-                            <img class="img-rounded" src="${basePath}${group.logo}" width="100px" height="100px">
+                            <img class="img-rounded" src="${basePath}${group.logo}" width="100px" height="100px"style="border-radius: 50%;border: 1px solid #e6e6e6;">
                         </a>
                     </div>
                     <div class="group-info">

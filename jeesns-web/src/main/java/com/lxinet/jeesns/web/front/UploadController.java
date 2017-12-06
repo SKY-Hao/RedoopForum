@@ -139,10 +139,10 @@ public class UploadController extends BaseController {
 			url = path + newFileName;
 		}
 
-		System.out.println("fileName======"+fileName);
-		System.out.println("file==="+file);
-		System.out.println("targetFile==="+targetFile);
-		System.out.println("savePath====="+savePath);
+		//System.out.println("fileName======"+fileName);
+		//System.out.println("file==="+file);
+		//System.out.println("targetFile==="+targetFile);
+		//System.out.println("savePath====="+savePath);
 		return new ResponseModel(0,"上传成功",url);
 	}
 

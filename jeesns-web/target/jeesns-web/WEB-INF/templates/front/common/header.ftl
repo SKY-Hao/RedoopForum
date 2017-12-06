@@ -15,6 +15,7 @@
                 <li><a href="${basePath}/article/list">文章</a></li>
                 <#--<li><a href="${basePath}/weibo/list">${WEIBO_ALIAS}</a></li>-->
                 <li><a href="${basePath}/group/">${GROUP_ALIAS}</a></li>
+
                 <#--<li><a href="${basePath}/action/list">动态</a></li>-->
             </ul>
             <ul class="nav navbar-top-links navbar-right" style="position: absolute; top:-18px; right:10px;">
