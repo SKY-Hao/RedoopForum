@@ -58,7 +58,6 @@ public class EmailSendUtil {
 
 		String siteName = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_NAME.toUpperCase());
 		String title = siteName + "会员账号激活";
-		//String content = "欢迎加入"+siteName+":\n 您的账号激活验证码为：【"+randomCode+"】，\n 30分钟内有效，请马上进行验证。若非本人操作，请忽略此邮件。\n致敬!\n红象云腾";
 		String content =
 				"<h4>您好，" + email + "：</h4>" +
 				"<p>欢迎加入" + siteName + ":<br  />" +

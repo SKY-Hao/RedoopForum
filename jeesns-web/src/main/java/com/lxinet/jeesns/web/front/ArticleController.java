@@ -42,6 +42,14 @@ public class ArticleController extends BaseController {
     @Resource
     private IArticleCommentService articleCommentService;
 
+    /**
+     * 文章列表
+     * @param key
+     * @param cid
+     * @param memberId
+     * @param model
+     * @return
+     */
     @RequestMapping(value="/list",method = RequestMethod.GET)
     public String list(String key, @RequestParam(value = "cid",defaultValue = "0",required = false) Integer cid,
                        @RequestParam(value = "memberId",defaultValue = "0",required = false) Integer memberId, Model model) {
@@ -55,13 +63,23 @@ public class ArticleController extends BaseController {
         Page page = new Page(request);
         ResponseModel responseModel = articleService.listByPage(page,key,cid,1,memberId);
         model.addAttribute("model",responseModel);
+
+        //文章栏目列表
         List<ArticleCate> articleCateList = articleCateService.list();
         model.addAttribute("articleCateList",articleCateList);
+
         ArticleCate articleCate = articleCateService.findById(cid);
         model.addAttribute("articleCate",articleCate);
+
         return jeesnsConfig.getFrontTemplate() + "/cms/list";
     }
 
+    /**
+     * 访问文章详情页
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping(value="/detail/{id}",method = RequestMethod.GET)
     public String detail(@PathVariable("id") Integer id, Model model){
         Member loginMember = MemberUtil.getLoginMember(request);
@@ -73,9 +91,12 @@ public class ArticleController extends BaseController {
         //更新文章访问次数
         archiveService.updateViewCount(article.getArchiveId());
         model.addAttribute("article",article);
+
         List<ArticleCate> articleCateList = articleCateService.list();
         model.addAttribute("articleCateList",articleCateList);
+
         model.addAttribute("loginUser",loginMember);
+
         return jeesnsConfig.getFrontTemplate() + "/cms/detail";
     }
 

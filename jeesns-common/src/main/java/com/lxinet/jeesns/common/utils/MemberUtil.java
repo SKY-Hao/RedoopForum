@@ -7,7 +7,8 @@ import com.lxinet.jeesns.model.member.Member;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by zchuanzhao on 16/9/29.
+ * 2017年12月6日15:19:40更新
+ * 判断用户是否登录工具类
  */
 public class MemberUtil {
     public static Member getLoginMember(HttpServletRequest request){

@@ -10,13 +10,19 @@ import java.util.Date;
  * Created by zchuanzhao on 17/01/20.
  */
 public class ValidateCode implements Serializable {
+
 	private Integer id;
+
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date createTime;
-	private String email;
-	private String code;
-	private Integer status;
-	private Integer type;
+	private Date createTime;//创建时间
+
+	private String email;	//邮箱
+
+	private String code;	//验证码
+
+	private Integer status;	//状态，0未使用，1已使用  默认：0
+
+	private Integer type;	//类型，1是重置密码，2会员激活
 
 	public ValidateCode(){
 
@@ -74,5 +80,17 @@ public class ValidateCode implements Serializable {
 
 	public void setType(Integer type) {
 		this.type = type;
+	}
+
+	@Override
+	public String toString() {
+		return "ValidateCode{" +
+				"id=" + id +
+				", createTime=" + createTime +
+				", email='" + email + '\'' +
+				", code='" + code + '\'' +
+				", status=" + status +
+				", type=" + type +
+				'}';
 	}
 }

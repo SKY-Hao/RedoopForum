@@ -16,49 +16,51 @@ import java.util.Date;
  */
 public class Archive implements Serializable {
     private Integer archiveId;
-    private Integer postType;
+
+    private Integer postType;//发布类型，1是普通文章，2是群组文章
+
     @NotBlank(message = "文章标题不能为空")
-    private String title;
+    private String title;   //标题
 
-    private Integer memberId;
+    private Integer memberId;//会员ID
 
-    private Member member;
+    private Member member;  //会员实体
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
+    private Date createTime;    //创建时间
 
-    private String description;
+    private String description; //描述说明
 
-    private String keywords;
+    private String keywords;    //关键词
 
     @Digits(integer = 1,fraction = 0,message = "浏览权限只能是数字")
-    private Integer viewRank;
+    private Integer viewRank;   //浏览权限，0不限制，1会员
 
     @Digits(integer = 11,fraction = 0,message = "浏览数只能是数字")
-    private Integer viewCount;
+    private Integer viewCount;  //浏览次数
 
-    private String writer;
+    private String writer;  // 作者
 
-    private String source;
+    private String source;  //来源
 
-    private Date pubTime;
+    private Date pubTime;   //发布日期
 
-    private Date updateTime;
+    private Date updateTime;//更新日期
 
-    private String thumbnail;
+    private String thumbnail;//缩略图
 
-    private Date lastReply;
+    private Date lastReply;//最后回复时间
 
-    private Integer canReply;
+    private Integer canReply;   //是否可以回复，0可以回复，1不可以回复
 
-    private Integer goodNum;
+    private Integer goodNum;    //点赞数量
 
-    private Integer badNum;
+    private Integer badNum;     //踩的数量
 
-    private Integer checkAdmin;
+    private Integer checkAdmin; //审核管理员ID
 
     @NotBlank(message = "文章内容不能为空")
-    private String content;
+    private String content;     //内容
 
     //喜欢数量
     private Integer favor;

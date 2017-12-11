@@ -6,16 +6,24 @@ import com.lxinet.jeesns.model.common.Archive;
 import java.util.Date;
 
 /**
- * Created by zchuanzhao on 16/12/26.
+ * 帖子实体类
+ * 2017年12月7日10:31:21
  */
 public class GroupTopic extends Archive {
+
     private Integer id;
-    private Date collectTime;
-    private Integer groupId;
-    private Group group;
-    private Integer status;
-    private Integer isTop;
-    private Integer isEssence;
+
+    private Date collectTime;   //创建时间
+
+    private Integer groupId;    //群组ID
+
+    private Group group;        //群组
+
+    private Integer status;     //状态，0未审核，1已审核
+
+    private Integer isTop;      //置顶，0不置顶，1置顶，2超级置顶
+
+    private Integer isEssence;  //精华贴，0不加精贴，1加精贴
 
     public Integer getId() {
         return id;

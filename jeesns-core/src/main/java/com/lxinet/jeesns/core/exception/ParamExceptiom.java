@@ -9,4 +9,7 @@ public class ParamExceptiom extends Exception {
     public ParamExceptiom (String msg){
         super(msg);
     }
+    public ParamExceptiom(){
+        super("参数异常");
+    }
 }

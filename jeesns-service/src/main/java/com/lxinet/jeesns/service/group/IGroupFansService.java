@@ -18,6 +18,12 @@ public interface IGroupFansService {
 
     ResponseModel listByPage(Page page, Integer groupId);
 
+    /**
+     * 判断是否关注这个群组
+     * @param groupId
+     * @param memberId
+     * @return
+     */
     GroupFans findByMemberAndGroup(@Param("groupId") Integer groupId, @Param("memberId") Integer memberId);
 
     /**

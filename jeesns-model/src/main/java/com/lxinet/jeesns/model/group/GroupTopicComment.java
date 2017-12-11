@@ -7,24 +7,25 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by zchuanzhao on 16/12/27.
+ * 群组帖子评论
+ * 2017年12月7日10:33:14
  */
 public class GroupTopicComment implements Serializable {
     private Integer id;
 
-    private Date createTime;
+    private Date createTime;//创建时间
 
-    private Integer groupTopicId;
+    private Integer groupTopicId;//帖子ID
 
-    private GroupTopic groupTopic;
+    private GroupTopic groupTopic;  //帖子实体
 
-    private Integer memberId;
+    private Integer memberId;       //会员ID
 
-    private Member member;
+    private Member member;          //会员实体
 
-    private String content;
+    private String content;         //评论内容
 
-    private Integer commentId;
+    private Integer commentId;      //引用评论ID
 
     private GroupTopicComment groupTopicComment;
 
@@ -100,5 +101,20 @@ public class GroupTopicComment implements Serializable {
 
     public void setGroupTopicComment(GroupTopicComment groupTopicComment) {
         this.groupTopicComment = groupTopicComment;
+    }
+
+    @Override
+    public String toString() {
+        return "GroupTopicComment{" +
+                "id=" + id +
+                ", createTime=" + createTime +
+                ", groupTopicId=" + groupTopicId +
+                ", groupTopic=" + groupTopic +
+                ", memberId=" + memberId +
+                ", member=" + member +
+                ", content='" + content + '\'' +
+                ", commentId=" + commentId +
+                ", groupTopicComment=" + groupTopicComment +
+                '}';
     }
 }

@@ -5,7 +5,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 /**
- * Created by Administrator on 2017/12/4.
+ * 2017年12月7日08:57:45更新
+ *  发送邮箱工具类
  */
 public class EmailUtiles {
 
@@ -18,7 +19,7 @@ public class EmailUtiles {
         Email email = new Email(from,to,subject,content);
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("huangtianhao@redoop.com");
+        message.setFrom(email.getFrom());
         message.setTo(email.getTo());
         message.setSubject(email.getSubject());
         message.setText(email.getText());

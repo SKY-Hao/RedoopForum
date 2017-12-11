@@ -79,6 +79,12 @@ public class MemberServiceImpl implements IMemberService {
         return new ResponseModel(-1,"用户名或密码错误");
     }
 
+    /**
+     * 提交登录信息
+     * @param member
+     * @param request
+     * @return
+     */
     @Override
     public Member manageLogin(Member member,HttpServletRequest request) {
         String password = member.getPassword();
@@ -379,6 +385,7 @@ public class MemberServiceImpl implements IMemberService {
         if(loginMember.getIsActive() == 1){
             return new ResponseModel(-1,"您的账号已经激活，无需重复激活");
         }
+        //调用RandomCodeUtil生成6个随机数
         String randomCode = RandomCodeUtil.randomCode6();
         ValidateCode validateCode = new ValidateCode(loginMember.getEmail(),randomCode,2);
         if(validateCodeService.save(validateCode)){
@@ -412,7 +419,7 @@ public class MemberServiceImpl implements IMemberService {
 
             if(validateCodeService.used(validateCode.getId())){
                 if(memberDao.active(loginMember.getId()) == 1){
-                    loginMember.setIsActive(1);
+                    loginMember.setIsActive(1);//激活之后为1 未激活为0
                     MemberUtil.setLoginMember(request,loginMember);
                     //邮箱认证奖励
                     scoreDetailService.scoreBonus(loginMember.getId(), ScoreRuleConsts.EMAIL_AUTHENTICATION);
@@ -474,7 +481,7 @@ public class MemberServiceImpl implements IMemberService {
         if(member == null){
             return new ResponseModel(-1,"会员不存在");
         }
-        ValidateCode validateCode = validateCodeService.valid(email,token,1);
+        ValidateCode validateCode = validateCodeService.valid(email,token,1);//type==1是重置密码 2是会员激活
         if(validateCode == null){
             return new ResponseModel(-1,"验证码错误");
         }
@@ -537,7 +544,12 @@ public class MemberServiceImpl implements IMemberService {
             return new ResponseModel(1,"已关注");
         }
     }
-
+    /**
+     * 获取私信中的联系人ID列表
+     * @param page
+     * @param memberId
+     * @return
+     */
     @Override
     public List<Member> listContactMemberIds(Page page, Integer memberId) {
         List<Member> list = memberDao.listContactMemberIds(page, memberId);

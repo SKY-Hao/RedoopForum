@@ -13,10 +13,21 @@ import java.util.List;
  */
 public interface IMemberDao extends IBaseDao<Member> {
 
+    /**
+     * 登录
+     * @param member
+     * @return
+     */
     Member login(Member member);
 
     Member manageLogin(Member member);
 
+    /**
+     * 会员列表
+     * @param page
+     * @param key
+     * @return
+     */
     List<Member> listByPage(@Param("page") Page page, @Param("key") String key);
 
     /**
@@ -95,6 +106,12 @@ public interface IMemberDao extends IBaseDao<Member> {
      */
     Member findByEmail(@Param("email") String email);
 
+    /**
+     * 根据会员
+     * @param name
+     * @param email
+     * @return
+     */
     Member findByNameAndEmail(@Param("name") String name, @Param("email") String email);
 
     /**
@@ -104,6 +121,12 @@ public interface IMemberDao extends IBaseDao<Member> {
      */
     int active(@Param("id") Integer id);
 
+    /**
+     * 登录之后更新状态
+     * @param id
+     * @param currLoginIp
+     * @return
+     */
     int loginSuccess(@Param("id") Integer id, @Param("currLoginIp") String currLoginIp);
 
     /**

@@ -18,6 +18,10 @@ public interface IArchiveService {
 
     boolean delete(int id);
 
+    /**
+     * 更新阅读次数
+     * @param id
+     */
     void updateViewCount(int id);
 
     ResponseModel favor(Member loginMember, int archiveId);

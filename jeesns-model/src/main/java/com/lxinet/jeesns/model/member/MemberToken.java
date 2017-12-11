@@ -5,17 +5,25 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by zchuanzhao on 17/7/15.
+ * 会员登录TOKEN实体
+ * 2017年12月7日10:37:51
  */
 public class MemberToken implements Serializable {
+
     private Integer id;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
-    private Integer memberId;
-    private String token;
+    private Date createTime;    //创建时间
+
+    private Integer memberId;   //会员ID
+
+    private String token;       //Token值
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date expireTime;
-    private Integer status;
+    private Date expireTime;    //失效时间  默认0
+
+    private Integer status;     //状态，0是正常，1是失效 默认0
+
 
     public Integer getId() {
         return id;

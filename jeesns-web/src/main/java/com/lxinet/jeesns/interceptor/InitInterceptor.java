@@ -48,6 +48,7 @@ public class InitInterceptor implements HandlerInterceptor {
             }
             //会员未读信息
             unReadMessageNum = messageService.countUnreadNum(loginUser.getId());
+            //未读的系统信息
             systemUnReadMessageNum = messageService.countSystemUnreadNum(loginUser.getId());
         }
         request.setAttribute("unReadMessageNum", unReadMessageNum);

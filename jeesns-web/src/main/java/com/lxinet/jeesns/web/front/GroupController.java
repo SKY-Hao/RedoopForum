@@ -226,13 +226,16 @@ public class GroupController extends BaseController {
     @RequestMapping(value = "/topic/{topicId}",method = RequestMethod.GET)
     public String topic(@PathVariable("topicId") Integer topicId,Model model){
         Member loginMember = MemberUtil.getLoginMember(request);
+        //查询贴子详情
         GroupTopic groupTopic = groupTopicService.findById(topicId,loginMember);
         if(groupTopic == null){
             return jeesnsConfig.getFrontTemplate() + ErrorUtil.error(model,-1004,Const.INDEX_ERROR_FTL_PATH);
         }
+        //更新阅读次数
         archiveService.updateViewCount(groupTopic.getArchiveId());
         model.addAttribute("groupTopic",groupTopic);
 
+        //根据群组的ID查询群组的信息
         Group group = groupService.findById(groupTopic.getGroup().getId());
         if(group == null){
             return jeesnsConfig.getFrontTemplate() + ErrorUtil.error(model,-1000,Const.INDEX_ERROR_FTL_PATH);

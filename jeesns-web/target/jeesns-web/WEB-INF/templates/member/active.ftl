@@ -4,8 +4,6 @@
     <meta charset="utf-8">
 
     <title>会员激活</title>
-
-
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
     <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
@@ -26,6 +24,7 @@
     <script src="${basePath}/res/common/js/jquery.form.js"></script>
     <script src="${basePath}/res/common/js/manage.js"></script>
     <script src="${basePath}/res/common/js/jeesns.js"></script>
+
 
 </head>
 
@@ -100,4 +99,6 @@
     });
 </script>
 </body>
+
+
 </html>

@@ -54,12 +54,22 @@ public class MemberController extends BaseController {
         return memberService.isenable(id);
     }
 
+    /**
+     * 删除账户
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "${managePath}/member/delete/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Object delete(@PathVariable("id") int id) {
         return memberService.delete(id);
     }
 
+    /**
+     * 根据ID查会员信息
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "${managePath}/member/changepwd/{id}", method = RequestMethod.GET)
     public String changepwd(@PathVariable("id") int id, Model model) {
         Member member = memberService.findById(id);
@@ -70,6 +80,12 @@ public class MemberController extends BaseController {
         return MANAGE_FTL_PATH + "changepwd";
     }
 
+    /**
+     * 修改密码
+     * @param id
+     * @param password
+     * @return
+     */
     @RequestMapping(value = "${managePath}/member/changepwd", method = RequestMethod.POST)
     @ResponseBody
     public Object changepwd(int id, String password) {

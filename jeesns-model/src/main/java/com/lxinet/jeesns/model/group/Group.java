@@ -7,24 +7,29 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by zchuanzhao on 16/12/23.
+ * 2017年12月6日15:08:23更新
+ * 群组实体类
+ *
  */
 public class Group implements Serializable {
-    private Integer id;
-    private Date createTime;
+
+    private Integer id;         //自增
+    private Date createTime;    //创建时间
     @NotBlank(message = "群组名称不能为空")
-    private String name;
-    private String logo;
-    private Integer creator;
-    private Member creatorMember;
-    private String managers;
-    private String tags;
-    private String introduce;
-    private Integer status;
-    private Integer canPost;
-    private Integer topicReview;
-    private Integer topicCount;
-    private Integer fansCount;
+    private String name;        //文章群组名称
+    private String logo;        //群组logo
+    private Integer creator;    //创建人的ID
+
+    private Member creatorMember;//创建人集合信息
+
+    private String managers;    //管理员
+    private String tags;        //标签
+    private String introduce;   //介绍
+    private Integer status;     //状态 0未审核，1已审核，-1审核不通过
+    private Integer canPost;    //是否可以发帖子 0不可以 1可以
+    private Integer topicReview;//贴在是否需要审核 0不审核 1审核
+    private Integer topicCount; //贴子的数量
+    private Integer fansCount;  //粉丝的数量
 
 
     public Integer getId() {

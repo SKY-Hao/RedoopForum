@@ -4,18 +4,27 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by zchuanzhao on 2017/3/1.
+ * 图片实体类    (tbl_picture）
  */
 public class Picture implements Serializable {
+
     private Integer pictureId;
+
     private Date createTime;
-    private Integer type;
-    private Integer foreignId;
-    private String path;
-    private String thumbnailPath;
+
+    private Integer type;   //类型，1是文章图片，2是群组帖子图片，3是微博图片
+
+    private Integer foreignId;  //对应类型相应内容的ID
+
+    private String path;        //图片路径
+
+    private String thumbnailPath;//缩小的图片路径
+
     private String md5;
-    private Integer width;
-    private Integer height;
+
+    private Integer width;       //宽度
+
+    private Integer height;        //长度
 
     public Integer getPictureId() {
         return pictureId;
@@ -87,5 +96,20 @@ public class Picture implements Serializable {
 
     public void setHeight(Integer height) {
         this.height = height;
+    }
+
+    @Override
+    public String toString() {
+        return "Picture{" +
+                "pictureId=" + pictureId +
+                ", createTime=" + createTime +
+                ", type=" + type +
+                ", foreignId=" + foreignId +
+                ", path='" + path + '\'' +
+                ", thumbnailPath='" + thumbnailPath + '\'' +
+                ", md5='" + md5 + '\'' +
+                ", width=" + width +
+                ", height=" + height +
+                '}';
     }
 }

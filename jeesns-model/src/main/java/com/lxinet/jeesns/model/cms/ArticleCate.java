@@ -13,13 +13,13 @@ import java.util.Date;
 public class ArticleCate implements Serializable {
 
     private Integer id;
-    private Date createTime;
+    private Date createTime;    //创建时间
     @Digits(integer = 11,fraction = 0,message = "上级栏目不能为空")
-    private Integer fid;
+    private Integer fid;        //上级栏目Id 顶级栏目为0
     @NotBlank(message = "栏目名称不能为空")
-    private String name;
-    private Integer status;
-    private Integer sort;
+    private String name;        //栏目名称
+    private Integer status;     //状态 0 正常 1 隐藏
+    private Integer sort;       //排序    越大越靠前
 
     public Integer getId() {
         return id;
@@ -68,5 +68,17 @@ public class ArticleCate implements Serializable {
 
     public void setSort(Integer sort) {
         this.sort = sort;
+    }
+
+    @Override
+    public String toString() {
+        return "ArticleCate{" +
+                "id=" + id +
+                ", createTime=" + createTime +
+                ", fid=" + fid +
+                ", name='" + name + '\'' +
+                ", status=" + status +
+                ", sort=" + sort +
+                '}';
     }
 }

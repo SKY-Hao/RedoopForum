@@ -90,13 +90,13 @@
                     <div class="col-sm-2">
                         <div class="float-e-margins">
                             <div class="feed-activity-list">
-                                <#--<a href="${basePath}/member/message">
+                                <a href="${basePath}/member/message">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             私信
                                         </div>
                                     </div>
-                                </a>-->
+                                </a>
                                 <a href="${basePath}/u/${loginUser.id}">
                                     <div class="feed-element">
                                         <div class="media-body">
@@ -132,13 +132,13 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="${basePath}/u/${loginUser.id}/home/weibo">
-                                    <div class="feed-element">
-                                        <div class="media-body">
-                                            微博
-                                        </div>
-                                    </div>
-                                </a>
+                                <#--<a href="${basePath}/u/${loginUser.id}/home/weibo">-->
+                                    <#--<div class="feed-element">-->
+                                        <#--<div class="media-body">-->
+                                            <#--微博-->
+                                        <#--</div>-->
+                                    <#--</div>-->
+                                <#--</a>-->
                                 <a href="${basePath}/u/${loginUser.id}/home/group">
                                     <div class="feed-element">
                                         <div class="media-body">

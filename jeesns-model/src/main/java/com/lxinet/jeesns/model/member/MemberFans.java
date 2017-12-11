@@ -9,13 +9,19 @@ import java.util.Date;
  * Created by zchuanzhao on 17/2/15.
  */
 public class MemberFans implements Serializable {
+
     private Integer id;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
-    private Integer followWho;
-    private Member followWhoMember;
-    private Integer whoFollow;
-    private Member whoFollowMember;
+    private Date createTime;    //创建时间
+
+    private Integer followWho;  //被关注者
+
+    private Member followWhoMember; //被关注者会员实体
+
+    private Integer whoFollow;      //关注者
+
+    private Member whoFollowMember; //关注者会员实体
 
 
     @Override

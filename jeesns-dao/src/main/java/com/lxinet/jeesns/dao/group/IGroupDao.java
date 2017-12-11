@@ -19,12 +19,18 @@ public interface IGroupDao extends IBaseDao<Group> {
 
     /**
      * 修改状态
-     *
      * @param id
      * @return
      */
     Integer changeStatus(@Param("id") Integer id);
 
+    /**
+     * 主页index下的群群组列表
+     * @param status
+     * @param num
+     * @param sort
+     * @return
+     */
     List<Group> listByCustom(@Param("status") int status, @Param("num") int num, @Param("sort") String sort);
 
 }

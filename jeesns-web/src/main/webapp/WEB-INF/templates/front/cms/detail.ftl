@@ -32,100 +32,110 @@
 <div class="container">
     <div class="main-content">
         <div class="row">
+            <#--左侧-->
             <div class="col-md-8">
                 <article class="article article-detail">
                     <header>
+                        <#--标题-->
                         <h1 class="text-center">${article.title}</h1>
                         <span class="dl-inline">
                             <dt></dt>
                             <dd>
                                 <a href="${basePath}/article/list?cid=${article.articleCate.id}">
-                                    <span class="label label-warning"><i
-                                            class="icon icon-list-ul"></i> ${article.articleCate.name}</span>
+                                    <span class="label label-warning" style="margin-right: 10px;"><#--文章属于的栏目名称-->
+                                        <i class="icon icon-list-ul"></i>
+                                        ${article.articleCate.name}
+                                    </span>
                                 </a>
-                                <span class="label label-danger"><i
-                                        class="icon-eye-open"></i> ${article.viewCount}</span>
-                                <i class="icon icon-time"></i> ${article.createTime?string('yyyy-MM-dd HH:mm')}
+                                <span class="label label-danger" style="margin-right: 10px;"><#--查看次数-->
+                                    <i class="icon-eye-open"></i>
+                                    ${article.viewCount}
+                                </span>
+                                <i class="icon icon-time"></i>
+                                ${article.createTime?string('yyyy-MM-dd HH:mm')}<#--创建时间-->
                             </dd>
                             <dt></dt>
                             <dd class="pull-right">
-                            <#if loginUser?? && (loginUser.id == article.memberId || loginUser.isAdmin &gt; 0)>
-                                <div class="dropdown dropdown-hover">
-                                    <button class="btn" type="button" data-toggle="dropdown">操作 <span class="caret"></span></button>
-                                    <ul class="dropdown-menu">
-                                        <#if loginUser.id == article.memberId>
-                                            <li><a href="${basePath}/article/edit/${article.id}">编辑</a></li>
-                                        </#if>
-                                        <li><a href="${basePath}/article/delete/${article.id}" confirm="确定要删除文章吗？" target="_jeesnsLink">删除</a></li>
+                                <#if loginUser?? && (loginUser.id == article.memberId || loginUser.isAdmin &gt; 0)>
+                                    <div class="dropdown dropdown-hover">
+                                        <button class="btn" type="button" data-toggle="dropdown">操作 <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <#if loginUser.id == article.memberId>
+                                                <li><a href="${basePath}/article/edit/${article.id}">编辑</a></li>
+                                            </#if>
+                                            <li><a href="${basePath}/article/delete/${article.id}" confirm="确定要删除文章吗？" target="_jeesnsLink">删除</a></li>
 
-                                    </ul>
-                                </div>
-                            </#if>
+                                        </ul>
+                                    </div>
+                                </#if>
                             </dd>
                         </span>
                     </header>
-                    <@ads id=2>
+                    <@ads id=2><#--广告-->
                         <#include "/tp/ad.ftl"/>
                     </@ads>
-                    <section class="content">
+                    <section class="content"><#--文章内容-->
                         ${article.content}
                     </section>
+
                     <div class="text-center">
-                    <#if article.isFavor == 0>
-                        <a class="btn btn-danger btn-article-favor btn-article-unfavor article-favor" href="javascript:void(0)" article-id="${article.id}">
-                            <i class="icon-heart-empty"></i> 喜欢 | ${article.favor}
-                        </a>
-                    <#else>
-                        <a class="btn btn-danger btn-article-favor article-favor" href="javascript:void(0)" article-id="${article.id}">
-                            <i class="icon-heart"></i> 喜欢 | ${article.favor}
-                        </a>
-                    </#if>
+                        <#if article.isFavor == 0>
+                            <a class="btn btn-danger btn-article-favor btn-article-unfavor article-favor" href="javascript:void(0)" article-id="${article.id}">
+                                <i class="icon-heart-empty"></i> 喜欢 | ${article.favor}
+                            </a>
+                        <#else>
+                            <a class="btn btn-danger btn-article-favor article-favor" href="javascript:void(0)" article-id="${article.id}">
+                                <i class="icon-heart"></i> 喜欢 | ${article.favor}
+                            </a>
+                        </#if>
+                    </div>
                 </article>
+                <#--广告-->
                 <@ads id=2>
                     <#include "/tp/ad.ftl"/>
                 </@ads>
+                <#--文章评论-->
                 <div class="comments panel">
                     <div class="panel-heading">文章评论</div>
                     <header>
                         <div class="reply-form">
-                            <form class="form-horizontal jeesns_form" action="${basePath}/article/comment/${article.id}"
-                                  method="post">
+                            <form class="form-horizontal jeesns_form" action="${basePath}/article/comment/${article.id}" method="post">
                                 <div class="form-group">
-                                    <textarea name="content" class="form-control new-comment-text" rows="2"
-                                              placeholder="撰写评论..."></textarea>
+                                    <textarea name="content" class="form-control new-comment-text" rows="2" placeholder="撰写评论..."></textarea>
                                 </div>
                                 <div class="form-group comment-user">
-                                    <input type="submit" value="评论"
-                                           class="pull-right btn btn-primary mg-t-10 jeesns-submit">
+                                    <input type="submit" value="评论" class="pull-right btn btn-primary mg-t-10 jeesns-submit">
                                 </div>
                             </form>
                         </div>
                     </header>
-                    <section class="comments-list" id="commentList">
-
-                    </section>
-                    <button class="btn btn-primary btn-block m" id="moreComment" style="display: none"><i
-                            class="fa fa-arrow-down"></i> 加载更多
+                    <section class="comments-list" id="commentList"></section>
+                    <button class="btn btn-primary btn-block m" id="moreComment" style="display: none">
+                        <i class="fa fa-arrow-down"></i>
+                        加载更多
                     </button>
                 </div>
             </div>
+            <#--右侧-->
             <div class="col-md-4">
                 <div class="panel">
                     <div class="panel-body weibo-author">
                         <div class="avatar">
                             <a href="${basePath}/u/${article.member.id}" target="_blank">
-                                <img alt="image" class="img-circle mg-l-30" src="${basePath}${article.member.avatar}"/></a>
+                                <img alt="image" class="img-circle mg-l-30" src="${basePath}${article.member.avatar}"/>
+                            </a>
                         </div>
                         <div class="name">
-                            <a href="${basePath}/u/${article.member.id}"
-                               target="_blank">${article.member.name}</a>
+                            <a href="${basePath}/u/${article.member.id}"target="_blank">${article.member.name}</a>
                         </div>
                         <div class="info">
                             <p>
                                 <a href="${basePath}/u/${article.member.id}/home/follows">${article.member.follows}
-                                    关注</a> /
+                                    关注
+                                </a> /
                                 <a href="${basePath}/u/${article.member.id}/home/fans">${article.member.fans}
-                                    粉丝</a>
+                                    粉丝
+                                </a>
                             </p>
                             <p>
                             ${article.member.introduce}

@@ -29,6 +29,12 @@ public class GroupFansServiceImpl implements IGroupFansService {
         return model;
     }
 
+    /**
+     * 判断是否关注这个群组
+     * @param groupId
+     * @param memberId
+     * @return
+     */
     @Override
     public GroupFans findByMemberAndGroup(@Param("groupId") Integer groupId, @Param("memberId") Integer memberId) {
         return groupFansDao.findByMemberAndGroup(groupId,memberId);

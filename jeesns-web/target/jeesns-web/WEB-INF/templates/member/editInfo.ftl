@@ -38,7 +38,7 @@
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="tabs.html#tab-1">基本资料</a></li>
                         <li class=""><a data-toggle="tab" href="tabs.html#tab-2">个人资料</a></li>
-                        <li class=""><a data-toggle="tab" href="tabs.html#tab-3">个人头像</a></li>
+                        <#--<li class=""><a data-toggle="tab" href="tabs.html#tab-3">个人头像</a></li>-->
                     </ul>
                     <div class="tab-content">
                         <div id="tab-1" class="tab-pane active">

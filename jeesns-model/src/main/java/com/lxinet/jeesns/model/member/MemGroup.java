@@ -69,4 +69,16 @@ public class MemGroup implements Serializable {
     public void setRankid(Integer rankid) {
         this.rankid = rankid;
     }
+
+    @Override
+    public String toString() {
+        return "MemGroup{" +
+                "id=" + id +
+                ", createTime=" + createTime +
+                ", isadmin=" + isadmin +
+                ", name='" + name + '\'' +
+                ", fid=" + fid +
+                ", rankid=" + rankid +
+                '}';
+    }
 }

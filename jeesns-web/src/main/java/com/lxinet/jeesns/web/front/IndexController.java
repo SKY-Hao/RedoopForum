@@ -100,16 +100,21 @@ public class IndexController extends BaseController{
      */
     @RequestMapping(value = "u/{id}",method = RequestMethod.GET)
     public String u(@PathVariable("id") Integer id, Model model){
+
         Page page = new Page(request);
+
         Member member = memberService.findById(id);
         if(member == null){
             return jeesnsConfig.getFrontTemplate() + ErrorUtil.error(model,-1005, Const.INDEX_ERROR_FTL_PATH);
         }
         model.addAttribute("member",member);
+
         Member loginMember = MemberUtil.getLoginMember(request);
         model.addAttribute("loginMember", loginMember);
+
         ResponseModel<ActionLog> list = actionLogService.memberActionLog(page,id);
         model.addAttribute("actionLogModel",list);
+
         return jeesnsConfig.getFrontTemplate() + "/u";
     }
 
@@ -135,17 +140,17 @@ public class IndexController extends BaseController{
         if(loginMember != null){
             loginMemberId = loginMember.getId().intValue();
         }
-        if("article".equals(type)){
+        if("article".equals(type)){//文章
             model.addAttribute("model", articleService.listByPage(page,"",0,1, id));
-        } else if("groupTopic".equals(type)){
+        } else if("groupTopic".equals(type)){//帖子
             model.addAttribute("model", groupTopicService.listByPage(page,"",0,1, id));
-        } else if("group".equals(type)){
+        } else if("group".equals(type)){//群组
             model.addAttribute("model", groupFansService.listByMember(page, id));
-        } else if("weibo".equals(type)){
+        } else if("weibo".equals(type)){//微博
             model.addAttribute("model", weiboService.listByPage(page,id,loginMemberId,""));
-        } else if("follows".equals(type)){
+        } else if("follows".equals(type)){//关注
             model.addAttribute("model", memberFansService.followsList(page,id));
-        } else if("fans".equals(type)){
+        } else if("fans".equals(type)){//粉丝
             model.addAttribute("model", memberFansService.fansList(page,id));
         }
         model.addAttribute("type",type);

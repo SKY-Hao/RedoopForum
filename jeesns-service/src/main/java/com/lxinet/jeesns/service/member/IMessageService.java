@@ -13,15 +13,20 @@ public interface IMessageService {
 
     /**
      * 发送信息
+     * @param fromMemberId
+     * @param toMemberId
      * @param content
      * @return
      */
-    ResponseModel save(Integer fromMemberId, Integer toMemberId, String content);
-
-    ResponseModel save(Integer toMemberId, String content, Integer appTag,Integer type,Integer relateKeyId,Integer memberId,String description);
+    ResponseModel sendOutMessage(Integer fromMemberId, Integer toMemberId, String content);
+    ResponseModel systemMessageSave(Integer toMemberId, String content, Integer appTag,Integer type,Integer relateKeyId,Integer memberId,String description);
 
     ResponseModel<Message> listByPage(Page page, Integer fromMemberId, Integer toMemberId);
 
+    /**
+     * 获取聊天记录
+     * @return
+     */
     ResponseModel<Message> messageRecords(Page page, Integer fromMemberId, Integer toMemberId);
     /**
      * 系统信息
@@ -66,9 +71,29 @@ public interface IMessageService {
      */
     int setRead(Integer fromMemberId, Integer toMemberId);
 
+    /**
+     * @会员处理并发送系统消息
+     * @param loginMemberId
+     * @param content
+     * @param appTag
+     * @param messageType
+     * @param relateKeyId
+     */
     void atDeal(int loginMemberId,String content,int appTag,MessageType messageType,int relateKeyId);
 
+    /**
+     * @会员处理并发送系统消息
+     * @param loginMemberId
+     * @param toMemberId
+     * @param content
+     * @param appTag
+     * @param messageType
+     * @param relateKeyId
+     */
     void diggDeal(int loginMemberId,int toMemberId, String content, int appTag,MessageType messageType,int relateKeyId);
 
+    /**
+     * 调用上面的diggDeal方法
+     */
     void diggDeal(int loginMemberId,int toMemberId, int appTag,MessageType messageType,int relateKeyId);
 }

@@ -13,17 +13,17 @@ import java.util.Date;
 public class ArticleComment implements Serializable {
     private Integer id;
 
-    private Date createTime;
+    private Date createTime;    //创建时间
 
-    private Integer articleId;
+    private Integer articleId;  //文章 id
 
-    private Article article;
+    private Article article;    //文章实体
 
-    private Integer memberId;
+    private Integer memberId;   //用户id
 
-    private Member member;
+    private Member member;      //用户实体
 
-    private String content;
+    private String content;     //评论内容
 
 
     public Integer getId() {
@@ -81,5 +81,18 @@ public class ArticleComment implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return "ArticleComment{" +
+                "id=" + id +
+                ", createTime=" + createTime +
+                ", articleId=" + articleId +
+                ", article=" + article +
+                ", memberId=" + memberId +
+                ", member=" + member +
+                ", content='" + content + '\'' +
+                '}';
     }
 }

@@ -33,77 +33,88 @@
                 <article class="article article-detail">
                     <header>
                         <h1 class="text-center">
-                        ${groupTopic.title}
-                        <#if groupTopic.isTop==1>
-                            <span class="label label-badge label-primary">置顶</span>
-                        <#elseif groupTopic.isTop==2>
-                            <span class="label label-badge label-success">超级置顶</span>
-                        </#if>
-                        <#if groupTopic.isEssence==1>
-                            <span class="label label-badge label-danger">精华</span>
-                        </#if>
+                            <#--标题-->
+                            ${groupTopic.title}
+
+                            <#if groupTopic.isTop==1>
+                                <span class="label label-badge label-primary">置顶</span>
+                            <#elseif groupTopic.isTop==2>
+                                <span class="label label-badge label-success">超级置顶</span>
+                            </#if>
+                            <#if groupTopic.isEssence==1>
+                                <span class="label label-badge label-danger">精华</span>
+                            </#if>
                         </h1>
                         <dl class="dl-inline">
                             <dt></dt>
+                            <dd>发帖人:${groupTopic.member.name}</dd>
+                            <#--创建时间-->
                             <dd>${groupTopic.createTime?string('yyyy-MM-dd HH:mm')}</dd>
+                            <#--查看次数-->
                             <span class="label label-danger"><i class="icon-eye-open"></i> ${groupTopic.viewCount}</span>
                             <dt></dt>
+                            <#--管理员操作-->
                             <dd class="pull-right">
-                            <#if loginUser?? && (loginUser.id == groupTopic.memberId || loginUser.isAdmin &gt; 0)>
-                                <div class="dropdown dropdown-hover">
-                                    <button class="btn" type="button" data-toggle="dropdown">操作 <span class="caret"></span></button>
-                                    <ul class="dropdown-menu">
+                                <#if loginUser?? && (loginUser.id == groupTopic.memberId || loginUser.isAdmin &gt; 0)>
+                                    <div class="dropdown dropdown-hover">
+                                        <button class="btn" type="button" data-toggle="dropdown">操作 <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
 
-                                        <#if loginUser?? && loginUser.isAdmin &gt; 0>
-                                            <#if groupTopic.isTop = 0>
-                                                <li><a href="${base}/group/topic/top/${groupTopic.id}?top=1" target="_jeesnsLink">普通置顶</a></li>
-                                                <li><a href="${base}/group/topic/top/${groupTopic.id}?top=2" target="_jeesnsLink">超级置顶</a></li>
-                                            <#elseif groupTopic.isTop = 1>
-                                                <li><a href="${base}/group/topic/top/${groupTopic.id}?top=0" target="_jeesnsLink">取消普通置顶</a></li>
-                                                <li><a href="${base}/group/topic/top/${groupTopic.id}?top=2" target="_jeesnsLink">超级置顶</a></li>
-                                            <#elseif groupTopic.isTop = 2>
-                                                <li><a href="${base}/group/topic/top/${groupTopic.id}?top=0" target="_jeesnsLink">取消超级置顶</a></li>
-                                                <li><a href="${base}/group/topic/top/${groupTopic.id}?top=1" target="_jeesnsLink">普通置顶</a></li>
+                                            <#if loginUser?? && loginUser.isAdmin &gt; 0>
+                                                <#if groupTopic.isTop = 0>
+                                                    <li><a href="${base}/group/topic/top/${groupTopic.id}?top=1" target="_jeesnsLink">普通置顶</a></li>
+                                                    <li><a href="${base}/group/topic/top/${groupTopic.id}?top=2" target="_jeesnsLink">超级置顶</a></li>
+                                                <#elseif groupTopic.isTop = 1>
+                                                    <li><a href="${base}/group/topic/top/${groupTopic.id}?top=0" target="_jeesnsLink">取消普通置顶</a></li>
+                                                    <li><a href="${base}/group/topic/top/${groupTopic.id}?top=2" target="_jeesnsLink">超级置顶</a></li>
+                                                <#elseif groupTopic.isTop = 2>
+                                                    <li><a href="${base}/group/topic/top/${groupTopic.id}?top=0" target="_jeesnsLink">取消超级置顶</a></li>
+                                                    <li><a href="${base}/group/topic/top/${groupTopic.id}?top=1" target="_jeesnsLink">普通置顶</a></li>
+                                                </#if>
+                                                <#if groupTopic.isEssence = 0>
+                                                    <li><a href="${base}/group/topic/essence/${groupTopic.id}?essence=1" target="_jeesnsLink">精华</a></li>
+                                                <#elseif groupTopic.isEssence = 1>
+                                                    <li><a href="${base}/group/topic/essence/${groupTopic.id}?essence=0" target="_jeesnsLink">取消精华</a></li>
+                                                </#if>
                                             </#if>
-                                            <#if groupTopic.isEssence = 0>
-                                                <li><a href="${base}/group/topic/essence/${groupTopic.id}?essence=1" target="_jeesnsLink">精华</a></li>
-                                            <#elseif groupTopic.isEssence = 1>
-                                                <li><a href="${base}/group/topic/essence/${groupTopic.id}?essence=0" target="_jeesnsLink">取消精华</a></li>
+
+
+                                            <#if loginUser.id == groupTopic.memberId>
+                                                <li><a href="${basePath}/group/topicEdit/${groupTopic.id}">编辑</a></li>
                                             </#if>
-                                        </#if>
-
-
-                                        <#if loginUser.id == groupTopic.memberId>
-                                            <li><a href="${basePath}/group/topicEdit/${groupTopic.id}">编辑</a></li>
-                                        </#if>
-                                        <li><a href="${basePath}/group/delete/${groupTopic.id}" confirm="确定要删除帖子吗？" target="_jeesnsLink">删除</a></li>
-                                    </ul>
-                                </div>
-                            </#if>
+                                            <li><a href="${basePath}/group/delete/${groupTopic.id}" confirm="确定要删除帖子吗？" target="_jeesnsLink">删除</a></li>
+                                        </ul>
+                                    </div>
+                                </#if>
                             </dd>
                         </dl>
                     </header>
-                    <@ads id=2>
+                    <#--插入广告-->
+                    <#--<@ads id=2>
                         <#include "/tp/ad.ftl"/>
-                    </@ads>
+                    </@ads>-->
+                    <#--帖子内容-->
                     <section class="content">
-                    ${groupTopic.content}
+                        ${groupTopic.content}
                     </section>
+                    <#--选择喜欢不喜欢-->
                     <div class="text-center">
-                    <#if groupTopic.isFavor == 0>
-                        <a class="btn btn-danger btn-article-favor btn-article-unfavor topic-favor" href="javascript:void(0)" topic-id="${groupTopic.id}">
-                            <i class="icon-heart-empty"></i> 喜欢 | ${groupTopic.favor}
-                        </a>
-                    <#else>
-                        <a class="btn btn-danger btn-article-favor topic-favor" href="javascript:void(0)" topic-id="${groupTopic.id}">
-                            <i class="icon-heart"></i> 喜欢 | ${groupTopic.favor}
-                        </a>
-                    </#if>
+                        <#if groupTopic.isFavor == 0>
+                            <a class="btn btn-danger btn-article-favor btn-article-unfavor topic-favor" href="javascript:void(0)" topic-id="${groupTopic.id}">
+                                <i class="icon-heart-empty"></i> 喜欢 | ${groupTopic.favor}
+                            </a>
+                        <#else>
+                            <a class="btn btn-danger btn-article-favor topic-favor" href="javascript:void(0)" topic-id="${groupTopic.id}">
+                                <i class="icon-heart"></i> 喜欢 | ${groupTopic.favor}
+                            </a>
+                        </#if>
                     </div>
                 </article>
-                <@ads id=2>
+                <#--<@ads id=2>
                     <#include "/tp/ad.ftl"/>
-                </@ads>
+                </@ads>-->
+
+                <#--帖子评论-->
                 <div class="comments panel">
                     <div class="panel-heading">帖子评论</div>
                     <header>

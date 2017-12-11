@@ -1,3 +1,4 @@
+com\lxinet\jeesns\core\exception\NotLoginException.class
 com\lxinet\jeesns\core\utils\SpringContextHolder.class
 com\lxinet\jeesns\core\dto\ResponseModel.class
 com\lxinet\jeesns\core\utils\XssHttpServletRequestWrapper.class
@@ -10,6 +11,7 @@ com\lxinet\jeesns\core\utils\AtUtil.class
 com\lxinet\jeesns\core\utils\JeesnsConfig.class
 com\lxinet\jeesns\core\directive\BaseDirective.class
 com\lxinet\jeesns\core\annotation\Clear.class
+com\lxinet\jeesns\core\model\Email.class
 com\lxinet\jeesns\core\annotation\After.class
 com\lxinet\jeesns\core\utils\Md5Util.class
 com\lxinet\jeesns\core\utils\ImageUtil.class
@@ -17,6 +19,7 @@ com\lxinet\jeesns\core\utils\Const.class
 com\lxinet\jeesns\core\utils\StringUtils.class
 com\lxinet\jeesns\core\exception\ParamExceptiom.class
 com\lxinet\jeesns\core\filter\XssFilter.class
+com\lxinet\jeesns\core\utils\EmailUtiles.class
 com\lxinet\jeesns\core\enums\MessageType.class
 com\lxinet\jeesns\core\utils\HtmlUtil.class
 com\lxinet\jeesns\core\utils\TokenUtil.class

@@ -19,6 +19,12 @@ public interface IGroupFansDao extends IBaseDao<GroupFans> {
      */
     List<GroupFans> listByPage(@Param("page") Page page, @Param("groupId") Integer groupId);
 
+    /**
+     * 判断是否关注这个群组
+     * @param groupId
+     * @param memberId
+     * @return
+     */
     GroupFans findByMemberAndGroup(@Param("groupId") Integer groupId,@Param("memberId") Integer memberId);
 
     int save(@Param("groupId") Integer groupId,@Param("memberId") Integer memberId);

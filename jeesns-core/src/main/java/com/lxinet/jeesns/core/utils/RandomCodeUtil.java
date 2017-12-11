@@ -4,7 +4,8 @@ package com.lxinet.jeesns.core.utils;
 import java.util.UUID;
 
 /**
- * Created by zchuanzhao on 2017/1/20.
+ * 验证码生成工具类
+ * 2017年12月7日10:57:40
  */
 public class RandomCodeUtil {
 

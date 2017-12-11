@@ -20,8 +20,18 @@ public interface IMemberService {
      */
     ResponseModel login(Member member, HttpServletRequest request);
 
+    /**
+     * 提交登录信息
+     * @param member
+     * @return
+     */
     Member manageLogin(Member member, HttpServletRequest request);
 
+    /**
+     * 根据ID查会员信息
+     * @param id
+     * @return
+     */
     Member findById(int id);
 
     /**
@@ -34,7 +44,13 @@ public interface IMemberService {
 
     ResponseModel update(Member member);
 
+    /**
+     * 删除账户
+     * @param id
+     * @return
+     */
     ResponseModel delete(int id);
+
     /**
      * 会员列表
      * @param key
@@ -140,8 +156,12 @@ public interface IMemberService {
     ResponseModel active(Member loginMember, String randomCode, HttpServletRequest request);
 
 
-
-
+    /**
+     * 根据Name Email查询信息 修改密码
+     * @param name
+     * @param email
+     * @return
+     */
     Member findByNameAndEmail(String name, String email);
 
     /**

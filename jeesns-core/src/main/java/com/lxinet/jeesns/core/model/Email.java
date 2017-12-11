@@ -1,11 +1,8 @@
 package com.lxinet.jeesns.core.model;
 
 /**
- * 说明：
- * 包名：com.redoop.common.utils
- * 项目名：License-Admin
- * 创建人：Itdeer
- * 创建时间：2017-07-27 上午9:47.
+ * 2017年12月7日08:58:32更新
+ * 邮箱实体类
  */
 public class Email {
 

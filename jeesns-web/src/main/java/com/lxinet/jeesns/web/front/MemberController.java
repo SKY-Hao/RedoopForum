@@ -116,7 +116,7 @@ public class MemberController extends BaseController {
     }
 
     /**
-     *1. 开启邮箱验证之后进入验证页面
+     *1. 进入邮箱激活页面
      * @return
      */
     @RequestMapping(value = "/active",method = RequestMethod.GET)
@@ -220,7 +220,7 @@ public class MemberController extends BaseController {
 
     /**
      * (登录之后)
-     * 个人主页member/index
+     * 个人中心member/index
      * @param model
      * @return
      */
@@ -278,18 +278,33 @@ public class MemberController extends BaseController {
     }
 
 
+    /**
+     * 修改头像页
+     * @return
+     */
     @RequestMapping(value = "/avatar",method = RequestMethod.GET)
     @Before(UserLoginInterceptor.class)
     public String avatar(){
         return MEMBER_FTL_PATH + "avatar";
     }
 
+    /**
+     * 修改密码页
+     * @return
+     */
     @RequestMapping(value = "/password",method = RequestMethod.GET)
     @Before(UserLoginInterceptor.class)
     public String password(){
         return MEMBER_FTL_PATH + "password";
     }
 
+    /**
+     * 登录之后     根据旧密码修改密码
+     * @param oldPassword
+     * @param newPassword
+     * @param renewPassword
+     * @return
+     */
     @RequestMapping(value = "/password",method = RequestMethod.POST)
     @ResponseBody
     public ResponseModel password(String oldPassword, String newPassword, String renewPassword){
@@ -352,11 +367,6 @@ public class MemberController extends BaseController {
         if(loginMember != null){
             loginMemberId = loginMember.getId();
         }
-        //获取联系人
-      //  ResponseModel contactMembers = messageService.listContactMembers(page, loginMemberId);
-       // 获取联系人
-      //  ResponseModel contactMembers = messageService.listContactMembers(page, memberId, loginMemberId);
-       // model.addAttribute("model", contactMembers);
         return MEMBER_FTL_PATH + "message";
     }
 
@@ -439,7 +449,7 @@ public class MemberController extends BaseController {
         if(findMember == null){
             return new ResponseModel(-1,"会员不存在");
         }
-        return messageService.save(loginMember.getId(), memberId, content);
+        return messageService.sendOutMessage(loginMember.getId(), memberId, content);
     }
 
     /**

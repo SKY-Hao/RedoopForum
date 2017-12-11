@@ -235,7 +235,7 @@ INSERT INTO `tbl_config` VALUES ('site_icp', '京ICP备17046370号', '备案号'
 INSERT INTO `tbl_config` VALUES ('site_keys', 'redoop,RedoopForum,java', '网站关键词');
 INSERT INTO `tbl_config` VALUES ('site_logo', '/res/common/images/RedoopLogo.png', '网站LOGO');
 INSERT INTO `tbl_config` VALUES ('site_name', 'Redoop', '网站名称');
-INSERT INTO `tbl_config` VALUES ('site_send_email_account', 'bd@redoop.com', '发送邮箱账号');
+INSERT INTO `tbl_config` VALUES ('site_send_email_account', 'huangtianhao@redoop.com', '发送邮箱账号');
 INSERT INTO `tbl_config` VALUES ('site_send_email_password', '', '发送邮箱密码');
 INSERT INTO `tbl_config` VALUES ('site_send_email_smtp', '', '发送邮箱SMTP服务器地址');
 INSERT INTO `tbl_config` VALUES ('site_seo_title', 'RedoopForum社区', 'SEO标题');

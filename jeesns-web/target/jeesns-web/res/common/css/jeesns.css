@@ -47,7 +47,7 @@ h3,h4,h5 {
 .container>.navbar-header,.container-fluid>.navbar-header,.container>.navbar-collapse,.container-fluid>.navbar-collapse {
   margin-right:0px;
   margin-left:8px;
-  background-color:#353535;
+  background-color:#252527;
   /*border-top:1px solid #00aaee;
   */
 }
@@ -121,7 +121,7 @@ h3,h4,h5 {
   background-size:cover;
 }
 .navbar-static-top {
-  background:#353535;
+  background:#252527;
   height:75px;
   /*border-top:solid 1px #0499e2;
   */
@@ -175,10 +175,10 @@ h3,h4,h5 {
   color:#0099cc;
 }
 .header-action-link {
-  color:#0099cc;
+  color:#ffffff;
 }
 .header-action-link:hover {
-  color:#0099cc;
+  color:#cd2027;
 }
 .cate-btn {
   padding:5px 10px;
@@ -288,6 +288,8 @@ h3,h4,h5 {
   padding-top:50px;
   text-align:right;
 }
+
+
 .member-banner .right .follows,.member-banner .right .fans,.member-banner .right .score {
   font-size:16px;
   display:inline-block;
@@ -303,7 +305,7 @@ h3,h4,h5 {
   font-weight:600;
   display:block;
   margin-top:5px;
-  color:#0099cc;
+  color:#bababa;
 }
 .member-banner .right .login-info {
   margin-top:80px;
@@ -326,11 +328,11 @@ h3,h4,h5 {
   color:#ffffff;
 }
 .navbar-default .nav > li > a:hover,.navbar-default .nav > li > a:focus {
-  background-color:#293846;
+  background-color:#252527;
   color:white;
 }
 .nav .open > a,.nav .open > a:hover,.nav .open > a:focus {
-  background:#353535;
+  background:#252527;
 }
 .nav.navbar-top-links > li > a:hover,.nav.navbar-top-links > li > a:focus {
   background-color:#00a0e9;
@@ -385,11 +387,14 @@ h3,h4,h5 {
   color: #cd2027;
 }
 
-
-
+.btn-group .dropdown-menu>#xq>a:hover{
+  color:#ffffff;
+  text-decoration:none;
+  background-color:#ac2925;
+}
 
 .navbar-nav li a:hover {
-  background-color:#353535;
+  background-color:#252527;
   color:#ffffff;
 }
 .dropdown-menu {
@@ -864,7 +869,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   color:#1c84c6;
 }
 .btn-info.btn-outline {
-  color:#23c6c8;
+  color:#bababa;
 }
 .btn-warning.btn-outline {
   color:#0099cc;
@@ -911,20 +916,20 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 }
 .btn-info {
   background-color:#23c6c8;
-  border-color:#23c6c8;
+  border-color:#364758;
   color:#FFFFFF;
 }
 .btn-info:hover,.btn-info:focus,.btn-info:active,.btn-info.active,.open .dropdown-toggle.btn-info,.btn-info:active:focus,.btn-info:active:hover,.btn-info.active:hover,.btn-info.active:focus {
-  background-color:#21b9bb;
-  border-color:#21b9bb;
+  background-color:#cd2027;
+  border-color:#cd2027;
   color:#FFFFFF;
 }
 .btn-info:active,.btn-info.active,.open .dropdown-toggle.btn-info {
   background-image:none;
 }
 .btn-info.disabled,.btn-info.disabled:hover,.btn-info.disabled:focus,.btn-info.disabled:active,.btn-info.disabled.active,.btn-info[disabled],.btn-info[disabled]:hover,.btn-info[disabled]:focus,.btn-info[disabled]:active,.btn-info.active[disabled],fieldset[disabled] .btn-info,fieldset[disabled] .btn-info:hover,fieldset[disabled] .btn-info:focus,fieldset[disabled] .btn-info:active,fieldset[disabled] .btn-info.active {
-  background-color:#26d7d9;
-  border-color:#26d7d9;
+  background-color:#cd2027;
+  border-color:#cd2027;
 }
 .btn-default {
   color:inherit;
@@ -2051,6 +2056,7 @@ code {
   padding:10px 15px;
 }
 .ibox-content {
+  margin-top: 25px;
   clear:both;
 }
 .ibox-heading {

@@ -11,7 +11,10 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by zchuanzhao on 2017/5/18.
+ * 2017年12月6日15:30:49更新
+ * /front/index
+ * 主页的群组列表
+ * 主页群组controller
  */
 @Component
 public class GroupDirective extends BaseDirective {

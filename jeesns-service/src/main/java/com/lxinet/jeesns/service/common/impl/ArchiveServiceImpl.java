@@ -60,6 +60,10 @@ public class ArchiveServiceImpl implements IArchiveService {
         return archiveDao.save(archive) == 1;
     }
 
+    /**
+     * 更新阅读次数
+     * @param id
+     */
     @Override
     public void updateViewCount(int id) {
         archiveDao.updateViewCount(id);

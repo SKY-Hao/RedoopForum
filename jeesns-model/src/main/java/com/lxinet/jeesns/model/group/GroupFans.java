@@ -7,15 +7,17 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by zchuanzhao on 16/12/26.
+ * 群组粉丝表（tbl_group_fans）
+ * 2017年12月6日15:07:06更新
+ *
  */
 public class GroupFans implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
-    private Integer groupId;
-    private Group group;
-    private Integer memberId;
-    private Member member;
+    private Date createTime;    //创建时间
+    private Integer groupId;    //群组ID
+    private Group group;        //群组集合
+    private Integer memberId;   //会员ID（用户ID）
+    private Member member;      //会员集合
 
     public Date getCreateTime() {
         return createTime;

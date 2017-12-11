@@ -40,6 +40,13 @@ public class GroupServiceImpl implements IGroupService {
     @Resource
     private IScoreDetailService scoreDetailService;
 
+    /**
+     * 群组列表页面
+     * @param status
+     * @param page
+     * @param key
+     * @return
+     */
     @Override
     public ResponseModel listByPage(int status, Page page, String key) {
         if (StringUtils.isNotBlank(key)){
@@ -50,6 +57,19 @@ public class GroupServiceImpl implements IGroupService {
         model.setData(list);
         return model;
     }
+
+    /**
+     * 主页index下的群组列表
+     * @param status
+     * @param num
+     * @param sort
+     * @return
+     */
+    @Override
+    public List<Group> listByCustom(int status, int num, String sort) {
+        return groupDao.listByCustom(status,num,sort);
+    }
+
 
     /**
      * 关注、取消关注群组
@@ -76,6 +96,7 @@ public class GroupServiceImpl implements IGroupService {
 
     }
 
+    //修改状态
     @Override
     public ResponseModel changeStatus(int id) {
         if(groupDao.changeStatus(id) == 1){
@@ -84,16 +105,24 @@ public class GroupServiceImpl implements IGroupService {
         return new ResponseModel(-1,"操作失败");
     }
 
-    @Override
-    public List<Group> listByCustom(int status, int num, String sort) {
-        return groupDao.listByCustom(status,num,sort);
-    }
 
+
+    /**
+     * 根据群组的ID查询群组的信息
+     * @param id
+     * @return
+     */
     @Override
     public Group findById(int id) {
         return groupDao.findById(id);
     }
 
+    /**
+     * 申请群组保存
+     * @param loginMember
+     * @param group
+     * @return
+     */
     @Override
     @Transactional
     public ResponseModel save(Member loginMember,Group group) {
@@ -170,7 +199,14 @@ public class GroupServiceImpl implements IGroupService {
             return new ResponseModel(3,"申请成功，请等待审核");
         }
         return new ResponseModel(-1,"操作失败，请重试");
-        }                                                                        
+    }
+
+    /**
+     * 前台修改 编辑帖子 保存
+     * @param loginMember
+     * @param group
+     * @return
+     */
     @Override
     public ResponseModel update(Member loginMember, Group group) {
         Group findGroup = this.findById(group.getId());
@@ -213,6 +249,12 @@ public class GroupServiceImpl implements IGroupService {
         return new ResponseModel(-1,"操作失败，请重试");
     }
 
+    /**
+     * 删除群组
+     * @param loginMember
+     * @param id
+     * @return
+     */
     @Override
     public ResponseModel delete(Member loginMember, int id) {
         Group group = this.findById(id);

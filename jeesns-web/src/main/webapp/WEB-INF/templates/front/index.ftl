@@ -167,51 +167,51 @@
                 </div>
             </div>
             <!--推荐群组-->
-            <div class="col-md-12">
-                <div class="panel group-topic-list no-border">
-                    <div class="panel-heading">
-                        推荐群组
-                        <span class="pull-right">
-                            <a class="btn btn-primary m-t-n4" href="${basePath}/group/">查看更多</a>
-                        </span>
-                    </div>
-                    <div class="panel-body">
-                        <div class="items">
-                            <div class="col-md-12 group-list">
-                            <@group_list status=1 num=8; group>
-                                <#list groupList as group>
-                                    <div class="col-md-3">
-                                        <div class="group-detail">
-                                            <div class="group-logo">
-                                                <a href="${basePath}/group/detail/${group.id}">
-                                                    <img alt="image" class="img-rounded" src="${basePath}${group.logo}" width="100px" height="100px" style="border-radius: 50%;border: 1px solid #e6e6e6;">
-                                                </a>
-                                            </div>
-                                            <div class="group-info">
-                                                <h4><strong><a href="${basePath}/group/detail/${group.id}">${group.name}</a></strong></h4>
-                                                <p class="text-muted">
-                                                    <#if group.introduce?length &gt; 50>
-                                                    ${group.introduce?substring(0,50)}...
-                                                    <#else>
-                                                    ${group.introduce}
-                                                    </#if>
-                                                </p>
-                                                <small class="text-muted">
-                                                   ${group.topicCount}篇文章 ·
+            <#--<div class="col-md-12">-->
+                <#--<div class="panel group-topic-list no-border">-->
+                    <#--<div class="panel-heading">-->
+                        <#--推荐群组-->
+                        <#--<span class="pull-right">-->
+                            <#--<a class="btn btn-primary m-t-n4" href="${basePath}/group/">查看更多</a>-->
+                        <#--</span>-->
+                    <#--</div>-->
+                    <#--<div class="panel-body">-->
+                        <#--<div class="items">-->
+                            <#--<div class="col-md-12 group-list">-->
+                            <#--<@group_list status=1 num=8; group>-->
+                                <#--<#list groupList as group>-->
+                                    <#--<div class="col-md-3">-->
+                                        <#--<div class="group-detail">-->
+                                            <#--<div class="group-logo">-->
+                                                <#--<a href="${basePath}/group/detail/${group.id}">-->
+                                                    <#--<img alt="image" class="img-rounded" src="${basePath}${group.logo}" width="100px" height="100px" style="border-radius: 50%;border: 1px solid #e6e6e6;">-->
+                                                <#--</a>-->
+                                            <#--</div>-->
+                                            <#--<div class="group-info">-->
+                                                <#--<h4><strong><a href="${basePath}/group/detail/${group.id}">${group.name}</a></strong></h4>-->
+                                                <#--<p class="text-muted">-->
+                                                    <#--<#if group.introduce?length &gt; 50>-->
+                                                    <#--${group.introduce?substring(0,50)}...-->
+                                                    <#--<#else>-->
+                                                    <#--${group.introduce}-->
+                                                    <#--</#if>-->
+                                                <#--</p>-->
+                                                <#--<small class="text-muted">-->
+                                                   <#--${group.topicCount}篇文章 ·-->
 
-                                                    ${group.fansCount}人关注
+                                                    <#--${group.fansCount}人关注-->
 
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </#list>
-                            </@group_list>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                                <#--</small>-->
+                                            <#--</div>-->
+                                        <#--</div>-->
+                                    <#--</div>-->
+                                <#--</#list>-->
+                            <#--</@group_list>-->
+                            <#--</div>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</div>-->
+            <#--</div>-->
             <!--友情链接-->
            <#-- <div class="col-md-12">
                 <div class="panel group-topic-list no-border">

@@ -1630,9 +1630,9 @@ h6 {
     box-shadow:0 2px 1px rgba(0,0,0,.1)
 }
 .btn-primary.active,.btn-primary:active,.open .dropdown-toggle.btn-primary {
-    background-color:#0358de;
+    background-color:#ac2925;
     background-image:none;
-    border-color:#0358de;
+    border-color:#ac2925;
     -webkit-box-shadow:inset 0 4px 6px rgba(0,0,0,.15);
     box-shadow:inset 0 4px 6px rgba(0,0,0,.15)
 }
@@ -4681,10 +4681,10 @@ pre code {
 }
 .pager>li.active>a,.pager>li.active>a:hover,.pager>li.active>span,.pager>li.active>span:hover {
     z-index:3;
-    color:#fff;
+    color:#2f3437;
     cursor:default;
-    background-color:#00aaee;
-    border-color:#00aaee
+    background-color:#e5e5e5;
+    border-color:#e5e5e5
 }
 .pager>li.disabled>a,.pager>li.disabled>a:focus,.pager>li.disabled>a:hover,.pager>li.disabled>span,.pager>li.disabled>span:focus,.pager>li.disabled>span:hover {
     color:#ddd;

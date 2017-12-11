@@ -8,21 +8,37 @@ import java.util.Date;
  * Created by zchuanzhao on 17/3/9.
  */
 public class Message implements Serializable {
+
     private Integer id;
-    private Date createTime;
-    private Integer fromMemberId;
-    private Member fromMember;
-    private Integer toMemberId;
-    private Member toMember;
-    private String content;
-    private String url;
-    private Integer isread;
-    private Integer appTag;
-    private Integer type;
-    private Integer relateKeyId;
-    private String description;
-    private Integer memberId;
-    private Member member;
+
+    private Date createTime;        //创建时间
+
+    private Integer fromMemberId;   //发信人
+
+    private Member fromMember;      //发信人实体（会员实体）
+
+    private Integer toMemberId;     //收信人
+
+    private Member toMember;        //收信人实体（会员实体）
+
+    private String content;         //内容
+
+    private String url;             //链接
+
+    private Integer isread;         //是否已读，0未读，1已读
+
+    private Integer appTag;         //应用ID，系统消息时才有用
+
+    private Integer type;           //应用ID，系统消息时才有用
+
+    private Integer relateKeyId;    //外键ID，系统消息时才有用
+
+    private String description;     //描述，系统消息时才有用
+
+    private Integer memberId;       //操作会员ID，系统消息时才有用
+
+    private Member member;          //会员实体
+
 
     public Integer getId() {
         return id;

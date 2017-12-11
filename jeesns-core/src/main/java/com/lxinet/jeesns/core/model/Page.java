@@ -15,7 +15,7 @@ public class Page<T> implements Serializable {
     private int pageNo = 1;
 
     //每页数量
-    private int pageSize = 20;
+    private int pageSize = 10;
 
     //总页数
     private int totalPage;
@@ -58,7 +58,7 @@ public class Page<T> implements Serializable {
         try {
             this.setPageSize(Integer.parseInt(size));
         }catch (Exception e){
-            this.setPageSize(20);
+            this.setPageSize(10);
         }
     }
 

@@ -90,6 +90,8 @@ public class CkeditorUploadController extends BaseController {
                 String imageUrl = request.getContextPath() + path + newFileName;
                 out.print("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'"+imageUrl+"'," + "'');</script>");
                 out.flush();
+                System.out.println("imageUrl====="+imageUrl);
+                System.out.println("====ckeditorUpload>out.print====="+"<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'"+imageUrl+"'," + "'');</script>");
                 out.close();
 
             } else {
