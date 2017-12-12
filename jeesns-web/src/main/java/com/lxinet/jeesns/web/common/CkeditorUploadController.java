@@ -34,6 +34,7 @@ public class CkeditorUploadController extends BaseController {
         try {
             response.setCharacterEncoding("utf-8");
             out = response.getWriter();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -88,7 +89,11 @@ public class CkeditorUploadController extends BaseController {
                     out.close();
                 }
                 String imageUrl = request.getContextPath() + path + newFileName;
-                out.print("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'"+imageUrl+"'," + "'');</script>");
+                //String url="http://www.redoop.com/"+imageUrl;
+                //String url="localhost:8080/"+imageUrl;
+                out.write("<script  type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback
+                        + ",'" + imageUrl+"'," + "'');</script>");
+               // out.print("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'"+imageUrl+"'," + "'');</script>");
                 out.flush();
                 System.out.println("imageUrl====="+imageUrl);
                 System.out.println("====ckeditorUpload>out.print====="+"<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'"+imageUrl+"'," + "'');</script>");

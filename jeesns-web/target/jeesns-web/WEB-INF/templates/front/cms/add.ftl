@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <#--<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<#--<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">-->
     <title>发布文章 - ${SITE_NAME}</title>
 
     <link rel="shortcut icon" href="${basePath}/logo.ico">
@@ -44,9 +44,9 @@
                         <div class="col-sm-3">
                             <select class="form-control" name="cateId" data-type="selected" alt="栏目">
                                 <option value="" selected>=请选择栏目=</option>
-                                <#list cateList as mainMenu>
+                            <#list cateList as mainMenu>
                                 <option value="${mainMenu.id}">${mainMenu.name}</option>
-                                </#list>
+                            </#list>
                             </select>
                         </div>
                     </div>
