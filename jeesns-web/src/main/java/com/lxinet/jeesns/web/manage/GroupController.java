@@ -72,7 +72,7 @@ public class GroupController extends BaseController {
 
     /**
      * 去添加群组
-     *
+     *2017年12月15日11:21:32
      * @param model
      * @return
      */
@@ -84,6 +84,7 @@ public class GroupController extends BaseController {
 
     /**
      * 添加群组保存
+     * 2017年12月15日11:21:37
      * @param group
      * @return
      */
@@ -105,18 +106,19 @@ public class GroupController extends BaseController {
 
     /**
      * 后台 帖子列表
-     * @param status
-     * @param key
-     * @param model
+     * 2017年12月15日11:21:40
      * @return
      */
-    @RequestMapping(value = "${managePath}/group/topic/index")
-    public String topicindex(@RequestParam(value = "status",required = false,defaultValue = "-1") Integer status,
-                        String key,
-                        Model model) {
+   /* @RequestMapping(value = "${managePath}/group/topic/index")
+    public String topicindex(Model model,String key) {
 
+        //TODO  待调试
 
+        Page page = new Page(request);
+        ResponseModel responseModel = groupService.listByTopicPage(page,key);
+        model.addAttribute("model",responseModel);
+        model.addAttribute("key",key);
         return MANAGE_FTL_PATH + "topic/index";
     }
-
+*/
 }

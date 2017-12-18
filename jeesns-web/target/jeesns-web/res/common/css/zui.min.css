@@ -1715,13 +1715,13 @@ h6 {
 .btn-info {
     color:#fff;
     text-shadow:0 -1px 0 rgba(0,0,0,.2);
-    background-color:#03b8cf;
-    border-color:#03a2b6
+    background-color:#cd2027;
+    border-color:#cd2027;
 }
 .btn-info.active,.btn-info:active,.btn-info:focus,.btn-info:hover,.open .dropdown-toggle.btn-info {
     color:#fff;
-    background-color:#0294a7;
-    border-color:#026c7a;
+    background-color:#ac2925;
+    border-color:#cd2027;
     -webkit-box-shadow:0 2px 1px rgba(0,0,0,.1);
     box-shadow:0 2px 1px rgba(0,0,0,.1)
 }
@@ -4786,7 +4786,7 @@ pre code {
     background-color:transparent
 }
 .nav .open>a,.nav .open>a:focus,.nav .open>a:hover {
-   /* background-color:#f1f1f1;*/
+    /* background-color:#f1f1f1;*/
     border-color:#f1f1f1;
 }
 .nav>li>a>img {
@@ -5362,7 +5362,7 @@ pre code {
 }
 .navbar-inverse .navbar-nav>.open>a,.navbar-inverse .navbar-nav>.open>a:focus,.navbar-inverse .navbar-nav>.open>a:hover {
     color:#fff;
-   /* background-color:#f1f1f1;*/
+    /* background-color:#f1f1f1;*/
 }
 @media (max-width:767px) {
     .navbar-inverse .navbar-nav .open .dropdown-menu>.dropdown-header {

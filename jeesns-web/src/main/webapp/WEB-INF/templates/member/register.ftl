@@ -32,7 +32,7 @@
 <div class="animated fadeInDown">
     <div class="row login-panel">
         <div class="col-md-4"></div>
-        <div class="col-md-4">
+        <div class="col-md-4" style="width: 400px;">
             <div class="ibox-content">
                 <h3>欢迎加入${SITE_NAME}</h3>
                 <form class="m-t jeesns_form" action="${basePath}/member/register" method="post">

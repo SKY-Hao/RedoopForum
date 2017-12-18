@@ -3,6 +3,7 @@ package com.lxinet.jeesns.dao.group;
 import com.lxinet.jeesns.dao.common.IBaseDao;
 import com.lxinet.jeesns.core.model.Page;
 import com.lxinet.jeesns.model.group.Group;
+import com.lxinet.jeesns.model.group.GroupTopic;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
@@ -33,4 +34,11 @@ public interface IGroupDao extends IBaseDao<Group> {
      */
     List<Group> listByCustom(@Param("status") int status, @Param("num") int num, @Param("sort") String sort);
 
+    /**
+     * 后台帖子列表
+     * 2017年12月15日14:42:31
+     * @param page
+     * @return
+     */
+   // List<GroupTopic> listByTopicPage(@Param("page") Page page, @Param("key") String key);
 }

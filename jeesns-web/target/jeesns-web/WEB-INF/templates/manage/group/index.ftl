@@ -76,30 +76,30 @@
                                 </thead>
                                 <tbody>
                                 <#list model.data as group>
-                                <tr>
-                                    <td>${group.id}</td>
-                                    <td>${group.name}</td>
-                                    <td>${group.creatorMember.name}</td>
-                                    <td>${group.tags}</td>
-                                    <td>${group.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>
-                                    <td>
-                                        <#if group.status==0>
-                                            <a class="marg-l-5" target="_jeesnsLink" href="${managePath}/group/changeStatus/${group.id}">
-                                                <span class="label label-danger">未审核</span>
+                                    <tr>
+                                        <td>${group.id}</td>
+                                        <td>${group.name}</td>
+                                        <td>${group.creatorMember.name}</td>
+                                        <td>${group.tags}</td>
+                                        <td>${group.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>
+                                        <td>
+                                            <#if group.status==0>
+                                                <a class="marg-l-5" target="_jeesnsLink" href="${managePath}/group/changeStatus/${group.id}">
+                                                    <span class="label label-danger">未审核</span>
+                                                </a>
+                                            <#elseif group.status==1>
+                                                <a class="marg-l-5" target="_jeesnsLink" href="${managePath}/group/changeStatus/${group.id}">
+                                                    <span class="label label-success">已审核</span>
+                                                </a>
+                                            </#if>
+                                        </td>
+                                        <td>
+                                            <a class="marg-l-5" target="_jeesnsLink"
+                                               href="${managePath}/group/delete/${group.id}" confirm="确定要删除群组吗？删除后群组文章都会被删除！">
+                                                <span class="label label-danger"><i class="fa fa-trash red"></i></span>
                                             </a>
-                                        <#elseif group.status==1>
-                                            <a class="marg-l-5" target="_jeesnsLink" href="${managePath}/group/changeStatus/${group.id}">
-                                                <span class="label label-success">已审核</span>
-                                            </a>
-                                        </#if>
-                                    </td>
-                                    <td>
-                                        <a class="marg-l-5" target="_jeesnsLink"
-                                           href="${managePath}/group/delete/${group.id}" confirm="确定要删除群组吗？删除后群组文章都会被删除！">
-                                            <span class="label label-danger"><i class="fa fa-trash red"></i></span>
-                                        </a>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
                                 </#list>
                                 </tbody>
                             </table>

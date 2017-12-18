@@ -21,6 +21,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
+ * 后台文章controller
  * Created by zchuanzhao on 16/9/29.
  */
 @Controller("manageArticleController")

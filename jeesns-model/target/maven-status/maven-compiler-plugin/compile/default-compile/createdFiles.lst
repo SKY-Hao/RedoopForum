@@ -2,6 +2,7 @@ com\lxinet\jeesns\model\common\Picture.class
 com\lxinet\jeesns\model\member\Member.class
 com\lxinet\jeesns\model\cms\ArticleComment.class
 com\lxinet\jeesns\model\member\MemberFans.class
+com\lxinet\jeesns\model\member\PicUploadResult.class
 com\lxinet\jeesns\model\common\Ads.class
 com\lxinet\jeesns\model\system\ActionLog.class
 com\lxinet\jeesns\model\common\ArchiveFavor.class

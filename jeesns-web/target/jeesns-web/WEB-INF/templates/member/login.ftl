@@ -34,7 +34,7 @@
 <div class="animated fadeInDown">
     <div class="row login-panel">
         <div class="col-md-4"></div>
-        <div class="col-md-4">
+        <div class="col-md-4" style="width: 400px;">
             <div class="ibox ibox-content">
                 <h2 class="font-bold">登录</h2>
                 <form class="m-t jeesns_form" action="${basePath}/member/login" method="post">

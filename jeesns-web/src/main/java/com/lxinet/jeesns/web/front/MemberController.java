@@ -47,11 +47,13 @@ public class MemberController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String login(Model model,@RequestParam(value = "redirectUrl",required = false,defaultValue = "") String redirectUrl){
+    public String login(Model model,
+                        @RequestParam(value = "redirectUrl",required = false,defaultValue = "") String redirectUrl){
         Member loginMember = MemberUtil.getLoginMember(request);
         if(loginMember != null){
             return "redirect:/member/";
         }
+
         model.addAttribute("redirectUrl",redirectUrl);
         return MEMBER_FTL_PATH + "/login";
     }

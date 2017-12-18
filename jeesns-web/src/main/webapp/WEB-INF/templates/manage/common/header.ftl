@@ -90,8 +90,10 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="${managePath}/group/index" module="group"><i class="fa fa-circle-o"></i>群组列表</a></li>
-                   <#-- <li><a href="${managePath}/group/topic/index" module="group"><i class="fa fa-circle-o"></i>帖子列表</a></li>-->
 
+                    <!--2017年12月15日11:25:27-->
+                    <#--<li><a href="${managePath}/group/topic/index" module="group"><i class="fa fa-circle-o"></i>帖子列表</a></li>
+-->
 
                 </ul>
             </li>

@@ -4,6 +4,7 @@ import com.lxinet.jeesns.core.dto.ResponseModel;
 import com.lxinet.jeesns.core.model.Page;
 import com.lxinet.jeesns.core.utils.*;
 import com.lxinet.jeesns.model.group.Group;
+import com.lxinet.jeesns.model.group.GroupTopic;
 import com.lxinet.jeesns.model.member.Member;
 import com.lxinet.jeesns.service.group.IGroupService;
 import com.lxinet.jeesns.dao.group.IGroupDao;
@@ -269,4 +270,20 @@ public class GroupServiceImpl implements IGroupService {
     }
 
 
+    /**
+     * 后台帖子列表
+     * 2017年12月15日14:57:26
+     * @param page
+     * @return
+     */
+   /* @Override
+    public ResponseModel listByTopicPage(Page page,String key) {
+        if (StringUtils.isNotBlank(key)){
+            key = "%"+key.trim()+"%";
+        }
+        List<GroupTopic> list = groupDao.listByTopicPage(page,key);
+        ResponseModel model = new ResponseModel(0,page);
+        model.setData(list);
+        return model;
+    }*/
 }

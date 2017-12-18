@@ -21,7 +21,7 @@ public class EmailSendUtil {
 	private static boolean sendMail(HttpServletRequest request, String email, String content,String title) {
 		final String account = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_SEND_EMAIL_ACCOUNT.toUpperCase());//本地发送人邮箱地址
 		final String passWord = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_SEND_EMAIL_PASSWORD.toUpperCase());//本地发送人邮箱密码
-		final String smtp = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_SEND_EMAIL_SMTP.toUpperCase());//发送邮箱SMTP服务器地址
+		final String smtp = (String) request.getServletContext().getAttribute(ConfigUtil.SITE_SEND_EMAIL_SMTP.toUpperCase());//发送邮箱所属的SMTP服务器地址
 		Properties props = new Properties();
 		props.setProperty("mail.smtp.auth", "true");
 		props.setProperty("mail.transport.protocol", "smtp");

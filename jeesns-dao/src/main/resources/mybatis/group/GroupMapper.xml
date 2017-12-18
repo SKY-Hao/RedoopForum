@@ -68,6 +68,7 @@
     update tbl_group set status=(CASE WHEN status=0 THEN 1 ELSE 0 END) where id = #{id}
   </update>
 
+  <!--主页index下的群组列表-->
   <select id="listByCustom" resultMap="GroupResult">
     select a.id,a.create_time,a.name,a.logo,a.creator,a.creator as 'creatorMember.id',a.managers,a.tags,a.introduce,
     a.can_post,a.status,a.topic_review,(select count(c.id) from tbl_group_topic as c where c.group_id=a.id and c.status=1) as topicCount,
@@ -90,4 +91,31 @@
     DESC
     limit 0,#{num}
   </select>
+
+  <!--后台帖子列表-->
+  <!--BUG带调试-->
+  <!--<select id="listByTopicPage" resultMap="GroupResult">
+    SELECT
+    a.id,
+    a.group_id AS 'group.id',
+    a.collect_time,
+    a. STATUS,
+    a.is_top,
+    a.is_essence,
+    b.*, c. NAME 'group.name',
+    b.member_id AS memberId,
+    b.member_id AS 'member.id',
+    d. NAME AS 'member.name',
+    d.avatar AS 'member.avatar'
+    FROM
+    tbl_group_topic AS a
+    LEFT JOIN tbl_archive AS b ON a.archive_id = b.archive_id
+    LEFT JOIN tbl_group AS c ON a.group_id = c.id
+    LEFT JOIN tbl_member AS d ON b.member_id = d.id
+
+    ORDER BY a.collect_time DESC
+  </select>-->
+
+
+
 </mapper>

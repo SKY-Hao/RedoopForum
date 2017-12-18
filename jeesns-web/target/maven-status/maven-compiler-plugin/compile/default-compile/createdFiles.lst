@@ -1,6 +1,7 @@
 com\lxinet\jeesns\web\front\ArticleController.class
 com\lxinet\jeesns\web\manage\LinkController.class
 com\lxinet\jeesns\directive\GroupDirective.class
+com\lxinet\jeesns\web\common\PicUploadController.class
 com\lxinet\jeesns\web\common\BaseController.class
 com\lxinet\jeesns\listener\InitListener.class
 com\lxinet\jeesns\web\front\ScoreDetailController.class

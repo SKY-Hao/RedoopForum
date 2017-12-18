@@ -38,4 +38,7 @@ public interface IGroupService {
 
     //群组主页列表
     List<Group> listByCustom(int status, int num, String sort);
+
+    //后台贴子列表2017年12月15日14:40:31
+    //ResponseModel listByTopicPage(Page page,String key);
 }

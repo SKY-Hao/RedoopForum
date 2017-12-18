@@ -881,13 +881,13 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   color:#fff;
 }
 .btn-primary {
-  background-color:#0099cc;
-  border-color:#0099cc;
+  background-color:#cd2027;
+  border-color:#cd2027;
   color:#FFFFFF;
 }
 .btn-primary:hover,.btn-primary:focus,.btn-primary:active,.btn-primary.active,.open .dropdown-toggle.btn-primary,.btn-primary:active:focus,.btn-primary:active:hover,.btn-primary.active:hover,.btn-primary.active:focus {
-  background-color:#0099cf;
-  border-color:#0099cf;
+  background-color:#ac2925;
+  border-color:#cd2027;
   color:#FFFFFF;
 }
 .btn-primary:active,.btn-primary.active,.open .dropdown-toggle.btn-primary {
