@@ -11,7 +11,7 @@ JAVA开发框架：Spring MVC+Spring+Mybatis
 前台模板引擎：Freemarker
 
 ## 简介
-JEESNS是一款基于JAVA企业级平台研发的社交管理系统，依托企业级JAVA的高效、安全、稳定等优势，开创国内JAVA版开源SNS先河。数据库使用MYSQL，全部源代码开放，官方网址：[http://www.jeesns.cn](http://www.jeesns.cn/)。
+JEESNS是一款基于JAVA企业级平台研发的社交管理系统
 
 ## 应用场景
 - JEESNS是一个企业级的开源社区系统，是一个可以用来搭建门户、群组、论坛和微博的社区系统。
@@ -54,8 +54,6 @@ JEESNS是一款基于JAVA企业级平台研发的社交管理系统，依托企�
 3. 文章审核功能开关
 4. 文章评论
 
-- 动态模块
-1. 洞悉一切
 
 ## 环境要求
 
@@ -72,20 +70,5 @@ JEESNS是一款基于JAVA企业级平台研发的社交管理系统，依托企�
 5. 修改数据库连接。打开`/src/main/resources/jeesns.propertis`文件，根据实际情况修改`jdbc.url`、`jdbc.user`、`jdbc.password`的值，修改后台路径：`managePath`，如：`managePath=manage`
 6. 编译项目。在eclipse中，右键点击项目名，选择`Run as` - `Maven build...`，`Goals`填入`clean package`，然后点击`Run`，第一次运行需要下载jar包，请耐心等待。
 7. 部署项目。将项目部署到Tomcat7或以上版本，启动Tomcat。
-8. 访问系统。前台地址：[http://localhost:8080/](http://localhost:8080/)；用户名：admin，密码：redoopadmin，登录成功之后，在右上角展开有个'管理'，点击即可进入后台管理。
-9. 访问系统。后台地址：http://localhost:8080/manage/index/; 用户名:admin 密码redoopadmin
-## 部署详细说明
-1. [JDK安装说明](https://my.oschina.net/zchuanzhao/blog/853387)
-2. [Maven安装说明](https://my.oschina.net/zchuanzhao/blog/853392)
-3. [JEESNS使用Maven打包介绍](https://my.oschina.net/zchuanzhao/blog/853393)
-4. [JEESNS导入数据库说明](https://my.oschina.net/zchuanzhao/blog/853394)
-5. [Eclipse导入JEESNS项目和部署说明](https://my.oschina.net/zchuanzhao/blog/853397)
-6. [IDEA导入JEESNS1.2.0项目和部署教程](https://my.oschina.net/zchuanzhao/blog/1486494)
-
-
-## 相关网站
-官方网站：[http://www.jeesns.cn](http://www.jeesns.cn/)
-
-技术支持：[http://www.lxinet.com](http://www.lxinet.com/)
-
-服务器支持：[http://www.919dns.com](http://www.919dns.com/)
+8. 访问系统。前台地址：[http://www.redoop.net](http://www.redoop.net)；用户名：admin，密码：redoopadmin，登录成功之后，在右上角展开有个'管理'，点击即可进入后台管理。
+9. 访问系统。后台地址：http://www.redoop.net/manage/index/; 用户名:admin 密码redoopadmin
