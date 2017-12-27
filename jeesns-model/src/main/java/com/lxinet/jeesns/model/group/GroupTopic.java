@@ -25,6 +25,7 @@ public class GroupTopic extends Archive {
 
     private Integer isEssence;  //精华贴，0不加精贴，1加精贴
 
+
     public Integer getId() {
         return id;
     }

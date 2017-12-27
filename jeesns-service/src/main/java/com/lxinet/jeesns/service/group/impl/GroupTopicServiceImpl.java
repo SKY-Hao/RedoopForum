@@ -2,6 +2,7 @@ package com.lxinet.jeesns.service.group.impl;
 
 import com.lxinet.jeesns.common.utils.ActionLogType;
 import com.lxinet.jeesns.common.utils.ActionUtil;
+import com.lxinet.jeesns.common.utils.ConfigUtil;
 import com.lxinet.jeesns.common.utils.ScoreRuleConsts;
 import com.lxinet.jeesns.core.consts.AppTag;
 import com.lxinet.jeesns.core.enums.MessageType;
@@ -23,11 +24,13 @@ import com.lxinet.jeesns.service.member.IMemberService;
 import com.lxinet.jeesns.service.member.IMessageService;
 import com.lxinet.jeesns.service.member.IScoreDetailService;
 import com.lxinet.jeesns.service.system.IActionLogService;
+import com.lxinet.jeesns.service.system.IConfigService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zchuanzhao on 2016/12/26.
@@ -52,6 +55,9 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
     private IMessageService messageService;
     @Resource
     private IMemberService memberService;
+
+    @Resource
+    private IConfigService configService;
 
     @Override
     public GroupTopic findById(int id) {
@@ -332,5 +338,83 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
     public GroupTopic atFormat(GroupTopic groupTopic){
         groupTopic.setContent(memberService.atFormat(groupTopic.getContent()));
         return groupTopic;
+    }
+
+
+    /**
+     * 后台帖子列表
+     * @param page
+     * @return
+     */
+    @Override
+    public ResponseModel listByTopicPage(Page page) {
+
+        List<GroupTopic> list = groupTopicDao.listByTopicPage(page);
+        ResponseModel model = new ResponseModel(0,page);
+        model.setData(list);
+        return model;
+    }
+
+    /**
+     * 后台   修改审核状态
+     * @param id
+     * @return
+     */
+    @Override
+    public ResponseModel changeTopicStatus(int id) {
+        if(groupTopicDao.changeTopicStatus(id) == 1){
+            return new ResponseModel(1,"操作成功");
+        }
+        return new ResponseModel(-1,"操作失败");
+    }
+
+    /**
+     * 后台   帖子发布保存
+     *2017年12月18日15:05:43
+     * @param member
+     * @param groupTopic
+     * @return
+     */
+    @Override
+    public ResponseModel add(Member member, GroupTopic groupTopic) {
+
+        Map<String,String> config = configService.getConfigToMap();
+        if(member.getIsAdmin() == 0 && "0".equals(config.get(ConfigUtil.CMS_POST))){
+            return new ResponseModel(-1,"发帖功能已关闭");
+        }
+        if(groupTopic.getGroupId() == null || groupTopic.getGroupId() == 0){
+            return new ResponseModel(-1,"群组不能为空");
+        }
+        groupTopic.setMemberId(member.getId());
+        Archive archive = new Archive();
+        try {
+            //复制属性值
+            archive = archive.copy(groupTopic);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        archive.setPostType(2);//2代表帖子  1代表文章
+        if(member.getIsAdmin() >=1 && "0".equals(config.get(ConfigUtil.CMS_POST_REVIEW))){
+            groupTopic.setStatus(0);
+        }else {
+            groupTopic.setStatus(1);
+        }
+        //保存文档
+        if(archiveService.save(member,archive)){
+            //保存帖子
+            groupTopic.setArchiveId(archive.getArchiveId());
+            int result = groupTopicDao.save(groupTopic);
+            if(result == 1){//保存成功之后
+                //@会员处理并发送系统消息
+                messageService.atDeal(member.getId(),groupTopic.getContent(), AppTag.CMS, MessageType.CMS_ARTICLE_REFER,groupTopic.getId());
+                //保存动态表
+                actionLogService.save(member.getCurrLoginIp(),member.getId(), ActionUtil.POST_ARTICLE,"", ActionLogType.ARTICLE.getValue(),groupTopic.getId());
+               /* if (groupTopic.getStatus() == 0){
+                    return new ResponseModel(0,"帖子发布成功，请等待审核");
+                }*/
+                return new ResponseModel(0,"帖子发布成功");
+            }
+        }
+        return new ResponseModel(-1,"帖子发布失败");
     }
 }

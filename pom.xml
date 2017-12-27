@@ -19,6 +19,8 @@
         <module>jeesns-web</module>
     </modules>
 
+
+
     <build>
         <finalName>jeesns-common</finalName>
         <plugins>

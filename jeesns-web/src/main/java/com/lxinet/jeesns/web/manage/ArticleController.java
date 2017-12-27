@@ -21,7 +21,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * 后台文章controller
+ * 文章controller
  * Created by zchuanzhao on 16/9/29.
  */
 @Controller("manageArticleController")
@@ -34,6 +34,15 @@ public class ArticleController extends BaseController {
     @Resource
     private IArticleService articleService;
 
+    /**
+     * 后台文章管理列表
+     * @param key
+     * @param cateid
+     * @param status
+     * @param memberId
+     * @param model
+     * @return
+     */
     @RequestMapping("${managePath}/cms/index")
     @Before(AdminLoginInterceptor.class)
     public String index(String key, @RequestParam(value = "cateid",defaultValue = "0",required = false) Integer cateid,
@@ -49,6 +58,11 @@ public class ArticleController extends BaseController {
         return MANAGE_FTL_PATH + "index";
     }
 
+    /**
+     * 后台发布文章
+     * @param model
+     * @return
+     */
     @RequestMapping(value="${managePath}/cms/article/add",method = RequestMethod.GET)
     public String add(Model model) {
         List<ArticleCate> cateList = articleCateService.list();
@@ -56,6 +70,12 @@ public class ArticleController extends BaseController {
         return MANAGE_FTL_PATH + "add";
     }
 
+    /**
+     * 后台发布文章 保存
+     * @param article
+     * @param bindingResult
+     * @return
+     */
     @RequestMapping(value="${managePath}/cms/article/save",method = RequestMethod.POST)
     @ResponseBody
     public Object save(@Valid Article article, BindingResult bindingResult) {

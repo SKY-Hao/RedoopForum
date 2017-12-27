@@ -92,29 +92,10 @@
     limit 0,#{num}
   </select>
 
-  <!--后台帖子列表-->
-  <!--BUG带调试-->
-  <!--<select id="listByTopicPage" resultMap="GroupResult">
-    SELECT
-    a.id,
-    a.group_id AS 'group.id',
-    a.collect_time,
-    a. STATUS,
-    a.is_top,
-    a.is_essence,
-    b.*, c. NAME 'group.name',
-    b.member_id AS memberId,
-    b.member_id AS 'member.id',
-    d. NAME AS 'member.name',
-    d.avatar AS 'member.avatar'
-    FROM
-    tbl_group_topic AS a
-    LEFT JOIN tbl_archive AS b ON a.archive_id = b.archive_id
-    LEFT JOIN tbl_group AS c ON a.group_id = c.id
-    LEFT JOIN tbl_member AS d ON b.member_id = d.id
+  <select id="list" resultMap="GroupResult">
+    select * from tbl_group
+  </select>
 
-    ORDER BY a.collect_time DESC
-  </select>-->
 
 
 

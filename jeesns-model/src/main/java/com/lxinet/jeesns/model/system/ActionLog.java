@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
+ * 动态表
+ *
  * Created by zchuanzhao on 2017/2/14.
  */
 public class ActionLog implements Serializable {

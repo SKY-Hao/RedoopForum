@@ -271,19 +271,15 @@ public class GroupServiceImpl implements IGroupService {
 
 
     /**
-     * 后台帖子列表
-     * 2017年12月15日14:57:26
-     * @param page
+     * 后台   添加帖子时的群组列表
+     * 2017年12月18日14:45:30
+     *
      * @return
      */
-   /* @Override
-    public ResponseModel listByTopicPage(Page page,String key) {
-        if (StringUtils.isNotBlank(key)){
-            key = "%"+key.trim()+"%";
-        }
-        List<GroupTopic> list = groupDao.listByTopicPage(page,key);
-        ResponseModel model = new ResponseModel(0,page);
-        model.setData(list);
-        return model;
-    }*/
+    @Override
+    public List<GroupTopic> list() {
+        return groupDao.list();
+    }
+
+
 }

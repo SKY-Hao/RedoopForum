@@ -3,6 +3,7 @@ package com.lxinet.jeesns.service.group;
 import com.lxinet.jeesns.core.dto.ResponseModel;
 import com.lxinet.jeesns.core.model.Page;
 import com.lxinet.jeesns.model.group.Group;
+import com.lxinet.jeesns.model.group.GroupTopic;
 import com.lxinet.jeesns.model.member.Member;
 
 import java.util.List;
@@ -39,6 +40,12 @@ public interface IGroupService {
     //群组主页列表
     List<Group> listByCustom(int status, int num, String sort);
 
-    //后台贴子列表2017年12月15日14:40:31
-    //ResponseModel listByTopicPage(Page page,String key);
+    /**
+     * 后台   添加帖子时的群组列表
+     * 2017年12月18日14:45:30
+     * @return
+     */
+    List<GroupTopic> list();
+
+
 }

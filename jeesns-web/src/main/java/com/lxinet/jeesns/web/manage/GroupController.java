@@ -5,9 +5,12 @@ import com.lxinet.jeesns.core.annotation.Before;
 import com.lxinet.jeesns.core.dto.ResponseModel;
 import com.lxinet.jeesns.core.model.Page;
 import com.lxinet.jeesns.interceptor.AdminLoginInterceptor;
+import com.lxinet.jeesns.model.cms.Article;
 import com.lxinet.jeesns.model.group.Group;
+import com.lxinet.jeesns.model.group.GroupTopic;
 import com.lxinet.jeesns.model.member.Member;
 import com.lxinet.jeesns.service.group.IGroupService;
+import com.lxinet.jeesns.service.group.IGroupTopicService;
 import com.lxinet.jeesns.web.common.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by zchuanzhao on 16/12/23.
@@ -26,6 +30,8 @@ public class GroupController extends BaseController {
     private static final String MANAGE_FTL_PATH = "/manage/group/";
     @Resource
     private IGroupService groupService;
+    @Resource
+    private IGroupTopicService groupTopicService;
 
     /**
      * 群组列表
@@ -71,7 +77,7 @@ public class GroupController extends BaseController {
     }
 
     /**
-     * 去添加群组
+     * 后台去添加群组
      *2017年12月15日11:21:32
      * @param model
      * @return
@@ -104,21 +110,63 @@ public class GroupController extends BaseController {
         return responseModel;
     }
 
+
+
     /**
-     * 后台 帖子列表
-     * 2017年12月15日11:21:40
+     * 后台   帖子列表
+     * 2017年12月18日14:27:31
      * @return
      */
-   /* @RequestMapping(value = "${managePath}/group/topic/index")
-    public String topicindex(Model model,String key) {
-
-        //TODO  待调试
+    @RequestMapping(value = "${managePath}/group/topic/index")
+    public String topicindex(Model model) {
 
         Page page = new Page(request);
-        ResponseModel responseModel = groupService.listByTopicPage(page,key);
+        ResponseModel responseModel = groupTopicService.listByTopicPage(page);
         model.addAttribute("model",responseModel);
-        model.addAttribute("key",key);
         return MANAGE_FTL_PATH + "topic/index";
     }
-*/
+
+    /**
+     * 后台   修改帖子状态
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "${managePath}/group/changeTopicStatus/{id}",method = RequestMethod.GET)
+    @ResponseBody
+    public Object changeTopicStatus(@PathVariable("id") int id){
+        ResponseModel response = groupTopicService.changeTopicStatus(id);
+        return response;
+    }
+
+    /**
+     * 后台   去添加帖子
+     *       并查询群组列表
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "${managePath}/group/index/topicAdd")
+    public Object topicAdd (Model model){
+
+        List<GroupTopic> groupList=groupService.list();//群组列表
+        model.addAttribute("groupList",groupList);
+
+        return MANAGE_FTL_PATH + "topic/addTopic";
+    }
+
+
+    @RequestMapping(value="${managePath}/group/toTopicAdd/add",method = RequestMethod.POST)
+    @ResponseBody
+    public Object save(@Valid GroupTopic groupTopic, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return new ResponseModel(-1,getErrorMessages(bindingResult));
+        }
+        Member loginMember = MemberUtil.getLoginMember(request);
+        ResponseModel responseModel = groupTopicService.add(loginMember,groupTopic);
+        if(responseModel.getCode() == 0){
+            responseModel.setCode(3);
+        }
+        return responseModel;
+    }
+
+
 }

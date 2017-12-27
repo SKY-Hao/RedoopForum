@@ -40,9 +40,9 @@
                         <div class="box-header">
                             <h3 class="box-title">
 
-                                <a href="${managePath}/group/applyAdd" target="_jeesnsOpen"
+                                <a href="${managePath}/group/index/topicAdd" target="_jeesnsOpen"
                                    title="添加群组" width="1000px" height="600px">
-                                    <span class="label label-info">添加群组</span>
+                                    <span class="label label-info">添加帖子</span>
                                 </a>
 
                             </h3>
@@ -78,15 +78,15 @@
                                     <tr>
                                         <td>${topic.id}</td>
                                         <td>${topic.group.name}</td>
-                                        <td>${topic.name}</td>
-                                        <td>${topic.collect_time}</td>
+                                        <td>${topic.title}</td>
+                                        <td>${topic.collectTime?string("yyyy-MM-dd HH:mm:ss")}</td>
                                         <td>
                                             <#if topic.status==0>
-                                                <a class="marg-l-5" target="_jeesnsLink" href="#">
+                                                <a class="marg-l-5" target="_jeesnsLink" href="${managePath}/group/changeTopicStatus/${topic.id}">
                                                     <span class="label label-danger">未审核</span>
                                                 </a>
                                             <#elseif topic.status==1>
-                                                <a class="marg-l-5" target="_jeesnsLink" href="${managePath}/group/changeStatus/${topic.id}">
+                                                <a class="marg-l-5" target="_jeesnsLink" href="${managePath}/group/changeTopicStatus/${topic.id}">
                                                     <span class="label label-success">已审核</span>
                                                 </a>
                                             </#if>
@@ -113,6 +113,7 @@
 <script type="text/javascript">
     $(function () {
         $(".pagination").jeesns_page("jeesnsPageForm");
+
     });
 </script>
 </body>

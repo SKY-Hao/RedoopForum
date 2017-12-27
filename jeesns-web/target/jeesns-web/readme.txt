@@ -1,7 +1,7 @@
 ﻿JEESNS
 开发语言：JAVA
 数据库：MYSQL
-JAVA开发框架：Spring MVC+Spring+Mybatis
+JAVA开发框架：Spring MVCSpring++Mybatis
 前台前端开发框架：ZUI+JQuery+Bootstrap
 前台模板引擎：Freemarker
 

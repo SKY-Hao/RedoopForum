@@ -36,4 +36,18 @@ public interface IGroupTopicService {
     ResponseModel favor(Member loginMember, int id);
 
     List<GroupTopic> listByCustom(int gid, String sort, int num, int day, int thumbnail);
+
+    //后台帖子列表
+    ResponseModel listByTopicPage(Page page);
+    //修改后台帖子的审核状态
+    ResponseModel changeTopicStatus(int id);
+
+    /**
+     * 后台   帖子发布保存
+     * 2017年12月18日15:05:45
+     * @param loginMember
+     * @param groupTopic
+     * @return
+     */
+    ResponseModel add(Member loginMember, GroupTopic groupTopic);
 }

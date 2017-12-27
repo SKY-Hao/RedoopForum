@@ -34,11 +34,11 @@ public interface IGroupDao extends IBaseDao<Group> {
      */
     List<Group> listByCustom(@Param("status") int status, @Param("num") int num, @Param("sort") String sort);
 
+
     /**
-     * 后台帖子列表
-     * 2017年12月15日14:42:31
-     * @param page
+     * 后台添加帖子时的群组列表
      * @return
      */
-   // List<GroupTopic> listByTopicPage(@Param("page") Page page, @Param("key") String key);
+    List<GroupTopic> list();
+
 }

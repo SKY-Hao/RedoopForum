@@ -45,4 +45,18 @@ public interface IGroupTopicDao extends IBaseDao<GroupTopic> {
      */
     List<GroupTopic> listByCustom(@Param("gid") int gid,@Param("sort") String sort,@Param("num") int num,@Param("day") int day,@Param("thumbnail") int thumbnail);
 
+    /**
+     * 后台帖子列表
+     * 2017年12月18日09:58:37测试更新
+     * @param page
+     * @return
+     */
+    List<GroupTopic> listByTopicPage(@Param("page") Page page);
+
+    /**
+     * 后台修改审核参数
+     * @param id
+     * @return
+     */
+    int changeTopicStatus(@Param("id") Integer id);
 }

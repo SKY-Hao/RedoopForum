@@ -734,7 +734,7 @@ a {
 }*/
 
 .support{ background:#2f3437; padding:25px 0; font-size:16px; color:#fff;}
-.support .hour{ float:right; height:46px; line-height:46px; background-position:-390px -8px; padding-left:55px; background:url(../images/fotter.png) no-repeat;}
+.support .hour{ float:right; height:46px; line-height:46px; background-position:-390px -8px; padding-left:55px; background:url(/res/front/images/fotter.png) no-repeat;}
 .support p{ float:left; margin-left:15px;height:46px; line-height:46px; }
 
 .footer{ background:#373d41; padding:40px; color:#78797a;}
