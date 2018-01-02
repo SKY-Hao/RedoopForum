@@ -5,6 +5,9 @@
 
     <title>粉丝 - ${group.name} - ${GROUP_ALIAS} - ${SITE_NAME}</title>
 
+    <meta name="keywords" content="${SITE_KEYS}"/>
+    <meta name="description" content="${SITE_DESCRIPTION}"/>
+
     <link rel="shortcut icon" href="${basePath}/logo.ico">
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/font-awesome.min.css" rel="stylesheet">

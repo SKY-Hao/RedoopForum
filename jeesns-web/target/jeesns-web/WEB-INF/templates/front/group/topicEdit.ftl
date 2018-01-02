@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>修改帖子 - ${SITE_NAME}</title>
-
+    <meta name="keywords" content="${SITE_KEYS}"/>
+    <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
     <link href="${basePath}/res/common/css/zui.min.css" rel="stylesheet">

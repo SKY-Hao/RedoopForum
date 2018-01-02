@@ -9,6 +9,8 @@
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
     <title>RedoopForum后台管理系统登录 - ${SITE_NAME} </title>
+    <meta name="keywords" content="${SITE_KEYS}"/>
+    <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
     <link href="${basePath}/res/manage/css/effect.css" rel="stylesheet">
     <link href="${basePath}/res/plugins/layer/skin/layer.css" rel="stylesheet">

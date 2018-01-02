@@ -2,7 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8">
+
     <title><#if articleCate??>${articleCate.name}<#else>文章列表</#if></title>
+    <meta name="keywords" content="${SITE_KEYS}"/>
+    <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
     <link href="${basePath}/res/common/css/zui.min.css" rel="stylesheet">

@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>修改广告 - ${SITE_NAME}后台管理系统</title>
-
+    <meta name="keywords" content="${SITE_KEYS}"/>
+    <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">

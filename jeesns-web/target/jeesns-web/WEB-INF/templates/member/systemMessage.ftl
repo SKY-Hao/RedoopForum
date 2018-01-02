@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" pageEncoding="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>系统信息</title>
-
+    <meta name="keywords" content="${SITE_KEYS}"/>
+    <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
     <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
@@ -160,7 +163,9 @@
                                     <div class="feed-element">
                                         <div class="media-body ">
                                             <small class="pull-right text-navy">${message.createTime?string('yyyy-MM-dd HH:mm:ss')}</small>
-                                            <a href="${basePath}/u/${message.member.id}"><strong>@${message.member.name} </strong></a>：${message.content}
+                                            <a href="${basePath}/u/${message.member.id}">
+                                                <strong>@${message.member.name} </strong>
+                                            </a>：${message.content}
                                             <div class="message-desc">
                                                 ${message.description}
                                             </div>

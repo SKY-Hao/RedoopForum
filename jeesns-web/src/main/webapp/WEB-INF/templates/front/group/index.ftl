@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <title>${GROUP_ALIAS}</title>
 
+    <meta name="keywords" content="${SITE_KEYS}"/>
+    <meta name="description" content="${SITE_DESCRIPTION}"/>
+
+
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
     <link href="${basePath}/res/common/css/zui.min.css" rel="stylesheet">

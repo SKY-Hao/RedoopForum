@@ -4,9 +4,8 @@
     <meta charset="utf-8">
     <#--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     <title>Redoop用户登录</title>
-    <#--<meta name="keywords" content="${SITE_KEYS}"/>
+    <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
-    <meta name="author" content="JEESNS"/>-->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="shortcut icon" href="${basePath}/logo.ico">
     <link href="${basePath}/res/common/css/member.css" rel="stylesheet">

@@ -4,6 +4,7 @@ import com.lxinet.jeesns.core.enums.MessageType;
 import com.lxinet.jeesns.core.dto.ResponseModel;
 import com.lxinet.jeesns.core.model.Page;
 import com.lxinet.jeesns.core.utils.AtUtil;
+import com.lxinet.jeesns.core.utils.StringUtils;
 import com.lxinet.jeesns.dao.member.IMessageDao;
 import com.lxinet.jeesns.model.member.Member;
 import com.lxinet.jeesns.model.member.Message;
@@ -106,8 +107,12 @@ public class MessageServiceImpl implements IMessageService {
      * @return
      */
     @Override
-    public ResponseModel<Message> systemMessage(Page page, Integer toMemberId,String basePath) {
-        List<Message> list = messageDao.systemMessage(page, toMemberId,basePath);
+    public ResponseModel<Message> systemMessage(String key,Page page, Integer toMemberId,String basePath) {
+        if (StringUtils.isNotBlank(key)){
+            key = "%"+key+"%";
+        }
+
+        List<Message> list = messageDao.systemMessage(key,page, toMemberId,basePath);
         ResponseModel model = new ResponseModel(0, page);
         model.setData(list);
         //设置该会员聊天记录为已读

@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 /**
@@ -461,13 +462,22 @@ public class MemberController extends BaseController {
      */
     @RequestMapping(value = "/systemMessage",method = RequestMethod.GET)
     @Before(UserLoginInterceptor.class)
-    public String systemMessage(Model model){
+    public String systemMessage(Model model,String key){
+
+        if (StringUtils.isNotEmpty(key)){
+            try {
+                key = new String(key.getBytes("iso-8859-1"),"utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+
         Page page = new Page(request);
         Member loginMember = MemberUtil.getLoginMember(request);
         if(loginMember == null){
             return jeesnsConfig.getFrontTemplate() + ErrorUtil.error(model, -1008, Const.INDEX_ERROR_FTL_PATH);
         }
-        ResponseModel messageModel = messageService.systemMessage(page, loginMember.getId(),request.getContextPath());
+        ResponseModel messageModel = messageService.systemMessage(key,page, loginMember.getId(),request.getContextPath());
         model.addAttribute("messageModel",messageModel);
         return MEMBER_FTL_PATH + "systemMessage";
     }

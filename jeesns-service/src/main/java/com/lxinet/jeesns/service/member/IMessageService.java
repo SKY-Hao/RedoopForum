@@ -32,7 +32,7 @@ public interface IMessageService {
      * 系统信息
      * @return
      */
-    ResponseModel<Message> systemMessage(Page page, Integer toMemberId,String basePath);
+    ResponseModel<Message> systemMessage(String key,Page page, Integer toMemberId,String basePath);
 
     /**
      * 删除某个会员的所有聊天记录

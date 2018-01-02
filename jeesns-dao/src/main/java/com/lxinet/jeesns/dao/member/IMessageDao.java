@@ -29,7 +29,7 @@ public interface IMessageDao extends IBaseDao<Message> {
      * @param toMemberId
      * @return
      */
-    List<Message> systemMessage(@Param("page") Page page, @Param("toMemberId") Integer toMemberId,@Param("basePath") String basePath);
+    List<Message> systemMessage(@Param("key") String key,@Param("page") Page page, @Param("toMemberId") Integer toMemberId,@Param("basePath") String basePath);
 
     /**
      * 删除某个会员的所有聊天记录

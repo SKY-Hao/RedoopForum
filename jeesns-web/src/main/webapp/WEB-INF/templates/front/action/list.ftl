@@ -4,9 +4,9 @@
     <meta charset="utf-8">
    <#-- <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     <title>动态 - ${SITE_NAME}</title>
-   <#-- <meta name="keywords" content="${SITE_KEYS}"/>
+    <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
-    <meta name="author" content="JEESNS"/>-->
+<#-- <meta name="author" content="JEESNS"/>-->
 
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 

@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>${groupTopic.title} - ${groupTopic.group.name} - ${SITE_NAME}</title>
-
+    <meta name="keywords" content="${SITE_KEYS}"/>
+    <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
 

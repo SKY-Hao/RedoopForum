@@ -5,9 +5,8 @@
     <#--<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     <title>${group.name} - ${GROUP_ALIAS} - ${SITE_NAME}</title>
-    <#--<meta name="keywords" content="${SITE_KEYS}"/>
+    <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
-    <meta name="author" content="JEESNS"/>-->
 
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 

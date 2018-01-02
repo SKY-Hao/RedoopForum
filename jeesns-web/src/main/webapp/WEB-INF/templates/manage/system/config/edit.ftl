@@ -2,7 +2,12 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="keywords" content="${SITE_KEYS}"/>
+    <meta name="description" content="${SITE_DESCRIPTION}"/>
     <title>系统设置 - ${SITE_NAME} - RedoopForum后台管理系统 </title>
+    <meta name="keywords" content="${SITE_KEYS}"/>
+    <meta name="description" content="${SITE_DESCRIPTION}"/>
+
     <link rel="shortcut icon" href="${basePath}/logo.ico">
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/font-awesome.min.css" rel="stylesheet">
