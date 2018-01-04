@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface IGroupTopicService {
     GroupTopic findById(int id);
-
+    //查询贴子详情
     GroupTopic findById(int id,Member loginMember);
 
     ResponseModel save(Member member, GroupTopic groupTopic);
@@ -25,6 +25,15 @@ public interface IGroupTopicService {
 
     ResponseModel indexDelete(HttpServletRequest request, Member loginMember, int id);
 
+    /**
+     * 获取群组帖子列表
+     * @param page
+     * @param key
+     * @param groupId
+     * @param status
+     * @param memberId
+     * @return
+     */
     ResponseModel listByPage(Page page, String key, int groupId, int status, int memberId);
 
     ResponseModel audit(Member member,int id);
@@ -35,6 +44,15 @@ public interface IGroupTopicService {
 
     ResponseModel favor(Member loginMember, int id);
 
+    /**
+     *  首页帖子（自定义条件查询）
+     * @param gid 群组ID，0不限制
+     * @param sort 排序字段
+     * @param num 获取数量
+     * @param day 天，获取多少天之内的数据，0不限制
+     * @param thumbnail 缩略图 0不限制，1必须有缩略图
+     * @return
+     */
     List<GroupTopic> listByCustom(int gid, String sort, int num, int day, int thumbnail);
 
     //后台帖子列表
@@ -50,4 +68,13 @@ public interface IGroupTopicService {
      * @return
      */
     ResponseModel add(Member loginMember, GroupTopic groupTopic);
+
+    /**
+     * 首页所有帖子
+     * @param status
+     * @param page
+     * @param key
+     * @return
+     */
+    ResponseModel groupTopicList(int status, Page page, String key);
 }

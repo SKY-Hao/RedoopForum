@@ -13,7 +13,7 @@ import java.util.List;
 public interface IGroupDao extends IBaseDao<Group> {
 
     /**
-     * 获取群组
+     * 获取群组  （前台群组列表页面）
      * @return
      */
     List<Group> listByPage(@Param("page") Page page, @Param("status") Integer status, @Param("key") String key);

@@ -14,6 +14,15 @@ import java.util.List;
  * IGroupService群组service接口
  */
 public interface IGroupService {
+
+    /**
+     * 前台群组列表
+     * @param key
+     * @return
+     */
+    ResponseModel listByPage(int status, Page page, String key);
+
+
     //根据群组的ID查询群组的信息
     Group findById(int id);
 
@@ -28,8 +37,7 @@ public interface IGroupService {
     // 群组删除
     ResponseModel delete(Member loginMember, int id);
 
-    //群组列表
-    ResponseModel listByPage(int status, Page page, String key);
+
 
    // 关注群组
     ResponseModel follow(Member loginMember, Integer groupId,int type);

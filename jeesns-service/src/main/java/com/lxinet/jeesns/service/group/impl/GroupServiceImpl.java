@@ -42,7 +42,7 @@ public class GroupServiceImpl implements IGroupService {
     private IScoreDetailService scoreDetailService;
 
     /**
-     * 群组列表页面
+     * 前台群组列表页面
      * @param status
      * @param page
      * @param key

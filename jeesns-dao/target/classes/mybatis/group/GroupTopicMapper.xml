@@ -13,9 +13,11 @@
 
   <select id="listByPage" resultMap="GroupTopicResult">
     select a.id,a.group_id as 'group.id', a.collect_time, a.status,a.is_top,a.is_essence,b.*,c.name 'group.name',
-    b.member_id as memberId,b.member_id as 'member.id',d.name as 'member.name',d.avatar as 'member.avatar'
+    b.member_id as memberId,b.member_id as 'member.id',d.name as 'member.name',d.avatar as 'member.avatar',
+    count(e.id) AS topicComment
     from tbl_group_topic as a LEFT JOIN tbl_archive as b ON a.archive_id = b.archive_id
     LEFT JOIN tbl_group as c ON a.group_id = c.id LEFT JOIN tbl_member as d on b.member_id=d.id
+    LEFT JOIN tbl_group_topic_comment AS e on a.id=e.group_topic_id
     <where>
       <if test="groupId &gt; 0">
         a.group_id = #{groupId}
@@ -30,13 +32,15 @@
         and b.member_id = #{memberId}
       </if>
     </where>
-    order by a.is_top DESC,a.id DESC
+    GROUP by a.is_top DESC,a.id DESC
   </select>
   <select id="findById" parameterType="java.lang.Integer" resultMap="GroupTopicResult">
     select a.id,a.group_id as 'group.id', a.collect_time, a.status,a.is_top,a.is_essence,b.*,c.name 'group.name',c.logo 'group.logo',b.member_id as memberId,b.member_id as 'member.id',d.name as 'member.name',d.avatar as 'member.avatar',d.introduce as 'member.introduce',
+    count(e.id) as topicComment,
     (CASE WHEN (SELECT id FROM tbl_archive_favor WHERE archive_id=b.archive_id AND member_id=#{loginMemberId}) IS NULL THEN 0 ELSE 1 END) isFavor
     from tbl_group_topic as a INNER JOIN tbl_archive as b ON a.archive_id = b.archive_id
     LEFT JOIN tbl_group as c ON a.group_id = c.id LEFT JOIN tbl_member as d on b.member_id=d.id
+    LEFT JOIN tbl_group_topic_comment e on a.id=e.group_topic_id
     where a.id = #{id}
   </select>
   <delete id="delete" parameterType="java.lang.Integer">
@@ -56,6 +60,8 @@
     UPDATE tbl_group_topic SET is_essence = #{essence} WHERE id = #{id}
   </update>
 
+
+  <!--首页帖子列表（自定义条件查询）-->
   <select id="listByCustom" resultMap="GroupTopicResult">
     select a.id,a.group_id as 'group.id', a.collect_time, a.status,a.is_top,a.is_essence,b.*,c.name 'group.name',
     b.member_id as memberId,b.member_id as 'member.id',d.name as 'member.name',d.avatar as 'member.avatar'
@@ -124,5 +130,27 @@ ORDER BY a.id desc
     update tbl_group_topic set status=(CASE WHEN status=0 THEN 1 ELSE 0 END) where id = #{id}
   </update>
 
+  <!--首页所有帖子列表-->
+  <select id="groupTopicList" resultMap="GroupTopicResult">
+    SELECT
+    a.id,
+    a.group_id AS 'group.id',
+    a.collect_time,
+    a. STATUS,
+    a.is_top,
+    a.is_essence,
+    b.*, c. NAME 'group.name',
+    b.member_id AS memberId,
+    b.member_id AS 'member.id',
+    d. NAME AS 'member.name',
+    d.avatar AS 'member.avatar'
+    FROM
+    tbl_group_topic AS a
+    LEFT JOIN tbl_archive AS b ON a.archive_id = b.archive_id
+    LEFT JOIN tbl_group AS c ON a.group_id = c.id
+    LEFT JOIN tbl_member AS d ON b.member_id = d.id
+
+    ORDER BY a.id desc
+  </select>
 
 </mapper>

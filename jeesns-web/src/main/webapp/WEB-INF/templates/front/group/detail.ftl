@@ -96,8 +96,14 @@
                                         </h4>
                                         </p>
                                         <p>
-                                            <a href="${basePath}/group/topic/${topic.id}" class="text-muted"><i
-                                                    class="icon-eye-open"></i> ${topic.viewCount}</a> &nbsp;
+                                            <a href="${basePath}/group/topic/${topic.id}" class="text-muted">
+                                                <i class="icon-eye-open"></i>
+                                                ${topic.viewCount}
+                                            </a> &nbsp;
+                                            <a href="${basePath}/group/topic/${topic.id}" class="text-muted">
+                                                <i class="icon-wechat"></i>
+                                                ${topic.topicComment} 条评论
+                                            </a> &nbsp;
                                             <span class="text-muted">${topic.createTime?string('yyyy-MM-dd HH:mm')}</span>
                                         </p>
                                     </div>

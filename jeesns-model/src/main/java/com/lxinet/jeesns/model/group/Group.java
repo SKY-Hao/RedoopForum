@@ -27,10 +27,40 @@ public class Group implements Serializable {
     private String introduce;   //介绍
     private Integer status;     //状态 0未审核，1已审核，-1审核不通过
     private Integer canPost;    //是否可以发帖子 0不可以 1可以
-    private Integer topicReview;//贴在是否需要审核 0不审核 1审核
+    private Integer topicReview;//贴子是否需要审核 0不审核 1审核
     private Integer topicCount; //贴子的数量
     private Integer fansCount;  //粉丝的数量
+    private  Integer topicComment;   //帖子评论的数量
 
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "id=" + id +
+                ", createTime=" + createTime +
+                ", name='" + name + '\'' +
+                ", logo='" + logo + '\'' +
+                ", creator=" + creator +
+                ", creatorMember=" + creatorMember +
+                ", managers='" + managers + '\'' +
+                ", tags='" + tags + '\'' +
+                ", introduce='" + introduce + '\'' +
+                ", status=" + status +
+                ", canPost=" + canPost +
+                ", topicReview=" + topicReview +
+                ", topicCount=" + topicCount +
+                ", fansCount=" + fansCount +
+                ", topicComment=" + topicComment +
+                '}';
+    }
+
+    public Integer getTopicComment() {
+        return topicComment;
+    }
+
+    public void setTopicComment(Integer topicComment) {
+        this.topicComment = topicComment;
+    }
 
     public Integer getId() {
         return id;
@@ -145,23 +175,4 @@ public class Group implements Serializable {
         this.fansCount = fansCount;
     }
 
-    @Override
-    public String toString() {
-        return "Group{" +
-                "id=" + id +
-                ", createTime=" + createTime +
-                ", name='" + name + '\'' +
-                ", logo='" + logo + '\'' +
-                ", creator=" + creator +
-                ", creatorMember=" + creatorMember +
-                ", managers='" + managers + '\'' +
-                ", tags='" + tags + '\'' +
-                ", introduce='" + introduce + '\'' +
-                ", status=" + status +
-                ", canPost=" + canPost +
-                ", topicReview=" + topicReview +
-                ", topicCount=" + topicCount +
-                ", fansCount=" + fansCount +
-                '}';
-    }
 }

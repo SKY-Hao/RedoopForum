@@ -17,7 +17,7 @@ public interface IGroupTopicDao extends IBaseDao<GroupTopic> {
     List<GroupTopic> listByPage(@Param("page") Page page, @Param("key") String key, @Param("groupId") Integer groupId, @Param("status") Integer status, @Param("memberId") Integer memberId);
 
     int audit(@Param("id") Integer id);
-
+    //查询贴子详情
     GroupTopic findById(@Param("id") Integer id,@Param("loginMemberId") Integer loginMemberId);
 
     /**
@@ -35,7 +35,8 @@ public interface IGroupTopicDao extends IBaseDao<GroupTopic> {
     int essence(@Param("id") Integer id,@Param("essence") Integer essence);
 
     /**
-     * 自定义条件查询
+     * 首页帖子列表
+     * (自定义条件查询)
      * @param gid 群组ID，0不限制
      * @param sort 排序字段
      * @param num 获取数量
@@ -59,4 +60,14 @@ public interface IGroupTopicDao extends IBaseDao<GroupTopic> {
      * @return
      */
     int changeTopicStatus(@Param("id") Integer id);
+
+    /**
+     * 首页所有帖子
+     * @param page
+     * @param key
+     * @param status
+     * @return
+     */
+
+    List<GroupTopic> groupTopicList(@Param("page") Page page, @Param("key") String key, @Param("status") Integer status);
 }

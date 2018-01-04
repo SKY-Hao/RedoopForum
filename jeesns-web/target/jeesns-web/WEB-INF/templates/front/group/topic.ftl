@@ -52,7 +52,8 @@
                             <#--创建时间-->
                             <dd>${groupTopic.createTime?string('yyyy-MM-dd HH:mm')}</dd>
                             <#--查看次数-->
-                            <span class="label label-danger"><i class="icon-eye-open"></i> ${groupTopic.viewCount}</span>
+                            <span class="label label-danger"><i class="icon-eye-open"></i> ${groupTopic.viewCount}</span>&nbsp;
+                            <span class="label label-danger"><i class="icon-wechat"></i> ${groupTopic.topicComment}条评论</span>
                             <dt></dt>
                             <#--管理员操作-->
                             <dd class="pull-right">

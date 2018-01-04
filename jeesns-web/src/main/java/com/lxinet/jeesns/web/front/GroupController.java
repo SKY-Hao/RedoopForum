@@ -56,11 +56,30 @@ public class GroupController extends BaseController {
     public String index(String key,Model model) {
         Page page = new Page(request);
         ResponseModel responseModel = groupService.listByPage(1,page,key);
-
         model.addAttribute("model",responseModel);
         model.addAttribute("key",key);
         return jeesnsConfig.getFrontTemplate() + "/group/index";
     }
+
+
+    /**
+     * 首页列表分页
+     * 2018年1月4日11:30:56更新
+     * @param key
+     * @param model
+     * @return
+     */
+    /*@RequestMapping(value = "/groupTopicList",method = RequestMethod.GET)
+    public String groupTopicList(String key,Model model) {
+        //TODO
+        Page page = new Page(request);
+        ResponseModel responseModel = groupTopicService.groupTopicList(1,page,key);
+
+        model.addAttribute("model",responseModel);
+        model.addAttribute("key",key);
+        return jeesnsConfig.getFrontTemplate() + "/front/index";
+    }*/
+
 
 
 
@@ -218,7 +237,7 @@ public class GroupController extends BaseController {
     }
 
     /**
-     * 相对应的群组里面帖子的 详情
+     * 相对应的群组里面帖子的详情
      * @param topicId
      * @param model
      * @return

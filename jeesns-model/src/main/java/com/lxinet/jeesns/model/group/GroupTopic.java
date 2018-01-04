@@ -25,6 +25,15 @@ public class GroupTopic extends Archive {
 
     private Integer isEssence;  //精华贴，0不加精贴，1加精贴
 
+    private  Integer topicComment;  //评论数量
+
+    public Integer getTopicComment() {
+        return topicComment;
+    }
+
+    public void setTopicComment(Integer topicComment) {
+        this.topicComment = topicComment;
+    }
 
     public Integer getId() {
         return id;
@@ -93,6 +102,7 @@ public class GroupTopic extends Archive {
                 ", status=" + status +
                 ", isTop=" + isTop +
                 ", isEssence=" + isEssence +
+                ", topicComment=" + topicComment +
                 '}';
     }
 }

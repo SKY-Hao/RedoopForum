@@ -64,6 +64,7 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         return this.findById(id,null);
     }
 
+    //查询贴子详情
     @Override
     public GroupTopic findById(int id,Member loginMember) {
         int loginMemberId = loginMember == null ? 0 : loginMember.getId();
@@ -94,11 +95,11 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        archive.setPostType(2);
+        archive.setPostType(2);//1为文章   2为群组
         //保存文档
         if(archiveService.save(member,archive)){
             //保存文章
-            groupTopic.setStatus(group.getTopicReview()==0?1:0);
+            groupTopic.setStatus(group.getTopicReview()==0?0:1);
             groupTopic.setArchiveId(archive.getArchiveId());
             int result = groupTopicDao.save(groupTopic);
             if(result == 1){
@@ -110,13 +111,23 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
                 if (groupTopic.getStatus() == 0){
                     return new ResponseModel(2,"帖子发布成功，请等待管理员审核通过","../detail/"+groupTopic.getGroupId());
                 }
-
+                System.out.println("贴子==="+groupTopic.getStatus());
                 return new ResponseModel(2,"帖子发布成功","../topic/"+groupTopic.getId());
             }
+
         }
         return new ResponseModel(-1,"帖子发布失败");
     }
 
+    /**
+     * 获取群组帖子列表
+     * @param page
+     * @param key
+     * @param groupId
+     * @param status
+     * @param memberId
+     * @return
+     */
     @Override
     public ResponseModel listByPage(Page page, String key, int groupId, int status, int memberId) {
         if (StringUtils.isNotBlank(key)){
@@ -330,6 +341,16 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         return new ResponseModel(-1,"帖子不存在");
     }
 
+    /**
+     * 首页帖子列表
+     * （自定义条件查询）
+     * @param gid 群组ID，0不限制
+     * @param sort 排序字段
+     * @param num 获取数量
+     * @param day 天，获取多少天之内的数据，0不限制
+     * @param thumbnail 缩略图 0不限制，1必须有缩略图
+     * @return
+     */
     @Override
     public List<GroupTopic> listByCustom(int gid, String sort, int num, int day,int thumbnail) {
         return groupTopicDao.listByCustom(gid,sort,num,day,thumbnail);
@@ -416,5 +437,27 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
             }
         }
         return new ResponseModel(-1,"帖子发布失败");
+    }
+
+    /**
+     * 首页所有帖子
+     *
+     * @param status
+     * @param page
+     * @param key
+     * @return
+     */
+    @Override
+    public ResponseModel groupTopicList(int status, Page page, String key) {
+        if (StringUtils.isNotBlank(key)){
+            key = "%"+key+"%";
+        }
+        List<GroupTopic> list = groupTopicDao.groupTopicList(page, key,status);
+        ResponseModel model = new ResponseModel(0,page);
+        model.setData(list);
+        System.out.println("serviceModel1===="+list);
+        System.out.println("serviceModel2===="+list.size());
+        System.out.println("serviceModel3===="+list.toString());
+        return model;
     }
 }
