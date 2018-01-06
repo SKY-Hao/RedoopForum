@@ -281,5 +281,8 @@ public class GroupServiceImpl implements IGroupService {
         return groupDao.list();
     }
 
-
+    @Override
+    public List<Group> groupList() {
+        return groupDao.groupList();
+    }
 }

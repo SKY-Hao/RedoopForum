@@ -72,28 +72,27 @@ public class IndexController extends BaseController{
      */
     @RequestMapping(value={"/", "index"},method = RequestMethod.GET)
     public String index(@RequestParam(value = "key",required = false,defaultValue = "") String key, Integer cateid,Model model) {
-        //Page page = new Page(request);
-        //if(cateid == null){
-        //     cateid = 0;
-        // }
-        //Member loginMember = MemberUtil.getLoginMember(request);
-        //int loginMemberId = loginMember == null ? 0 : loginMember.getId();
+        Page page = new Page(request);
+        if(cateid == null){
+             cateid = 0;
+         }
+        Member loginMember = MemberUtil.getLoginMember(request);
+        int loginMemberId = loginMember == null ? 0 : loginMember.getId();
         //ResponseModel articleModel = articleService.listByPage(page,key,cateid,1,0);
         //ResponseModel groupTopicModel = groupTopicService.listByPage(page,key,cateid,1,0);
         //ResponseModel groupModel = groupService.listByPage(1,page,key);
-        // ResponseModel linkModel = linkService.recommentList();
-        //page.setPageSize(10);
+         ResponseModel linkModel = linkService.recommentList();
+        page.setPageSize(10);
         //ResponseModel weiboModel = weiboService.listByPage(page,0,loginMemberId,"");
         //model.addAttribute("articleModel",articleModel);
         //model.addAttribute("groupModel",groupModel);
         //model.addAttribute("weiboModel",weiboModel);
-        // model.addAttribute("linkModel",linkModel);
+         model.addAttribute("linkModel",linkModel);
 
-        Page page = new Page(request);
-        ResponseModel groupTopicModel = groupTopicService.groupTopicList(1,page,key);
-        model.addAttribute("model",groupTopicModel);
-       /* System.out.println("list========"+groupTopicModel.toString());
-        System.out.println("list========"+groupTopicModel);*/
+         //TODO 2018年1月5日17:01:10
+        //Page page = new Page(request);
+        // ResponseModel groupTopicModel = groupTopicService.groupTopicList(1,page,key);
+        //model.addAttribute("model",groupTopicModel);
         return jeesnsConfig.getFrontTemplate() + "/index";
     }
 

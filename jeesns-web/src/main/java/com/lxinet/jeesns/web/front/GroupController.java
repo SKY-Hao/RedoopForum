@@ -22,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +59,7 @@ public class GroupController extends BaseController {
         ResponseModel responseModel = groupService.listByPage(1,page,key);
         model.addAttribute("model",responseModel);
         model.addAttribute("key",key);
+
         return jeesnsConfig.getFrontTemplate() + "/group/index";
     }
 
@@ -237,7 +239,7 @@ public class GroupController extends BaseController {
     }
 
     /**
-     * 相对应的群组里面帖子的详情
+     * 相对应 群组 的帖子详情
      * @param topicId
      * @param model
      * @return
@@ -386,8 +388,22 @@ public class GroupController extends BaseController {
     @ResponseBody
     public Object delete(@PathVariable("id") int id){
         Member loginMember = MemberUtil.getLoginMember(request);
-        ResponseModel responseModel = groupTopicService.indexDelete(request,loginMember,id);
+       // ResponseModel responseModel = groupTopicService.indexDelete(request,loginMember,id);
+        //return responseModel;
+
+        if(loginMember == null){
+            return new ResponseModel(-1,"请先登录");
+        }
+        if(loginMember.getIsAdmin() == 0){
+            return new ResponseModel(-1,"权限不足");
+        }
+        ResponseModel responseModel = groupTopicService.delete(loginMember,id);;
+        if(responseModel.getCode() > 0){
+            responseModel.setCode(2);
+            responseModel.setUrl(request.getContextPath() + "/group/topicList");
+        }
         return responseModel;
+
     }
 
 
@@ -562,4 +578,57 @@ public class GroupController extends BaseController {
         }
         return groupTopicService.favor(loginMember,id);
     }
+
+
+    /**
+     * 前台帖子列表
+     * 2018年1月6日10:38:20更新
+     * @param key
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/topicList",method = RequestMethod.GET)
+    public String topicList(String key,Model model) {
+        Page page = new Page(request);
+        ResponseModel responseModel = groupTopicService.groupTopicList(1,page,key);
+        model.addAttribute("model",responseModel);
+        model.addAttribute("key",key);
+
+        List<Group> groupList = groupService.groupList();
+        model.addAttribute("groupLists",groupList);
+
+        return jeesnsConfig.getFrontTemplate() + "/group/topic/list";
+    }
+
+    /**
+     * 搜索
+     * 2018年1月6日14:09:25
+     * @param key
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/solrList",method = RequestMethod.GET)
+    public String solrList(String key, @RequestParam(value = "memberId",defaultValue = "0",required = false) Integer memberId, Model model) {
+        //TODO 上线时放开才能搜索到
+        /*if (StringUtils.isNotEmpty(key)){
+            try {
+                key = new String(key.getBytes("iso-8859-1"),"utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }*/
+        Page page = new Page(request);
+        ResponseModel responseModel = groupTopicService.solrList(1,page,key,memberId);
+        model.addAttribute("model",responseModel);
+        model.addAttribute("key",key);
+
+
+        List<Group> groupList = groupService.groupList();
+        model.addAttribute("groupLists",groupList);
+
+        return jeesnsConfig.getFrontTemplate() + "/group/topic/list";
+    }
+
+
+
 }

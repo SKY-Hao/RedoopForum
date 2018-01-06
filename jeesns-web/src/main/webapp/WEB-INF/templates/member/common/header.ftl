@@ -15,9 +15,11 @@
                             <li>
                                 <a href="${basePath}/"> 首页</a>
                             </li>
-                            <li>
+                            <#--<li>
                                 <a href="${basePath}/article/list"> 文章</a>
-                            </li>
+                            </li>-->
+                            <li><a href="${basePath}/group/topicList/">帖子</a></li>
+
                            <#-- <li>
                                 <a href="${basePath}/weibo/list"> ${WEIBO_ALIAS}</a>
                             </li>-->

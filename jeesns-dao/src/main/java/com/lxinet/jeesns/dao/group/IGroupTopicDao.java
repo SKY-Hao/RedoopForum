@@ -2,6 +2,7 @@ package com.lxinet.jeesns.dao.group;
 
 import com.lxinet.jeesns.dao.common.IBaseDao;
 import com.lxinet.jeesns.core.model.Page;
+import com.lxinet.jeesns.model.cms.Article;
 import com.lxinet.jeesns.model.group.GroupTopic;
 import org.apache.ibatis.annotations.Param;
 
@@ -63,6 +64,7 @@ public interface IGroupTopicDao extends IBaseDao<GroupTopic> {
 
     /**
      * 首页所有帖子
+     * 2018年1月6日14:10:53
      * @param page
      * @param key
      * @param status
@@ -70,4 +72,15 @@ public interface IGroupTopicDao extends IBaseDao<GroupTopic> {
      */
 
     List<GroupTopic> groupTopicList(@Param("page") Page page, @Param("key") String key, @Param("status") Integer status);
+
+    /**
+     * 搜索帖子
+     * 2018年1月6日11:58:06
+     * @param status
+     * @param page
+     * @param key
+     * @param memberId
+     * @return
+     */
+    List<Article> solrList(@Param("status") int status, @Param("page") Page page,@Param("key")  String key, @Param("memberId")  Integer memberId);
 }

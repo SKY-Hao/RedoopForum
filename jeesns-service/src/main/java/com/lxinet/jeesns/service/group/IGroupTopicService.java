@@ -71,10 +71,22 @@ public interface IGroupTopicService {
 
     /**
      * 首页所有帖子
+     * 2018年1月6日14:10:31
      * @param status
      * @param page
      * @param key
      * @return
      */
     ResponseModel groupTopicList(int status, Page page, String key);
+
+    /**
+     * 搜索帖子
+     * 2018年1月6日14:10:35
+     * @param status
+     * @param page
+     * @param key
+     * @param memberId
+     * @return
+     */
+    ResponseModel solrList(int status, Page page, String key, Integer memberId);
 }

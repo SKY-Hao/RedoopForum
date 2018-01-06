@@ -35,7 +35,7 @@
     GROUP by a.is_top DESC,a.id DESC
   </select>
   <select id="findById" parameterType="java.lang.Integer" resultMap="GroupTopicResult">
-    select a.id,a.group_id as 'group.id', a.collect_time, a.status,a.is_top,a.is_essence,b.*,c.name 'group.name',c.logo 'group.logo',b.member_id as memberId,b.member_id as 'member.id',d.name as 'member.name',d.avatar as 'member.avatar',d.introduce as 'member.introduce',
+    select a.id,a.group_id as 'group.id', a.collect_time, a.status,a.is_top,a.is_essence,b.*,c.name 'group.name',c.introduce as 'group.introduce',c.logo 'group.logo',b.member_id as memberId,b.member_id as 'member.id',d.name as 'member.name',d.avatar as 'member.avatar',d.introduce as 'member.introduce',
     count(e.id) as topicComment,
     (CASE WHEN (SELECT id FROM tbl_archive_favor WHERE archive_id=b.archive_id AND member_id=#{loginMemberId}) IS NULL THEN 0 ELSE 1 END) isFavor
     from tbl_group_topic as a INNER JOIN tbl_archive as b ON a.archive_id = b.archive_id
@@ -131,26 +131,103 @@ ORDER BY a.id desc
   </update>
 
   <!--首页所有帖子列表-->
-  <select id="groupTopicList" resultMap="GroupTopicResult">
-    SELECT
-    a.id,
-    a.group_id AS 'group.id',
-    a.collect_time,
-    a. STATUS,
-    a.is_top,
-    a.is_essence,
-    b.*, c. NAME 'group.name',
-    b.member_id AS memberId,
-    b.member_id AS 'member.id',
-    d. NAME AS 'member.name',
-    d.avatar AS 'member.avatar'
-    FROM
-    tbl_group_topic AS a
-    LEFT JOIN tbl_archive AS b ON a.archive_id = b.archive_id
-    LEFT JOIN tbl_group AS c ON a.group_id = c.id
-    LEFT JOIN tbl_member AS d ON b.member_id = d.id
+    <select id="groupTopicList" resultMap="GroupTopicResult">
+      SELECT
+      a.id,
+      a.group_id AS 'group.id',
+      a.collect_time,
+      a. STATUS,
+      a.is_top,
+      a.is_essence,
+      b.*, c. NAME 'group.name',
+      b.member_id AS memberId,
+      b.member_id AS 'member.id',
+      d. NAME AS 'member.name',
+      d.avatar AS 'member.avatar',
+      count(e.id) as topicComment
+      FROM
+      tbl_group_topic AS a
+      LEFT JOIN tbl_archive AS b ON a.archive_id = b.archive_id
+      LEFT JOIN tbl_group AS c ON a.group_id = c.id
+      LEFT JOIN tbl_member AS d ON b.member_id = d.id
+      LEFT JOIN tbl_group_topic_comment e ON a.id=e.group_topic_id
+      where a.status=1
+      GROUP BY a.id desc
+   /* SELECT
+a.*,
+a.member_id AS memberId,
+a.member_id AS 'member.id',
+b.id,
+b.group_id AS 'group.id',
+b.collect_time,
+b.`status`,
+b.is_top,
+b.is_essence,
+d. NAME AS 'member.name',
+    d.avatar AS 'member.avatar',
+count(e.id) as topicComment
+FROM
+	tbl_archive a
+LEFT JOIN tbl_group_topic b ON a.archive_id = b.archive_id
+LEFT JOIN tbl_group c ON b.group_id = c.id
+LEFT JOIN tbl_member d ON a.member_id = d.id
+LEFT JOIN tbl_group_topic_comment e ON b.id = e.group_topic_id
+LEFT JOIN tbl_article f ON a.archive_id = f.id
 
-    ORDER BY a.id desc
+
+GROUP BY a.archive_id desc*/
+  </select>
+
+  <!--搜索帖子2018年1月6日14:11:39-->
+  <select id="solrList" resultMap="GroupTopicResult">
+
+SELECT
+	a.id,
+	a.group_id AS 'group.id',
+	a.collect_time,
+	a. STATUS,
+	b.*,
+	c.id AS c_id,
+    c. NAME 'group.name',
+     b.member_id AS memberId,
+      b.member_id AS 'member.id',
+	c. STATUS AS c_status,
+
+	d.id AS m_id,
+	d. NAME AS m_name,
+	d.email AS m_email,
+	d.phone AS m_phone,
+	d.avatar AS m_avatar,
+	d.sex AS m_sex,
+	d.money AS m_money,
+	d.score AS m_score,
+	d.follows AS m_follows,
+	d.fans AS m_fans,
+	d.is_admin AS m_is_admin,
+	d.introduce AS m_introduce,
+	d. STATUS AS m_status,
+	d.is_active AS m_fm_is_activeans
+FROM
+	tbl_group_topic AS a
+LEFT JOIN tbl_archive AS b ON a.archive_id = b.archive_id
+LEFT JOIN tbl_group AS c ON a.group_id = c.id
+LEFT JOIN tbl_member AS d ON b.member_id = d.id
+
+      <where>
+
+          <if test="key != null and key != ''">
+               b.title LIKE #{key}
+          </if>
+          <if test="status != 2">
+              and a.status = #{status}
+          </if>
+          <if test="memberId &gt; 0">
+              and b.member_id = #{memberId}
+          </if>
+      </where>
+
+     order by a.id DESC
+
   </select>
 
 </mapper>

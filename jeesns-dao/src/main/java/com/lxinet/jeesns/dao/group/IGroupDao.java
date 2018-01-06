@@ -1,5 +1,6 @@
 package com.lxinet.jeesns.dao.group;
 
+import com.lxinet.jeesns.core.dto.ResponseModel;
 import com.lxinet.jeesns.dao.common.IBaseDao;
 import com.lxinet.jeesns.core.model.Page;
 import com.lxinet.jeesns.model.group.Group;
@@ -41,4 +42,5 @@ public interface IGroupDao extends IBaseDao<Group> {
      */
     List<GroupTopic> list();
 
+    List<Group> groupList();
 }

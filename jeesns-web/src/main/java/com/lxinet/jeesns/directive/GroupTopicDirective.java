@@ -25,7 +25,7 @@ public class GroupTopicDirective extends BaseDirective {
         int day = handler.getInteger("day",0);
         int thumbnail = handler.getInteger("thumbnail",0);
         List<GroupTopic> list = groupTopicService.listByCustom(gid,sort,num,day,thumbnail);
-        System.out.println("======GroupTopicDirectivelist====="+list.toString());
+//        System.out.println("======GroupTopicDirectivelist====="+list.toString());
         handler.put("groupTopicList", list).render();
     }
 

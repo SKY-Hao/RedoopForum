@@ -59,6 +59,7 @@
                                 </div>
                             </div>
                         </div>
+                        <span style="color: red">*</span>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-1 control-label">描述</label>

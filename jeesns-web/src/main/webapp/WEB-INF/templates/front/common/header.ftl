@@ -12,8 +12,10 @@
         <div id="navbar" class="navbar-collapse collapse" style="float:right; text-align:right;margin-right:-38px; margin-top:15px;">
             <ul class="nav navbar-nav">
                 <li><a href="${basePath}/">首页</a></li>
-                <li><a href="${basePath}/article/list">文章</a></li>
+                <#--<li><a href="${basePath}/article/list">文章</a></li>-->
+
                 <#--<li><a href="${basePath}/weibo/list">${WEIBO_ALIAS}</a></li>-->
+                <li><a href="${basePath}/group/topicList/">帖子</a></li>
                 <li><a href="${basePath}/group/">${GROUP_ALIAS}</a></li>
 
                 <#--<li><a href="${basePath}/action/list">动态</a></li>-->

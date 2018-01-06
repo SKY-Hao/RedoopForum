@@ -163,6 +163,7 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         return new ResponseModel(-1,"更新失败");
     }
 
+    //删除帖子
     @Override
     @Transactional
     public ResponseModel delete(Member loginMember,int id) {
@@ -441,7 +442,7 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
 
     /**
      * 首页所有帖子
-     *
+     *2018年1月5日09:01:18更新
      * @param status
      * @param page
      * @param key
@@ -455,9 +456,26 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         List<GroupTopic> list = groupTopicDao.groupTopicList(page, key,status);
         ResponseModel model = new ResponseModel(0,page);
         model.setData(list);
-        System.out.println("serviceModel1===="+list);
-        System.out.println("serviceModel2===="+list.size());
-        System.out.println("serviceModel3===="+list.toString());
+        return model;
+    }
+
+    /**
+     * 搜索帖子
+     *2018年1月6日14:10:46
+     * @param status
+     * @param page
+     * @param key
+     * @param memberId
+     * @return
+     */
+    @Override
+    public ResponseModel solrList(int status, Page page, String key, Integer memberId) {
+        if (StringUtils.isNotBlank(key)){
+            key = "%"+key+"%";
+        }
+        List<Article> list = groupTopicDao.solrList(status,page, key,memberId);
+        ResponseModel model = new ResponseModel(0,page);
+        model.setData(list);
         return model;
     }
 }

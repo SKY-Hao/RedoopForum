@@ -66,7 +66,6 @@
     LEFT JOIN tbl_article_cate as c ON a.cate_id = c.id
     LEFT JOIN tbl_member as d ON b.member_id = d.id
   </sql>
-
   <!--文章列表-->
   <select id="listByPage" resultMap="ArticleResult">
     <include refid="common_select"/>
@@ -76,6 +75,7 @@
       </if>
       <if test="key != null and key != ''">
         and b.title LIKE #{key}
+
       </if>
       <if test="status != 2">
         and a.status = #{status}

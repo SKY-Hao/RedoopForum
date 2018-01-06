@@ -2,7 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title><#if articleCate??>${articleCate.name}<#else>文章列表</#if></title>
+
+    <title><#if articleCate??>${articleCate.name}<#else>所有帖子列表</#if></title>
+    <meta name="keywords" content="${SITE_KEYS}"/>
+    <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
     <link href="${basePath}/res/common/css/zui.min.css" rel="stylesheet">
@@ -25,51 +28,44 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="items">
-                <#--文章列表    左侧-->
-                <#list model.data as article>
-                    <div class="item article-list shadow">
-                        <div class="item-content">
-                            <#if article.thumbnail??>
-                                <div class="media pull-left">
-                                <#--左侧图像-->
-                                    <a href="${basePath}/article/detail/${article.id}">
-                                        <img src="${basePath}${article.thumbnail}" alt="${article.title}" height="80px" width="120px">
+                   <#-- &lt;#&ndash;文章列表    左侧&ndash;&gt;-->
+                    <#list model.data as topic>
+                        <div class="item article-list shadow">
+                            <div class="item-content">
+
+                                <div class="text">
+                                    <a href="${basePath}/group/detail/${topic.group.id}">
+                                        <div class="pull-right label label-success">
+                                            ${topic.group.name} <#--&lt;#&ndash;帖子的群组名称&ndash;&gt;-->
+                                        </div>
                                     </a>
-                                </div>
-                            </#if>
-                            <div class="text">
-                                <a href="${basePath}/article/list?cid=${article.articleCate.id}">
-                                    <div class="pull-right label label-success">
-                                    ${article.articleCate.name} <#--文档的栏目名称-->
-                                    </div>
-                                </a>
-                                <h3>
-                                    <a href="${basePath}/article/detail/${article.id}">
-                                    ${article.title}<#--文章标题-->
-                                    </a>
-                                </h3>
-                                <p>
+                                    <h3>
+                                        <a href="${basePath}/group/topic/${topic.id}">
+                                            ${topic.title}<#--&lt;#&ndash;文章标题&ndash;&gt;-->
+                                        </a>
+                                    </h3>
+                                    <p>
                                         <span class="text-muted">
                                             <i class="icon-comments"></i>
-                                        ${article.viewCount} &nbsp;<#--查看次数-->
+                                            ${topic.viewCount} <#--&nbsp;&lt;#&ndash;查看次数&ndash;&gt;-->
                                             <i class="icon-time"></i>
-                                        ${article.createTime?string('yyyy-MM-dd HH:mm')}<#--创建时间-->
+                                            ${topic.createTime?string('yyyy-MM-dd HH:mm')}<#--&lt;#&ndash;创建时间&ndash;&gt;-->
                                         </span>
-                                </p>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </#list>
-                <#--分页-->
+                    </#list>
+                       <#-- &lt;#&ndash;分页&ndash;&gt;-->
                     <ul class="pager pagination pagination-sm no-margin pull-right"
-                        url="${basePath}/article/list?<#if articleCate??>cid=${articleCate.id}&</#if>key="
+                        url="${basePath}/group/topicList"
                         currentPage="${model.page.pageNo}"
                         pageCount="${model.page.totalPage}">
                     </ul>
                 </div>
             </div>
             <div class="col-md-4 float-left">
-                <form action="${basePath}/article/list" method="get">
+                <form action="${basePath}/group/solrList/" method="get">
                     <div class="input-group">
                         <input type="text" class="form-control" name="key">
                         <span class="input-group-btn">
@@ -79,32 +75,32 @@
                 </form>
                 <div class="panel">
                     <div class="panel-heading">
-                        文章栏目
+                        群组栏目
                         <span class="pull-right">
-                            <a class="btn btn-primary m-t-n4" href="${basePath}/article/add">发布文章</a>
+                            <a class="btn btn-primary m-t-n4" href="">申请群组</a>
                         </span>
                     </div>
                     <div class="panel-body">
-                        <a href="${basePath}/article/list" class="btn btn-primary">全部</a>
-                    <#list articleCateList as articleCate>
-                        <a href="${basePath}/article/list?cid=${articleCate.id}" class="btn btn-primary">${articleCate.name}</a>
-                    </#list>
+                        <a href="" class="btn btn-primary">全部</a>
+                        <#list groupLists as group>
+                            <a href="${basePath}/group/detail/${group.id}" class="btn btn-primary">${group.name}</a>
+                        </#list>
                     </div>
                 </div>
-            <@ads id=1>
-                <#include "/tp/ad.ftl"/>
-            </@ads>
+                <@ads id=1>
+                    <#include "/tp/ad.ftl"/>
+                </@ads>
                 <div class="panel">
                     <div class="panel-heading">
-                        热门文章
+                        热门帖子
                     </div>
                     <div class="panel-body article-hot-list">
                         <ul>
-                        <@cms_article_list cid=0 sort='view_count' num=10 day=30; article>
-                            <#list articleList as article>
-                                <li><i class="icon-hand-right main-text-color"></i> <a href="${basePath}/article/detail/${article.id}">${article.title}</a></li>
+                       <@group_topic_list  sort='view_count' num=10 day=30; groupTopic>
+                            <#list groupTopicList as groupTopic>
+                                <li><i class="icon-hand-right main-text-color"></i> <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a></li>
                             </#list>
-                        </@cms_article_list>
+                        </@group_topic_list>
                         </ul>
                     </div>
                 </div>

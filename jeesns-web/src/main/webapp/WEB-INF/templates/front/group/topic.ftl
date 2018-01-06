@@ -80,7 +80,6 @@
                                                 </#if>
                                             </#if>
 
-
                                             <#if loginUser.id == groupTopic.memberId>
                                                 <li><a href="${basePath}/group/topicEdit/${groupTopic.id}">编辑</a></li>
                                             </#if>
@@ -156,6 +155,7 @@
                                 </a>
                                 </strong>
                             </span>
+
                             <span class="text-right">
                                 <#if isfollow == true>
                                     <a title="取消关注" href="${basePath}/group/nofollow/${groupTopic.group.id}"
@@ -173,10 +173,15 @@
                                 </#if>
                             </span>
                         </p>
+                        <#if groupTopic.group.introduce?length &gt; 50>
+                        ${groupTopic.group.introduce?substring(0,50)}...
+                        <#else>
+                        ${groupTopic.group.introduce}
+                        </#if>
                     </div>
-                    <div class="group-introduce">
+                    <#--<div class="group-introduce">
                     ${groupTopic.group.introduce!''}
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <div class="col-md-4">
@@ -210,34 +215,34 @@
             <div class="col-md-4">
                 <div class="panel">
                     <div class="panel-heading">
-                        最新文章
+                        热门帖子
                     </div>
                     <div class="panel-body article-hot-list">
                         <ul>
-                        <@cms_article_list cid=0 sort='id' num=10; article>
-                            <#list articleList as article>
-                                <li><i class="icon-hand-right main-text-color"></i> <a
-                                        href="${basePath}/article/detail/${article.id}">${article.title}</a></li>
+                        <@group_topic_list  sort='view_count' num=10 day=30; groupTopic>
+                            <#list groupTopicList as groupTopic>
+                                <li><i class="icon-hand-right main-text-color"></i> <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a></li>
                             </#list>
-                        </@cms_article_list>
+                        </@group_topic_list>
                         </ul>
                     </div>
                 </div>
                 <div class="panel">
                     <div class="panel-heading">
-                        热门文章
+                        最新帖子
                     </div>
                     <div class="panel-body article-hot-list">
                         <ul>
-                        <@cms_article_list cid=0 sort='view-count' num=10 day=30; article>
-                            <#list articleList as article>
+                        <@group_topic_list  sort='id' num=10; topic>
+                            <#list groupTopicList as groupTopic>
                                 <li><i class="icon-hand-right main-text-color"></i> <a
-                                        href="${basePath}/article/detail/${article.id}">${article.title}</a></li>
+                                        href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a></li>
                             </#list>
-                        </@cms_article_list>
+                        </@group_topic_list>
                         </ul>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

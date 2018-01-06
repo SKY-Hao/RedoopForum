@@ -55,5 +55,5 @@ public interface IGroupService {
      */
     List<GroupTopic> list();
 
-
+    List<Group> groupList();
 }
