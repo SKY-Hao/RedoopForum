@@ -170,4 +170,8 @@ public interface IMemberDao extends IBaseDao<Member> {
      * @return
      */
     int updateScore(@Param("score") Integer score, @Param("id") Integer id);
+
+    void updatePhoto(Member member);
+
+    // void updatePhoto(Member member);
 }

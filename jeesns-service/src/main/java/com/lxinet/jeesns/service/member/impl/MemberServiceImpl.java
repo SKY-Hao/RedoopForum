@@ -24,9 +24,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 /**
@@ -309,7 +308,7 @@ public class MemberServiceImpl implements IMemberService {
                     file.delete();
                 }
             }
-            return new ResponseModel(0,"头像修改成功");
+            return new ResponseModel(0,"头像修改成功啊");
         }
         return new ResponseModel(-1,"头像修改失败，请重试");
     }
@@ -610,4 +609,31 @@ public class MemberServiceImpl implements IMemberService {
         }
         return content;
     }
+
+    /**
+     * 修改头像
+     *
+     * @param member
+     * @return
+     */
+    /**
+     * 修改头像
+     *
+     * @param avatar
+     * @return
+     */
+    @Override
+    public void updatePhoto(Member member, String avatar) {
+
+        if(avatar==null||avatar==""){
+            String image="/res/common/images/default-avatar.png";
+            member.setAvatar(image);
+        }else {
+            member.setAvatar(avatar);
+        }
+        memberDao.updatePhoto(member);
+
+    }
+
+
 }

@@ -25,6 +25,7 @@ import com.lxinet.jeesns.service.member.IMessageService;
 import com.lxinet.jeesns.service.member.IScoreDetailService;
 import com.lxinet.jeesns.service.system.IActionLogService;
 import com.lxinet.jeesns.service.system.IConfigService;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
@@ -98,9 +99,18 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         archive.setPostType(2);//1为文章   2为群组
         //保存文档
         if(archiveService.save(member,archive)){
+            if(member.getIsAdmin()<1){
+                groupTopic.setStatus(0);
+            }if (member.getIsAdmin()>=1){
+                groupTopic.setStatus(1);
+            }
+
             //保存文章
-            groupTopic.setStatus(group.getTopicReview()==0?0:1);
+
+            //groupTopic.setStatus(group.getTopicReview()==1?0:1);
+
             groupTopic.setArchiveId(archive.getArchiveId());
+
             int result = groupTopicDao.save(groupTopic);
             if(result == 1){
                 //@会员处理并发送系统消息
@@ -109,9 +119,14 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
                 scoreDetailService.scoreBonus(member.getId(), ScoreRuleConsts.GROUP_POST, groupTopic.getId());
                 actionLogService.save(member.getCurrLoginIp(),member.getId(), ActionUtil.POST_GROUP_TOPIC,"", ActionLogType.GROUP_TOPIC.getValue(),groupTopic.getId());
                 if (groupTopic.getStatus() == 0){
+                    System.out.println("保存状态==="+groupTopic.getStatus());
+                    System.out.println("贴子ID==="+groupTopic.getId());
+                    System.out.println("保存文档ID==="+archive.getArchiveId());
                     return new ResponseModel(2,"帖子发布成功，请等待管理员审核通过","../detail/"+groupTopic.getGroupId());
                 }
-                System.out.println("贴子==="+groupTopic.getStatus());
+                System.out.println("保存状态==="+groupTopic.getStatus());
+                System.out.println("贴子ID==="+groupTopic.getId());
+                System.out.println("保存文档ID==="+archive.getArchiveId());
                 return new ResponseModel(2,"帖子发布成功","../topic/"+groupTopic.getId());
             }
 
@@ -171,16 +186,21 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         if(groupTopic == null){
             return new ResponseModel(-1,"帖子不存在");
         }
-        int result = groupTopicDao.delete(id);
-        if(result == 1){
+        //int result = groupTopicDao.delete(id);
+       //if(result == 1){
             //扣除积分
-            scoreDetailService.scoreCancelBonus(loginMember.getId(),ScoreRuleConsts.GROUP_POST,id);
+            //scoreDetailService.scoreCancelBonus(loginMember.getId(),ScoreRuleConsts.GROUP_POST,id);
+            groupTopicDao.delete(id);
+        System.out.println("删除贴子ID=="+id);
+
             archiveService.delete(groupTopic.getArchiveId());
+        System.out.println("删除文档ID=="+groupTopic.getArchiveId());
             groupTopicCommentService.deleteByTopic(id);
+
             actionLogService.save(loginMember.getCurrLoginIp(),loginMember.getId(), ActionUtil.DELETE_GROUP_TOPIC,"ID："+groupTopic.getId()+"，标题："+groupTopic.getTitle());
             return new ResponseModel(1,"删除成功");
-        }
-        return new ResponseModel(-1,"删除失败");
+       // }
+       // return new ResponseModel(-1,"删除失败");
     }
 
 

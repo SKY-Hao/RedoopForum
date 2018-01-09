@@ -224,4 +224,14 @@ public interface IMemberService {
 
     String atFormat(String content);
 
+
+
+    /**
+     * 修改头像
+     * @return
+     */
+    //ResponseModel updatePhoto(Member member,String avatar);
+    void updatePhoto(Member loginMember, String avatar);
+
+
 }

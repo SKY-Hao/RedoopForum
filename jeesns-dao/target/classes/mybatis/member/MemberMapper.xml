@@ -203,4 +203,12 @@
     <select id="selectUnreadMessagesByMember" resultType="Message">
         SELECT * FROM tbl_message WHERE isread = 0 and from_member_id = #{from_member_id} AND to_member_id = #{to_member_id}
     </select>
+
+
+    <update id="updatePhoto"  parameterType="Member">
+        update tbl_member set avatar=#{avatar} where id = #{id}
+    </update>
+
+
+
 </mapper>

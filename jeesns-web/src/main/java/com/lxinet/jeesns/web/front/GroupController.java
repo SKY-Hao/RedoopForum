@@ -388,10 +388,10 @@ public class GroupController extends BaseController {
     @ResponseBody
     public Object delete(@PathVariable("id") int id){
         Member loginMember = MemberUtil.getLoginMember(request);
-       // ResponseModel responseModel = groupTopicService.indexDelete(request,loginMember,id);
-        //return responseModel;
+        ResponseModel responseModel = groupTopicService.indexDelete(request,loginMember,id);
+        return responseModel;
 
-        if(loginMember == null){
+       /* if(loginMember == null){
             return new ResponseModel(-1,"请先登录");
         }
         if(loginMember.getIsAdmin() == 0){
@@ -402,7 +402,7 @@ public class GroupController extends BaseController {
             responseModel.setCode(2);
             responseModel.setUrl(request.getContextPath() + "/group/topicList");
         }
-        return responseModel;
+        return responseModel;*/
 
     }
 

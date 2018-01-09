@@ -6,6 +6,7 @@ import com.lxinet.jeesns.core.annotation.Before;
 import com.lxinet.jeesns.core.dto.ResponseModel;
 import com.lxinet.jeesns.core.model.Page;
 import com.lxinet.jeesns.core.utils.*;
+import com.lxinet.jeesns.model.cms.Article;
 import com.lxinet.jeesns.web.common.BaseController;
 import com.lxinet.jeesns.model.member.Member;
 import com.lxinet.jeesns.service.member.IMemberService;
@@ -17,9 +18,12 @@ import com.lxinet.jeesns.service.system.IConfigService;
 import com.lxinet.jeesns.common.utils.ConfigUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
@@ -245,6 +249,7 @@ public class MemberController extends BaseController {
     @RequestMapping(value = "/editInfo",method = RequestMethod.GET)
     @Before(UserLoginInterceptor.class)
     public String editInfo(){
+
         return MEMBER_FTL_PATH + "editInfo";
     }
 
@@ -288,7 +293,19 @@ public class MemberController extends BaseController {
     @RequestMapping(value = "/avatar",method = RequestMethod.GET)
     @Before(UserLoginInterceptor.class)
     public String avatar(){
+
         return MEMBER_FTL_PATH + "avatar";
+    }
+    //修改头像保存
+    @RequestMapping(value="/updatePhoto",method = RequestMethod.POST)
+    //@ResponseBody
+    public String updatePhoto(String avatar) {
+
+        Member loginMember = MemberUtil.getLoginMember(request);
+
+
+        memberService.updatePhoto(loginMember,avatar);
+        return  MEMBER_FTL_PATH + "avatar";
     }
 
     /**
