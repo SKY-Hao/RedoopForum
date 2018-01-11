@@ -57,6 +57,8 @@ public class GroupController extends BaseController {
     public String index(String key,Model model) {
         Page page = new Page(request);
         ResponseModel responseModel = groupService.listByPage(1,page,key);
+
+
         model.addAttribute("model",responseModel);
         model.addAttribute("key",key);
 
@@ -71,7 +73,7 @@ public class GroupController extends BaseController {
      * @param model
      * @return
      */
-    /*@RequestMapping(value = "/groupTopicList",method = RequestMethod.GET)
+    @RequestMapping(value = "/groupTopicList",method = RequestMethod.GET)
     public String groupTopicList(String key,Model model) {
         //TODO
         Page page = new Page(request);
@@ -80,7 +82,7 @@ public class GroupController extends BaseController {
         model.addAttribute("model",responseModel);
         model.addAttribute("key",key);
         return jeesnsConfig.getFrontTemplate() + "/front/index";
-    }*/
+    }
 
 
 
@@ -183,7 +185,7 @@ public class GroupController extends BaseController {
 
 
     /**
-     * 前台修改编辑帖子
+     * 前台修改群组
      * @param groupId
      * @param model
      * @return
@@ -224,7 +226,7 @@ public class GroupController extends BaseController {
     }
 
     /**
-     * 前台修改 编辑帖子 保存
+     * 前台修改 群组 保存
      * @param group
      * @return
      */

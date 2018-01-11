@@ -43,4 +43,5 @@ public interface IGroupDao extends IBaseDao<Group> {
     List<GroupTopic> list();
 
     List<Group> groupList();
+
 }

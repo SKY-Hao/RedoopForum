@@ -69,7 +69,8 @@
                     <p></p>
                     <p class="text-muted text-center">
                     <a href="forgetpwd">忘记密码?</a> |
-                    <a href="login">我要登录</a>
+                    <a href="login">我要登录</a> |
+                    <a href="${basePath}/">首页</a>
 
                 </form>
             </div>

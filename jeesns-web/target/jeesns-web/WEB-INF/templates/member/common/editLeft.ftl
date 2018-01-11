@@ -26,7 +26,7 @@
                     </p>
                 </div>
             </div>
-            <div class="right">
+            <div class="right" style="padding-right: 35px;">
                 <div class="follows">
                     <span>关注</span>
                     <a href="${basePath}/u/${loginUser.id}/home/follows">${loginUser.follows}</a>
@@ -48,7 +48,7 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container" style="width: 100%;">
     <div class="row">
         <div class="ibox">
             <div class="ibox-content float-left">

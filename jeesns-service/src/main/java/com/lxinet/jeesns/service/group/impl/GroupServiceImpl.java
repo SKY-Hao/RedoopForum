@@ -203,7 +203,7 @@ public class GroupServiceImpl implements IGroupService {
     }
 
     /**
-     * 前台修改 编辑帖子 保存
+     * 前台修改 群组 保存
      * @param loginMember
      * @param group
      * @return
@@ -285,4 +285,5 @@ public class GroupServiceImpl implements IGroupService {
     public List<Group> groupList() {
         return groupDao.groupList();
     }
+
 }

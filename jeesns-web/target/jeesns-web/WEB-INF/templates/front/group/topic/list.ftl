@@ -78,7 +78,7 @@
                     <div class="panel-heading">
                         群组栏目
                         <span class="pull-right">
-                            <a class="btn btn-primary m-t-n4" href="">申请群组</a>
+                            <a class="btn btn-primary m-t-n4" href="${basePath}/group/apply">申请群组</a>
                         </span>
                     </div>
                     <div class="panel-body">

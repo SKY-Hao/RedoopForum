@@ -31,7 +31,7 @@ public interface IGroupService {
     //添加群组保存
     ResponseModel saveManageGroup(Member loginMember, Group group);
 
-    //前台修改 编辑帖子 保存
+    //前台修改群组 保存
     ResponseModel update(Member loginMember, Group group);
 
     // 群组删除
@@ -56,4 +56,5 @@ public interface IGroupService {
     List<GroupTopic> list();
 
     List<Group> groupList();
+
 }

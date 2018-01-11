@@ -9,7 +9,7 @@
     <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
-    <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
+    <link href="${basePath}/res/new/css/groupCss/group/style.css" rel="stylesheet">
 
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/font-awesome.min.css" rel="stylesheet">
@@ -31,8 +31,11 @@
     <script src="${basePath}/res/modules/message.js"></script>
 </head>
 <body class="gray-bg">
-<#include "/member/common/header.ftl"/>
-<div class="wrapper wrapper-content  animated fadeInRight">
+<#include "/member/common/newCommon/header.ftl"/>
+<div class="block clearfix">
+    <div class="container clearfix">
+
+        <div class="wrapper wrapper-content  animated fadeInRight">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -76,6 +79,10 @@
         </div>
     </div>
 </div>
-<#include "/member/common/footer.ftl"/>
+
+    </div>
+</div>
+
+<#include "/member/common/newCommon/footer.ftl"/>
 </body>
 </html>

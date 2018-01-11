@@ -53,6 +53,7 @@
       <if test="thumbnail != null">thumbnail = #{thumbnail},</if>
       <if test="canReply != null">can_reply = #{canReply},</if>
       <if test="content != null">content = #{content},</if>
+      <if test="viewCount != null">view_count = #{viewCount},</if>
     </set>
     where archive_id = #{archiveId}
   </update>

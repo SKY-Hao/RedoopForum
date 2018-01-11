@@ -10,7 +10,7 @@
     <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
-    <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
+    <link href="${basePath}/res/new/css/groupCss/group/style.css" rel="stylesheet">
 
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/font-awesome.min.css" rel="stylesheet">
@@ -34,8 +34,11 @@
 </head>
 
 <body class="gray-bg">
-<#include "/member/common/header.ftl"/>
-<div class="wrapper wrapper-content">
+<#include "/member/common/newCommon/header.ftl"/>
+<div class="block clearfix">
+    <div class="container clearfix">
+
+        <div class="wrapper wrapper-content">
     <div class="member-banner" style="background-image: url(${basePath}/res/common/images/member_banner.png);">
         <div class="attempts"></div>
         <div class="container">
@@ -64,7 +67,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="right">
+                <div class="right" style="padding-right: 35px;">
                     <div class="follows">
                         <span>关注</span>
                         <a href="${basePath}/u/${loginUser.id}/home/follows">${loginUser.follows}</a>
@@ -86,7 +89,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container" style="width: 100%;">
         <div class="row">
             <div class="ibox">
                 <div class="ibox-content float-left">
@@ -189,7 +192,11 @@
         </div>
     </div>
 </div>
-<#include "/member/common/footer.ftl"/>
+
+
+    </div>
+</div>
+<#include "/member/common/newCommon/footer.ftl"/>
 <script type="text/javascript">
     $(function () {
         $(".pagination").jeesns_page("jeesnsPageForm");

@@ -27,13 +27,7 @@ public class GroupTopic extends Archive {
 
     private  Integer topicComment;  //评论数量
 
-    public Integer getTopicComment() {
-        return topicComment;
-    }
-
-    public void setTopicComment(Integer topicComment) {
-        this.topicComment = topicComment;
-    }
+    private  Integer groupstatus; //群组帖子状态 0 群组问题帖子  1群组文章帖子
 
     public Integer getId() {
         return id;
@@ -91,6 +85,21 @@ public class GroupTopic extends Archive {
         this.isEssence = isEssence;
     }
 
+    public Integer getTopicComment() {
+        return topicComment;
+    }
+
+    public void setTopicComment(Integer topicComment) {
+        this.topicComment = topicComment;
+    }
+
+    public Integer getGroupstatus() {
+        return groupstatus;
+    }
+
+    public void setGroupstatus(Integer groupstatus) {
+        this.groupstatus = groupstatus;
+    }
 
     @Override
     public String toString() {
@@ -103,6 +112,7 @@ public class GroupTopic extends Archive {
                 ", isTop=" + isTop +
                 ", isEssence=" + isEssence +
                 ", topicComment=" + topicComment +
+                ", groupstatus=" + groupstatus +
                 '}';
     }
 }

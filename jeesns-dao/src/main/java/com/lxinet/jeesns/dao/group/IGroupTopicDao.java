@@ -83,4 +83,5 @@ public interface IGroupTopicDao extends IBaseDao<GroupTopic> {
      * @return
      */
     List<Article> solrList(@Param("status") int status, @Param("page") Page page,@Param("key")  String key, @Param("memberId")  Integer memberId);
+
 }

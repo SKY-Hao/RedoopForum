@@ -8,7 +8,8 @@
     <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
+    <#--<link href="${basePath}/res/common/css/member.css" rel="stylesheet">-->
+    <link href="${basePath}/res/new/css/groupCss/group/style.css" rel="stylesheet">
 
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/font-awesome.min.css" rel="stylesheet">
@@ -32,63 +33,67 @@
 </head>
 
 <body class="gray-bg">
-<#include "/member/common/header.ftl"/>
+<#include "/member/common/newCommon/header.ftl"/>
 
-<div class="wrapper wrapper-content">
-    <div class="member-banner" style="background-image: url(${basePath}/res/common/images/member_banner.png);">
-        <div class="attempts"></div>
-        <div class="container">
-            <div class="container content">
-                <#--上左-->
-                <div class="left">
-                    <div class="avatar">
-                        <img src="${basePath}${loginUser.avatar}" class="img-circle" width="80px" height="80px"/>
-                    </div>
-                    <div class="info">
-                        <div class="name" style="color: #bababa">
-                            ${loginUser.name}
-                            <#if loginUser.sex=='女'>
-                                <span class="sex"><i class="fa fa-venus"></i></span>
-                            <#elseif loginUser.sex=='男'>
-                                <span class="sex"><i class="fa fa-mars"></i></span>
-                            <#else>
-                                <span class="sex"><i class="fa fa-intersex"></i></span>
-                            </#if>
+
+<div class="block clearfix">
+    <div class="container clearfix">
+
+        <div class="wrapper wrapper-content">
+            <div class="member-banner" style="background-image: url(${basePath}/res/common/images/member_banner.png);">
+                <div class="attempts"></div>
+                <div class="container">
+                    <div class="container content">
+                        <#--上左-->
+                        <div class="left">
+                            <div class="avatar">
+                                <img src="${basePath}${loginUser.avatar}" class="img-circle" width="80px" height="80px"/>
+                            </div>
+                            <div class="info">
+                                <div class="name" style="color: #bababa">
+                                    ${loginUser.name}
+                                    <#if loginUser.sex=='女'>
+                                        <span class="sex"><i class="fa fa-venus"></i></span>
+                                    <#elseif loginUser.sex=='男'>
+                                        <span class="sex"><i class="fa fa-mars"></i></span>
+                                    <#else>
+                                        <span class="sex"><i class="fa fa-intersex"></i></span>
+                                    </#if>
+                                </div>
+                                <p  style="color: #bababa">${loginUser.website}</p>
+                                <p>${loginUser.introduce}</p>
+                                <p class="operator">
+                                    <a class="btn btn-info btn-outline member-follows" href="${basePath}/member/editInfo">
+                                        <i class="fa fa-edit"></i> 编辑个人资料
+                                    </a>
+                                </p>
+                            </div>
                         </div>
-                        <p  style="color: #bababa">${loginUser.website}</p>
-                        <p>${loginUser.introduce}</p>
-                        <p class="operator">
-                            <a class="btn btn-info btn-outline member-follows" href="${basePath}/member/editInfo">
-                                <i class="fa fa-edit"></i> 编辑个人资料
-                            </a>
-                        </p>
-                    </div>
-                </div>
-                <#--上右    -->
-                <div class="right">
-                    <div class="follows">
-                        <span style="color: #bababa;">关注</span>
-                        <a href="${basePath}/u/${loginUser.id}/home/follows">${loginUser.follows}</a>
-                    </div>
-                    <div class="fans">
-                        <span  style="color: #bababa;">粉丝</span>
-                        <a href="${basePath}/u/${loginUser.id}/home/fans">${loginUser.fans}</a>
-                    </div>
-                    <div class="follows">
-                        <span  style="color: #bababa;">积分</span>
-                        <a href="${basePath}/member/scoreDetail/list">${loginUser.score}</a>
-                    </div>
-                    <div class="login-info"  style="color: #bababa;">
-                        加入时间:${loginUser.createTime?string('yyyy-MM-dd')}
-                        最近登录:<#if loginUser.currLoginTime??>${loginUser.currLoginTime?string('yyyy-MM-dd')}<#else>未登陆过</#if>
+                        <#--上右    -->
+                        <div class="right" style="padding-right: 35px;">
+                            <div class="follows">
+                                <span style="color: #bababa;">关注</span>
+                                <a href="${basePath}/u/${loginUser.id}/home/follows">${loginUser.follows}</a>
+                            </div>
+                            <div class="fans">
+                                <span  style="color: #bababa;">粉丝</span>
+                                <a href="${basePath}/u/${loginUser.id}/home/fans">${loginUser.fans}</a>
+                            </div>
+                            <div class="follows">
+                                <span  style="color: #bababa;">积分</span>
+                                <a href="${basePath}/member/scoreDetail/list">${loginUser.score}</a>
+                            </div>
+                            <div class="login-info"  style="color: #bababa;">
+                                加入时间:${loginUser.createTime?string('yyyy-MM-dd')}
+                                最近登录:<#if loginUser.currLoginTime??>${loginUser.currLoginTime?string('yyyy-MM-dd')}<#else>未登陆过</#if>
 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
+            <div class="container"  style="width: 100%">
+                <div class="row">
             <div class="ibox">
                 <div class="ibox-content float-left">
                     <#--左侧栏-->
@@ -212,9 +217,12 @@
                 </div>
             </div>
         </div>
+            </div>
+        </div>
+
     </div>
 </div>
-<#include "/member/common/footer.ftl"/>
+<#include "/member/common/newCommon/footer.ftl"/>
 <script type="text/javascript">
     $(function () {
         $(".pagination").jeesns_page("jeesnsPageForm");

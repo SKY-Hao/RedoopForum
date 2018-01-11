@@ -60,7 +60,8 @@
                     <p></p>
                     <p class="text-muted text-center">
                     <a href="login">我要登录</a> |
-                    <a href="register">我要注册</a>
+                    <a href="register">我要注册</a> |
+                    <a href="${basePath}/">首页</a>
                     </p>
                 </form>
                 <p></p>

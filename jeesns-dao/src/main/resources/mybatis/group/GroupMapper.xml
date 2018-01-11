@@ -109,6 +109,9 @@
       <when test="sort == 'id'">
         a.id
       </when >
+      <when test="sort == 'topicCount'">
+        topicCount
+      </when >
       <otherwise>
         a.id
       </otherwise>
@@ -122,7 +125,7 @@
   </select>
 
   <select id="groupList" resultMap="GroupResult">
-    select * from tbl_group
+    select * from tbl_group where status=1
   </select>
 
 

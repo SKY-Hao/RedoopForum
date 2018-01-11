@@ -12,8 +12,9 @@
 
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
-    <link href="${basePath}/res/common/css/zui.min.css" rel="stylesheet">
-    <link href="${basePath}/res/front/css/app.css" rel="stylesheet">
+    <#--<link href="${basePath}/res/common/css/zui.min.css" rel="stylesheet">
+    <link href="${basePath}/res/front/css/app.css" rel="stylesheet">-->
+    <link href="${basePath}/res/new/css/groupCss/group/style.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="${basePath}/res/common/js/html5shiv.min.js"></script>
     <script src="${basePath}/res/common/js/respond.min.js"></script>
@@ -26,47 +27,84 @@
     <script src="${basePath}/res/common/js/extendPagination.js"></script>
 </head>
 <body class="gray-bg">
-<#include "/${frontTemplate}/common/header.ftl"/>
-<div class="container">
-    <div class="main-content">
-        <div class="row white-bg group-list">
-            <div class="panel-heading" style="margin-bottom: 30px">
-                ${GROUP_ALIAS}
-                <span class="pull-right">
-                    <a class="btn btn-primary m-t-n4" href="${basePath}/group/apply">申请</a>
-                </span>
+<#include "/${frontTemplate}/common/newCommon/header.ftl"/>
+
+
+
+
+<div class="block clearfix">
+    <div class="container clearfix">
+        <div class="span8">
+            <div class="theamLine">
+                <h3>主题</h3>
             </div>
-        <#list model.data as group>
-            <div class="col-md-3">
-                <div class="group-detail">
-                    <div class="group-logo">
-                        <a href="${basePath}/group/detail/${group.id}">
-                            <img class="img-rounded" src="${basePath}${group.logo}" width="100px" height="100px"style="border-radius: 50%;border: 1px solid #e6e6e6;">
-                        </a>
-                    </div>
-                    <div class="group-info">
-                        <h4><strong><a href="${basePath}/group/detail/${group.id}">${group.name}</a></strong></h4>
-                        <p class="text-muted" title="${group.introduce}">
-                            <#if group.introduce?length &gt; 50>
-                                ${group.introduce?substring(0,50)}...
-                                <#else>
-                                ${group.introduce}
-                            </#if>
-                        </p>
-                        <small class="text-muted">${group.topicCount}篇文章 · ${group.fansCount}人关注 · ${group.topicComment}评论</small>
-                    </div>
-                </div>
+            <div class="theamContent">
+
+                <#list model.data as group>
+                        <div class="theamTerm">
+
+                            <a href="${basePath}/group/detail/${group.id}" class="theamTitle">${group.name}</a>
+                            <p>
+                                <span>${group.topicCount}</span>帖子<br />
+                                <span>${group.fansCount}</span>关注者
+                            </p>
+                        </div>
+                </#list>
             </div>
-        </#list>
         </div>
-        <ul class="pager pagination pagination-sm no-margin pull-right"
-            url="${basePath}/group/index"
-            currentPage="${model.page.pageNo}"
-            pageCount="${model.page.totalPage}">
-        </ul>
+        <div class="span4">
+            <div class="widget">
+                <h3>热门帖子</h3>
+                <@group_topic_list  sort='view_count' num=5 day=30; groupTopic>
+                    <#list groupTopicList as groupTopic>
+                        <div class="question-block">
+                            <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
+                            <div>
+                                <span>${groupTopic.viewCount}</span>
+                                <span class="answer">次查看</span>
+                            </div>
+                        </div>
+                    </#list>
+                </@group_topic_list>
+            </div>
+            <div class="fengeLine"></div>
+            <div class="widget">
+
+
+                <h3>热门文章</h3>
+                <@cms_article_list cid=0 sort='view_count' num=5 day=30; article>
+                    <#list articleList as article>
+                        <div class="question-block">
+                            <a href="${basePath}/article/detail/${article.id}">${article.title}</a>
+                        </div>
+                    </#list>
+                </@cms_article_list>
+            </div>
+            <div class="fengeLine"></div>
+            <div class="widget">
+                <h3>热门主题</h3>
+                <@group_list status=1 sort='topicCount' num=5 day=30; group>
+                    <#list groupList as group>
+                                <div class="tags">
+                                    <a href="${basePath}/group/detail/${group.id}">${group.name}</a>
+                                </div>
+                    </#list>
+                </@group_list>
+            </div>
+        </div>
     </div>
 </div>
-<#include "/${frontTemplate}/common/footer.ftl"/>
+
+
+
+
+
+
+
+
+
+
+<#include "/${frontTemplate}/common/newCommon/footer.ftl"/>
 <script type="text/javascript">
     $(function () {
         $(".pagination").jeesns_page("jeesnsPageForm");

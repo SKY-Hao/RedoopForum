@@ -10,7 +10,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
-    <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
+    <link href="${basePath}/res/new/css/groupCss/group/style.css" rel="stylesheet">
 
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/font-awesome.min.css" rel="stylesheet">
@@ -33,8 +33,11 @@
 </head>
 
 <body class="gray-bg">
-<#include "/member/common/header.ftl"/>
-<div class="wrapper wrapper-content">
+
+<#include "/member/common/newCommon/header.ftl"/>
+<div class="block clearfix">
+    <div class="container clearfix">
+        <div class="wrapper wrapper-content">
     <div class="member-banner" style="background-image: url(${basePath}/res/common/images/member_banner.png);">
         <div class="attempts"></div>
         <div class="container">
@@ -60,10 +63,13 @@
                             <a class="label label-primary member-follows" member-id="${member.id}">
                                 <i class="fa fa-heart-o"></i> 关注
                             </a>
+                            <a class="label label-primary" href="${basePath}/member/sendMessageBox?mid=${member.id}" target="_jeesnsOpen" title="私信" height="285px">
+                                <i class="fa fa-comments"></i> 私信
+                            </a>
                         </p>
                     </div>
                 </div>
-                <div class="right">
+                <div class="right" style="padding-right: 35px;">
                     <div class="follows">
                         <span>关注</span>
                         <a href="${basePath}/u/${member.id}/home/follows">${member.follows}</a>
@@ -84,13 +90,20 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container" style="width: 100%;">
         <div class="row">
             <div class="ibox">
                 <div class="ibox-content float-left">
                     <div class="col-sm-2">
                         <div class="float-e-margins">
                             <div class="feed-activity-list">
+                                <a href="${basePath}/member/message">
+                                    <div class="feed-element">
+                                        <div class="media-body">
+                                            私信
+                                        </div>
+                                    </div>
+                                </a>
                                 <a href="${basePath}/u/${member.id}">
                                     <div class="feed-element">
                                         <div class="media-body">
@@ -367,7 +380,9 @@
         </div>
     </div>
 </div>
-<#include "/member/common/footer.ftl"/>
+    </div>
+</div>
+<#include "/member/common/newCommon/footer.ftl"/>
 <script type="text/javascript">
     $(function () {
         $(".pagination").jeesns_page("jeesnsPageForm");

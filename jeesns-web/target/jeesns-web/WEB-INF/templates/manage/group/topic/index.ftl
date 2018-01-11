@@ -73,7 +73,7 @@
                                         <th>帖子标题</th>
                                         <th>创建时间</th>
                                         <th>状态</th>
-                                        <th width="50px">操作</th>
+                                        <th>操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -93,6 +93,17 @@
                                                     <span class="label label-success">已审核</span>
                                                 </a>
                                             </#if>
+                                        </td>
+                                        <td>
+                                            <a href="${managePath}/group/topic/edit/${topic.id}" target="_jeesnsOpen"
+                                               title="编辑文章" width="1000px" height="680px">
+                                                <span class="label label-warning"><i class="fa fa-edit green"></i></span>
+                                            </a>
+
+                                            <a class="marg-l-5" target="_jeesnsLink"
+                                               href="${managePath}/group/deleteTopic/${topic.id}" confirm="确定要删除帖子吗？">
+                                                <span class="label label-danger"><i class="fa fa-trash red"></i></span>
+                                            </a>
                                         </td>
                                     </tr>
                                 </#list>

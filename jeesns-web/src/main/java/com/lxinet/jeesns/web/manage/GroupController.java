@@ -4,8 +4,11 @@ import com.lxinet.jeesns.common.utils.MemberUtil;
 import com.lxinet.jeesns.core.annotation.Before;
 import com.lxinet.jeesns.core.dto.ResponseModel;
 import com.lxinet.jeesns.core.model.Page;
+import com.lxinet.jeesns.core.utils.*;
 import com.lxinet.jeesns.interceptor.AdminLoginInterceptor;
+import com.lxinet.jeesns.interceptor.UserLoginInterceptor;
 import com.lxinet.jeesns.model.cms.Article;
+import com.lxinet.jeesns.model.cms.ArticleCate;
 import com.lxinet.jeesns.model.group.Group;
 import com.lxinet.jeesns.model.group.GroupTopic;
 import com.lxinet.jeesns.model.member.Member;
@@ -28,6 +31,8 @@ import java.util.List;
 @Before(AdminLoginInterceptor.class)
 public class GroupController extends BaseController {
     private static final String MANAGE_FTL_PATH = "/manage/group/";
+    @Resource
+    private JeesnsConfig jeesnsConfig;
     @Resource
     private IGroupService groupService;
     @Resource
@@ -139,7 +144,7 @@ public class GroupController extends BaseController {
     }
 
     /**
-     * 后台   去添加帖子
+     * 后台   去添加群组问题帖子
      *       并查询群组列表
      * @param model
      * @return
@@ -154,6 +159,12 @@ public class GroupController extends BaseController {
     }
 
 
+    /**
+     * 后台保存群组问题帖子
+     * @param groupTopic
+     * @param bindingResult
+     * @return
+     */
     @RequestMapping(value="${managePath}/group/toTopicAdd/add",method = RequestMethod.POST)
     @ResponseBody
     public Object save(@Valid GroupTopic groupTopic, BindingResult bindingResult) {
@@ -161,12 +172,62 @@ public class GroupController extends BaseController {
             return new ResponseModel(-1,getErrorMessages(bindingResult));
         }
         Member loginMember = MemberUtil.getLoginMember(request);
+
         ResponseModel responseModel = groupTopicService.add(loginMember,groupTopic);
         if(responseModel.getCode() == 0){
             responseModel.setCode(3);
         }
         return responseModel;
     }
+
+    /**
+     * 后台 删除帖子
+     * @param id
+     * @return
+     */
+    @RequestMapping(value="${managePath}/group/deleteTopic/{id}",method = RequestMethod.GET)
+    @ResponseBody
+    public Object deleteTopic(@PathVariable("id") int id) {
+        Member loginMember = MemberUtil.getLoginMember(request);
+        ResponseModel responseModel = groupTopicService.deleteTopic(request, loginMember, id);
+        return responseModel;
+    }
+
+
+    /**
+     * 后台修改贴子
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value="${managePath}/group/topic/edit/{id}",method = RequestMethod.GET)
+    public String edit(@PathVariable("id") Integer id, Model model){
+        Member loginMember = MemberUtil.getLoginMember(request);
+        List<Group> groupList = groupService.groupList();
+        model.addAttribute("groupList",groupList);
+        GroupTopic topic = groupTopicService.findById(id,loginMember);
+        model.addAttribute("topic",topic);
+        return MANAGE_FTL_PATH + "topic/updateTopic";
+    }
+
+
+    @RequestMapping(value="${managePath}/group/topic/update",method = RequestMethod.POST)
+    @ResponseBody
+    public Object update(@Valid GroupTopic groupTopic,BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            new ResponseModel(-1,getErrorMessages(bindingResult));
+        }
+        if(groupTopic.getId() == null){
+            return new ResponseModel(-2);
+        }
+        Member loginMember = MemberUtil.getLoginMember(request);
+        ResponseModel responseModel = groupTopicService.update(loginMember,groupTopic);
+        if(responseModel.getCode() == 0){
+            responseModel.setCode(3);
+        }
+        return responseModel;
+    }
+
 
 
 }

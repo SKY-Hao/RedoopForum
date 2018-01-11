@@ -173,6 +173,11 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
             e.printStackTrace();
         }
         if(archiveService.update(member,archive)){
+            //更新群组
+            findGroupTopic.setGroupstatus(groupTopic.getGroupstatus());
+            findGroupTopic.setGroupId(groupTopic.getGroupId());
+            groupTopicDao.update(groupTopic);
+
             return new ResponseModel(0,"更新成功");
         }
         return new ResponseModel(-1,"更新失败");
@@ -445,7 +450,9 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         if(archiveService.save(member,archive)){
             //保存帖子
             groupTopic.setArchiveId(archive.getArchiveId());
+
             int result = groupTopicDao.save(groupTopic);
+
             if(result == 1){//保存成功之后
                 //@会员处理并发送系统消息
                 messageService.atDeal(member.getId(),groupTopic.getContent(), AppTag.CMS, MessageType.CMS_ARTICLE_REFER,groupTopic.getId());
@@ -497,5 +504,48 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         ResponseModel model = new ResponseModel(0,page);
         model.setData(list);
         return model;
+    }
+
+
+    /**
+     * 后台删除帖子
+     *
+     * @param request
+     * @param loginMember
+     * @param id
+     * @return
+     */
+    @Override
+    public ResponseModel deleteTopic(HttpServletRequest request, Member loginMember, int id) {
+        if(loginMember == null){
+            return new ResponseModel(-1,"请先登录");
+        }
+        GroupTopic groupTopic = this.findById(id,loginMember);
+        if (groupTopic == null){
+            return new ResponseModel(-1,"帖子不存在");
+        }
+        Group group = groupService.findById(groupTopic.getGroup().getId());
+        if(group == null){
+            return new ResponseModel(-1,"出现异常");
+        }
+        String groupManagers = group.getManagers();
+        String[] groupManagerArr = groupManagers.split(",");
+        boolean isManager = false;
+        for (String manager : groupManagerArr){
+            if(loginMember.getId().intValue() == Integer.parseInt(manager)){
+                isManager = true;
+            }
+        }
+        if(loginMember.getId().intValue() == groupTopic.getMember().getId().intValue() || loginMember.getIsAdmin() > 0 ||
+                isManager || loginMember.getId().intValue() == group.getCreator().intValue()){
+            ResponseModel responseModel = this.delete(loginMember,id);
+            if(responseModel.getCode() > 0){
+                responseModel.setCode(1);
+               // responseModel.setUrl(request.getContextPath() + "/index");
+            }
+            return responseModel;
+        }
+        return new ResponseModel(-1,"权限不足");
+
     }
 }

@@ -89,4 +89,13 @@ public interface IGroupTopicService {
      * @return
      */
     ResponseModel solrList(int status, Page page, String key, Integer memberId);
+
+    /**
+     * 后台删除帖子
+     * @param request
+     * @param loginMember
+     * @param id
+     * @return
+     */
+    ResponseModel deleteTopic(HttpServletRequest request, Member loginMember, int id);
 }

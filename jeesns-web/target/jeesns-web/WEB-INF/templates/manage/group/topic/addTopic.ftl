@@ -74,6 +74,14 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="firstname" class="col-sm-1 control-label" style="width: 100px;">帖子类型</label>
+                        <div class="col-sm-8">
+                            <input type="radio"  id="groupsStatus" name="groupstatus" value="0" checked>问题帖子
+                            <input type="radio"  id="groupsStatus" name="groupstatus" value="1">文章帖子
+                            <span style="color: red;font-weight: bolder;font-family: serif;">*请选择一个帖子类型</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="firstname" class="col-sm-1 control-label">描述</label>
                         <div class="col-sm-8">
                             <textarea class="form-control" rows="3" name="description" alt="描述"></textarea>
