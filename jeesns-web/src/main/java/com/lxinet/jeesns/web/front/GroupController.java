@@ -349,6 +349,9 @@ public class GroupController extends BaseController {
             return judgeLoginJump;
         }
         GroupTopic groupTopic = groupTopicService.findById(topicId,loginMember);
+      //  System.out.println("=find="+groupTopic);
+       // System.out.println("=findtopic="+groupTopic.getGroup().getId());
+
         if(groupTopic == null){
             return jeesnsConfig.getFrontTemplate() + ErrorUtil.error(model,-1004, Const.INDEX_ERROR_FTL_PATH);
         }

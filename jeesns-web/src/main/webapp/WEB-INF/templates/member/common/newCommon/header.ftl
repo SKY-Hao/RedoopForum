@@ -28,13 +28,13 @@
                     </div>
                         <script>
 
-                           /*$(function () {
+                           $(function () {
                                $('#down').mouseover(function(){
                                    $('#aa').show();
                                }).mouseout(function(){
                                    $('#aa').hide();
                                });
-                           })*/
+                           })
                         </script>
 
                 </#if>

@@ -34,9 +34,9 @@
   </delete>
   <insert id="save" parameterType="Archive" useGeneratedKeys="true" keyProperty="archiveId">
     insert into tbl_archive (title, member_id, create_time, description, keywords, view_rank,
-      view_count, writer, source, pub_time, thumbnail, content)
+      view_count, writer, source, pub_time, thumbnail, content,htmlcontent)
     values (#{title}, #{memberId}, now(), #{description}, #{keywords}, #{viewRank},
-      #{viewCount}, #{writer}, #{source}, now(), #{thumbnail}, #{content})
+      #{viewCount}, #{writer}, #{source}, now(), #{thumbnail}, #{content},#{htmlcontent})
   </insert>
   <update id="updateViewCount" parameterType="java.lang.Integer">
     update tbl_archive set view_count=view_count+1 where archive_id=${archiveId}
@@ -53,6 +53,7 @@
       <if test="thumbnail != null">thumbnail = #{thumbnail},</if>
       <if test="canReply != null">can_reply = #{canReply},</if>
       <if test="content != null">content = #{content},</if>
+      <if test="htmlcontent != null">htmlcontent = #{htmlcontent},</if>
       <if test="viewCount != null">view_count = #{viewCount},</if>
     </set>
     where archive_id = #{archiveId}

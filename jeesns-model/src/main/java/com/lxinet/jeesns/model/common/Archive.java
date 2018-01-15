@@ -62,6 +62,9 @@ public class Archive implements Serializable {
     @NotBlank(message = "文章内容不能为空")
     private String content;     //内容
 
+
+    private String htmlcontent;     //内容
+
     //喜欢数量
     private Integer favor;
 
@@ -74,6 +77,14 @@ public class Archive implements Serializable {
 
     public void setArchiveId(Integer archiveId) {
         this.archiveId = archiveId;
+    }
+
+    public String getHtmlcontent() {
+        return htmlcontent;
+    }
+
+    public void setHtmlcontent(String htmlcontent) {
+        this.htmlcontent = htmlcontent;
     }
 
     public String getTitle() {

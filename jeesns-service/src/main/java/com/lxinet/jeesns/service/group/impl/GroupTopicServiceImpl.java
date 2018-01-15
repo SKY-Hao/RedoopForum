@@ -114,19 +114,19 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
             int result = groupTopicDao.save(groupTopic);
             if(result == 1){
                 //@会员处理并发送系统消息
-                messageService.atDeal(member.getId(),groupTopic.getContent(), AppTag.GROUP, MessageType.GROUP_TOPIC_REFER,groupTopic.getId());
+             //   messageService.atDeal(member.getId(),groupTopic.getContent(), AppTag.GROUP, MessageType.GROUP_TOPIC_REFER,groupTopic.getId());
                 //群组发帖奖励
-                scoreDetailService.scoreBonus(member.getId(), ScoreRuleConsts.GROUP_POST, groupTopic.getId());
-                actionLogService.save(member.getCurrLoginIp(),member.getId(), ActionUtil.POST_GROUP_TOPIC,"", ActionLogType.GROUP_TOPIC.getValue(),groupTopic.getId());
+             //  scoreDetailService.scoreBonus(member.getId(), ScoreRuleConsts.GROUP_POST, groupTopic.getId());
+              //  actionLogService.save(member.getCurrLoginIp(),member.getId(), ActionUtil.POST_GROUP_TOPIC,"", ActionLogType.GROUP_TOPIC.getValue(),groupTopic.getId());
                 if (groupTopic.getStatus() == 0){
-                    System.out.println("保存状态==="+groupTopic.getStatus());
-                    System.out.println("贴子ID==="+groupTopic.getId());
-                    System.out.println("保存文档ID==="+archive.getArchiveId());
+                    //System.out.println("保存状态==="+groupTopic.getStatus());
+                    //System.out.println("贴子ID==="+groupTopic.getId());
+                   // System.out.println("保存文档ID==="+archive.getArchiveId());
                     return new ResponseModel(2,"帖子发布成功，请等待管理员审核通过","../detail/"+groupTopic.getGroupId());
                 }
-                System.out.println("保存状态==="+groupTopic.getStatus());
-                System.out.println("贴子ID==="+groupTopic.getId());
-                System.out.println("保存文档ID==="+archive.getArchiveId());
+               // System.out.println("保存状态==="+groupTopic.getStatus());
+               // System.out.println("贴子ID==="+groupTopic.getId());
+               // System.out.println("保存文档ID==="+archive.getArchiveId());
                 return new ResponseModel(2,"帖子发布成功","../topic/"+groupTopic.getId());
             }
 
@@ -157,7 +157,18 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
     @Override
     @Transactional
     public ResponseModel update(Member member,GroupTopic groupTopic) {
+
+       // System.out.println("==信息=="+groupTopic);
+
+       // System.out.println("=====第一个群组ID===="+groupTopic.getId());
+
         GroupTopic findGroupTopic = this.findById(groupTopic.getId(),member);
+
+      //  System.out.println("=====第二个群组ID===="+groupTopic.getGroupId());
+
+     //   System.out.println("=====群组ID===="+findGroupTopic.getGroup().getId());
+
+
         if(findGroupTopic == null){
             return new ResponseModel(-2);
         }
@@ -165,6 +176,9 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
             return new ResponseModel(-1,"没有权限");
         }
         groupTopic.setArchiveId(findGroupTopic.getArchiveId());
+        groupTopic.setViewCount(findGroupTopic.getViewCount());
+        System.out.println("修改帖子后的查看次数===="+findGroupTopic.getViewCount());
+
         Archive archive = new Archive();
         try {
             //复制属性值
@@ -175,8 +189,10 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         if(archiveService.update(member,archive)){
             //更新群组
             findGroupTopic.setGroupstatus(groupTopic.getGroupstatus());
-            findGroupTopic.setGroupId(groupTopic.getGroupId());
-            groupTopicDao.update(groupTopic);
+            findGroupTopic.setGroupId(findGroupTopic.getGroup().getId());
+            groupTopicDao.update(findGroupTopic);
+            System.out.println("====修改帖子后的帖子所属群组ID===="+findGroupTopic.getGroup().getId());
+
 
             return new ResponseModel(0,"更新成功");
         }

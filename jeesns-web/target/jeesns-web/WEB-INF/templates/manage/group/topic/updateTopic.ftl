@@ -21,10 +21,10 @@
     <script src="${basePath}/res/common/js/jquery.form.js"></script>
     <script src="${basePath}/res/common/js/bootstrap.min.js"></script>
     <script src="${basePath}/res/manage/js/app.js"></script>
-    <script src="${basePath}/res/plugins/webuploader/webuploader.min.js"></script>
+   <#-- <script src="${basePath}/res/plugins/webuploader/webuploader.min.js"></script>-->
     <script src="${basePath}/res/plugins/layer/layer.js"></script>
     <script src="${basePath}/res/common/js/jeesns.js"></script>
-    <script src="${basePath}/res/plugins/ckeditor/ckeditor.js"></script>
+    <#--<script src="${basePath}/res/plugins/ckeditor/ckeditor.js"></script>
     <script type="text/javascript">
         $(function () {
             CKEDITOR.replace('content');
@@ -32,7 +32,11 @@
         var basePath = "${basePath}";
         var uploadServer = "${managePath}/uploadImage";
     </script>
-    <script src="${basePath}/res/plugins/webuploader/upload.js"></script>
+    <script src="${basePath}/res/plugins/webuploader/upload.js"></script>-->
+
+    <link href="${basePath}/res/plugins/makedown/css/editormd.min.css" rel="stylesheet">
+    <script src="${basePath}/res/plugins/makedown/js/editormd.min.js"></script>
+
 </head>
 <body class="hold-transition">
 <div class="wrapper">
@@ -58,11 +62,11 @@
                             <input type="text" class="form-control" id="title" name="title" placeholder="标题" data-type="require" value="${topic.title}">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <#--<div class="form-group">
                         <label for="firstname" class="col-sm-1 control-label">缩略图</label>
                         <div class="col-sm-10">
                             <div id="uploader">
-                                <!--用来存放文件信息-->
+                                <!--用来存放文件信息&ndash;&gt;
                                 <input type="hidden" id="thumbnail" name="thumbnail" value="${topic.thumbnail}">
                                 <div id="preview" class="uploader-list">
                                 <#if topic.thumbnail?? && topic.thumbnail!=''>
@@ -77,7 +81,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="form-group">
                         <label for="firstname" class="col-sm-1 control-label" style="width: 100px;">帖子类型</label>
@@ -98,10 +102,13 @@
                             <textarea class="form-control" rows="3" name="description">${topic.description}</textarea>
                         </div>
                     </div>
+
+
                     <div class="form-group">
                         <label for="firstname" class="col-sm-1 control-label">内容</label>
-                        <div class="col-sm-10">
-                            <textarea class="ckeditor" cols="80" id="content" name="content" rows="10">${topic.content}</textarea>
+                        <div class="col-sm-10" id="editormd-content">
+                            <textarea class="editormd-markdown-textarea" cols="80" name="content" rows="3">${topic.content}</textarea>
+                            <textarea class="editormd-html-textarea" cols="80" name="htmlcontent" rows="3">${topic.htmlcontent}</textarea>
                         </div>
                     </div>
 
@@ -135,3 +142,22 @@
 </div>
 </body>
 </html>
+<script>
+
+    $(function(){
+        editormd({
+            id:"editormd-content",
+            width:"80%",
+            height: 300,
+            syncScrolling : "single",
+            path: "${basePath}/res/plugins/makedown/lib/",
+            imageUpload : true,
+            imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL : "${basePath}/upload/uploadfile",
+            emoji:true,
+            previewTheme : "dark",
+            saveHTMLToTextarea : true
+        });
+    });
+
+</script>

@@ -101,6 +101,7 @@ public class ArchiveServiceImpl implements IArchiveService {
         findArchive.setTitle(archive.getTitle());
         findArchive.setThumbnail(archive.getThumbnail());
         findArchive.setContent(archive.getContent());
+        findArchive.setHtmlcontent(archive.getHtmlcontent());
         findArchive.setDescription(archive.getDescription());
         findArchive.setKeywords(archive.getKeywords());
         //普通会员

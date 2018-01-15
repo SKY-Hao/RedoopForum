@@ -59,7 +59,7 @@
   <update id="essence">
     UPDATE tbl_group_topic SET is_essence = #{essence} WHERE id = #{id}
   </update>
-  <update id="update">
+  <update id="update" parameterType="GroupTopic">
     UPDATE tbl_group_topic SET group_id = #{groupId} ,groupstatus=#{groupstatus} WHERE id = #{id}
   </update>
 

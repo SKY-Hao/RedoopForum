@@ -97,13 +97,6 @@
 
 
 
-
-
-
-
-
-
-
 <#include "/${frontTemplate}/common/newCommon/footer.ftl"/>
 <script type="text/javascript">
     $(function () {

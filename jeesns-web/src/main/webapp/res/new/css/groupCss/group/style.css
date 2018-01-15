@@ -93,7 +93,7 @@ a.aBtn:hover,.aBtn:hover{ background:#b31f23;}
 .navFR a.loginBtn:hover{ background:#d92d3d;}
 
 #down{float:right; width:150px; height: auto; margin-top:10px; position: relative;}
-#aa{display:nonse;    z-index: 1;border-radius: 4%; position:absolute; top:31px; left:41px;height: 160px; background:#fff; border:1px solid #dedede;}
+#aa{display:none;    z-index: 1;border-radius: 4%; position:absolute; top:31px; left:41px;height: 200px; background:#fff; border:1px solid #dedede;}
 
 #aa ul li{margin-top: -11px; margin-bottom: -20px;}
 

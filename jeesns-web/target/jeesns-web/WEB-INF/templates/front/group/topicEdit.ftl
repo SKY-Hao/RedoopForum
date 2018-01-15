@@ -22,7 +22,7 @@
     <script src="${basePath}/res/common/js/zui.min.js"></script>
     <script src="${basePath}/res/plugins/layer/layer.js"></script>
     <script src="${basePath}/res/front/js/jeesns.js"></script>
-    <script src="${basePath}/res/plugins/webuploader/webuploader.min.js"></script>
+   <#-- <script src="${basePath}/res/plugins/webuploader/webuploader.min.js"></script>
     <script src="${basePath}/res/plugins/ckeditor/ckeditor.js"></script>
     <script type="text/javascript">
         var basePath = "${basePath}";
@@ -31,7 +31,13 @@
             CKEDITOR.replace('content');
         });
     </script>
-    <script src="${basePath}/res/plugins/webuploader/upload.js"></script>
+    <script src="${basePath}/res/plugins/webuploader/upload.js"></script>-->
+
+
+    <link href="${basePath}/res/plugins/makedown/css/editormd.min.css" rel="stylesheet">
+    <script src="${basePath}/res/plugins/makedown/js/editormd.min.js"></script>
+
+
 </head>
 <body class="gray-bg">
 <#include "/${frontTemplate}/common/header.ftl"/>
@@ -47,11 +53,11 @@
                             <input type="text" class="form-control" id="title" name="title" placeholder="标题" data-type="require" value="${groupTopic.title}">
                         </div>
                     </div>
-                    <div class="form-group">
+                   <#-- <div class="form-group">
                         <label for="firstname" class="col-sm-1 control-label">缩略图</label>
                         <div class="col-sm-10">
                             <div id="uploader">
-                                <!--用来存放文件信息-->
+                                <!--用来存放文件信息&ndash;&gt;
                                 <input type="hidden" id="thumbnail" name="thumbnail" value="${groupTopic.thumbnail}">
                                 <div id="preview" class="uploader-list">
                                 <#if groupTopic.thumbnail??>
@@ -66,11 +72,31 @@
                                 </div>
                             </div>
                         </div>
+                    </div>-->
+                    <div class="form-group">
+                        <label for="firstname" class="col-sm-1 control-label" style="width: 100px;">帖子类型</label>
+                        <div class="col-sm-8">
+                            <label><input type="radio" value="0" name="groupstatus"
+                                          <#if groupTopic.groupstatus==0>checked</#if>> <i></i>
+                                问题帖子</label>
+                            <label><input type="radio" value="1" name="groupstatus"
+                                          <#if groupTopic.groupstatus==1>checked</#if>> <i></i>
+                                文章帖子</label>
+                            <span style="color: red;font-weight: bolder;font-family: serif;">*请选择一个帖子类型</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">描述</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" rows="3" name="description" alt="描述">${groupTopic.description}</textarea>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="firstname" class="col-sm-1 control-label">内容</label>
-                        <div class="col-sm-10">
-                            <textarea class="ckeditor" cols="80" id="content" name="content" rows="3">${groupTopic.content}</textarea>
+                        <div class="col-sm-10" id="editormd-content">
+                            <textarea class="editormd-markdown-textarea" cols="80" name="content" rows="3">${groupTopic.content}</textarea>
+                            <textarea class="editormd-html-textarea" cols="80" name="htmlcontent" rows="3">${groupTopic.htmlcontent}</textarea>
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -87,3 +113,22 @@
 <#include "/${frontTemplate}/common/footer.ftl"/>
 </body>
 </html>
+<script>
+
+    $(function(){
+        editormd({
+            id:"editormd-content",
+            width:"80%",
+            height: 300,
+            syncScrolling : "single",
+            path: "${basePath}/res/plugins/makedown/lib/",
+            imageUpload : true,
+            imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL : "${basePath}/upload/uploadfile",
+            emoji:true,
+            previewTheme : "dark",
+            saveHTMLToTextarea : true
+        });
+    });
+
+</script>

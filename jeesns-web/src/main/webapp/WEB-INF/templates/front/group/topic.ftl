@@ -98,7 +98,7 @@
                     </@ads>-->
                     <#--帖子内容-->
                     <section class="content">
-                        ${groupTopic.content}
+                        ${groupTopic.htmlcontent}
                     </section>
                     <#--选择喜欢不喜欢-->
                     <div class="text-center">

@@ -37,13 +37,13 @@
 			<groupId>com.lxinet</groupId>
 			<artifactId>jeesns-core</artifactId>
 			<version>1.2</version>
-			<scope>compile</scope>
+
 		</dependency>
 		<dependency>
 			<groupId>com.lxinet</groupId>
 			<artifactId>jeesns-model</artifactId>
 			<version>1.2</version>
-			<scope>compile</scope>
+
 		</dependency>
 		<dependency>
 			<groupId>com.lxinet</groupId>
@@ -54,7 +54,7 @@
 			<groupId>com.lxinet</groupId>
 			<artifactId>jeesns-service</artifactId>
 			<version>1.2</version>
-			<scope>compile</scope>
+
 		</dependency>
 
 
