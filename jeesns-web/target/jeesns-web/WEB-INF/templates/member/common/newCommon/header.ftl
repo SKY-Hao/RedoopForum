@@ -16,7 +16,9 @@
                     <div id="aa">
                         <ul class="dropdown-menus" style="margin-left: -20px;">
                             <li id="xq"><a href="${basePath}/member/" style=" margin-right: 16px;">个人中心</a></li>
+<#--
                             <li id="xq"><a href="${basePath}/member/systemMessage" style=" margin-right: 16px;">系统信息 ${(systemUnReadMessageNum > 0)?string("("+systemUnReadMessageNum+")","")}</a></li>
+-->
                             <li id="xq"><a href="${basePath}/member/message" style=" margin-right: 40px;">私信 ${(unReadMessageNum > 0)?string("("+unReadMessageNum+")","")}</a></li>
                             <li id="xq"><a href="${basePath}/member/editInfo" style=" margin-right: 40px;">设置</a></li>
                             <#if loginUser?? && loginUser.isAdmin &gt; 0>
@@ -28,13 +30,13 @@
                     </div>
                         <script>
 
-                           /*$(function () {
+                           $(function () {
                                $('#down').mouseover(function(){
                                    $('#aa').show();
                                }).mouseout(function(){
                                    $('#aa').hide();
                                });
-                           })*/
+                           })
                         </script>
 
                 </#if>
@@ -44,9 +46,10 @@
         <div class="navFL">
             <img src="${basePath}/res/new/images/mainLog.png" />
             <div class="form">
-                <form >
-                    <input type="text" class="search-query" placeholder="查找主题、帖子" />
-                    <input type="button" class="btn btn-primary" />
+                <form action="${basePath}/group/solrList/" method="get">
+
+                    <input type="text" class="search-query" name="key" placeholder="查找主题、帖子" />
+                    <#--<input type="submit" class="btn btn-primary" />-->
                 </form>
             </div>
         </div>

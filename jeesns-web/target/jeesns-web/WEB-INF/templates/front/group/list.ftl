@@ -28,7 +28,7 @@
 </head>
 
 <body class="gray-bg">
-<#include "/index/common/header.ftl"/>
+<#include "/${frontTemplate}/common/newCommon/header.ftl"/>
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="container">
         <div class="row">
@@ -72,7 +72,7 @@
     </div>
 </div>
 
-<#include "/index/common/footer.ftl"/>
+<#include "/${frontTemplate}/common/newCommon/footer.ftl"/>
     <script type="text/javascript">
         $(function () {
             $(".pagination").jeesns_page("jeesnsPageForm");

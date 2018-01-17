@@ -44,11 +44,11 @@
                             <input type="text" class="form-control" id="name" name="name" placeholder="名称" data-type="require">
                         </div>
                     </div>
-                    <div class="form-group">
+                   <#-- <div class="form-group">
                         <label class="col-sm-1 control-label">缩略图</label>
                         <div class="col-sm-10">
                             <div id="uploader" class="wu-example">
-                                <!--用来存放文件信息-->
+                                <!--用来存放文件信息&ndash;&gt;
                                 <input type="hidden" id="thumbnail" name="logo">
                                 <div id="preview" class="uploader-list"></div>
                                 <div id="imagesList" class="uploader-list"></div>
@@ -56,6 +56,12 @@
                                     <div id="picker">选择文件</div>
                                 </div>
                             </div>
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">缩略图</label>
+                        <div class="col-sm-8">
+                            <input type="file" class="form-control" style="height: 38px;" id="logo" name="logo">
                         </div>
                     </div>
                     <div class="form-group">

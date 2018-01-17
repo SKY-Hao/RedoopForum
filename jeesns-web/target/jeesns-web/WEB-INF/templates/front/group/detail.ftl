@@ -10,8 +10,11 @@
 
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
-    <link href="${basePath}/res/common/css/zui.min.css" rel="stylesheet">
-    <link href="${basePath}/res/front/css/app.css" rel="stylesheet">
+    <link href="${basePath}/res/new/css/groupCss/group/style.css" rel="stylesheet">
+    <link href="${basePath}/res/new/css/pageCss/page.css" rel="stylesheet">
+    <link href="${basePath}/res/new/css/groupCss/group/topic.css" rel="stylesheet">
+
+
     <!--[if lt IE 9]>
     <script src="${basePath}/res/common/js/html5shiv.min.js"></script>
     <script src="${basePath}/res/common/js/respond.min.js"></script>
@@ -24,21 +27,34 @@
     <script src="${basePath}/res/common/js/extendPagination.js"></script>
 </head>
 <body class="gray-bg">
-<#include "/${frontTemplate}/common/header.ftl"/>
-<div class="container">
-    <div class="main-content">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="group white-bg">
-                    <div class="group-logo">
-                        <img alt="${group.name}" src="${basePath}${group.logo}" width="80px" height="80px"style="border-radius: 50%;border: 1px solid #e6e6e6;"/>
-                    </div>
-                    <div class="group-detail">
-                        <p>
-                            <span>
-                                <strong>${group.name}</strong>
-                            </span>
-                            <span class="text-right">
+<#include "/${frontTemplate}/common/newCommon/header.ftl"/>
+
+
+<div class="block clearfix">
+    <div class="container clearfix">
+        <div class="span8">
+    <#list group as group>
+            <div class="theamInfo">
+                <div class="title">
+                    <img src="${basePath}${group.logo}" style="display:inline-block; float:left; width:50px;"/>
+                    <p style=" margin-left:60px; font-size:20px; line-height:50px;">${group.name}</p>
+                </div>
+                <p>${group.introduce}</p>
+            </div>
+    </#list>
+
+            <div class="theamLine">
+                <h3>
+                    <a href="/">所有</a></h3>
+                <h3><a href="${basePath}/group/solrWenTi" style="margin: 0 10px;">问题</a></h3>
+                <h3><a href="${basePath}/group/solrWenZhang">文章</a></h3>
+            </div>
+            <div class="TermCon">
+
+                <div class="termNum">
+                    <a href="${basePath}/group/post/${group.id}" class="publishBtn">发布</a>
+                   <#-- <span>28271 篇结果</span>-->
+                    <span class="text-right">
                                 <#if isfollow == true>
                                     <a title="取消关注" href="${basePath}/group/nofollow/${group.id}"
                                        target="_jeesnsLink"><i class="icon-minus"></i> 取消关注</a>
@@ -46,110 +62,115 @@
                                     <a title="添加关注" href="${basePath}/group/follow/${group.id}" target="_jeesnsLink"><i
                                             class="icon-plus"></i> 关注</a>
                                 </#if>
-                                <#if loginUser?? && loginUser.id == group.creator>
-                                   . <a href="${basePath}/group/edit/${group.id}">编辑</a>
-                                </#if>
-                                <#if isManager == 1>
-                                   . <a href="${basePath}/group/auditList/${group.id}">审核帖子</a>
-                                </#if>
                             </span>
-                        </p>
-                        <p>${model.page.totalCount}帖子 · ${groupFansList?size}关注</p>
-                        <p><a href="${basePath}/u/${group.creatorMember.id}">${group.creatorMember.name}</a>
-                            创建于${group.createTime?string("yyyy-MM-dd")}</p>
-                    </div>
-                    <div class="group-introduce">
-                    ${group.introduce!''}
-                    </div>
+
                 </div>
-                <@ads id=2>
-                    <#include "/tp/ad.ftl"/>
-                </@ads>
-                <div class="panel group-topic-list no-border">
-                    <div class="panel-heading">
-                        全部
-                        <span class="pull-right">
-                            <a class="btn btn-primary m-t-n4" href="${basePath}/group/post/${group.id}">发帖</a>
+            <#list model.data as groupTopic>
+                <div class="listItem">
+                    <!--鼠标滑过显示-->
+                <#-- <div class="tagTips" style="display: none">
+                     <img src="images/face.png" />
+                     <p class="tipsTitle"><a href="#">Hadoop</a></p>
+                     <div class="numCounts">
+                         <p><span>124</span><br />关注者</p>
+                         <p><span>124</span><br />问题</p>
+                         <p class="last"><span>1204</span><br />解答</p>
+                     </div>
+                     <a href="#" class="addBtn">+关注</a>
+                     <div class="tagInfo">Since its incubation in 2008, Apache Hive is considered the defacto standard for interactive SQL queries over petabytes of data in Hadoop.</div>
+                 </div>-->
+                    <h4>
+                        <span>
+                            <#if groupTopic.groupstatus == 0>
+                                问题
+                            </#if>
+                            <#if groupTopic.groupstatus == 1>
+                                文章
+                            </#if>
+
                         </span>
+                        <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
+                    </h4>
+                    <div class="articleInfo">
+
+                        <span class="tags">
+                            <a href="${basePath}/group/">${groupTopic.group.name}</a>
+                        </span>
+                        <p>
+
+                        </p>
+                    <#--<p>1小时前</p>-->
+                        <p><a href="#">创建人:${groupTopic.member.name}</a></p>
                     </div>
-                    <div class="panel-body">
-                        <div class="items">
-                        <#list model.data as topic>
-                            <div class="item">
-                                <div class="item-content">
-                                    <div class="media pull-left">
-                                        <img src="${basePath}${topic.member.avatar}" class="img-circle"
-                                             alt="${topic.member.name}" width="50px" height="50px">
-                                    </div>
-                                    <div class="text">
-                                        <p>
-                                        <h4>
-                                            <a href="${basePath}/group/topic/${topic.id}">${topic.title}</a>
-                                        <#if topic.isTop==1>
-                                            <span class="label label-badge label-primary">置顶</span>
-                                        <#elseif topic.isTop==2>
-                                            <span class="label label-badge label-success">超级置顶</span>
-                                        </#if>
-                                        <#if topic.isEssence==1>
-                                            <span class="label label-badge label-danger">精华</span>
-                                        </#if>
-                                        </h4>
-                                        </p>
-                                        <p>
-                                            <a href="${basePath}/group/topic/${topic.id}" class="text-muted">
-                                                <i class="icon-eye-open"></i>
-                                                ${topic.viewCount}
-                                            </a> &nbsp;
-                                            <a href="${basePath}/group/topic/${topic.id}" class="text-muted">
-                                                <i class="icon-wechat"></i>
-                                                ${topic.topicComment} 条评论
-                                            </a> &nbsp;
-                                            <span class="text-muted">${topic.createTime?string('yyyy-MM-dd HH:mm')}</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </#list>
-                        </div>
+                    <div class="counts">
+                        <a class="discu on" title="评论">${groupTopic.topicComment}</a>
+                        <a class="like" title="喜欢">${groupTopic.favor}</a>
+                        <a class="views" title="阅读">${groupTopic.viewCount}</a>
                     </div>
-                    <ul class="pager pagination pagination-sm no-margin pull-right"
-                        url="${basePath}/group/detail/${group.id}"
-                        currentPage="${model.page.pageNo}"
-                        pageCount="${model.page.totalPage}">
-                    </ul>
                 </div>
+
+            </#list>
+
+
+                <ul class="pager pagination pagination-sm no-margin pull-right"
+                    url="${basePath}/"
+                    currentPage="${model.page.pageNo}"
+                    pageCount="${model.page.totalPage}" style="margin-top: 0px;float: right;">
+                </ul>
+
             </div>
-            <div class="col-md-4 float-left">
-                <div class="panel group-detail-fans">
-                    <div class="panel-heading">
-                        粉丝(${groupFansList?size})
-                    </div>
-                    <div class="panel-body list">
-                        <#list groupFansList as groupFans>
-                        <div class="fan">
-                            <div class="avatar">
-                                <a href="${basePath}/u/${groupFans.member.id}" target="_blank">
-                                    <img class="img-circle" src="${basePath}${groupFans.member.avatar}" width="50px"
-                                         height="50px"/>
-                                </a>
-                            </div>
-                            <div class="name">
-                                <a href="${basePath}/u/${groupFans.member.id}" target="_blank">
-                                    ${groupFans.member.name}
-                                </a>
-                            </div>
-                        </div>
-                        </#list>
+
+
+
+        </div>
+
+    <#--热门的帖子文章-->
+        <div class="span4" style="margin-top:45px;">
+
+            <div class="widget">
+
+                <h3>热门问题</h3>
+            <#list byGroupStatusList as groupTopic>
+                <div class="question-block">
+                    <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
+                    <div>
+                        <span class="answer">点击：</span>
+                        <span>${groupTopic.viewCount}</span>
                     </div>
                 </div>
-                <@ads id=1>
-                    <#include "/tp/ad.ftl"/>
-                </@ads>
+            </#list>
+            </div>
+            <div class="fengeLine"></div>
+            <div class="widget">
+                <h3>热门文章</h3>
+            <#list byGroupStatus as groupTopic>
+                <div class="question-block">
+                    <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
+                    <div>
+                        <span class="answer">点击：</span>
+                        <span>${groupTopic.viewCount}</span>
+                    </div>
+                </div>
+            </#list>
+            </div>
+            <div class="fengeLine"></div>
+            <div class="widget">
+                <h3>热门主题</h3>
+            <@group_list status=1 sort='topicCount' num=5 day=30; group>
+                <#list groupList as group>
+                    <div class="tags">
+                        <a href="${basePath}/group/detail/${group.id}">${group.name}</a>
+                    </div>
+                </#list>
+            </@group_list>
             </div>
         </div>
     </div>
 </div>
-<#include "/${frontTemplate}/common/footer.ftl"/>
+
+
+
+<#include "/${frontTemplate}/common/newCommon/footer.ftl"/>
 <script type="text/javascript">
     $(function () {
         $(".pagination").jeesns_page("jeesnsPageForm");

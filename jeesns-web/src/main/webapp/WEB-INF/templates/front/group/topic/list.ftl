@@ -2,15 +2,16 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>红象云腾社区</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><#if articleCate??>${articleCate.name}<#else>所有帖子列表</#if></title>
     <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
-    <link href="${basePath}/res/common/css/zui.min.css" rel="stylesheet">
-    <link href="${basePath}/res/front/css/app.css" rel="stylesheet">
+    <link href="${basePath}/res/new/css/groupCss/group/style.css" rel="stylesheet">
+    <link href="${basePath}/res/new/css/pageCss/page.css" rel="stylesheet">
+
     <!--[if lt IE 9]>
     <script src="${basePath}/res/common/js/html5shiv.min.js"></script>
     <script src="${basePath}/res/common/js/respond.min.js"></script>
@@ -23,97 +24,144 @@
     <script src="${basePath}/res/common/js/extendPagination.js"></script>
 </head>
 <body class="gray-bg">
-<#include "/${frontTemplate}/common/header.ftl"/>
-<div class="container">
-    <div class="main-content">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="items">
-                   <#-- &lt;#&ndash;文章列表    左侧&ndash;&gt;-->
-                    <#list model.data as topic>
-                        <div class="item article-list shadow">
-                            <div class="item-content">
+<#include "/${frontTemplate}/common/newCommon/header.ftl"/>
 
-                                <div class="text">
-                                    <a href="${basePath}/group/detail/${topic.group.id}">
-                                        <div class="pull-right label label-success">
-                                            ${topic.group.name} <#--&lt;#&ndash;帖子的群组名称&ndash;&gt;-->
-                                        </div>
-                                    </a>
-                                    <h3>
-                                        <a href="${basePath}/group/topic/${topic.id}">
-                                            ${topic.title}<#--&lt;#&ndash;文章标题&ndash;&gt;-->
-                                        </a>
-                                    </h3>
-                                    <p>
-                                        <span class="text-muted">
-                                            <i class="icon-comments"></i>
-                                            ${topic.viewCount} <#--&nbsp;&lt;#&ndash;查看次数&ndash;&gt;-->
-                                            <i class="icon-time"></i>
-                                            ${topic.createTime?string('yyyy-MM-dd HH:mm')}<#--&lt;#&ndash;创建时间&ndash;&gt;-->
-                                        </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </#list>
-                       <#-- &lt;#&ndash;分页&ndash;&gt;-->
-                    <ul class="pager pagination pagination-sm no-margin pull-right"
-                        url="${basePath}/group/topicList"
-                        currentPage="${model.page.pageNo}"
-                        pageCount="${model.page.totalPage}">
-                    </ul>
-                </div>
+
+
+<div class="block clearfix">
+    <div class="container clearfix">
+        <div class="span8">
+
+
+            <div class="theamLine">
+                <h3>
+                    <a href="/">所有</a></h3>
+                <h3><a href="${basePath}/group/problem" style="margin: 0 10px;">问题</a></h3>
+                <h3><a href="${basePath}/group/article">文章</a></h3>
             </div>
-            <div class="col-md-4 float-left">
-                <form action="${basePath}/group/solrList/" method="get">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="key">
-                        <span class="input-group-btn">
-                            <button class="btn btn-success" type="submit"><i class="icon-search"></i></button>
+            <div class="TermCon">
+
+               <div class="termNum">
+                    <a href="${basePath}/group/" class="publishBtn">发布</a>
+                    <span>28271 篇结果</span>
+                </div>
+            <#list model.data as groupTopic>
+                <div class="listItem">
+                    <!--鼠标滑过显示-->
+                <#-- <div class="tagTips" style="display: none">
+                     <img src="images/face.png" />
+                     <p class="tipsTitle"><a href="#">Hadoop</a></p>
+                     <div class="numCounts">
+                         <p><span>124</span><br />关注者</p>
+                         <p><span>124</span><br />问题</p>
+                         <p class="last"><span>1204</span><br />解答</p>
+                     </div>
+                     <a href="#" class="addBtn">+关注</a>
+                     <div class="tagInfo">Since its incubation in 2008, Apache Hive is considered the defacto standard for interactive SQL queries over petabytes of data in Hadoop.</div>
+                 </div>-->
+                    <h4>
+                        <span>
+                            <#if groupTopic.groupstatus == 0>
+                                问题
+                            </#if>
+                            <#if groupTopic.groupstatus == 1>
+                                文章
+                            </#if>
+
                         </span>
-                    </div>
-                </form>
-                <div class="panel">
-                    <div class="panel-heading">
-                        群组栏目
-                        <span class="pull-right">
-                            <a class="btn btn-primary m-t-n4" href="${basePath}/group/apply">申请群组</a>
+                        <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
+                    </h4>
+                    <div class="articleInfo">
+
+                        <span class="tags">
+                            <a href="${basePath}/group/">${groupTopic.group.name}</a>
                         </span>
+                        <p>
+
+                        </p>
+                    <#--<p>1小时前</p>-->
+                        <p><a href="#">创建人:${groupTopic.member.name}</a></p>
                     </div>
-                    <div class="panel-body">
-                        <a href="" class="btn btn-primary">全部</a>
-                        <#list groupLists as group>
-                            <a href="${basePath}/group/detail/${group.id}" class="btn btn-primary">${group.name}</a>
-                        </#list>
+                    <div class="counts">
+                        <a class="discu on" title="评论">${groupTopic.topicComment}</a>
+                        <a class="like" title="喜欢">${groupTopic.favor}</a>
+                        <a class="views" title="阅读">${groupTopic.viewCount}</a>
                     </div>
                 </div>
-                <@ads id=1>
-                    <#include "/tp/ad.ftl"/>
-                </@ads>
-                <div class="panel">
-                    <div class="panel-heading">
-                        热门帖子
-                    </div>
-                    <div class="panel-body article-hot-list">
-                        <ul>
-                       <@group_topic_list  sort='view_count' num=10 day=30; groupTopic>
-                            <#list groupTopicList as groupTopic>
-                                <li><i class="icon-hand-right main-text-color"></i> <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a></li>
-                            </#list>
-                        </@group_topic_list>
-                        </ul>
+
+            </#list>
+
+
+                <ul class="pager pagination pagination-sm no-margin pull-right"
+                    url="${basePath}/"
+                    currentPage="${model.page.pageNo}"
+                    pageCount="${model.page.totalPage}" style="margin-top: 0px;float: right;">
+                </ul>
+
+            </div>
+
+
+
+        </div>
+
+    <#--热门的帖子文章-->
+        <div class="span4" style="margin-top:45px;">
+
+            <div class="widget">
+
+                <h3>热门问题</h3>
+            <#list byGroupStatusList as groupTopic>
+                <div class="question-block">
+                    <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
+                    <div>
+                        <span class="answer">点击：</span>
+                        <span>${groupTopic.viewCount}</span>
                     </div>
                 </div>
+            </#list>
+            </div>
+            <div class="fengeLine"></div>
+            <div class="widget">
+                <h3>热门文章</h3>
+            <#list byGroupStatus as groupTopic>
+                <div class="question-block">
+                    <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
+                    <div>
+                        <span class="answer">点击：</span>
+                        <span>${groupTopic.viewCount}</span>
+                    </div>
+                </div>
+            </#list>
+            </div>
+            <div class="fengeLine"></div>
+            <div class="widget">
+                <h3>热门主题</h3>
+            <@group_list status=1 sort='topicCount' num=5 day=30; group>
+                <#list groupList as group>
+                    <div class="tags">
+                        <a href="${basePath}/group/detail/${group.id}">${group.name}</a>
+                    </div>
+                </#list>
+            </@group_list>
             </div>
         </div>
     </div>
 </div>
-<#include "/${frontTemplate}/common/footer.ftl"/>
+
+
+
+
+<#include "/${frontTemplate}/common/newCommon/footer.ftl"/>
+
+</body>
 <script type="text/javascript">
     $(function () {
         $(".pagination").jeesns_page("jeesnsPageForm");
     });
+    function autorunA()//帖子点查看更多的时候跳转隐藏的那个GroupId去查询,仅限一个群组的时候
+    {
+        var dtx=document.getElementById('divTest');
+        dtx.click();
+    }
 </script>
-</body>
 </html>

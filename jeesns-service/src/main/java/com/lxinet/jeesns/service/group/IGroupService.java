@@ -5,6 +5,8 @@ import com.lxinet.jeesns.core.model.Page;
 import com.lxinet.jeesns.model.group.Group;
 import com.lxinet.jeesns.model.group.GroupTopic;
 import com.lxinet.jeesns.model.member.Member;
+import org.omg.CORBA.SystemException;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -29,7 +31,7 @@ public interface IGroupService {
     //群组申请保存
     ResponseModel save(Member loginMember, Group group);
     //添加群组保存
-    ResponseModel saveManageGroup(Member loginMember, Group group);
+    ResponseModel saveManageGroup(Member loginMember, Group group, String logoPath,MultipartFile attach)throws Exception;;
 
     //前台修改群组 保存
     ResponseModel update(Member loginMember, Group group);

@@ -19,8 +19,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -94,20 +98,27 @@ public class GroupController extends BaseController {
     }
 
     /**
-     * 添加群组保存
+     * 后台添加群组保存
      * 2017年12月15日11:21:37
      * @param group
      * @return
      */
     @RequestMapping(value = "${managePath}/group/save",method = RequestMethod.POST)
     @ResponseBody
-    public Object save(@Valid Group group, BindingResult bindingResult){
+    public Object save(@Valid Group group, BindingResult bindingResult,HttpServletRequest request,
+                       @RequestParam(value = "logo", required = false) MultipartFile attach) throws Exception {
 
-        if(bindingResult.hasErrors()){
+
+       /* if(bindingResult.hasErrors()){
             return new ResponseModel(-1,getErrorMessages(bindingResult));
-        }
+        }*/
+
+        request.setCharacterEncoding( "utf-8" );
+        String logoPath = request.getSession().getServletContext().getRealPath("/");
+
+
         Member loginMember = MemberUtil.getLoginMember(request);
-        ResponseModel responseModel = groupService.saveManageGroup(loginMember,group);
+        ResponseModel responseModel = groupService.saveManageGroup(loginMember,group,logoPath,attach);
        /* if(responseModel.getCode() == 0){
             //成功并刷新父页面
             responseModel.setCode(3);

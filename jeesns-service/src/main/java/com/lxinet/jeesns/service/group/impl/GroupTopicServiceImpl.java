@@ -516,7 +516,7 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         if (StringUtils.isNotBlank(key)){
             key = "%"+key+"%";
         }
-        List<Article> list = groupTopicDao.solrList(status,page, key,memberId);
+        List<GroupTopic> list = groupTopicDao.solrList(status,page, key,memberId);
         ResponseModel model = new ResponseModel(0,page);
         model.setData(list);
         return model;
@@ -564,4 +564,54 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         return new ResponseModel(-1,"权限不足");
 
     }
+
+
+    /**
+     * 热门问题帖子列表查询
+     *
+     * @return
+     */
+    @Override
+    public List<GroupTopic> byGroupStatus() {
+        return groupTopicDao.byGroupStatus();
+    }
+
+    /**
+     * 热门文章帖子列表查询
+     * @return
+     */
+    @Override
+    public List<GroupTopic> byGroupStatusList() {
+        return groupTopicDao.byGroupStatusList();
+    }
+
+    /**
+     * 问题帖子列表
+     * @param status
+     * @param page
+     * @param key
+     * @return
+     */
+    @Override
+    public ResponseModel solrWenTi(int status , Page page, String key) {
+        if (StringUtils.isNotBlank(key)){
+            key = "%"+key+"%";
+        }
+        List<GroupTopic> list = groupTopicDao.solrWenTi(page, key,status);
+        ResponseModel model = new ResponseModel(0,page);
+        model.setData(list);
+        return model;
+    }
+
+    @Override
+    public ResponseModel solrWenZhang(int status , Page page, String key) {
+        if (StringUtils.isNotBlank(key)){
+            key = "%"+key+"%";
+        }
+        List<GroupTopic> list = groupTopicDao.solrWenZhang(page, key,status);
+        ResponseModel model = new ResponseModel(0,page);
+        model.setData(list);
+        return model;
+    }
+
 }

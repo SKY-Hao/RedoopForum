@@ -31,7 +31,6 @@
 
 
 
-
 <div class="block clearfix">
     <div class="container clearfix">
         <div class="span8">
@@ -54,31 +53,30 @@
         </div>
         <div class="span4">
             <div class="widget">
-                <h3>热门帖子</h3>
-                <@group_topic_list  sort='view_count' num=5 day=30; groupTopic>
-                    <#list groupTopicList as groupTopic>
-                        <div class="question-block">
-                            <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
-                            <div>
-                                <span>${groupTopic.viewCount}</span>
-                                <span class="answer">次查看</span>
-                            </div>
+                <h3>热门问题</h3>
+                <#list byGroupStatusList as groupTopic>
+                    <div class="question-block">
+                        <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
+                        <div>
+                            <span class="answer">点击：</span>
+                            <span>${groupTopic.viewCount}</span>
                         </div>
-                    </#list>
-                </@group_topic_list>
+                    </div>
+                </#list>
             </div>
             <div class="fengeLine"></div>
             <div class="widget">
 
-
                 <h3>热门文章</h3>
-                <@cms_article_list cid=0 sort='view_count' num=5 day=30; article>
-                    <#list articleList as article>
-                        <div class="question-block">
-                            <a href="${basePath}/article/detail/${article.id}">${article.title}</a>
+                <#list byGroupStatus as groupTopic>
+                    <div class="question-block">
+                        <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
+                        <div>
+                            <span class="answer">点击：</span>
+                            <span>${groupTopic.viewCount}</span>
                         </div>
-                    </#list>
-                </@cms_article_list>
+                    </div>
+                </#list>
             </div>
             <div class="fengeLine"></div>
             <div class="widget">

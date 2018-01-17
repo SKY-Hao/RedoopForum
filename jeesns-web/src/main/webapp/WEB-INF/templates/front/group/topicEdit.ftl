@@ -22,16 +22,6 @@
     <script src="${basePath}/res/common/js/zui.min.js"></script>
     <script src="${basePath}/res/plugins/layer/layer.js"></script>
     <script src="${basePath}/res/front/js/jeesns.js"></script>
-   <#-- <script src="${basePath}/res/plugins/webuploader/webuploader.min.js"></script>
-    <script src="${basePath}/res/plugins/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript">
-        var basePath = "${basePath}";
-        var uploadServer = "${basePath}/uploadImage";
-        $(function () {
-            CKEDITOR.replace('content');
-        });
-    </script>
-    <script src="${basePath}/res/plugins/webuploader/upload.js"></script>-->
 
 
     <link href="${basePath}/res/plugins/makedown/css/editormd.min.css" rel="stylesheet">
@@ -40,7 +30,7 @@
 
 </head>
 <body class="gray-bg">
-<#include "/${frontTemplate}/common/header.ftl"/>
+<#include "/${frontTemplate}/common/newCommon/header.ftl"/>
 <div class="container">
     <div class="main-content">
         <div class="row">
@@ -53,26 +43,6 @@
                             <input type="text" class="form-control" id="title" name="title" placeholder="标题" data-type="require" value="${groupTopic.title}">
                         </div>
                     </div>
-                   <#-- <div class="form-group">
-                        <label for="firstname" class="col-sm-1 control-label">缩略图</label>
-                        <div class="col-sm-10">
-                            <div id="uploader">
-                                <!--用来存放文件信息&ndash;&gt;
-                                <input type="hidden" id="thumbnail" name="thumbnail" value="${groupTopic.thumbnail}">
-                                <div id="preview" class="uploader-list">
-                                <#if groupTopic.thumbnail??>
-                                    <img src="${basePath}${groupTopic.thumbnail}" width="100px" height="100px"/>
-                                </#if>
-                                </div>
-                                <div id="imagesList" class="uploader-list"></div>
-                                <h4 class="info"></h4>
-                                <p class="state"></p>
-                                <div class="btns">
-                                    <div id="picker">选择文件</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
                     <div class="form-group">
                         <label for="firstname" class="col-sm-1 control-label" style="width: 100px;">帖子类型</label>
                         <div class="col-sm-8">
@@ -110,7 +80,7 @@
         </div>
     </div>
 </div>
-<#include "/${frontTemplate}/common/footer.ftl"/>
+<#include "/${frontTemplate}/common/newCommon/footer.ftl"/>
 </body>
 </html>
 <script>

@@ -98,4 +98,17 @@ public interface IGroupTopicService {
      * @return
      */
     ResponseModel deleteTopic(HttpServletRequest request, Member loginMember, int id);
+
+    /**
+     * 热门文帖子查询
+     * @return
+     */
+    List<GroupTopic> byGroupStatus();
+
+    List<GroupTopic> byGroupStatusList();
+
+    ResponseModel solrWenTi(int status, Page page, String key);
+
+    ResponseModel solrWenZhang(int status, Page page, String key);
+
 }

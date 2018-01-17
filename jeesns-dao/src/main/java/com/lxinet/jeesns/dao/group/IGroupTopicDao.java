@@ -82,6 +82,21 @@ public interface IGroupTopicDao extends IBaseDao<GroupTopic> {
      * @param memberId
      * @return
      */
-    List<Article> solrList(@Param("status") int status, @Param("page") Page page,@Param("key")  String key, @Param("memberId")  Integer memberId);
+    List<GroupTopic> solrList(@Param("status") int status, @Param("page") Page page,@Param("key")  String key, @Param("memberId")  Integer memberId);
+
+    /**
+     * 热门问题帖子查询
+     * @return
+     */
+    List<GroupTopic> byGroupStatus();
+
+    /**
+     * 热门文章帖子查询
+     * @return
+     */
+    List<GroupTopic> byGroupStatusList();
+
+    List<GroupTopic> solrWenTi(@Param("page") Page page, @Param("key") String key, @Param("status") Integer status);
+    List<GroupTopic> solrWenZhang(@Param("page") Page page, @Param("key") String key, @Param("status") Integer status);
 
 }

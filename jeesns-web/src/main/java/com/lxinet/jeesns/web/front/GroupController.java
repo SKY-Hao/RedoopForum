@@ -19,9 +19,11 @@ import com.lxinet.jeesns.model.member.Member;
 import com.lxinet.jeesns.service.member.IMemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +63,13 @@ public class GroupController extends BaseController {
 
         model.addAttribute("model",responseModel);
         model.addAttribute("key",key);
+        //热门问题帖子
+        List<GroupTopic> byGroupStatusList=groupTopicService.byGroupStatus();
+        model.addAttribute("byGroupStatusList",byGroupStatusList);
+
+        //热门文章帖子
+        List<GroupTopic> byGroupStatus=groupTopicService.byGroupStatusList();
+        model.addAttribute("byGroupStatus",byGroupStatus);
 
         return jeesnsConfig.getFrontTemplate() + "/group/index";
     }
@@ -124,7 +133,7 @@ public class GroupController extends BaseController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/detail/{groupId}",method = RequestMethod.GET)
+   /* @RequestMapping(value = "/detail/{groupId}",method = RequestMethod.GET)
     public String detail(@PathVariable("groupId") Integer groupId, Model model) {
         Page page = new Page(request);
         Group group = groupService.findById(groupId);
@@ -147,6 +156,7 @@ public class GroupController extends BaseController {
         //获取群组帖子列表
         ResponseModel responseModel = groupTopicService.listByPage(page,null,groupId,1,0);
         model.addAttribute("model",responseModel);
+
         String managerIds = group.getManagers();
         List<Member> managerList = new ArrayList<>();
         if(StringUtils.isNotEmpty(managerIds)){
@@ -180,6 +190,33 @@ public class GroupController extends BaseController {
         List<GroupFans> groupFansList = (List<GroupFans>) groupFansService.listByPage(groupFansPage,groupId).getData();
         model.addAttribute("groupFansList",groupFansList);
         model.addAttribute("loginUser", loginMember);
+
+        return jeesnsConfig.getFrontTemplate() + "/group/detail";
+    }*/
+
+
+    @RequestMapping(value = "/detail/{groupId}",method = RequestMethod.GET)
+    public String detail(@PathVariable("groupId") Integer groupId, Model model) {
+        Page page = new Page(request);
+        Group group = groupService.findById(groupId);
+        if(group == null){
+            return jeesnsConfig.getFrontTemplate() + ErrorUtil.error(model,-1002,Const.INDEX_ERROR_FTL_PATH);
+        }
+        model.addAttribute("group",group);
+
+        //获取群组帖子列表
+        ResponseModel responseModel = groupTopicService.listByPage(page,null,groupId,1,0);
+        model.addAttribute("model",responseModel);
+
+
+        //热门问题帖子
+        List<GroupTopic> byGroupStatusList=groupTopicService.byGroupStatus();
+        model.addAttribute("byGroupStatusList",byGroupStatusList);
+
+        //热门文章帖子
+        List<GroupTopic> byGroupStatus=groupTopicService.byGroupStatusList();
+        model.addAttribute("byGroupStatus",byGroupStatus);
+
         return jeesnsConfig.getFrontTemplate() + "/group/detail";
     }
 
@@ -287,8 +324,19 @@ public class GroupController extends BaseController {
         }
         model.addAttribute("isfollow",isfollow);
         model.addAttribute("loginUser", loginMember);
+        //热门问题帖子
+        List<GroupTopic> byGroupStatusList=groupTopicService.byGroupStatus();
+        model.addAttribute("byGroupStatusList",byGroupStatusList);
+
+        //热门文章帖子
+        List<GroupTopic> byGroupStatus=groupTopicService.byGroupStatusList();
+        model.addAttribute("byGroupStatus",byGroupStatus);
         return jeesnsConfig.getFrontTemplate() + "/group/topic";
     }
+
+
+
+
 
     /**
      * 去发帖子
@@ -318,6 +366,13 @@ public class GroupController extends BaseController {
         model.addAttribute("group",group);
         return jeesnsConfig.getFrontTemplate() + "/group/post";
     }
+
+
+
+
+
+
+
 
     /**
      * 帖子保存发布
@@ -602,6 +657,7 @@ public class GroupController extends BaseController {
         List<Group> groupList = groupService.groupList();
         model.addAttribute("groupLists",groupList);
 
+
         return jeesnsConfig.getFrontTemplate() + "/group/topic/list";
     }
 
@@ -613,15 +669,16 @@ public class GroupController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/solrList",method = RequestMethod.GET)
-    public String solrList(String key, @RequestParam(value = "memberId",defaultValue = "0",required = false) Integer memberId, Model model) {
+    public String solrList(String key, @RequestParam(value = "memberId",defaultValue = "0",required = false) Integer memberId,
+                           Model model) {
         //TODO 上线时放开才能搜索到
-        /*if (StringUtils.isNotEmpty(key)){
+        if (StringUtils.isNotEmpty(key)){
             try {
                 key = new String(key.getBytes("iso-8859-1"),"utf-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-        }*/
+        }
         Page page = new Page(request);
         ResponseModel responseModel = groupTopicService.solrList(1,page,key,memberId);
         model.addAttribute("model",responseModel);
@@ -630,9 +687,95 @@ public class GroupController extends BaseController {
 
         List<Group> groupList = groupService.groupList();
         model.addAttribute("groupLists",groupList);
+        //热门问题帖子
+        List<GroupTopic> byGroupStatusList=groupTopicService.byGroupStatus();
+        model.addAttribute("byGroupStatusList",byGroupStatusList);
+
+        //热门文章帖子
+        List<GroupTopic> byGroupStatus=groupTopicService.byGroupStatusList();
+        model.addAttribute("byGroupStatus",byGroupStatus);
 
         return jeesnsConfig.getFrontTemplate() + "/group/topic/list";
     }
+
+    /**
+     * 问题帖子
+     * @param key
+     * @param cateid
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/problem",method = RequestMethod.GET)
+    public String problem(@RequestParam(value = "key",required = false,defaultValue = "") String key, Integer cateid,Model model) {
+
+        if (StringUtils.isNotEmpty(key)){
+            try {
+                key = new String(key.getBytes("iso-8859-1"),"utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+        Page page = new Page(request);
+        if(cateid == null){
+            cateid = 0;
+        }
+        page.setPageSize(10);
+
+        //前台所有帖子列表
+        ResponseModel groupTopicModel = groupTopicService.solrWenTi(1,page,key);
+        model.addAttribute("model",groupTopicModel);
+
+        //热门问题帖子
+        List<GroupTopic> byGroupStatusList=groupTopicService.byGroupStatus();
+        model.addAttribute("byGroupStatusList",byGroupStatusList);
+
+        //热门文章帖子
+        List<GroupTopic> byGroupStatus=groupTopicService.byGroupStatusList();
+        model.addAttribute("byGroupStatus",byGroupStatus);
+
+
+        return jeesnsConfig.getFrontTemplate() + "/index";
+    }
+    /**
+     * 文章帖子
+     * @param key
+     * @param cateid
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/article",method = RequestMethod.GET)
+    public String article(@RequestParam(value = "key",required = false,defaultValue = "") String key, Integer cateid,Model model
+    ) {
+        if (StringUtils.isNotEmpty(key)){
+            try {
+                key = new String(key.getBytes("iso-8859-1"),"utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+        Page page = new Page(request);
+        if(cateid == null){
+            cateid = 0;
+        }
+        page.setPageSize(10);
+
+        //前台所有帖子列表
+        ResponseModel groupTopicModel = groupTopicService.solrWenZhang(1,page,key);
+        model.addAttribute("model",groupTopicModel);
+
+        //热门问题帖子
+        List<GroupTopic> byGroupStatusList=groupTopicService.byGroupStatus();
+        model.addAttribute("byGroupStatusList",byGroupStatusList);
+
+        //热门文章帖子
+        List<GroupTopic> byGroupStatus=groupTopicService.byGroupStatusList();
+        model.addAttribute("byGroupStatus",byGroupStatus);
+
+
+        return jeesnsConfig.getFrontTemplate() + "/index";
+    }
+
+
 
 
 

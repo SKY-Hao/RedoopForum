@@ -16,12 +16,19 @@ import com.lxinet.jeesns.service.system.IConfigService;
 import com.lxinet.jeesns.common.utils.ActionUtil;
 import com.lxinet.jeesns.common.utils.ConfigUtil;
 import com.lxinet.jeesns.common.utils.ScoreRuleConsts;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by zchuanzhao on 2016/12/23.
@@ -161,46 +168,7 @@ public class GroupServiceImpl implements IGroupService {
     }
 
 
-    /**
-     * 后台群组添加
-     * @param loginMember
-     * @param group
-     * @return
-     */
-    @Override
-    public ResponseModel saveManageGroup(Member loginMember, Group group) {
-        Map<String,String> config = configService.getConfigToMap();
-        group.setCreator(loginMember.getId());
-        if(loginMember.getIsAdmin() > 0){
-            group.setStatus(1);
-        }else {
-            if("0".equals(config.get(ConfigUtil.GROUP_APPLY))){
-                return new ResponseModel(-1,"群组申请功能已关闭");
-            }
-            if("0".equals(config.get(ConfigUtil.GROUP_APPLY_REVIEW))){
-                group.setStatus(0);
-            }else {
-                group.setStatus(1);
-            }
-        }
-        //默认图标
-        if(StringUtils.isEmpty(group.getLogo())){
-            group.setLogo(Const.DEFAULT_IMG_URL);
-        }
-        //设置管理员
-        String managerIds = String.valueOf(loginMember.getId());
-        group.setManagers(managerIds);
-        group.setCanPost(1);
-        group.setTopicReview(0);
-        if(groupDao.save(group) == 1){
-            //创建者默认关注群组
-            groupFansService.save(loginMember,group.getId());
-            //申请群组奖励、扣款
-            scoreDetailService.scoreBonus(loginMember.getId(), ScoreRuleConsts.APPLY_GROUP, group.getId());
-            return new ResponseModel(3,"申请成功，请等待审核");
-        }
-        return new ResponseModel(-1,"操作失败，请重试");
-    }
+
 
     /**
      * 前台修改 群组 保存
@@ -285,5 +253,91 @@ public class GroupServiceImpl implements IGroupService {
     public List<Group> groupList() {
         return groupDao.groupList();
     }
+
+
+    /**
+     * 后台群组添加
+     * @param loginMember
+     * @param group
+     * @return
+     */
+    @Override
+    public ResponseModel saveManageGroup(Member loginMember, Group group,String logoPath,MultipartFile attach) throws Exception {
+        Map<String,String> config = configService.getConfigToMap();
+        group.setCreator(loginMember.getId());
+        if(loginMember.getIsAdmin() > 0){
+            group.setStatus(1);
+        }else {
+            if("0".equals(config.get(ConfigUtil.GROUP_APPLY))){
+                return new ResponseModel(-1,"群组申请功能已关闭");
+            }
+            if("0".equals(config.get(ConfigUtil.GROUP_APPLY_REVIEW))){
+                group.setStatus(0);
+            }else {
+                group.setStatus(1);
+            }
+        }
+        //默认图标
+        if(StringUtils.isEmpty(group.getLogo())){
+            group.setLogo(Const.DEFAULT_IMG_URL);
+        }
+        //设置管理员
+        String managerIds = String.valueOf(loginMember.getId());
+        group.setManagers(managerIds);
+        group.setCanPost(1);
+        group.setTopicReview(0);
+
+        group = uploadPic(group,attach,logoPath);
+
+
+        if(groupDao.save(group) == 1){
+            //创建者默认关注群组
+            groupFansService.save(loginMember,group.getId());
+            //申请群组奖励、扣款
+            scoreDetailService.scoreBonus(loginMember.getId(), ScoreRuleConsts.APPLY_GROUP, group.getId());
+            return new ResponseModel(3,"申请成功，请等待审核");
+        }
+        return new ResponseModel(-1,"操作失败，请重试");
+    }
+
+    private Group uploadPic(Group group, MultipartFile attach,String logoPath) throws IOException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        String ymd = sdf.format(new Date());
+        String path = "/upload/images/" + ymd + "/";
+
+        logoPath = logoPath + path;
+        System.out.println("logopath====="+logoPath);
+        File filePath=new File(logoPath);
+        if(!filePath.exists()){
+            filePath.mkdirs();
+        }
+
+        String picNameOld = attach.getOriginalFilename();
+        String picType = picNameOld.substring(picNameOld.lastIndexOf("."),picNameOld.length());
+        String picNameNew = UUID.randomUUID() + picType;
+
+        System.out.println("picNameOld===="+picNameOld);
+        System.out.println("picType===="+picType);
+
+        System.out.println("picNameNew===="+picNameNew);
+
+        //最终文件名
+        File realFile=new File(logoPath + File.separator + picNameNew);
+        FileUtils.copyInputStreamToFile(attach.getInputStream(), realFile);
+
+
+        System.out.println("realFile===="+realFile);
+
+       // group.setCompanypicname(picNameOld);
+       // group.setCompanypic(configProperties.getUploadSuffix() + picNameNew);
+        group.setLogo(path+picNameNew);
+        System.out.println("groupLOGO===="+group.getLogo());
+
+        return group;
+    }
+
+
+
+
 
 }

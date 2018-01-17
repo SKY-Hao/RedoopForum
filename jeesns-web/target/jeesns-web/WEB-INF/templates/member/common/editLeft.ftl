@@ -55,13 +55,13 @@
                 <div class="col-sm-2">
                     <div class="float-e-margins">
                         <div class="feed-activity-list">
-                            <a href="${basePath}/member/avatar">
+                           <#-- <a href="${basePath}/member/avatar">
                                 <div class="feed-element">
                                     <div class="media-body">
                                         修改头像
                                     </div>
                                 </div>
-                            </a>
+                            </a>-->
                             <a href="${basePath}/member/editInfo">
                                 <div class="feed-element">
                                     <div class="media-body">
