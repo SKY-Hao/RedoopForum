@@ -99,16 +99,19 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         archive.setPostType(2);//1为文章   2为群组
         //保存文档
         if(archiveService.save(member,archive)){
+          /*
+          //帖子审核判断
             if(member.getIsAdmin()<1){
                 groupTopic.setStatus(0);
             }if (member.getIsAdmin()>=1){
                 groupTopic.setStatus(1);
-            }
+            }*/
 
             //保存文章
 
             //groupTopic.setStatus(group.getTopicReview()==1?0:1);
 
+            groupTopic.setStatus(1);
             groupTopic.setArchiveId(archive.getArchiveId());
 
             int result = groupTopicDao.save(groupTopic);
@@ -158,16 +161,7 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
     @Transactional
     public ResponseModel update(Member member,GroupTopic groupTopic) {
 
-       // System.out.println("==信息=="+groupTopic);
-
-       // System.out.println("=====第一个群组ID===="+groupTopic.getId());
-
         GroupTopic findGroupTopic = this.findById(groupTopic.getId(),member);
-
-      //  System.out.println("=====第二个群组ID===="+groupTopic.getGroupId());
-
-     //   System.out.println("=====群组ID===="+findGroupTopic.getGroup().getId());
-
 
         if(findGroupTopic == null){
             return new ResponseModel(-2);
@@ -175,9 +169,9 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         if(member.getId().intValue() != findGroupTopic.getMember().getId().intValue()){
             return new ResponseModel(-1,"没有权限");
         }
-        groupTopic.setArchiveId(findGroupTopic.getArchiveId());
-        groupTopic.setViewCount(findGroupTopic.getViewCount());
-        System.out.println("修改帖子后的查看次数===="+findGroupTopic.getViewCount());
+
+        groupTopic.setArchiveId(findGroupTopic.getArchiveId());//把查到文档id放到帖子表里面
+        groupTopic.setViewCount(findGroupTopic.getViewCount());//把查到的查看次数放到帖子表里面
 
         Archive archive = new Archive();
         try {
@@ -186,13 +180,15 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         if(archiveService.update(member,archive)){
+
             //更新群组
             findGroupTopic.setGroupstatus(groupTopic.getGroupstatus());
-            findGroupTopic.setGroupId(findGroupTopic.getGroup().getId());
-            groupTopicDao.update(findGroupTopic);
-            System.out.println("====修改帖子后的帖子所属群组ID===="+findGroupTopic.getGroup().getId());
+            findGroupTopic.setGroupId(groupTopic.getGroupId());
 
+            groupTopicDao.update(findGroupTopic);
+            System.out.println("====修改帖子后的帖子所属群组ID===="+findGroupTopic.getGroupId());
 
             return new ResponseModel(0,"更新成功");
         }
@@ -207,21 +203,19 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         if(groupTopic == null){
             return new ResponseModel(-1,"帖子不存在");
         }
-        //int result = groupTopicDao.delete(id);
+       // int result = groupTopicDao.delete(id);
        //if(result == 1){
             //扣除积分
             //scoreDetailService.scoreCancelBonus(loginMember.getId(),ScoreRuleConsts.GROUP_POST,id);
-            groupTopicDao.delete(id);
-        System.out.println("删除贴子ID=="+id);
+           groupTopicDao.delete(id);
 
             archiveService.delete(groupTopic.getArchiveId());
-        System.out.println("删除文档ID=="+groupTopic.getArchiveId());
             groupTopicCommentService.deleteByTopic(id);
 
             actionLogService.save(loginMember.getCurrLoginIp(),loginMember.getId(), ActionUtil.DELETE_GROUP_TOPIC,"ID："+groupTopic.getId()+"，标题："+groupTopic.getTitle());
             return new ResponseModel(1,"删除成功");
-       // }
-       // return new ResponseModel(-1,"删除失败");
+        //}
+        //return new ResponseModel(-1,"删除失败");
     }
 
 

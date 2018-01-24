@@ -8,14 +8,14 @@
     <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
-<#--<link href="${basePath}/res/common/css/zui.min.css" rel="stylesheet">
-<link href="${basePath}/res/front/css/app.css" rel="stylesheet">-->
 
-    <link href="${basePath}/res/new/css/groupCss/group/style.css" rel="stylesheet">
+
+    <link href="${basePath}/res/new/css/groupCss/group/markDownStrle.css" rel="stylesheet">
     <link href="${basePath}/res/new/css/groupCss/group/topic.css" rel="stylesheet">
 
     <link href="${basePath}/res/new/css/pageCss/page.css" rel="stylesheet">
 
+    <link href="${basePath}/res/plugins/makedown/css/bootstrap.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="${basePath}/res/common/js/html5shiv.min.js"></script>
     <script src="${basePath}/res/common/js/respond.min.js"></script>
@@ -25,14 +25,18 @@
     <script src="${basePath}/res/plugins/layer/layer.js"></script>
     <script src="${basePath}/res/common/js/jquery.form.js"></script>
     <script src="${basePath}/res/front/js/jeesns.js"></script>
+    <script src="${basePath}/res/plugins/makedown/js/bootstrap.min.js"></script>
     <script>
         var base = "${basePath}";
         var groupTopicId = ${groupTopic.id};
     </script>
     <script src="${basePath}/res/front/js/group.js"></script>
+
+
+
 </head>
 <body class="gray-bg">
-<#include "/${frontTemplate}/common/newCommon/header.ftl"/>
+<#include "/${frontTemplate}/common/newCommon/headerMarkDown.ftl"/>
 
 
 
@@ -42,8 +46,8 @@
             <div class="theamLine">
                 <h3>
                     <a href="/">所有</a></h3>
-                <h3><a href="${basePath}/group/solrWenTi" style="margin: 0 10px;">问题</a></h3>
-                <h3><a href="${basePath}/group/solrWenZhang">文章</a></h3>
+                <h3><a href="${basePath}/group/problem" style="margin: 0 10px;">问题</a></h3>
+                <h3><a href="${basePath}/group/article">文档/文章</a></h3>
             </div>
             <div class="TermCon">
                 <div class="author clearfix">
@@ -63,30 +67,48 @@
                 <#-- <a href="#" class="faceQ"><img src="images/face.png" /></a>-->
                     <div class="detailInfo">
                         <h4> ${groupTopic.title}</h4>
-                        <p style="width:150px;">${groupTopic.createTime?string('yyyy-MM-dd HH:mm')}</p>
+                        <p style="width:150px; margin-top:5px"><b>Author:</b>${groupTopic.member.name}</p>
+                        <p style="width:150px;margin-top:5px"><b>Time:</b>${groupTopic.createTime?string('yyyy-MM-dd HH:mm')}</p>
                         <div class="counts">
                             <a class="discu" title="评论">${groupTopic.topicComment}</a>
                         <#--选择喜欢不喜欢-->
-
-                        <#if groupTopic.isFavor == 0>
-                            <a class=" like" href="javascript:void(0)" topic-id="${groupTopic.id}">
-                            ${groupTopic.favor}
-                            </a>
-                        <#else>
-                            <a class="like" href="javascript:void(0)" topic-id="${groupTopic.id}">
-                            ${groupTopic.favor}
-                            </a>
-                        </#if>
-
-
+                            <#if groupTopic.isFavor == 0>
+                                <a class="btn btn-danger btn-article-favor btn-article-unfavor topic-favor" href="javascript:void(0)" topic-id="${groupTopic.id}" title="喜欢" id="like">
+                                    <i class="icon-heart-empty"></i>${groupTopic.favor}
+                                </a>
+                            <#else>
+                                <a class="btn btn-danger btn-article-favor topic-favor" href="javascript:void(0)" topic-id="${groupTopic.id}" title="喜欢" id="like">
+                                    <i class="icon-heart"></i>${groupTopic.favor}
+                                </a>
+                            </#if>
                         <#--<a class="like" title="喜欢">0</a>-->
                             <a class="views" title="阅读">${groupTopic.viewCount}</a>
                         </div>
+
+
+
+                    <#if loginUser?? && (loginUser.id == groupTopic.memberId || loginUser.isAdmin &gt; 0)>
+                        <div style="width: 190px;float: right;margin-top: -40px; height: 20px;">
+                            <#if loginUser.id == groupTopic.memberId>
+                                <a href="${basePath}/group/topicEdit/${groupTopic.id}" class="btn" style="margin-top: 13px;height: 20px;background-color: #ca1828;line-height: 8px;color: #fff">Edit</a>
+                            </#if>
+                            <a href="${basePath}/group/delete/${groupTopic.id}" class="btn" confirm="确定要删除帖子吗？" target="_jeesnsLink" style="margin-top: 13px;height: 20px;background-color: #ca1828;line-height: 8px;color: #fff">Delete</a>
+                        </div>
+
+                    </#if>
+
+
+
+
+
+
+
                     </div>
                 </div>
                 <div class="detailContent">
-                ${groupTopic.htmlcontent}
+                     ${groupTopic.htmlcontent}
                 </div>
+
                 <div class="detailDiscu">
                     <p class="theamTag">所属主题：<a href="${basePath}/group/detail/${groupTopic.group.id}">${groupTopic.group.name}</a></p>
                     <a href="#jump" class="addBtn">评论</a>
@@ -112,7 +134,6 @@
             </div>
         </div>
         <div class="span4" style="margin-top:45px;">
-            <img src="images/imgAD.png" />
             <div class="widget">
                 <h3>热门问题</h3>
             <#list byGroupStatusList as groupTopic>

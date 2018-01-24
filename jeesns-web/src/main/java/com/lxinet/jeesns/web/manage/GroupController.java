@@ -221,7 +221,12 @@ public class GroupController extends BaseController {
         return MANAGE_FTL_PATH + "topic/updateTopic";
     }
 
-
+    /**
+     * 后台修改贴子
+     * @param groupTopic
+     * @param bindingResult
+     * @return
+     */
     @RequestMapping(value="${managePath}/group/topic/update",method = RequestMethod.POST)
     @ResponseBody
     public Object update(@Valid GroupTopic groupTopic,BindingResult bindingResult) {

@@ -39,7 +39,14 @@ textarea{overflow:auto}
 optgroup{font-weight:700}
 table{border-collapse:collapse;border-spacing:0}
 td,th{padding:0}
+
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code1,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;font-weight: 400}
+
+/*
+body,div,h1,h2,h3,h4,h5,h6,pre,code1,form,fieldset,legend,input,button,textarea,p,th,td{margin:0;padding:0;font-weight: 400}
+*/
+
+
 button,input[type="submit"],input[type="checkbox"],input[type="radio"]{cursor: pointer;border: 0;}table{border-collapse: separate;}
 input:focus{outline: none;}
 i{font-style:normal}
@@ -93,10 +100,10 @@ a.aBtn:hover,.aBtn:hover{ background:#b31f23;}
 .navFR a.loginBtn:hover{ background:#d92d3d;}
 
 #down{float:right; width:150px; height: auto; margin-top:10px; position: relative;}
-#aa{display:none;    z-index: 1;border-radius: 4%; position:absolute; top:31px; left:41px;height: 200px; background:#fff; border:1px solid #dedede;}
+#aa{display:none;    z-index: 1;border-radius: 4%; position:absolute; top:31px; left:41px;height: 160px; background:#fff; border:1px solid #dedede;}
 
 #aa ul li{margin-top: -11px; margin-bottom: -20px;}
-
+#aa ul li a{ margin-right: 40px;}
 
 /*main*/
 .row {   margin-left: -30px; clear: both;}
@@ -143,7 +150,7 @@ a.aBtn:hover,.aBtn:hover{ background:#b31f23;}
 .support p{ width:40%; text-align:left;}
 .support p.tel{ width:160px; float:right; padding-left:25px; background:url(../group/images/tel.png) no-repeat left 20px;}
 .contact{ margin-top:10px; font-size:12px;}
-.code{ float:right; margin-top:25px; width:280px;} 
+.code{ float:right; margin-top:25px; width:280px;}
 .code img{ display:inline-block; float:right;}
 .contatctTxt{ float:left; margin-top:15px; width:320px;}
 .contactTxt h3{ font-size:14px; font-weight:400;}
@@ -168,8 +175,11 @@ a.aBtn:hover,.aBtn:hover{ background:#b31f23;}
 .listItem .articleInfo p{ display:inline;border: none; margin:0px 0 0 5px;  line-height:2em;    font-size: 12px;    color: #8891a4;    padding: 0;}
 .listItem .articleInfo p a{ font-weight:bold; color:#999;}
 .listItem .counts{ position:absolute; right:0; bottom:18px; font-size:12px; }
-.listItem .counts a,.listItem a.on,.TermCon .author .detailInfo .counts a,.discuList .item .discDetail .counts a{ display:inline-block; margin-left:10px; height:20px; line-height:20px; background:url(../group/images/icon.png) no-repeat left 0; padding-left:30px; color:#9ea2a6; cursor:pointer;}
-.listItem .counts a:hover{ background-position:0px -20px; text-decoration:none;}
+.listItem .counts a,.listItem a.on,.TermCon .author .detailInfo .counts a,.discuList .item .discDetail .counts a
+{ display:inline-block; margin-left:10px; height:20px; line-height:20px; background:url(../group/images/icons.png) no-repeat -30px 0; padding-left:30px; color:#9ea2a6; cursor:pointer;}
+
+a.btn.btn-danger.btn-article-unfavor:hover{background:url(../group/images/icons.png) no-repeat -27px -20px; }
+
 
 .listItem a.discu,.TermCon .author .detailInfo .counts a.discu,.discuList .item .discDetail .counts a.discu{background:url(../group/images/icon.png) no-repeat left 0; }
 .listItem a.discu:hover,.listItem a.on,.TermCon .author .detailInfo .counts a.discu:hover,.discuList .item .discDetail .counts a.discu:hover{ background:url(../group/images/icon.png) no-repeat left -20px; color:#ca1828; font-weight:bold;}

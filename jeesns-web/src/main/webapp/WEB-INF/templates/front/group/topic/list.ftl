@@ -37,13 +37,12 @@
                 <h3>
                     <a href="/">所有</a></h3>
                 <h3><a href="${basePath}/group/problem" style="margin: 0 10px;">问题</a></h3>
-                <h3><a href="${basePath}/group/article">文章</a></h3>
+                <h3><a href="${basePath}/group/article">文档/文章</a></h3>
             </div>
             <div class="TermCon">
 
                <div class="termNum">
                     <a href="${basePath}/group/" class="publishBtn">发布</a>
-                    <span>28271 篇结果</span>
                 </div>
             <#list model.data as groupTopic>
                 <div class="listItem">

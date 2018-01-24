@@ -46,8 +46,8 @@
             <div class="theamLine">
                 <h3>
                     <a href="/">所有</a></h3>
-                <h3><a href="${basePath}/group/solrWenTi" style="margin: 0 10px;">问题</a></h3>
-                <h3><a href="${basePath}/group/solrWenZhang">文章</a></h3>
+                <h3><a href="${basePath}/group/problem" style="margin: 0 10px;">问题</a></h3>
+                <h3><a href="${basePath}/group/article">文档/文章</a></h3>
             </div>
             <div class="TermCon">
 

@@ -21,18 +21,8 @@
     <script src="${basePath}/res/common/js/jquery.form.js"></script>
     <script src="${basePath}/res/common/js/bootstrap.min.js"></script>
     <script src="${basePath}/res/manage/js/app.js"></script>
-   <#-- <script src="${basePath}/res/plugins/webuploader/webuploader.min.js"></script>-->
     <script src="${basePath}/res/plugins/layer/layer.js"></script>
     <script src="${basePath}/res/common/js/jeesns.js"></script>
-    <#--<script src="${basePath}/res/plugins/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            CKEDITOR.replace('content');
-        });
-        var basePath = "${basePath}";
-        var uploadServer = "${managePath}/uploadImage";
-    </script>
-    <script src="${basePath}/res/plugins/webuploader/upload.js"></script>-->
 
     <link href="${basePath}/res/plugins/makedown/css/editormd.min.css" rel="stylesheet">
     <script src="${basePath}/res/plugins/makedown/js/editormd.min.js"></script>

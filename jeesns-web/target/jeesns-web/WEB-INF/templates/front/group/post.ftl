@@ -9,14 +9,11 @@
     <meta name="description" content="${SITE_DESCRIPTION}"/>
 
     <link rel="shortcut icon" href="${basePath}/logo.ico">
-    <link href="${basePath}/res/new/css/groupCss/group/style.css" rel="stylesheet">
+
+
+    <link href="${basePath}/res/new/css/groupCss/group/markDownStrle.css" rel="stylesheet">
     <link href="${basePath}/res/new/css/pageCss/page.css" rel="stylesheet">
     <link href="${basePath}/res/new/css/groupCss/group/topic.css" rel="stylesheet">
-
-    <#--<link href="${basePath}/res/common/css/zui.min.css" rel="stylesheet">
-    <link href="${basePath}/res/front/css/app.css" rel="stylesheet">-->
-    <#--<link href="${basePath}/res/plugins/webuploader/webuploader.css" rel="stylesheet">
-    <link href="${basePath}/res/plugins/layer/skin/layer.css" rel="stylesheet">-->
 
 
     <!--[if lt IE 9]>
@@ -28,8 +25,10 @@
     <script src="${basePath}/res/common/js/zui.min.js"></script>
     <script src="${basePath}/res/plugins/layer/layer.js"></script>
     <script src="${basePath}/res/front/js/jeesns.js"></script>
+
     <link href="${basePath}/res/plugins/makedown/css/editormd.min.css" rel="stylesheet">
     <script src="${basePath}/res/plugins/makedown/js/editormd.min.js"></script>
+
 
 </head>
 <body class="gray-bg">
@@ -49,10 +48,14 @@
                     </div>
 
                     <div class="form-group clearfix" style="margin-bottom: 20px;">
-                        <label for="firstname" class="col-sm-1 control-label" style="width: 100px; float:left;">帖子类型</label>
+                        <label for="firstname" class="col-sm-1 control-label" style="width: 50px; float:left;">类型</label>
                         <div class="col-sm-8" style="float: left;">
-                            <input type="radio"  id="groupsStatus" name="groupstatus" value="0" checked>问题帖子
-                            <input type="radio"  id="groupsStatus" name="groupstatus" value="1">文章帖子
+                            <label style="margin-right: 30px;">
+                                <input type="radio"  id="groupsStatus" name="groupstatus" value="0" checked>问题
+                            </label>
+                            <label style="margin-right: 30px;">
+                                <input type="radio"  id="groupsStatus" name="groupstatus" value="1">文档/文章
+                            </label>
                             <span style="color: red;font-weight: bolder;font-family: serif;">*请选择一个帖子类型</span>
                         </div>
                     </div>
@@ -73,8 +76,8 @@
                     </div>
                     <div class="form-group clearfix" style="margin-left: 900px;">
                         <div class="col-sm-offset-1 col-sm-10">
-                            <button type="submit" class="btn btn-info jeesns-submit" style="    background-color: #ca1828;">保存</button>
-                            <a href="${basePath}/group/detail/${group.id}" class="btn btn-info jeesns-submit" style=" background-color: #ca1828;">取消</a>
+                            <button type="submit" class="btn btn-info jeesns-submit" style="color: #fff; background-color: #ca1828;">保存</button>
+                            <a href="${basePath}/group/detail/${group.id}" class="btn btn-info jeesns-submit" style="color: #fff;  background-color: #ca1828;">取消</a>
                         </div>
                     </div>
                 </form>

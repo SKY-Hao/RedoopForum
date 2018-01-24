@@ -13,19 +13,19 @@
                         ${loginUser.name}
                             <#if unReadMessageNum+systemUnReadMessageNum &gt; 0><i class="fa fa-comments"></i></#if>
                         </a>
-                    <div id="aa">
+                    <div id="aa" style="left: 51px;">
                         <ul class="dropdown-menus" style="margin-left: -20px;">
                             <li id="xq"><a href="${basePath}/member/" style=" margin-right: 16px;">个人中心</a></li>
 <#--
                             <li id="xq"><a href="${basePath}/member/systemMessage" style=" margin-right: 16px;">系统信息 ${(systemUnReadMessageNum > 0)?string("("+systemUnReadMessageNum+")","")}</a></li>
 -->
-                            <li id="xq"><a href="${basePath}/member/message" style=" margin-right: 40px;">私信 ${(unReadMessageNum > 0)?string("("+unReadMessageNum+")","")}</a></li>
-                            <li id="xq"><a href="${basePath}/member/editInfo" style=" margin-right: 40px;">设置</a></li>
+                            <li id="xq"><a href="${basePath}/member/message" >私信 ${(unReadMessageNum > 0)?string("("+unReadMessageNum+")","")}</a></li>
+                            <li id="xq"><a href="${basePath}/member/editInfo">设置</a></li>
                             <#if loginUser?? && loginUser.isAdmin &gt; 0>
-                                <li id="xq"><a href="${managePath}/" target="_blank" style=" margin-right: 40px;">管理</a></li>
+                                <li id="xq"><a href="${managePath}/" target="_blank">管理</a></li>
                             </#if>
                             <li class="divider"></li>
-                            <li id="xq"><a href="${basePath}/member/logout" style=" margin-right: 40px;">退出</a></li>
+                            <li id="xq"><a href="${basePath}/member/logout">退出</a></li>
                         </ul>
                     </div>
                         <script>

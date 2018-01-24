@@ -95,8 +95,6 @@ public class GroupController extends BaseController {
 
 
 
-
-
     /**
      * 群组申请页
      * @return
@@ -403,9 +401,13 @@ public class GroupController extends BaseController {
         if(StringUtils.isNotEmpty(judgeLoginJump)){
             return judgeLoginJump;
         }
+
+        List<Group> groupList = groupService.groupList();
+
+
         GroupTopic groupTopic = groupTopicService.findById(topicId,loginMember);
-      //  System.out.println("=find="+groupTopic);
-       // System.out.println("=findtopic="+groupTopic.getGroup().getId());
+        //  System.out.println("=find="+groupTopic);
+        // System.out.println("=findtopic="+groupTopic.getGroup().getId());
 
         if(groupTopic == null){
             return jeesnsConfig.getFrontTemplate() + ErrorUtil.error(model,-1004, Const.INDEX_ERROR_FTL_PATH);
@@ -413,6 +415,7 @@ public class GroupController extends BaseController {
         if(loginMember.getId().intValue() != groupTopic.getMember().getId().intValue()){
             return jeesnsConfig.getFrontTemplate() + ErrorUtil.error(model,-1001, Const.INDEX_ERROR_FTL_PATH);
         }
+        model.addAttribute("groupList",groupList);
         model.addAttribute("groupTopic",groupTopic);
         model.addAttribute("loginUser", loginMember);
         return jeesnsConfig.getFrontTemplate() + "/group/topicEdit";

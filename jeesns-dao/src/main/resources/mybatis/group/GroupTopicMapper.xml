@@ -12,27 +12,7 @@
   </resultMap>
 
   <select id="listByPage" resultMap="GroupTopicResult">
-    <!--select a.id,a.group_id as 'group.id', a.collect_time, a.status,a.is_top,a.is_essence,b.*,c.name 'group.name',
-    b.member_id as memberId,b.member_id as 'member.id',d.name as 'member.name',d.avatar as 'member.avatar',
-    count(e.id) AS topicComment
-    from tbl_group_topic as a LEFT JOIN tbl_archive as b ON a.archive_id = b.archive_id
-    LEFT JOIN tbl_group as c ON a.group_id = c.id LEFT JOIN tbl_member as d on b.member_id=d.id
-    LEFT JOIN tbl_group_topic_comment AS e on a.id=e.group_topic_id
-    <where>
-      <if test="groupId &gt; 0">
-        a.group_id = #{groupId}
-      </if>
-      <if test="key != null and key != ''">
-        and b.title LIKE #{key}
-      </if>
-      <if test="status != 2">
-        and a.status = #{status}
-      </if>
-      <if test="memberId &gt; 0">
-        and b.member_id = #{memberId}
-      </if>
-    </where>
-    GROUP by a.is_top DESC,a.id DESC-->
+
       SELECT
       a.id,
       a.group_id AS 'group.id',
@@ -98,6 +78,7 @@
   <update id="essence">
     UPDATE tbl_group_topic SET is_essence = #{essence} WHERE id = #{id}
   </update>
+
   <update id="update" parameterType="GroupTopic">
     UPDATE tbl_group_topic SET group_id = #{groupId} ,groupstatus=#{groupstatus} WHERE id = #{id}
   </update>
@@ -202,29 +183,7 @@ ORDER BY a.id desc
       LEFT JOIN tbl_group_topic_comment e ON a.id=e.group_topic_id
       where a.status=1 and c.status=1
       GROUP BY a.id desc
-   /* SELECT
-a.*,
-a.member_id AS memberId,
-a.member_id AS 'member.id',
-b.id,
-b.group_id AS 'group.id',
-b.collect_time,
-b.`status`,
-b.is_top,
-b.is_essence,
-d. NAME AS 'member.name',
-    d.avatar AS 'member.avatar',
-count(e.id) as topicComment
-FROM
-	tbl_archive a
-LEFT JOIN tbl_group_topic b ON a.archive_id = b.archive_id
-LEFT JOIN tbl_group c ON b.group_id = c.id
-LEFT JOIN tbl_member d ON a.member_id = d.id
-LEFT JOIN tbl_group_topic_comment e ON b.id = e.group_topic_id
-LEFT JOIN tbl_article f ON a.archive_id = f.id
 
-
-GROUP BY a.archive_id desc*/
   </select>
 
   <!--搜索帖子2018年1月6日14:11:39-->

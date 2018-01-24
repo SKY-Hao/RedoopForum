@@ -38,7 +38,7 @@
                 <h3>
                     <a href="/">所有</a></h3>
                 <h3><a href="${basePath}/group/problem" style="margin: 0 10px;">问题</a></h3>
-                <h3><a href="${basePath}/group/article">文章</a></h3>
+                <h3><a href="${basePath}/group/article">文档/文章</a></h3>
             </div>
             <div class="TermCon">
 
@@ -81,12 +81,12 @@
 
                         </p>
                         <#--<p>1小时前</p>-->
-                        <p><a href="#">创建人:${groupTopic.member.name}</a></p>
+                        <p><a href="#">Author:${groupTopic.member.name}</a></p>
                     </div>
                     <div class="counts">
                         <a class="discu on" title="评论">${groupTopic.topicComment}</a>
                         <a class="like" title="喜欢">${groupTopic.favor}</a>
-                        <a class="views" title="阅读">${groupTopic.viewCount}</a>
+                        <a class="views " title="阅读">${groupTopic.viewCount}</a>
                     </div>
                 </div>
 

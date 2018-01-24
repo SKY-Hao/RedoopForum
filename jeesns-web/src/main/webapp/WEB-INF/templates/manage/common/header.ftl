@@ -63,7 +63,7 @@
                     <li><a href="${managePath}/system/action/memberActionLog" module="system"><i class="fa fa-circle-o"></i>会员动态</a></li>
                 </ul>
             </li>
-            <li class="treeview" module="cms">
+            <#--<li class="treeview" module="cms">
                 <a href="#">
                     <i class="fa fa-book"></i> <span>文章管理</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
@@ -72,7 +72,7 @@
                     <li><a href="${managePath}/cms/articleCate/list" module="cms"><i class="fa fa-circle-o"></i>栏目管理</a></li>
                     <li><a href="${managePath}/cms/index" module="cms"><i class="fa fa-circle-o"></i>文章管理</a></li>
                 </ul>
-            </li>
+            </li>-->
             <li class="treeview" module="member">
                 <a href="#">
                     <i class="fa fa-user"></i> <span>会员管理</span>
@@ -85,18 +85,18 @@
             </li>
             <li class="treeview" module="group">
                 <a href="#">
-                    <i class="fa fa-group"></i> <span>群组管理</span>
+                    <i class="fa fa-group"></i> <span>主题管理</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="${managePath}/group/index" module="group"><i class="fa fa-circle-o"></i>群组列表</a></li>
+                    <li><a href="${managePath}/group/index" module="group"><i class="fa fa-circle-o"></i>主题列表</a></li>
 
                     <!--2017年12月15日11:25:27-->
                     <li><a href="${managePath}/group/topic/index" module="group"><i class="fa fa-circle-o"></i>帖子列表</a></li>
 
                 </ul>
             </li>
-            <li class="treeview" module="weibo">
+          <#--  <li class="treeview" module="weibo">
                 <a href="#">
                     <i class="fa fa-weibo"></i> <span>微博管理</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
@@ -114,7 +114,7 @@
                     <li><a href="${managePath}/ads/list" module="common"><i class="fa fa-circle-o"></i>广告管理</a></li>
                     <li><a href="${managePath}/link/list" module="common"><i class="fa fa-circle-o"></i>友情链接</a></li>
                 </ul>
-            </li>
+            </li>-->
         </ul>
     </section>
 </aside>

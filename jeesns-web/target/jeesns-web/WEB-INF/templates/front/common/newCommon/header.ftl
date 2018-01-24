@@ -9,7 +9,7 @@
                     <a href="${basePath}/member/login" class="loginBtn">登录</a>
                 <#else>
 
-                        <a class="header-action-link" href="${basePath}/member/" style="margin-right: 90px; margin-top: -12px;">
+                        <a class="header-action-link" href="${basePath}/member/" style="margin-right: 90px; margin-top: -12px;width: 100px;">
                         ${loginUser.name}
                             <#if unReadMessageNum+systemUnReadMessageNum &gt; 0><i class="fa fa-comments"></i></#if>
                         </a>
@@ -19,16 +19,16 @@
 <#--
                             <li id="xq"><a href="${basePath}/member/systemMessage" style=" margin-right: 26px;">系统信息 ${(systemUnReadMessageNum > 0)?string("("+systemUnReadMessageNum+")","")}</a></li>
 -->
-                            <li id="xq"><a href="${basePath}/member/message" style=" margin-right: 40px;">私信 ${(unReadMessageNum > 0)?string("("+unReadMessageNum+")","")}</a></li>
-                            <li id="xq"><a href="${basePath}/member/editInfo" style=" margin-right: 40px;">设置</a></li>
+                            <li id="xq"><a href="${basePath}/member/message">私信 ${(unReadMessageNum > 0)?string("("+unReadMessageNum+")","")}</a></li>
+                            <li id="xq"><a href="${basePath}/member/editInfo">设置</a></li>
                             <#if loginUser?? && loginUser.isAdmin &gt; 0>
-                                <li id="xq"><a href="${managePath}/" target="_blank" style=" margin-right: 40px;">管理</a></li>
+                                <li id="xq"><a href="${managePath}/" target="_blank">管理</a></li>
                             </#if>
                             <li class="divider"></li>
-                            <li id="xq"><a href="${basePath}/member/logout" style=" margin-right: 40px;">退出</a></li>
+                            <li id="xq"><a href="${basePath}/member/logout">退出</a></li>
                         </ul>
                     </div>
-                        <script>
+                       <script>
                             $(function () {
                                $('#down').mouseover(function(){
                                    $('#aa').show();
@@ -43,7 +43,9 @@
 
         </div>
         <div class="navFL">
-            <img src="${basePath}/res/new/images/mainLog.png" />
+            <a href="${basePath}">
+                <img src="${basePath}/res/new/images/mainLog.png" />
+            </a>
             <div class="form">
                 <form action="${basePath}/group/solrList/" method="get">
 

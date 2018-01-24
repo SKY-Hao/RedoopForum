@@ -73,8 +73,8 @@
     delete from tbl_group where id = #{id}
   </delete>
   <insert id="save" parameterType="Group" useGeneratedKeys="true" keyProperty="id">
-    insert into tbl_group(create_time,name,logo,creator,managers,tags,introduce,can_post,topic_review)
-    values(now(),#{name},#{logo},#{creator},#{managers},#{tags},#{introduce},#{canPost},#{topicReview})
+    insert into tbl_group(create_time,name,logo,creator,managers,tags,introduce,can_post,topic_review,status)
+    values(now(),#{name},#{logo},#{creator},#{managers},#{tags},#{introduce},#{canPost},#{topicReview},#{status})
   </insert>
   <update id="update" parameterType="Group">
     update tbl_group
