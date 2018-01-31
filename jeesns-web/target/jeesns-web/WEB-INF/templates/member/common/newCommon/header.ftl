@@ -44,7 +44,9 @@
 
         </div>
         <div class="navFL">
-            <img src="${basePath}/res/new/images/mainLog.png" />
+            <a href="${basePath}">
+                <img src="${basePath}/res/new/images/mainLog.png" />
+            </a>
             <div class="form">
                 <form action="${basePath}/group/solrList/" method="get">
 
