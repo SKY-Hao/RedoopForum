@@ -9,13 +9,16 @@
     <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
+    <link href="${basePath}/res/plugins/makedown/js/bootstrap.min.js" rel="stylesheet">
+
+    <link href="${basePath}/res/plugins/makedown/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="${basePath}/res/new/css/groupCss/group/markDownStrle.css" rel="stylesheet">
+
     <link href="${basePath}/res/new/css/groupCss/group/topic.css" rel="stylesheet">
 
     <link href="${basePath}/res/new/css/pageCss/page.css" rel="stylesheet">
 
-    <link href="${basePath}/res/plugins/makedown/css/bootstrap.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="${basePath}/res/common/js/html5shiv.min.js"></script>
     <script src="${basePath}/res/common/js/respond.min.js"></script>
@@ -25,7 +28,6 @@
     <script src="${basePath}/res/plugins/layer/layer.js"></script>
     <script src="${basePath}/res/common/js/jquery.form.js"></script>
     <script src="${basePath}/res/front/js/jeesns.js"></script>
-    <script src="${basePath}/res/plugins/makedown/js/bootstrap.min.js"></script>
     <script>
         var base = "${basePath}";
         var groupTopicId = ${groupTopic.id};
@@ -67,8 +69,8 @@
                 <#-- <a href="#" class="faceQ"><img src="images/face.png" /></a>-->
                     <div class="detailInfo">
                         <h4> ${groupTopic.title}</h4>
-                        <p style="width:150px; margin-top:5px"><b>Author:</b>${groupTopic.member.name}</p>
-                        <p style="width:150px;margin-top:5px"><b>Time:</b>${groupTopic.createTime?string('yyyy-MM-dd HH:mm')}</p>
+                        <p style="width:150px;"><b>Author:</b>${groupTopic.member.name}</p>
+                        <p style="width:150px;"><b>Time:</b>${groupTopic.createTime?string('yyyy-MM-dd HH:mm')}</p>
                         <div class="counts">
                             <a class="discu" title="评论">${groupTopic.topicComment}</a>
                         <#--选择喜欢不喜欢-->
@@ -134,6 +136,21 @@
             </div>
         </div>
         <div class="span4" style="margin-top:45px;">
+
+
+            <div class="widget">
+                <h3>热门文档/文章</h3>
+            <#list byGroupStatus as groupTopic>
+                <div class="question-block">
+                    <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
+                    <div>
+                        <span class="answer">点击：</span>
+                        <span>${groupTopic.viewCount}</span>
+                    </div>
+                </div>
+            </#list>
+            </div>
+            <div class="fengeLine"></div>
             <div class="widget">
                 <h3>热门问题</h3>
             <#list byGroupStatusList as groupTopic>
@@ -146,19 +163,8 @@
                 </div>
             </#list>
             </div>
-            <div class="fengeLine"></div>
-            <div class="widget">
-                <h3>热门文章</h3>
-            <#list byGroupStatus as groupTopic>
-                <div class="question-block">
-                    <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
-                    <div>
-                        <span class="answer">点击：</span>
-                        <span>${groupTopic.viewCount}</span>
-                    </div>
-                </div>
-            </#list>
-            </div>
+
+
             <div class="fengeLine"></div>
             <div class="widget">
                 <h3>热门主题</h3>

@@ -55,7 +55,7 @@ i{font-style:normal}
 .clearfix:before, .clearfix:after,.cols:before, .cols:after,.row:before, .row:after { content: ""; display: table; }.clearfix:after,.cols:after,.row:after { clear: both; }.clearfix,.cols,.row { zoom: 1; }
 * { box-sizing: border-box; }
 body { -webkit-text-size-adjust: none; -webkit-overflow-scrolling:touch}
-a{text-decoration: none; color:#5079d9;}
+a{text-decoration: none; color:#8d6f59;}
 /*a:hover{ text-decoration:underline;}*/
 ol,ul{list-style: none;}
 /*input,textarea{border-radius: 0;box-shadow: none;-webkit-appearance: none}*/

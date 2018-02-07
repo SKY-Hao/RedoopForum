@@ -52,6 +52,23 @@
             </div>
         </div>
         <div class="span4">
+
+            <div class="widget">
+
+                <h3>热门文档/文章</h3>
+                <#list byGroupStatus as groupTopic>
+                    <div class="question-block">
+                        <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
+                        <div>
+                            <span class="answer">点击：</span>
+                            <span>${groupTopic.viewCount}</span>
+                        </div>
+                    </div>
+                </#list>
+            </div>
+
+            <div class="fengeLine"></div>
+
             <div class="widget">
                 <h3>热门问题</h3>
                 <#list byGroupStatusList as groupTopic>
@@ -64,20 +81,8 @@
                     </div>
                 </#list>
             </div>
-            <div class="fengeLine"></div>
-            <div class="widget">
 
-                <h3>热门文章</h3>
-                <#list byGroupStatus as groupTopic>
-                    <div class="question-block">
-                        <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
-                        <div>
-                            <span class="answer">点击：</span>
-                            <span>${groupTopic.viewCount}</span>
-                        </div>
-                    </div>
-                </#list>
-            </div>
+
             <div class="fengeLine"></div>
             <div class="widget">
                 <h3>热门主题</h3>

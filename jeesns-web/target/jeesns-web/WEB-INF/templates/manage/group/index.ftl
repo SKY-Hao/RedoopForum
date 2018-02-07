@@ -96,9 +96,9 @@
                                                 </a>
                                             </#if>
                                         </td>
-                                        <td>
+                                        <td style="width: 85px;">
                                             <a class="marg-l-5" target="_jeesnsLink"
-                                               href="${managePath}/group/delete/${group.id}" confirm="确定要删除群组吗？删除后群组文章都会被删除！">
+                                               href="${managePath}/group/delete/${group.id}" confirm="确定要删除主题吗？删除后主题文章都会被删除！">
                                                 <span class="label label-danger"><i class="fa fa-trash red"></i></span>
                                             </a>
                                         </td>

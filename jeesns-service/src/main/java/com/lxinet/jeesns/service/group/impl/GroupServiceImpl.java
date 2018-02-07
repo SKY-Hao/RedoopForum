@@ -263,44 +263,47 @@ public class GroupServiceImpl implements IGroupService {
      */
     @Override
     public ResponseModel saveManageGroup(Member loginMember, Group group,String logoPath,MultipartFile attach) throws Exception {
-        Map<String,String> config = configService.getConfigToMap();
-        group.setCreator(loginMember.getId());
-        if(loginMember.getIsAdmin() > 0){
-            group.setStatus(1);
-        }else {
-            if("0".equals(config.get(ConfigUtil.GROUP_APPLY))){
-                return new ResponseModel(-1,"群组申请功能已关闭");
-            }
-            if("0".equals(config.get(ConfigUtil.GROUP_APPLY_REVIEW))){
-                group.setStatus(0);
-            }else {
+
+            Map<String,String> config = configService.getConfigToMap();
+            group.setCreator(loginMember.getId());
+            if(loginMember.getIsAdmin() > 0){
                 group.setStatus(1);
+            }else {
+                if("0".equals(config.get(ConfigUtil.GROUP_APPLY))){
+                    return new ResponseModel(-1,"群组申请功能已关闭");
+                }
+                if("0".equals(config.get(ConfigUtil.GROUP_APPLY_REVIEW))){
+                    group.setStatus(0);
+                }else {
+                    group.setStatus(1);
+                }
             }
-        }
-        //默认图标
-        if(StringUtils.isEmpty(group.getLogo())){
-            group.setLogo(Const.DEFAULT_IMG_URL);
-        }
-        //设置管理员
-        String managerIds = String.valueOf(loginMember.getId());
-        group.setManagers(managerIds);
-        group.setCanPost(1);
-        group.setTopicReview(0);
+            //默认图标
+            if(StringUtils.isEmpty(group.getLogo())){
+                group.setLogo(Const.DEFAULT_IMG_URL);
+            }
+            //设置管理员
+            String managerIds = String.valueOf(loginMember.getId());
+            group.setManagers(managerIds);
+            group.setCanPost(1);
+            group.setTopicReview(0);
 
-        group = uploadPic(group,attach,logoPath);
+            group = uploadPic(group,attach,logoPath);
 
 
-        if(groupDao.save(group) == 1){
-            //创建者默认关注群组
-            groupFansService.save(loginMember,group.getId());
-            //申请群组奖励、扣款
-            scoreDetailService.scoreBonus(loginMember.getId(), ScoreRuleConsts.APPLY_GROUP, group.getId());
-            return new ResponseModel(3,"申请成功，请等待审核");
-        }
+            if(groupDao.save(group) == 1){
+                //创建者默认关注群组
+                groupFansService.save(loginMember,group.getId());
+                //申请群组奖励、扣款
+                scoreDetailService.scoreBonus(loginMember.getId(), ScoreRuleConsts.APPLY_GROUP, group.getId());
+                return new ResponseModel(3,"申请成功，请等待审核");
+            }
+
         return new ResponseModel(-1,"操作失败，请重试");
     }
 
-    private Group uploadPic(Group group, MultipartFile attach,String logoPath) throws IOException {
+
+    private Group uploadPic(Group group, MultipartFile attach,String logoPath) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         String ymd = sdf.format(new Date());
         String path = "/upload/images/" + ymd + "/";
@@ -328,15 +331,11 @@ public class GroupServiceImpl implements IGroupService {
 
         System.out.println("realFile===="+realFile);
 
-       // group.setCompanypicname(picNameOld);
-       // group.setCompanypic(configProperties.getUploadSuffix() + picNameNew);
         group.setLogo(path+picNameNew);
         System.out.println("groupLOGO===="+group.getLogo());
 
         return group;
     }
-
-
 
 
 

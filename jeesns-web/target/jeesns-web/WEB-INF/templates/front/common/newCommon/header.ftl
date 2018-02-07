@@ -43,7 +43,7 @@
 
         </div>
         <div class="navFL">
-            <a href="${basePath}">
+            <a href="${basePath}/">
                 <img src="${basePath}/res/new/images/mainLog.png" />
             </a>
             <div class="form">

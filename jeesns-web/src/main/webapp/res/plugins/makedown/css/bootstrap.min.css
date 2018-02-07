@@ -1533,3 +1533,18 @@ button.close{-webkit-appearance:none;padding:0;cursor:pointer;background:0 0;bor
 }
 a{text-decoration:none }
 a:hover{text-decoration:none;}
+
+.detailContent table{border: 1px solid #cccccc;    margin-top: 20px;}
+.detailContent table thead tr{border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;}
+.detailContent table thead tr th{border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;    text-align: center;}
+
+.detailContent table tr{border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;}
+.detailContent table tr td{border-right: 1px solid #ccc;    text-align: center;}
+.detailContent table tr:nth-child(odd){
+    background: #f8f8f8;
+}
+.detailContent table tr:nth-child(even){
+    background: #ffffff;
+}
+h1 h2 h3 h4 h5 h6{    margin-top: 20px;
+    margin-bottom: 20px;}

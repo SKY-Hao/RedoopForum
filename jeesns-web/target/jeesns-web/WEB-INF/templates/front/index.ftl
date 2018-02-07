@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>红象云腾社区</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -37,8 +38,9 @@
             <div class="theamLine">
                 <h3>
                     <a href="/">所有</a></h3>
-                <h3><a href="${basePath}/group/problem" style="margin: 0 10px;">问题</a></h3>
+              <h3><a href="${basePath}/group/problem" style="margin: 0 10px;">问题</a></h3>
                 <h3><a href="${basePath}/group/article">文档/文章</a></h3>
+
             </div>
             <div class="TermCon">
 
@@ -108,32 +110,36 @@
         <#--热门的帖子文章-->
         <div class="span4" style="margin-top:45px;">
 
-            <div class="widget">
 
+            <div class="widget">
+                <h3>热门文档/文章</h3>
+                <#list byGroupStatus as groupTopic>
+                <div class="question-block">
+                    <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
+                    <div>
+                        <span class="answer">点击：</span>
+                        <span>${groupTopic.viewCount}</span>
+                    </div>
+                </div>
+                </#list>
+            </div>
+
+            <div class="fengeLine"></div>
+
+            <div class="widget">
                 <h3>热门问题</h3>
                 <#list byGroupStatusList as groupTopic>
-                    <div class="question-block">
-                        <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
-                        <div>
-                            <span class="answer">点击：</span>
-                            <span>${groupTopic.viewCount}</span>
-                        </div>
+                <div class="question-block">
+                    <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
+                    <div>
+                        <span class="answer">点击：</span>
+                        <span>${groupTopic.viewCount}</span>
                     </div>
+                </div>
                 </#list>
             </div>
-            <div class="fengeLine"></div>
-            <div class="widget">
-                <h3>热门文章</h3>
-                <#list byGroupStatus as groupTopic>
-                    <div class="question-block">
-                        <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
-                        <div>
-                            <span class="answer">点击：</span>
-                            <span>${groupTopic.viewCount}</span>
-                        </div>
-                    </div>
-                </#list>
-            </div>
+
+
             <div class="fengeLine"></div>
             <div class="widget">
                 <h3>热门主题</h3>

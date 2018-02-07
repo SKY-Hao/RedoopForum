@@ -127,6 +127,23 @@ public class GroupController extends BaseController {
     }
 
 
+    /**
+     * 后台去修改主题
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value="${managePath}/group/topic/editGroup/{id}",method = RequestMethod.GET)
+    public String editGroup(@PathVariable("id") Integer id, Model model){
+
+        Group group = groupService.findById(id);
+        model.addAttribute("group",group);
+
+        return MANAGE_FTL_PATH + "editGroup";
+    }
+
+
+
 
     /**
      * 后台   帖子列表
@@ -171,7 +188,7 @@ public class GroupController extends BaseController {
 
 
     /**
-     * 后台保存群组问题帖子
+     * 后台保存帖子
      * @param groupTopic
      * @param bindingResult
      * @return
@@ -243,7 +260,6 @@ public class GroupController extends BaseController {
         }
         return responseModel;
     }
-
 
 
 }
