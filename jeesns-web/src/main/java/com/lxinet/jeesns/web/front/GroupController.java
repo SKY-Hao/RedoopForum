@@ -412,7 +412,7 @@ public class GroupController extends BaseController {
         if(groupTopic == null){
             return jeesnsConfig.getFrontTemplate() + ErrorUtil.error(model,-1004, Const.INDEX_ERROR_FTL_PATH);
         }
-        if(loginMember.getId().intValue() != groupTopic.getMember().getId().intValue()){
+        if(loginMember.getId().intValue() != groupTopic.getMember().getId().intValue() && loginMember.getIsAdmin() < 2){
             return jeesnsConfig.getFrontTemplate() + ErrorUtil.error(model,-1001, Const.INDEX_ERROR_FTL_PATH);
         }
         model.addAttribute("groupList",groupList);

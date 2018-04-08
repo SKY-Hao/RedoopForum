@@ -14,12 +14,14 @@ import com.lxinet.jeesns.model.group.GroupTopic;
 import com.lxinet.jeesns.model.member.Member;
 import com.lxinet.jeesns.service.group.IGroupService;
 import com.lxinet.jeesns.service.group.IGroupTopicService;
+import com.lxinet.jeesns.service.member.IMemberService;
 import com.lxinet.jeesns.web.common.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +43,8 @@ public class GroupController extends BaseController {
     private IGroupService groupService;
     @Resource
     private IGroupTopicService groupTopicService;
-
+    @Resource
+    private IMemberService memberService;
     /**
      * 群组列表
      * @param status
@@ -133,16 +136,45 @@ public class GroupController extends BaseController {
      * @param model
      * @return
      */
-    @RequestMapping(value="${managePath}/group/topic/editGroup/{id}",method = RequestMethod.GET)
+    @RequestMapping(value="${managePath}/group/editGroup/{id}",method = RequestMethod.GET)
     public String editGroup(@PathVariable("id") Integer id, Model model){
 
+        Member loginMember = MemberUtil.getLoginMember(request);
         Group group = groupService.findById(id);
+        String managerIds = group.getManagers();
+        String newManagerName = "";
+        if(StringUtils.isNotEmpty(managerIds)){
+            String[] idArr = managerIds.split(",");
+            for (String ids : idArr){
+                Member member = memberService.findById(Integer.parseInt(ids));
+                if(member != null){
+                    newManagerName += member.getName() + ",";
+                }
+            }
+            if(newManagerName.length() > 0){
+                newManagerName = newManagerName.substring(0,newManagerName.length()-1);
+            }
+        }
+        model.addAttribute("managerNames",newManagerName);
         model.addAttribute("group",group);
-
+        model.addAttribute("loginUser", loginMember);
         return MANAGE_FTL_PATH + "editGroup";
     }
 
-
+    /**
+     * 后台修改主题保存
+     * @param group
+     * @return
+     */
+    @RequestMapping(value = "${managePath}/group/editGroupSave",method = RequestMethod.POST)
+    @ResponseBody
+    public Object editGroupSave(Group group){
+        Member loginMember = MemberUtil.getLoginMember(request);
+        if(loginMember == null){
+            return new ResponseModel(-1,"请先登录");
+        }
+        return groupService.editGroupSave(loginMember,group);
+    }
 
 
     /**

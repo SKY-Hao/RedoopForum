@@ -36,10 +36,10 @@
                 <form class="form-horizontal jeesns_form" role="form" action="${managePath}/group/topic/update" method="post" onsubmit="ckUpdate();">
                     <input type="hidden" class="form-control" name="id" value="${topic.id}">
                     <div class="form-group">
-                        <label for="lastname" class="col-sm-1 control-label">群组</label>
+                        <label for="lastname" class="col-sm-1 control-label">主题</label>
                         <div class="col-sm-3">
-                            <select class="form-control" name="groupId" data-type="selected" alt="群组">
-                                <option value="">=请选择群组=</option>
+                            <select class="form-control" name="groupId" data-type="selected" alt="主题">
+                                <option value="">=请选择主题=</option>
                             <#list groupList as mainMenu>
                                 <option value="${mainMenu.id}" <#if topic.group.id==mainMenu.id>selected</#if>>${mainMenu.name}</option>
                             </#list>

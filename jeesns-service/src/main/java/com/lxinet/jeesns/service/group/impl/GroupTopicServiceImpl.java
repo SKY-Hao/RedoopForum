@@ -166,12 +166,13 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         if(findGroupTopic == null){
             return new ResponseModel(-2);
         }
-        if(member.getId().intValue() != findGroupTopic.getMember().getId().intValue()){
+        System.out.println("isadmin===="+member.getIsAdmin());
+        if(member.getId().intValue() != findGroupTopic.getMember().getId().intValue() && member.getIsAdmin()>2){
             return new ResponseModel(-1,"没有权限");
         }
 
         groupTopic.setArchiveId(findGroupTopic.getArchiveId());//把查到文档id放到帖子表里面
-        groupTopic.setViewCount(findGroupTopic.getViewCount());//把查到的查看次数放到帖子表里面
+       // groupTopic.setViewCount(findGroupTopic.getViewCount());//把查到的查看次数放到帖子表里面
 
         Archive archive = new Archive();
         try {
@@ -203,6 +204,7 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         if(groupTopic == null){
             return new ResponseModel(-1,"帖子不存在");
         }
+
        // int result = groupTopicDao.delete(id);
        //if(result == 1){
             //扣除积分
@@ -241,6 +243,13 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
                 isManager = true;
             }
         }
+        //TODO
+        // 2018年3月1日17:47:26
+
+        if(loginMember.getId().intValue() != groupTopic.getMember().getId().intValue() && loginMember.getIsAdmin() < 2 ){
+            return new ResponseModel(-1,"没有权限");
+        }
+
         if(loginMember.getId().intValue() == groupTopic.getMember().getId().intValue() || loginMember.getIsAdmin() > 0 ||
                 isManager || loginMember.getId().intValue() == group.getCreator().intValue()){
             ResponseModel responseModel = this.delete(loginMember,id);

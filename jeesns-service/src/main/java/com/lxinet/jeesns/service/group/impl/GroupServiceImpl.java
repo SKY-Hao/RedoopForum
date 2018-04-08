@@ -1,5 +1,6 @@
 package com.lxinet.jeesns.service.group.impl;
 
+import com.lxinet.jeesns.common.utils.ActionLogType;
 import com.lxinet.jeesns.core.dto.ResponseModel;
 import com.lxinet.jeesns.core.model.Page;
 import com.lxinet.jeesns.core.utils.*;
@@ -17,6 +18,7 @@ import com.lxinet.jeesns.common.utils.ActionUtil;
 import com.lxinet.jeesns.common.utils.ConfigUtil;
 import com.lxinet.jeesns.common.utils.ScoreRuleConsts;
 import org.apache.commons.io.FileUtils;
+import org.omg.CORBA.SystemException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -162,6 +164,7 @@ public class GroupServiceImpl implements IGroupService {
             groupFansService.save(loginMember,group.getId());
             //申请群组奖励、扣款
             scoreDetailService.scoreBonus(loginMember.getId(), ScoreRuleConsts.APPLY_GROUP, group.getId());
+
             return new ResponseModel(1,"申请成功，请等待审核");
         }
         return new ResponseModel(-1,"操作失败，请重试");
@@ -230,6 +233,9 @@ public class GroupServiceImpl implements IGroupService {
         if(group == null){
             return new ResponseModel(-1,"群组不存在");
         }
+       /* if(loginMember.getIsAdmin() >2 && loginMember.getId().intValue() != group.getCreator().intValue()){
+            return new ResponseModel(-1,"没有权限");
+        }*/
         if(groupDao.delete(id) == 1){
             actionLogService.save(loginMember.getCurrLoginIp(),loginMember.getId(), ActionUtil.DELETE_GROUP,"ID："+group.getId()+"，名字："+group.getName());
             return new ResponseModel(1,"删除成功");
@@ -296,14 +302,49 @@ public class GroupServiceImpl implements IGroupService {
                 groupFansService.save(loginMember,group.getId());
                 //申请群组奖励、扣款
                 scoreDetailService.scoreBonus(loginMember.getId(), ScoreRuleConsts.APPLY_GROUP, group.getId());
+
                 return new ResponseModel(3,"申请成功，请等待审核");
             }
 
         return new ResponseModel(-1,"操作失败，请重试");
     }
 
+    /**
+     * 后台主题修改保存
+     * @param loginMember
+     * @param group
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public ResponseModel editGroupSave(Member loginMember, Group group) {
 
-    private Group uploadPic(Group group, MultipartFile attach,String logoPath) throws Exception {
+        Group findGroup = this.findById(group.getId());
+
+
+        if(loginMember.getIsAdmin() >=1){
+            System.out.println("tttt++==="+group.getLogo());
+            System.out.println("ttttt2222==="+findGroup.getLogo());
+            findGroup.setName(group.getName());
+            findGroup.setTags(group.getTags());
+            findGroup.setIntroduce(group.getIntroduce());
+            findGroup.setStatus(group.getStatus());
+
+            if(groupDao.update(findGroup) == 1){
+
+                return new ResponseModel(3,"修改成功");
+             }
+        }else {
+            return new ResponseModel(-1,"没有权限");
+        }
+
+        return new ResponseModel(-1,"操作失败，请重试");
+    }
+
+
+
+
+    private Group uploadPic(Group group, MultipartFile attach, String logoPath) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         String ymd = sdf.format(new Date());
         String path = "/upload/images/" + ymd + "/";

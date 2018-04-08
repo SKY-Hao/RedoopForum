@@ -89,11 +89,11 @@
 
 
 
-                    <#if loginUser?? && (loginUser.id == groupTopic.memberId || loginUser.isAdmin &gt; 0)>
+                    <#if loginUser?? && (loginUser.id == groupTopic.memberId || loginUser.isAdmin >= 2)>
                         <div style="width: 190px;float: right;margin-top: -40px; height: 20px;">
-                            <#if loginUser.id == groupTopic.memberId>
+                            <#--<#if loginUser.id == groupTopic.memberId>-->
                                 <a href="${basePath}/group/topicEdit/${groupTopic.id}" class="btn" style="margin-top: 13px;height: 20px;background-color: #ca1828;line-height: 8px;color: #fff">Edit</a>
-                            </#if>
+                            <#--</#if>-->
                             <a href="${basePath}/group/delete/${groupTopic.id}" class="btn" confirm="确定要删除帖子吗？" target="_jeesnsLink" style="margin-top: 13px;height: 20px;background-color: #ca1828;line-height: 8px;color: #fff">Delete</a>
                         </div>
 

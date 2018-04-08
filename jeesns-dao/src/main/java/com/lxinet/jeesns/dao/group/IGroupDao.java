@@ -44,5 +44,4 @@ public interface IGroupDao extends IBaseDao<Group> {
 
     List<Group> groupList();
 
-    int editeGroupSave(Group group);
 }

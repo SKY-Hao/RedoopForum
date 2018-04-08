@@ -33,13 +33,14 @@ public class EmailSendUtil {
 		});
 
 		Message msg = new MimeMessage(session);
-		session.setDebug(true);// 查看调试信息:true,不查看：false;
+		session.setDebug(false);// 查看调试信息:true,不查看：false;
 		try {
 			msg.setFrom(new InternetAddress(account));
 			msg.setSubject(title);
 			msg.setRecipients(RecipientType.TO, InternetAddress.parse(email));// 多个收件人
 			msg.setContent(content, "text/html;charset=utf-8");// 文本/指定文本类型，字符集
 			Transport.send(msg);
+
 		} catch (javax.mail.MessagingException e) {
 			e.printStackTrace();
 			//发送失败
