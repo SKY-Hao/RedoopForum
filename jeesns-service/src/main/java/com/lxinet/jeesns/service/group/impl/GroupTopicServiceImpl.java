@@ -172,7 +172,11 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         }
 
         groupTopic.setArchiveId(findGroupTopic.getArchiveId());//把查到文档id放到帖子表里面
+<<<<<<< HEAD
        // groupTopic.setViewCount(findGroupTopic.getViewCount());//把查到的查看次数放到帖子表里面
+=======
+        //groupTopic.setViewCount(findGroupTopic.getViewCount());//把查到的查看次数放到帖子表里面
+>>>>>>> b0d3fee928e4be576c94529a19bd966bc02db090
 
         Archive archive = new Archive();
         try {

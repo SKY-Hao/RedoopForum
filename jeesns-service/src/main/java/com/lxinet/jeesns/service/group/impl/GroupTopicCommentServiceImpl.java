@@ -81,6 +81,7 @@ public class GroupTopicCommentServiceImpl implements IGroupTopicCommentService {
     @Override
     public ResponseModel listByGroupTopic(Page page, int groupTopicId) {
         List<GroupTopicComment> list = groupTopicCommentDao.listByGroupTopic(page, groupTopicId);
+        System.out.println("====list====="+list.toString());
         this.atFormat(list);
         ResponseModel model = new ResponseModel(0,page);
         model.setData(list);

@@ -104,13 +104,13 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="${basePath}/u/${member.id}">
+                              <#--  <a href="${basePath}/u/${member.id}">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             动态
                                         </div>
                                     </div>
-                                </a>
+                                </a>-->
                                 <a href="${basePath}/u/${member.id}/home/fans">
                                     <div class="feed-element">
                                         <div class="media-body">
@@ -125,17 +125,17 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="${basePath}/u/${member.id}/home/article">
+                               <#-- <a href="${basePath}/u/${member.id}/home/article">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             文章
                                         </div>
                                     </div>
-                                </a>
+                                </a>-->
                                 <a href="${basePath}/u/${member.id}/home/groupTopic">
                                     <div class="feed-element">
                                         <div class="media-body">
-                                            群帖
+                                            帖子
                                         </div>
                                     </div>
                                 </a>
@@ -149,7 +149,7 @@
                                 <a href="${basePath}/u/${member.id}/home/group">
                                     <div class="feed-element">
                                         <div class="media-body">
-                                            关注群组
+                                            关注主题
                                         </div>
                                     </div>
                                 </a>

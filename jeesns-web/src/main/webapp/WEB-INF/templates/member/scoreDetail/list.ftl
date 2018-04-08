@@ -7,13 +7,23 @@
     <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
-    <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
+   <#-- <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
 
 
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${basePath}/res/common/css/jeesns.css">
-    <link rel="stylesheet" href="${basePath}/res/common/css/jeesns-skin.css">
+    <link rel="stylesheet" href="${basePath}/res/common/css/jeesns-skin.css">-->
+
+    <link href="${basePath}/res/new/css/groupCss/group/style.css" rel="stylesheet">
+
+    <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${basePath}/res/common/css/font-awesome.min.css" rel="stylesheet">
+    <link href="${basePath}/res/common/css/jeesns.css" rel="stylesheet">
+    <link href="${basePath}/res/common/css/jeesns-skin.css" rel="stylesheet">
+    <link href="${basePath}/res/plugins/emoji/css/emoji.css" rel="stylesheet">
+
+
     <!--[if lt IE 9]>
     <script src="${basePath}/res/common/js/html5shiv.min.js"></script>
     <script src="${basePath}/res/common/js/respond.min.js"></script>
@@ -27,7 +37,8 @@
 
 </head>
 <body class="gray-bg">
-<#include "/member/common/header.ftl"/>
+<#include "/member/common/newCommon/header.ftl"/>
+
 <div class="wrapper wrapper-content">
 <#include "/member/common/editLeft.ftl"/>
     <div class="col-sm-10">
@@ -72,7 +83,7 @@
 </div>
 </div>
 </div>
-<#include "/member/common/footer.ftl"/>
+<#include "/member/common/newCommon/footer.ftl"/>
 <script type="text/javascript">
     $(function () {
         $(".pagination").jeesns_page("jeesnsPageForm");
