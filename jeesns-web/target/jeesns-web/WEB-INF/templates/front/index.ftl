@@ -83,16 +83,16 @@
 
                         </p>
                         <#--<p>1小时前</p>-->
-                        <p><a href="#">Author:${groupTopic.member.name}</a></p>
+                        <p><a href="${basePath}/u/${groupTopic.member.id}">Author:${groupTopic.member.name}</a></p>
                     </div>
                     <div class="counts">
                         <a class="discu on" title="评论">${groupTopic.topicComment}</a>
                         <a class="like" title="喜欢">${groupTopic.favor}</a>
                         <a class="views " title="阅读">${groupTopic.viewCount}</a>
                     </div>
-                </div>
+                 </div>
 
-</#list>
+            </#list>
 
 
                     <ul class="pager pagination pagination-sm no-margin pull-right"

@@ -45,6 +45,7 @@
     update tbl_archive
     <set>
       update_time = now(),
+      <if test="viewCount != null">view_count = #{viewCount},</if>
       <if test="title != null">title = #{title},</if>
       <if test="description != null">description = #{description},</if>
       <if test="keywords != null">keywords = #{keywords},</if>
@@ -54,7 +55,6 @@
       <if test="canReply != null">can_reply = #{canReply},</if>
       <if test="content != null">content = #{content},</if>
       <if test="htmlcontent != null">htmlcontent = #{htmlcontent},</if>
-      <if test="viewCount != null">view_count = #{viewCount},</if>
     </set>
     where archive_id = #{archiveId}
   </update>

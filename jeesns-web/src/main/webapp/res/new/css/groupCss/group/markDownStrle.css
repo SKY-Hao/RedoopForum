@@ -126,7 +126,7 @@ a.aBtn:hover,.aBtn:hover{ background:#b31f23;}
 .widget {position: relative; margin-bottom:10px;  clear: both;  width: auto;}
 .widget h3{ width:100%;color: #333333;    font-weight: normal;    font-size: 14px;    font-weight: 600;margin-bottom: 12px;    font-family: 'Roboto Condensed', sans-serif;float: left;    margin: 5px 0;margin-top:15px;}
 .question-block{color: #999;    padding-bottom: 10px;}
-.question-block a{word-wrap: break-word; cursor: pointer;}
+.question-block a{cursor: pointer;}
 .question-block span{ color:#999;}
 
 .fengeLine{ height:1px; overflow:hidden; border:1px solid #e2e2e2;}

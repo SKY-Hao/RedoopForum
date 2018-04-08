@@ -104,6 +104,9 @@ public class ArchiveServiceImpl implements IArchiveService {
         findArchive.setHtmlcontent(archive.getHtmlcontent());
         findArchive.setDescription(archive.getDescription());
         findArchive.setKeywords(archive.getKeywords());
+
+        findArchive.setViewCount(archive.getViewCount());
+
         //普通会员
         if (member.getIsAdmin() == 0) {
             if (member.getId().intValue() != findArchive.getMemberId().intValue()) {
@@ -138,6 +141,7 @@ public class ArchiveServiceImpl implements IArchiveService {
                 findArchive.setThumbnail(imgsrc);
             }
         }
+
         return archiveDao.update(findArchive) == 1;
     }
 

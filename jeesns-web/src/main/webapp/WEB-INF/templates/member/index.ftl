@@ -81,7 +81,8 @@
                             </div>
                             <div class="follows">
                                 <span  style="color: #bababa;">积分</span>
-                                <a href="${basePath}/member/scoreDetail/list">${loginUser.score}</a>
+                                <#--<a href="${basePath}/member/scoreDetail/list">${loginUser.score}</a>-->
+                                <a>${loginUser.score}</a>
                             </div>
                             <div class="login-info"  style="color: #bababa;">
                                 加入时间:${loginUser.createTime?string('yyyy-MM-dd')}
