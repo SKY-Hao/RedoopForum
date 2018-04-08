@@ -86,6 +86,7 @@
       <if test="introduce != null">introduce = #{introduce},</if>
       <if test="canPost != null">can_post = #{canPost},</if>
       <if test="topicReview != null">topic_review = #{topicReview},</if>
+      <if test="status != null">status = #{status},</if>
     </set>
     where id = #{id}
   </update>

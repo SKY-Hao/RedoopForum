@@ -33,7 +33,7 @@
             <h1>帖子管理</h1>
             <ol class="breadcrumb">
                 <li><a href="${managePath}/index"><i class="fa fa-dashboard"></i> 主页</a></li>
-                <li class="active">群组管理</li>
+                <li class="active">帖子管理</li>
             </ol>
         </section>
         <section class="content">
@@ -69,7 +69,7 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
-                                        <th>群组名字</th>
+                                        <th>主题名字</th>
                                         <th>帖子标题</th>
                                         <th>创建时间</th>
                                         <th>状态</th>

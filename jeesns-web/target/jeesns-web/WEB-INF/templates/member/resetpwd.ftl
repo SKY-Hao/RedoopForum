@@ -6,10 +6,14 @@
     <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
-    <link href="${basePath}/res/common/css/member.css" rel="stylesheet">
+
+
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/font-awesome.min.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/jeesns.css" rel="stylesheet">
+    <link href="${basePath}/res/common/css/jeesns-skin.css" rel="stylesheet">
+    <link href="${basePath}/res/plugins/emoji/css/emoji.css" rel="stylesheet">
+
     <!--[if lt IE 9]>
     <script src="${basePath}/res/common/js/html5shiv.min.js"></script>
     <script src="${basePath}/res/common/js/respond.min.js"></script>
@@ -26,7 +30,8 @@
 </head>
 
 <body class="gray-bg">
-<#include "/member/common/header.ftl"/>
+<#include "/member/common/newCommon/header.ftl"/>
+
 <div class="animated fadeInDown">
     <div class="row login-panel">
         <div class="col-md-4"></div>
@@ -52,6 +57,7 @@
         </div>
     </div>
 </div>
-<#include "/member/common/footer.ftl"/>
+<#include "/member/common/newCommon/footer.ftl"/>
+
 </body>
 </html>

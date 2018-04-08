@@ -30,8 +30,9 @@ public interface IGroupService {
     //群组申请保存
     ResponseModel save(Member loginMember, Group group);
     //后台添加群组保存
-    ResponseModel saveManageGroup(Member loginMember, Group group, String logoPath,MultipartFile attach)throws Exception;;
-
+    ResponseModel saveManageGroup(Member loginMember, Group group, String logoPath,MultipartFile attach)throws Exception;
+    //后台群组修改保存
+    ResponseModel editGroupSave(Member loginMember, Group group);
 
     //前台修改群组 保存
     ResponseModel update(Member loginMember, Group group);
@@ -58,5 +59,6 @@ public interface IGroupService {
     List<GroupTopic> list();
 
     List<Group> groupList();
+
 
 }

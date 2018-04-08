@@ -73,6 +73,7 @@
                                     <th>创建人</th>
                                     <th>标签</th>
                                     <th>创建时间</th>
+                                    <th>介绍</th>
                                     <th>状态</th>
                                     <th width="50px">操作</th>
                                 </tr>
@@ -85,6 +86,7 @@
                                         <td>${group.creatorMember.name}</td>
                                         <td>${group.tags}</td>
                                         <td>${group.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>
+                                        <td>${group.introduce}</td>
                                         <td>
                                             <#if group.status==0>
                                                 <a class="marg-l-5" target="_jeesnsLink" href="${managePath}/group/changeStatus/${group.id}">
@@ -96,7 +98,11 @@
                                                 </a>
                                             </#if>
                                         </td>
-                                        <td style="width: 85px;">
+                                        <td width="100px">
+                                            <a href="${managePath}/group/editGroup/${group.id}" target="_jeesnsOpen"
+                                               title="编辑主题" width="1000px" height="680px">
+                                                <span class="label label-warning"><i class="fa fa-edit green"></i></span>
+                                            </a>
                                             <a class="marg-l-5" target="_jeesnsLink"
                                                href="${managePath}/group/delete/${group.id}" confirm="确定要删除主题吗？删除后主题文章都会被删除！">
                                                 <span class="label label-danger"><i class="fa fa-trash red"></i></span>
