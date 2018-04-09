@@ -53,7 +53,7 @@ public interface IGroupTopicDao extends IBaseDao<GroupTopic> {
      * @param page
      * @return
      */
-    List<GroupTopic> listByTopicPage(@Param("page") Page page);
+    List<GroupTopic> listByTopicPage(@Param("page") Page page,@Param("key") String key);
 
     /**
      * 后台修改审核参数

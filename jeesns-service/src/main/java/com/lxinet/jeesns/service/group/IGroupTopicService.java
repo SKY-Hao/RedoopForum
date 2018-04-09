@@ -56,7 +56,7 @@ public interface IGroupTopicService {
     List<GroupTopic> listByCustom(int gid, String sort, int num, int day, int thumbnail);
 
     //后台帖子列表
-    ResponseModel listByTopicPage(Page page);
+    ResponseModel listByTopicPage(Page page,String key);
     //修改后台帖子的审核状态
     ResponseModel changeTopicStatus(int id);
 

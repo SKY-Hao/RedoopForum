@@ -105,7 +105,6 @@ public class ArchiveServiceImpl implements IArchiveService {
         findArchive.setDescription(archive.getDescription());
         findArchive.setKeywords(archive.getKeywords());
 
-        findArchive.setViewCount(archive.getViewCount());
 
         //普通会员
         if (member.getIsAdmin() == 0) {

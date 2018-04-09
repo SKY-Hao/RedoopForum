@@ -157,6 +157,12 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         return model;
     }
 
+    /**
+     * 保存修改 编辑过的帖子
+     * @param member
+     * @param groupTopic
+     * @return
+     */
     @Override
     @Transactional
     public ResponseModel update(Member member,GroupTopic groupTopic) {
@@ -166,7 +172,9 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         if(findGroupTopic == null){
             return new ResponseModel(-2);
         }
+
         System.out.println("isadmin===="+member.getIsAdmin());
+
         if(member.getId().intValue() != findGroupTopic.getMember().getId().intValue() && member.getIsAdmin()>2){
             return new ResponseModel(-1,"没有权限");
         }
@@ -413,13 +421,16 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
      * @return
      */
     @Override
-    public ResponseModel listByTopicPage(Page page) {
-
-        List<GroupTopic> list = groupTopicDao.listByTopicPage(page);
+    public ResponseModel listByTopicPage(Page page,String key) {
+        if (StringUtils.isNotBlank(key)){
+            key = "%"+key+"%";
+        }
+        List<GroupTopic> list = groupTopicDao.listByTopicPage(page,key);
         ResponseModel model = new ResponseModel(0,page);
         model.setData(list);
         return model;
     }
+
 
     /**
      * 后台   修改审核状态

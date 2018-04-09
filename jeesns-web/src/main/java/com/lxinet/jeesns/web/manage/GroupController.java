@@ -183,13 +183,17 @@ public class GroupController extends BaseController {
      * @return
      */
     @RequestMapping(value = "${managePath}/group/topic/index")
-    public String topicindex(Model model) {
+    public String topicindex( String key,Model model) {
 
         Page page = new Page(request);
-        ResponseModel responseModel = groupTopicService.listByTopicPage(page);
+        ResponseModel responseModel = groupTopicService.listByTopicPage(page,key);
         model.addAttribute("model",responseModel);
+        model.addAttribute("key",key);
         return MANAGE_FTL_PATH + "topic/index";
     }
+
+
+
 
     /**
      * 后台   修改帖子状态
