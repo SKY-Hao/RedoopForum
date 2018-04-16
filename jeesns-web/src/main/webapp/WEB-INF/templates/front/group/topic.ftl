@@ -9,14 +9,10 @@
     <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
-    <link href="${basePath}/res/plugins/makedown/js/bootstrap.min.js" rel="stylesheet">
 
+   <link href="${basePath}/res/plugins/makedown/css/editormd.min.css" rel="stylesheet">
     <link href="${basePath}/res/plugins/makedown/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="${basePath}/res/new/css/groupCss/group/markDownStrle.css" rel="stylesheet">
-
     <link href="${basePath}/res/new/css/groupCss/group/topic.css" rel="stylesheet">
-
     <link href="${basePath}/res/new/css/pageCss/page.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
@@ -33,6 +29,8 @@
         var groupTopicId = ${groupTopic.id};
     </script>
     <script src="${basePath}/res/front/js/group.js"></script>
+   <script src="${basePath}/res/plugins/makedown/js/bootstrap.min.js"></script>
+    <script src="${basePath}/res/plugins/makedown/js/editormd.min.js"></script>
 
 
 
@@ -46,27 +44,13 @@
     <div class="container clearfix">
         <div class="span8">
             <div class="theamLine">
-                <h3>
-                    <a href="/">所有</a></h3>
+                <h3><a href="/">所有</a></h3>
                 <h3><a href="${basePath}/group/problem" style="margin: 0 10px;">问题</a></h3>
-                <h3><a href="${basePath}/group/article">文档/文章</a></h3>
+                <h3><a href="${basePath}/group/article">文章</a></h3>
+                <h3><a href="${basePath}/article/list">文档</a></h3>
             </div>
             <div class="TermCon">
                 <div class="author clearfix">
-
-                <#--鼠标滑过显示-->
-                <#--<div class="tagTips clea rfix" style="display: none;">
-                    <img src="images/face.png"  class="tipsFace"/>
-                    <p class="tipsTitle"><a href="#">Hadoop</a></p>
-                    <div class="numCounts">
-                        <p><span>124</span><br />帖子</p>
-                        <p><span>124</span><br />关注</p>
-                        <p class="last"><span>1204</span><br />关注者</p>
-                    </div>
-                    <a href="#" class="addBtn">+关注</a>
-                    <div class="tagInfo">Since its incubation in 2008, Apache Hive is considered the defacto standard for interactive SQL queries over petabytes of data in Hadoop.</div>
-                </div>-->
-                <#-- <a href="#" class="faceQ"><img src="images/face.png" /></a>-->
                     <div class="detailInfo">
                         <h4> ${groupTopic.title}</h4>
                         <p style="width:150px;"><b>Author:</b>${groupTopic.member.name}</p>
@@ -83,28 +67,16 @@
                                     <i class="icon-heart"></i>${groupTopic.favor}
                                 </a>
                             </#if>
-                        <#--<a class="like" title="喜欢">0</a>-->
                             <a class="views" title="阅读">${groupTopic.viewCount}</a>
                         </div>
 
 
-
-                    <#if loginUser?? && (loginUser.id == groupTopic.memberId || loginUser.isAdmin >= 2)>
-                        <div style="width: 190px;float: right;margin-top: -40px; height: 20px;">
-                            <#--<#if loginUser.id == groupTopic.memberId>-->
-                                <a href="${basePath}/group/topicEdit/${groupTopic.id}" class="btn" style="margin-top: 13px;height: 20px;background-color: #ca1828;line-height: 8px;color: #fff">Edit</a>
-                            <#--</#if>-->
-                            <a href="${basePath}/group/delete/${groupTopic.id}" class="btn" confirm="确定要删除帖子吗？" target="_jeesnsLink" style="margin-top: 13px;height: 20px;background-color: #ca1828;line-height: 8px;color: #fff">Delete</a>
-                        </div>
-
-                    </#if>
-
-
-
-
-
-
-
+                        <#if loginUser?? && (loginUser.id == groupTopic.memberId || loginUser.isAdmin >= 2)>
+                            <div style="width: 190px;float: right;margin-top: -40px; height: 20px;">
+                                    <a href="${basePath}/group/topicEdit/${groupTopic.id}" class="btn" style="margin-top: 13px;height: 20px;background-color: #ca1828;line-height: 8px;color: #fff">Edit</a>
+                                <a href="${basePath}/group/delete/${groupTopic.id}" class="btn" confirm="确定要删除帖子吗？" target="_jeesnsLink" style="margin-top: 13px;height: 20px;background-color: #ca1828;line-height: 8px;color: #fff">Delete</a>
+                            </div>
+                        </#if>
                     </div>
                 </div>
                 <div class="detailContent">
@@ -139,7 +111,7 @@
 
 
             <div class="widget">
-                <h3>热门文档/文章</h3>
+                <h3>热门文章</h3>
             <#list byGroupStatus as groupTopic>
                 <div class="question-block">
                     <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>

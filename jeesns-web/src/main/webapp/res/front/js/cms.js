@@ -12,10 +12,10 @@ var cms = {
                 var html = "";
                 for(var i=0;i<data.length;i++){
                     html += "<div class=\"comment\">" +
-                        "<a href=\""+base+"/u/"+data[i].member.id+"\" class=\"avatar\">" +
+                        "<a href=\""+base+"/user/"+data[i].member.id+"\" class=\"avatar\">" +
                         "<img src=\""+base+data[i].member.avatar+"\" class=\"icon-4x\"></a><div class=\"content\">" +
                         "<div class=\"pull-right text-muted\">"+data[i].createTime+"</div><div>" +
-                        "<a href=\""+base+"/u/"+data[i].member.id+"\"><strong>"+data[i].member.name+"</strong></a></div>" +
+                        "<a href=\""+base+"/user/"+data[i].member.id+"\"><strong>"+data[i].member.name+"</strong></a></div>" +
                         "<div class=\"text\">"+data[i].content+"</div>" +
                         "</div></div>";
                 }
@@ -41,14 +41,15 @@ var cms = {
                     jeesnsDialog.errorTips(res.message);
                 } else {
                     if (res.code == 0) {
-                        _this.html("<i class='icon-heart'></i> 喜欢 | " + res.data);
+                        _this.html("<i class='icon-heart'></i>  " + res.data);
                         _this.removeClass("btn-article-unfavor")
                     } else {
-                        _this.html("<i class='icon-heart-empty'></i> 喜欢 | " + res.data);
+                        _this.html("<i class='icon-heart-empty'></i>" + res.data);
                         _this.addClass("btn-article-unfavor");
                     }
                 }
             }
         });
+
     }
 }

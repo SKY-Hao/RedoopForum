@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>群组管理 - ${SITE_NAME} - RedoopForum后台管理系统 </title>
+    <title>帖子管理 - ${SITE_NAME} - RedoopForum后台管理系统 </title>
     <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
@@ -44,7 +44,7 @@
                             <h3 class="box-title">
 
                                 <a href="${managePath}/group/index/topicAdd" target="_jeesnsOpen"
-                                   title="添加群组" width="1000px" height="600px">
+                                   title="添加帖子" width="1000px" height="600px">
                                     <span class="label label-info">添加帖子</span>
                                 </a>
 

@@ -40,7 +40,7 @@
                             <div class="item">
                                 <div class="item-content">
                                     <div class="media pull-left">
-                                        <a href="${basePath}/u/${topic.member.id}">
+                                        <a href="${basePath}/user/${topic.member.id}">
                                         <img src="${basePath}${topic.member.avatar}" class="img-circle"
                                              alt="${topic.member.name}" width="50px" height="50px">
                                         </a>
@@ -82,7 +82,7 @@
                                 <a href="${basePath}/group/detail/${group.id}"><strong>${group.name}</strong></a>
                             </span>
                         </p>
-                        <p><a href="${basePath}/u/${group.creatorMember.id}">${group.creatorMember.name}</a>
+                        <p><a href="${basePath}/user/${group.creatorMember.id}">${group.creatorMember.name}</a>
                             创建于${group.createTime?string("yyyy-MM-dd")}</p>
                     </div>
                     <div class="group-introduce">

@@ -298,7 +298,6 @@ public class MemberController extends BaseController {
     }
     //修改头像保存
     @RequestMapping(value="/updatePhoto",method = RequestMethod.POST)
-    //@ResponseBody
     public String updatePhoto(String avatar) {
 
         Member loginMember = MemberUtil.getLoginMember(request);

@@ -30,10 +30,10 @@
 <#include "/manage/common/header.ftl"/>
     <div class="content-wrapper">
         <section class="content-header">
-            <h1>文章(${model.page.totalCount})</h1>
+            <h1>文档--${model.page.totalCount}</h1>
             <ol class="breadcrumb">
                 <li><a href="${managePath}/index"><i class="fa fa-dashboard"></i> 主页</a></li>
-                <li class="active">文章管理</li>
+                <li class="active">文档管理</li>
             </ol>
         </section>
         <section class="content">

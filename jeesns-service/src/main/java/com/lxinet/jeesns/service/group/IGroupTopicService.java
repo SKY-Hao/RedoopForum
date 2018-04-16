@@ -70,7 +70,7 @@ public interface IGroupTopicService {
     ResponseModel add(Member loginMember, GroupTopic groupTopic);
 
     /**
-     * 首页所有帖子
+     * 首页所有帖子/文档
      * 2018年1月6日14:10:31
      * @param status
      * @param page

@@ -3,13 +3,14 @@
         <div class="navFR">
             <a href="${basePath}/">首页</a>
             <a href="${basePath}/group/" class="now">主题</a>
+            <a href="${basePath}/article/list" class="now">文档</a>
 
             <div  id="down">
                 <#if loginUser == null>
                     <a href="${basePath}/member/login" class="loginBtn">登录</a>
                 <#else>
 
-                        <a class="header-action-link" href="${basePath}/member/" style="margin-right: 90px; margin-top: -12px;width: 100px;">
+                        <a class="header-action-link" href="${basePath}/member/" >
                         ${loginUser.name}
                             <#if unReadMessageNum+systemUnReadMessageNum &gt; 0><i class="fa fa-comments"></i></#if>
                         </a>

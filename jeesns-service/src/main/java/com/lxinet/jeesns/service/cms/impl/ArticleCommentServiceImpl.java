@@ -9,7 +9,6 @@ import com.lxinet.jeesns.dao.cms.IArticleCommentDao;
 import com.lxinet.jeesns.model.cms.Article;
 import com.lxinet.jeesns.model.cms.ArticleComment;
 import com.lxinet.jeesns.model.member.Member;
-import com.lxinet.jeesns.model.weibo.Weibo;
 import com.lxinet.jeesns.service.cms.IArticleCommentService;
 import com.lxinet.jeesns.service.cms.IArticleService;
 import com.lxinet.jeesns.service.member.IMemberService;

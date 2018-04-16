@@ -55,7 +55,7 @@
 
             <div class="widget">
 
-                <h3>热门文档/文章</h3>
+                <h3>热门文章</h3>
                 <#list byGroupStatus as groupTopic>
                     <div class="question-block">
                         <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>

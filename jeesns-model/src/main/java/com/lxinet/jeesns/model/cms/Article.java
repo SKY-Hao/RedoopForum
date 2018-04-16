@@ -19,6 +19,7 @@ public class Article extends Archive {
 
     private ArticleCate articleCate;    //文字栏目实体类
 
+
     public Integer getId() {
         return id;
     }

@@ -63,7 +63,7 @@ public class Archive implements Serializable {
     private String content;     //内容
 
 
-    private String htmlcontent;     //内容
+    private String htmlcontent;     //markdown内容
 
     //喜欢数量
     private Integer favor;

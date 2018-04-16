@@ -29,11 +29,11 @@
             <div class="right" style="padding-right: 35px;">
                 <div class="follows">
                     <span>关注</span>
-                    <a href="${basePath}/u/${loginUser.id}/home/follows">${loginUser.follows}</a>
+                    <a href="${basePath}/user/${loginUser.id}/home/follows">${loginUser.follows}</a>
                 </div>
                 <div class="fans">
                     <span>粉丝</span>
-                    <a href="${basePath}/u/${loginUser.id}/home/fans">${loginUser.fans}</a>
+                    <a href="${basePath}/user/${loginUser.id}/home/fans">${loginUser.fans}</a>
                 </div>
                 <div class="follows">
                     <span>积分</span>

@@ -73,11 +73,11 @@
                         <div class="right" style="padding-right: 35px;">
                             <div class="follows">
                                 <span style="color: #bababa;">关注</span>
-                                <a href="${basePath}/u/${loginUser.id}/home/follows">${loginUser.follows}</a>
+                                <a href="${basePath}/user/${loginUser.id}/home/follows">${loginUser.follows}</a>
                             </div>
                             <div class="fans">
                                 <span  style="color: #bababa;">粉丝</span>
-                                <a href="${basePath}/u/${loginUser.id}/home/fans">${loginUser.fans}</a>
+                                <a href="${basePath}/user/${loginUser.id}/home/fans">${loginUser.fans}</a>
                             </div>
                             <div class="follows">
                                 <span  style="color: #bababa;">积分</span>
@@ -115,28 +115,28 @@
                                         </div>
                                     </div>
                                 </a>-->
-                                <a href="${basePath}/u/${loginUser.id}/home/fans">
+                                <a href="${basePath}/user/${loginUser.id}/home/fans">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             粉丝
                                         </div>
                                     </div>
                                 </a>
-                                <a href="${basePath}/u/${loginUser.id}/home/follows">
+                                <a href="${basePath}/user/${loginUser.id}/home/follows">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             关注
                                         </div>
                                     </div>
                                 </a>
-                                <#--<a href="${basePath}/u/${loginUser.id}/home/article">
+                                <a href="${basePath}/user/${loginUser.id}/home/article">
                                     <div class="feed-element">
                                         <div class="media-body">
-                                            文章
+                                            文档
                                         </div>
                                     </div>
-                                </a>-->
-                                <a href="${basePath}/u/${loginUser.id}/home/groupTopic">
+                                </a>
+                                <a href="${basePath}/user/${loginUser.id}/home/groupTopic">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             主题帖子
@@ -150,7 +150,7 @@
                                         </div>
                                     </div>
                                 </a>-->
-                                <a href="${basePath}/u/${loginUser.id}/home/group">
+                                <a href="${basePath}/user/${loginUser.id}/home/group">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             关注主题
@@ -170,7 +170,7 @@
                                 <div class="feed-activity-list">
                                     <#list actionLogModel.data as actionLog>
                                         <div class="feed-element">
-                                            <a href="${basePath}/u/${actionLog.member.id}" class="pull-left">
+                                            <a href="${basePath}/user/${actionLog.member.id}" class="pull-left">
                                                 <#--头像-->
                                                 <img alt="image" class="img-circle" src="${basePath}${actionLog.member.avatar!''}">
                                             </a>
@@ -180,11 +180,11 @@
                                                     ${actionLog.createTime?string('yyyy-MM-dd HH:mm:ss')}
                                                 </small>
                                                 <#--用户名称-->
-                                                <a href="${basePath}/u/${actionLog.member.id}">
+                                                <a href="${basePath}/user/${actionLog.member.id}">
                                                     <strong>${actionLog.member.name}</strong>
                                                 </a>
                                                 <#--用户操作-->
-                                                ${actionLog.action.log}：<br/>
+                                                ${actionLog.action.log}
 
                                                 <#--用户行为-->
                                                 <#if actionLog.type==1>

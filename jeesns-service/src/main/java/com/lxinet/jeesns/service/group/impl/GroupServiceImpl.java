@@ -293,19 +293,14 @@ public class GroupServiceImpl implements IGroupService {
             group.setManagers(managerIds);
             group.setCanPost(1);
             group.setTopicReview(0);
-
             group = uploadPic(group,attach,logoPath);
-
-
             if(groupDao.save(group) == 1){
                 //创建者默认关注群组
                 groupFansService.save(loginMember,group.getId());
                 //申请群组奖励、扣款
                 scoreDetailService.scoreBonus(loginMember.getId(), ScoreRuleConsts.APPLY_GROUP, group.getId());
-
                 return new ResponseModel(3,"申请成功，请等待审核");
             }
-
         return new ResponseModel(-1,"操作失败，请重试");
     }
 

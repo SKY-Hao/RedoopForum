@@ -61,4 +61,41 @@
   <update id="favor">
     update tbl_archive set favor = favor + #{num} where archive_id = #{archiveId}
   </update>
+
+<!--
+
+  <select id="list" resultMap="ArchiveResult">
+     SELECT
+
+        a.*,
+        b.id,
+        b.group_id AS 'group.id',
+        b.collect_time,
+        b. STATUS,
+        b.is_top,
+        b.is_essence,
+        b.groupstatus,
+        c. NAME 'group.name',
+        a.member_id AS memberId,
+        a.member_id AS 'member.id',
+        d. NAME AS 'member.name',
+        d.avatar AS 'member.avatar',
+        c. NAME AS groupName,
+        count(e.id) AS topicComment,f.*
+    FROM
+        tbl_archive AS a
+    LEFT JOIN  tbl_group_topic AS b ON a.archive_id=b.archive_id
+    LEFT JOIN tbl_group AS c ON b.group_id = c.id
+    LEFT JOIN tbl_member AS d ON a.member_id = d.id
+    LEFT JOIN tbl_group_topic_comment e ON b.id = e.group_topic_id
+    LEFT JOIN tbl_article f on a.archive_id = f.archive_id
+
+
+    GROUP BY
+	a.archive_id DESC
+
+  </select>
+-->
+
+
 </mapper>

@@ -16,7 +16,9 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Created by zchuanzhao on 16/9/29.
+ * 后台文档栏目controller
+ * 2018年4月16日15:53:30
+ *
  */
 @Controller
 @RequestMapping("/")
@@ -26,6 +28,11 @@ public class ArticleCateController extends BaseController {
     @Resource
     private IArticleCateService articleCateService;
 
+    /**
+     * 栏目list列表
+     * @param model
+     * @return
+     */
     @RequestMapping("${managePath}/cms/articleCate/list")
     public String list(Model model){
         List<ArticleCate> list = articleCateService.list();
@@ -33,11 +40,18 @@ public class ArticleCateController extends BaseController {
         return MANAGE_FTL_PATH + "/list";
     }
 
+
     @RequestMapping("${managePath}/cms/articleCate/add")
     public String add(Model model){
         return MANAGE_FTL_PATH + "/add";
     }
 
+
+    /**
+     * 保存栏目
+     * @param articleCate
+     * @return
+     */
     @RequestMapping("${managePath}/cms/articleCate/save")
     @ResponseBody
     public Object save(ArticleCate articleCate){
@@ -70,6 +84,11 @@ public class ArticleCateController extends BaseController {
         return MANAGE_FTL_PATH + "/edit";
     }
 
+    /**
+     * 修改栏目
+     * @param articleCate
+     * @return
+     */
     @RequestMapping("${managePath}/cms/articleCate/update")
     @ResponseBody
     public Object update(ArticleCate articleCate){
@@ -108,7 +127,11 @@ public class ArticleCateController extends BaseController {
         return new ResponseModel(-1,"修改失败");
     }
 
-
+    /**
+     * 删除栏目
+     * @param id
+     * @return
+     */
     @RequestMapping("${managePath}/cms/articleCate/delete/{id}")
     @ResponseBody
     public Object delete(@PathVariable("id") int id){

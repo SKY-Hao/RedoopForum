@@ -3,10 +3,11 @@
         <div class="navFR">
             <a href="${basePath}/">首页</a>
             <a href="${basePath}/group/" class="now">主题</a>
+            <a href="${basePath}/article/list" class="now">文档</a>
 
             <div  id="down">
                 <#if loginUser == null>
-                    <a href="${basePath}/member/login" class="loginBtn">登录</a>
+                    <a href="${basePath}/member/login" class="loginBtn" style="margin-top: 12px;">登录</a>
                 <#else>
 
                         <a class="header-action-link" href="${basePath}/member/">

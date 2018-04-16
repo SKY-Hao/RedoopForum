@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
+ * 积分controller
  * Created by zchuanzhao on 2017/3/24.
  */
 @Controller

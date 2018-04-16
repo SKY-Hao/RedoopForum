@@ -52,9 +52,8 @@
                     <li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">基本设置</a>
                     </li>
                     <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">会员设置</a></li>
-                    <li class=""><a data-toggle="tab" href="#tab-3" aria-expanded="false">CMS设置</a></li>
-                    <li class=""><a data-toggle="tab" href="#tab-4" aria-expanded="false">微博设置</a></li>
-                    <li class=""><a data-toggle="tab" href="#tab-5" aria-expanded="false">群组设置</a></li>
+                    <li class=""><a data-toggle="tab" href="#tab-3" aria-expanded="false">文档设置</a></li>
+                    <li class=""><a data-toggle="tab" href="#tab-5" aria-expanded="false">主题设置</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="tab-1" class="tab-pane active">
@@ -81,7 +80,11 @@
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label">网站关键词</label>
                                     <div class="col-sm-8">
+<#--
                                         <input type="text" class="form-control" id="site_keys" name="site_keys" placeholder="网站关键词" value="${site_keys}">
+-->
+                                        <textarea class="form-control" rows="3" name="site_keys" alt="网站关键词">${site_keys}</textarea>
+
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -193,7 +196,7 @@
                         <div class="panel-body">
                             <form class="form-horizontal jeesns_form" role="form" action="${managePath}/system/config/cmsUpdate" method="post">
                                 <div class="form-group">
-                                    <label class="col-sm-1 control-label">文章投稿</label>
+                                    <label class="col-sm-1 control-label">文档投稿</label>
                                     <div class="col-sm-8">
                                         <select class="form-control" name="cms_post">
                                             <option value="0" <#if cms_post==0>selected</#if>>关闭</option>
@@ -218,49 +221,17 @@
                             </form>
                         </div>
                     </div>
-                    <div id="tab-4" class="tab-pane">
-                        <div class="panel-body">
-                            <form class="form-horizontal jeesns_form" role="form" action="${managePath}/system/config/weiboUpdate" method="post">
-                                <div class="form-group">
-                                    <label class="col-sm-1 control-label">微博别名</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="weibo_alias" name="weibo_alias" placeholder="微博别名" value="${weibo_alias}">默认为微博
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-1 control-label">微博发布</label>
-                                    <div class="col-sm-8">
-                                        <select class="form-control" name="weibo_post">
-                                            <option value="0" <#if weibo_post==0>selected</#if>>关闭</option>
-                                            <option value="1" <#if weibo_post==1>selected</#if>>开启</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-1 control-label">微博字数</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="weibo_post_maxcontent" name="weibo_post_maxcontent" placeholder="微博字数" value="${weibo_post_maxcontent}">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-1 col-sm-10">
-                                        <button type="submit" class="btn btn-info jeesns-submit">保存</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                     <div id="tab-5" class="tab-pane">
                         <div class="panel-body">
                             <form class="form-horizontal jeesns_form" role="form" action="${managePath}/system/config/groupUpdate" method="post">
                                 <div class="form-group">
-                                    <label class="col-sm-1 control-label">群组别名</label>
+                                    <label class="col-sm-1 control-label">主题别名</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="group_alias" name="group_alias" placeholder="群组别名" value="${group_alias}">默认为群组
+                                        <input type="text" class="form-control" id="group_alias" name="group_alias" placeholder="主题别名" value="${group_alias}">默认为主题
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-1 control-label">群组申请</label>
+                                    <label class="col-sm-1 control-label">主题申请</label>
                                     <div class="col-sm-8">
                                         <select class="form-control" name="group_apply">
                                             <option value="0" <#if group_apply==0>selected</#if>>关闭</option>

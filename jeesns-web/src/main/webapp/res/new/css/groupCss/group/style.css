@@ -86,22 +86,25 @@ a.aBtn:hover,.aBtn:hover{ background:#b31f23;}
 
 /*header*/
 .mainHeader{ height:56px; background:url(../group/images/headerBg.png) repeat-x;}
-.navFL{ float:left; margin-top:13px; width:800px;}
+.navFL{ float:left; margin-top:13px;}
 .navFL img{ display:inline-block; float:left; width:78px; margin-right:20px; }
 .navFL .form{position: relative;  float:left; width:348px;margin-top: 1px;padding-left: 0; height:31px;}
 .navFL .form .search-query{ float:left; margin-top:2px; border:1px solid #e2e2e2; width:305px; height:29px; line-height:29px; background:#fff; border-radius:3px;vertical-align: middle; padding-right:38px;font-family: Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif; color:#bfb6a8; padding-left:5px;}
 .navFL .form .btn{ display:inline-block; cursor:pointer; border:0;	}
 .navFL .form .btn-primary{position: absolute; right:35px; top:7px; width:28px; height:28px; background:transparent url(../group/images/searchBtn.png) no-repeat;}
 
-.navFR{ float:right; margin-top:3px; width:300px; text-align:right;}
+.navFR{ float:right; margin-top:3px; width:50%; text-align:right;}
 .navFR a{ display:inline-block; margin-left:35px; color:#9a8a75; line-height:53px; }
 .navFR a:hover,.navFR a.now{ color:#ca1828;}
 .navFR a.loginBtn{ display:inline-block; width:95px; height:30px; line-height:30px; text-align:center; color:#fff; background:#ca1828; border-radius:3px;}
 .navFR a.loginBtn:hover{ background:#d92d3d;}
 
-#down{float:right; width:150px; height: auto; margin-top:10px; position: relative;}
-#aa{display:none;    z-index: 1;border-radius: 4%; position:absolute; top:31px; left:41px;height: 160px; background:#fff; border:1px solid #dedede;}
-
+#down{float:right; height: auto; margin-top:10px; position: relative;}
+#down .header-action-link{margin-top: -12px;}
+#aa{ display: none; z-index: 1;border-radius: 4%; position:absolute; top:31px; left:-9px;height: 160px; background:#fff; border:1px solid #dedede;
+    margin-left: 34px;
+}
+.dropdown-menu {width: 105px;margin-left: -20px;}
 #aa ul li{margin-top: -11px; margin-bottom: -20px;}
 #aa ul li a{ margin-right: 40px;}
 
@@ -120,7 +123,7 @@ a.aBtn:hover,.aBtn:hover{ background:#b31f23;}
 
 /*theam*/
 .theamLine{ border-bottom:1px solid #e2e2e2; height:47px; line-height:45px;}
-.theamLine h3{ margin-left:15px; font-size:14px; font-weight:600px; display:inline-block; padding:0 10px; color:#ca1828; border-bottom:2px solid #ca1828;}
+.theamLine h3{ margin-left:15px; font-size:14px; font-weight:600px; display:inline-block; padding:0 10px; color:#ca1828;margin-top: 13px;}
 
 .theamContent{ margin-top:20px;}
 .theamTerm{ float:left; margin-right:15px; margin-bottom:15px; width:222px; height:45px; border:1px solid #e2e2e2; border-radius:3px; background:#fff; overflow:hidden; }

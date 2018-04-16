@@ -1,6 +1,5 @@
 package com.lxinet.jeesns.web.front;
 
-import com.lxinet.jeesns.model.common.Link;
 import com.lxinet.jeesns.model.group.GroupTopic;
 import com.lxinet.jeesns.service.cms.IArticleService;
 import com.lxinet.jeesns.service.common.IArchiveService;
@@ -11,31 +10,26 @@ import com.lxinet.jeesns.core.model.Page;
 import com.lxinet.jeesns.core.utils.Const;
 import com.lxinet.jeesns.core.utils.ErrorUtil;
 import com.lxinet.jeesns.core.utils.JeesnsConfig;
-import com.lxinet.jeesns.service.common.ILinkService;
 import com.lxinet.jeesns.service.group.IGroupFansService;
 import com.lxinet.jeesns.service.group.IGroupService;
 import com.lxinet.jeesns.service.group.IGroupTopicService;
 import com.lxinet.jeesns.service.member.IMemberFansService;
 import com.lxinet.jeesns.web.common.BaseController;
-//import com.lxinet.jeesns.cms.service.IArticleService;
 import com.lxinet.jeesns.model.member.Member;
 import com.lxinet.jeesns.service.member.IMemberService;
 import com.lxinet.jeesns.model.system.ActionLog;
 import com.lxinet.jeesns.service.system.IActionLogService;
-//import com.lxinet.jeesns.weibo.service.IWeiboService;
-import com.lxinet.jeesns.service.weibo.IWeiboService;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
-import javax.xml.bind.SchemaOutputResolver;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Writer;
 import java.util.List;
 
 /**
+ * 首页controller
  * Created by zchuanzhao on 2016/11/25.
  */
 @Controller("indexController")
@@ -48,8 +42,6 @@ public class IndexController extends BaseController{
     @Resource
     private IGroupService groupService;
     @Resource
-    private IWeiboService weiboService;
-    @Resource
     private IMemberService memberService;
     @Resource
     private IArchiveService archiveService;
@@ -61,8 +53,6 @@ public class IndexController extends BaseController{
     private IGroupFansService groupFansService;
     @Resource
     private IMemberFansService memberFansService;
-    @Resource
-    private ILinkService linkService;
 
     /**
      * 首页
@@ -80,10 +70,10 @@ public class IndexController extends BaseController{
          }
          page.setPageSize(10);
 
-        //前台所有帖子列表
+        //前台所有帖子和文档列表
          ResponseModel groupTopicModel = groupTopicService.groupTopicList(1,page,key);
+        //ResponseModel groupTopicModel = archiveService.list(1,page,key);
          model.addAttribute("model",groupTopicModel);
-
 
          //热门问题帖子
          List<GroupTopic> byGroupStatusList=groupTopicService.byGroupStatus();
@@ -92,9 +82,6 @@ public class IndexController extends BaseController{
         //热门文章帖子
         List<GroupTopic> byGroupStatus=groupTopicService.byGroupStatusList();
         model.addAttribute("byGroupStatus",byGroupStatus);
-
-
-
 
         return jeesnsConfig.getFrontTemplate() + "/index";
     }
@@ -105,7 +92,7 @@ public class IndexController extends BaseController{
      * @param model
      * @return
      */
-    @RequestMapping(value = "u/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "user/{id}",method = RequestMethod.GET)
     public String u(@PathVariable("id") Integer id, Model model){
 
         Page page = new Page(request);
@@ -122,7 +109,7 @@ public class IndexController extends BaseController{
         ResponseModel<ActionLog> list = actionLogService.memberActionLog(page,id);
         model.addAttribute("actionLogModel",list);
 
-        return jeesnsConfig.getFrontTemplate() + "/u";
+        return jeesnsConfig.getFrontTemplate() + "/user";
     }
 
     /**
@@ -132,7 +119,7 @@ public class IndexController extends BaseController{
      * @param model
      * @return
      */
-    @RequestMapping(value = "u/{id}/home/{type}",method = RequestMethod.GET)
+    @RequestMapping(value = "user/{id}/home/{type}",method = RequestMethod.GET)
     public String home(@PathVariable("id") Integer id, @PathVariable("type") String type, Model model){
         Page page = new Page(request);
         Member member = memberService.findById(id);
@@ -153,9 +140,7 @@ public class IndexController extends BaseController{
             model.addAttribute("model", groupTopicService.listByPage(page,"",0,1, id));
         } else if("group".equals(type)){//群组
             model.addAttribute("model", groupFansService.listByMember(page, id));
-        } else if("weibo".equals(type)){//微博
-            model.addAttribute("model", weiboService.listByPage(page,id,loginMemberId,""));
-        } else if("follows".equals(type)){//关注
+        } else  if("follows".equals(type)){//关注
             model.addAttribute("model", memberFansService.followsList(page,id));
         } else if("fans".equals(type)){//粉丝
             model.addAttribute("model", memberFansService.fansList(page,id));
@@ -201,15 +186,4 @@ public class IndexController extends BaseController{
         return jeesnsConfig.getFrontTemplate() + "/common/error";
     }
 
-    /**
-     * 友情链接
-     * @param model
-     * @return
-     */
-    @RequestMapping(value={"/link"},method = RequestMethod.GET)
-    public String link(Model model) {
-        ResponseModel linkModel = linkService.allList();
-        model.addAttribute("linkModel",linkModel);
-        return jeesnsConfig.getFrontTemplate() + "/link";
-    }
 }

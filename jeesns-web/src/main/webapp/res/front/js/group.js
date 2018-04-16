@@ -10,14 +10,14 @@ var group = {
 
                 for(var i=0;i<data.length;i++){
                     html += "<div class=\"comment\">" +
-                        "<a href=\""+base+"/u/"+data[i].member.id+"\" class=\"avatar\">" +
+                        "<a href=\""+base+"/user/"+data[i].member.id+"\" class=\"avatar\">" +
                         "<img src=\""+base+data[i].member.avatar+"\" class=\"icon-4x\"></a><div class=\"content\">" +
-                        "<div class=\"pull-right text-muted\">"+data[i].createTime.Format("yyyy-MM-dd")+"</div><div>" +
-                        "<a href=\""+base+"/u/"+data[i].member.id+"\"><strong>"+data[i].member.name+"</strong></a></div>" +
+                        "<div class=\"pull-right text-muted\">"+data[i].createTime+"</div><div>" +
+                        "<a href=\""+base+"/user/"+data[i].member.id+"\"><strong>"+data[i].member.name+"</strong></a></div>" +
                         "<div class=\"text\">";
                     var groupTopicComment = data[i].groupTopicComment;
                     if (groupTopicComment != null){
-                        html += "<pre><code><p>引用“<a href='"+base+"/u/"+groupTopicComment.member.id+"'>"+groupTopicComment.member.name+"</a>”的评论</p>"+groupTopicComment.content+"</code></pre>";
+                        html += "<pre><code><p>引用“<a href='"+base+"/user/"+groupTopicComment.member.id+"'>"+groupTopicComment.member.name+"</a>”的评论</p>"+groupTopicComment.content+"</code></pre>";
                     }
                     html += data[i].content + "<div class='pull-right'><a href='javascript:group.commentReply("+data[i].id+")'>回复</a></div></div>" +
                         "<form class=\"form-horizontal jeesns_form\" action=\""+base+"/group/comment/"+groupTopicId+"\" method=\"post\" id='comment-form-"+data[i].id+"' style='display: none;'>" +

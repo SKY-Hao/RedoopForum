@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>主页啊</title>
+    <title>主页</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
@@ -72,11 +72,11 @@
                 <div class="right" style="padding-right: 35px;">
                     <div class="follows">
                         <span>关注</span>
-                        <a href="${basePath}/u/${member.id}/home/follows">${member.follows}</a>
+                        <a href="${basePath}/user/${member.id}/home/follows">${member.follows}</a>
                     </div>
                     <div class="fans">
                         <span>粉丝</span>
-                        <a href="${basePath}/u/${member.id}/home/fans">${member.fans}</a>
+                        <a href="${basePath}/user/${member.id}/home/fans">${member.fans}</a>
                     </div>
                     <div class="follows">
                         <span>积分</span>
@@ -104,49 +104,49 @@
                                         </div>
                                     </div>
                                 </a>
-                              <#--  <a href="${basePath}/u/${member.id}">
+                              <#--  <a href="${basePath}/user/${member.id}">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             动态
                                         </div>
                                     </div>
                                 </a>-->
-                                <a href="${basePath}/u/${member.id}/home/fans">
+                                <a href="${basePath}/user/${member.id}/home/fans">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             粉丝
                                         </div>
                                     </div>
                                 </a>
-                                <a href="${basePath}/u/${member.id}/home/follows">
+                                <a href="${basePath}/user/${member.id}/home/follows">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             关注
                                         </div>
                                     </div>
                                 </a>
-                               <#-- <a href="${basePath}/u/${member.id}/home/article">
+                                <a href="${basePath}/user/${member.id}/home/article">
                                     <div class="feed-element">
                                         <div class="media-body">
-                                            文章
+                                            文档
                                         </div>
                                     </div>
-                                </a>-->
-                                <a href="${basePath}/u/${member.id}/home/groupTopic">
+                                </a>
+                                <a href="${basePath}/user/${member.id}/home/groupTopic">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             帖子
                                         </div>
                                     </div>
                                 </a>
-                                <#--<a href="${basePath}/u/${member.id}/home/weibo">
+                                <#--<a href="${basePath}/user/${member.id}/home/weibo">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             微博
                                         </div>
                                     </div>
                                 </a>-->
-                                <a href="${basePath}/u/${member.id}/home/group">
+                                <a href="${basePath}/user/${member.id}/home/group">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             关注主题
@@ -161,21 +161,21 @@
                             <div class="ibox-title">
                                 <h5>
                                     <#if type=="article">
-                                        文章
+                                        文档
                                     <#elseif type=="groupTopic">
-                                        群贴
+                                        帖子/文章
                                     <#elseif type=="weibo">
                                         微博
                                     <#elseif type=="groupTopic">
-                                        群贴
+                                        帖子/文章
                                     <#elseif type=="fans">
                                         粉丝
                                     <#elseif type=="follows">
                                         关注
                                     <#elseif type=="group">
-                                        群贴
+                                        主题
                                     <#else>
-                                        关注群组
+                                        关注主题
                                     </#if>
                                 </h5>
                             </div>
@@ -218,7 +218,7 @@
                                     </#list>
                                     <div class="box-footer clearfix">
                                         <ul class="pagination pagination-sm no-margin pull-right"
-                                            url="${basePath}/u/${member.id}/home/article"
+                                            url="${basePath}/user/${member.id}/home/article"
                                             currentPage="${model.page.pageNo}"
                                             pageCount="${model.page.totalPage}">
                                         </ul>
@@ -260,7 +260,7 @@
                                     </#list>
                                     <div class="box-footer clearfix">
                                         <ul class="pagination pagination-sm no-margin pull-right"
-                                            url="${basePath}/u/${member.id}/home/groupTopic"
+                                            url="${basePath}/user/${member.id}/home/groupTopic"
                                             currentPage="${model.page.pageNo}"
                                             pageCount="${model.page.totalPage}">
                                         </ul>
@@ -268,12 +268,12 @@
                                 <#elseif type=="weibo">
                                     <#list model.data as weibo>
                                         <div class="feed-element">
-                                            <a href="${basePath}/u/${weibo.member.id}" target="_blank" class="pull-left">
+                                            <a href="${basePath}/user/${weibo.member.id}" target="_blank" class="pull-left">
                                                 <img alt="image" class="img-circle" src="${basePath}${weibo.member.avatar!''}">
                                             </a>
                                             <div class="media-body ">
                                                 <strong>
-                                                    <a href="${basePath}/u/${weibo.member.id}" target="_blank">${weibo.member.name}</a></strong><br/>
+                                                    <a href="${basePath}/user/${weibo.member.id}" target="_blank">${weibo.member.name}</a></strong><br/>
                                                 <div class="mg-t-10 mg-b-10">
                                                     <p>${weibo.content}</p>
                                                     <div class="lightBoxGallery">
@@ -303,7 +303,7 @@
                                     </#list>
                                     <div class="box-footer clearfix">
                                         <ul class="pagination pagination-sm no-margin pull-right"
-                                            url="${basePath}/u/${member.id}/home/weibo"
+                                            url="${basePath}/user/${member.id}/home/weibo"
                                             currentPage="${model.page.pageNo}"
                                             pageCount="${model.page.totalPage}">
                                         </ul>
@@ -323,7 +323,7 @@
                                     </#list>
                                     <div class="box-footer clearfix">
                                         <ul class="pagination pagination-sm no-margin pull-right"
-                                            url="${basePath}/u/${member.id}/home/group"
+                                            url="${basePath}/user/${member.id}/home/group"
                                             currentPage="${model.page.pageNo}"
                                             pageCount="${model.page.totalPage}">
                                         </ul>
@@ -331,11 +331,11 @@
                                 <#elseif type=="follows">
                                     <#list model.data as memberFans>
                                         <div class="feed-element">
-                                            <a href="${basePath}/u/${memberFans.followWhoMember.id}" class="pull-left">
+                                            <a href="${basePath}/user/${memberFans.followWhoMember.id}" class="pull-left">
                                                 <img alt="image" class="img-circle" src="${memberFans.followWhoMember.avatar}">
                                             </a>
                                             <div class="media-body ">
-                                                <h4><strong><a href="${basePath}/u/${memberFans.followWhoMember.id}">${memberFans.followWhoMember.name}</a></strong></h4>
+                                                <h4><strong><a href="${basePath}/user/${memberFans.followWhoMember.id}">${memberFans.followWhoMember.name}</a></strong></h4>
                                                 <p>${memberFans.followWhoMember.introduce}</p>
                                                 <small class="text-muted">${memberFans.followWhoMember.follows}关注 · ${memberFans.followWhoMember.fans}粉丝</small>
                                             </div>
@@ -343,7 +343,7 @@
                                     </#list>
                                     <div class="box-footer clearfix">
                                         <ul class="pagination pagination-sm no-margin pull-right"
-                                            url="${basePath}/u/${member.id}/home/follows"
+                                            url="${basePath}/user/${member.id}/home/follows"
                                             currentPage="${model.page.pageNo}"
                                             pageCount="${model.page.totalPage}">
                                         </ul>
@@ -351,11 +351,11 @@
                                 <#elseif type=="fans">
                                     <#list model.data as memberFans>
                                         <div class="feed-element">
-                                            <a href="${basePath}/u/${memberFans.whoFollowMember.id}" class="pull-left">
+                                            <a href="${basePath}/user/${memberFans.whoFollowMember.id}" class="pull-left">
                                                 <img alt="image" class="img-circle" src="${memberFans.whoFollowMember.avatar}">
                                             </a>
                                             <div class="media-body ">
-                                                <h4><strong><a href="${basePath}/u/${memberFans.whoFollowMember.id}">${memberFans.whoFollowMember.name}</a></strong></h4>
+                                                <h4><strong><a href="${basePath}/user/${memberFans.whoFollowMember.id}">${memberFans.whoFollowMember.name}</a></strong></h4>
                                                 <p>${memberFans.whoFollowMember.introduce}</p>
                                                 <small class="text-muted">${memberFans.whoFollowMember.follows}关注 · ${memberFans.whoFollowMember.fans}粉丝</small>
                                             </div>
@@ -363,7 +363,7 @@
                                     </#list>
                                     <div class="box-footer clearfix">
                                         <ul class="pagination pagination-sm no-margin pull-right"
-                                            url="${basePath}/u/${member.id}/home/fans"
+                                            url="${basePath}/user/${member.id}/home/fans"
                                             currentPage="${model.page.pageNo}"
                                             pageCount="${model.page.totalPage}">
                                         </ul>

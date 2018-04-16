@@ -19,7 +19,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by zchuanzhao on 2017/1/3.
+ * 系统设置controller
+ * 2018年4月16日15:55:35
+ *
  */
 @Controller
 @RequestMapping("/${managePath}/system/config/")
@@ -90,27 +92,11 @@ public class ConfigController extends BaseController {
     public Object groupUpdate(String group_apply,String group_apply_review,String group_alias){
         Map<String,String> params = new HashMap<>();
         if(StringUtils.isEmpty(group_alias)){
-            group_alias = "群组";
+            group_alias = "主题";
         }
         params.put("group_alias",group_alias);
         params.put("group_apply",group_apply);
         params.put("group_apply_review",group_apply_review);
-        return configService.update(params,request);
-    }
-
-    @RequestMapping(value = "weiboUpdate",method = RequestMethod.POST)
-    @ResponseBody
-    public Object weiboUpdate(String weibo_post,String weibo_post_maxcontent,String weibo_alias){
-        if(Integer.parseInt(weibo_post_maxcontent) > 500){
-            return new ResponseModel(-1,"微博最大字数不能超过500");
-        }
-        Map<String,String> params = new HashMap<>();
-        if(StringUtils.isEmpty(weibo_alias)){
-            weibo_alias = "微博";
-        }
-        params.put("weibo_alias",weibo_alias);
-        params.put("weibo_post",weibo_post);
-        params.put("weibo_post_maxcontent",weibo_post_maxcontent);
         return configService.update(params,request);
     }
 

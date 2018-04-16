@@ -36,32 +36,19 @@
 
 
             <div class="theamLine">
-                <h3>
-                    <a href="/">所有</a></h3>
-              <h3><a href="${basePath}/group/problem" style="margin: 0 10px;">问题</a></h3>
-                <h3><a href="${basePath}/group/article">文档/文章</a></h3>
-
+                <h3><a href="/">所有</a></h3>
+                <h3><a href="${basePath}/group/problem" style="margin: 0 10px;">问题</a></h3>
+                <h3><a href="${basePath}/group/article">文章</a></h3>
+                <h3><a href="${basePath}/article/list">文档</a></h3>
             </div>
             <div class="TermCon">
 
                 <div class="termNum">
                     <a href="${basePath}/group/" class="publishBtn">发布</a>
-                    <#--<span>28271 篇结果</span>-->
                 </div>
             <#list model.data as groupTopic>
                 <div class="listItem">
-                    <!--鼠标滑过显示-->
-                <#-- <div class="tagTips" style="display: none">
-                     <img src="images/face.png" />
-                     <p class="tipsTitle"><a href="#">Hadoop</a></p>
-                     <div class="numCounts">
-                         <p><span>124</span><br />关注者</p>
-                         <p><span>124</span><br />问题</p>
-                         <p class="last"><span>1204</span><br />解答</p>
-                     </div>
-                     <a href="#" class="addBtn">+关注</a>
-                     <div class="tagInfo">Since its incubation in 2008, Apache Hive is considered the defacto standard for interactive SQL queries over petabytes of data in Hadoop.</div>
-                 </div>-->
+
                     <h4>
                         <span>
                             <#if groupTopic.groupstatus == 0>
@@ -70,7 +57,6 @@
                             <#if groupTopic.groupstatus == 1>
                                 文章
                             </#if>
-
                         </span>
                         <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
                     </h4>
@@ -83,7 +69,7 @@
 
                         </p>
                         <#--<p>1小时前</p>-->
-                        <p><a href="${basePath}/u/${groupTopic.member.id}">Author:${groupTopic.member.name}</a></p>
+                        <p><a href="${basePath}/user/${groupTopic.member.id}">Author:${groupTopic.member.name}</a></p>
                     </div>
                     <div class="counts">
                         <a class="discu on" title="评论">${groupTopic.topicComment}</a>
@@ -102,9 +88,6 @@
                     </ul>
 
             </div>
-
-
-
         </div>
 
         <#--热门的帖子文章-->
@@ -112,7 +95,7 @@
 
 
             <div class="widget">
-                <h3>热门文档/文章</h3>
+                <h3>热门文章</h3>
                 <#list byGroupStatus as groupTopic>
                 <div class="question-block">
                     <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
@@ -170,5 +153,15 @@
         var dtx=document.getElementById('divTest');
         dtx.click();
     }
+
+    $(document).ready(function(){
+        $(".theamLine h3 a").each(function(){
+            $this = $(this);
+            if($this[0].href==String(window.location)){
+                $this.css({"border-bottom":"2px solid #ca1828"});
+            }
+        });
+
+    });
 </script>
 </html>

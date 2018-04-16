@@ -103,9 +103,9 @@ function messageRecords(autoScroll,regain) {
                             lr = "right";
                         }
                         html += "<div class=\"chat-message "+lr+"\">";
-                        html += "<a href=\""+base +"/u/"+message.fromMember.id+"\" target='_blank'><img class=\"message-avatar\" src=\"" + base + message.fromMember.avatar+"\"></a>";
+                        html += "<a href=\""+base +"/user/"+message.fromMember.id+"\" target='_blank'><img class=\"message-avatar\" src=\"" + base + message.fromMember.avatar+"\"></a>";
                         html += "<div class=\"message\">";
-                        html += "<a href=\""+base+"/u/"+message.fromMember.id+"\" class='message-author' target='_blank'>"+message.fromMember.name+"</a>";
+                        html += "<a href=\""+base+"/user/"+message.fromMember.id+"\" class='message-author' target='_blank'>"+message.fromMember.name+"</a>";
                         html += "<span class=\"message-date\"> "+formatDateTime(message.createTime)+" </span>";
                         html += "<span class=\"message-content\">";
                         html += message.content;

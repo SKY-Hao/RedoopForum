@@ -70,11 +70,11 @@
                 <div class="right" style="padding-right: 35px;">
                     <div class="follows">
                         <span>关注</span>
-                        <a href="${basePath}/u/${loginUser.id}/home/follows">${loginUser.follows}</a>
+                        <a href="${basePath}/user/${loginUser.id}/home/follows">${loginUser.follows}</a>
                     </div>
                     <div class="fans">
                         <span>粉丝</span>
-                        <a href="${basePath}/u/${loginUser.id}/home/fans">${loginUser.fans}</a>
+                        <a href="${basePath}/user/${loginUser.id}/home/fans">${loginUser.fans}</a>
                     </div>
                     <div class="follows">
                         <span>积分</span>
@@ -103,38 +103,38 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="${basePath}/u/${loginUser.id}">
+                                <a href="${basePath}/user/${loginUser.id}">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             动态
                                         </div>
                                     </div>
                                 </a>
-                                <a href="${basePath}/u/${loginUser.id}/home/fans">
+                                <a href="${basePath}/user/${loginUser.id}/home/fans">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             粉丝
                                         </div>
                                     </div>
                                 </a>
-                                <a href="${basePath}/u/${loginUser.id}/home/follows">
+                                <a href="${basePath}/user/${loginUser.id}/home/follows">
                                     <div class="feed-element">
                                         <div class="media-body">
                                             关注
                                         </div>
                                     </div>
                                 </a>
-                                <a href="${basePath}/u/${loginUser.id}/home/article">
+                                <a href="${basePath}/user/${loginUser.id}/home/article">
                                     <div class="feed-element">
                                         <div class="media-body">
-                                            文章
+                                            文档
                                         </div>
                                     </div>
                                 </a>
-                                <a href="${basePath}/u/${loginUser.id}/home/groupTopic">
+                                <a href="${basePath}/user/${loginUser.id}/home/groupTopic">
                                     <div class="feed-element">
                                         <div class="media-body">
-                                            群帖
+                                            帖子
                                         </div>
                                     </div>
                                 </a>
@@ -145,10 +145,10 @@
                                         <#--</div>-->
                                     <#--</div>-->
                                 <#--</a>-->
-                                <a href="${basePath}/u/${loginUser.id}/home/group">
+                                <a href="${basePath}/user/${loginUser.id}/home/group">
                                     <div class="feed-element">
                                         <div class="media-body">
-                                            关注群组
+                                            关注主题
                                         </div>
                                     </div>
                                 </a>
@@ -166,7 +166,7 @@
                                     <div class="feed-element">
                                         <div class="media-body ">
                                             <small class="pull-right text-navy">${message.createTime?string('yyyy-MM-dd HH:mm:ss')}</small>
-                                            <a href="${basePath}/u/${message.member.id}">
+                                            <a href="${basePath}/user/${message.member.id}">
                                                 <strong>@${message.member.name} </strong>
                                             </a>：${message.content}
                                             <div class="message-desc">

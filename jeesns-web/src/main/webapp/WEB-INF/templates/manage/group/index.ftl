@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>群组管理 - ${SITE_NAME} - RedoopForum后台管理系统 </title>
+    <title>主题管理 - ${SITE_NAME} - RedoopForum后台管理系统 </title>
     <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
     <link rel="shortcut icon" href="${basePath}/logo.ico">
@@ -30,10 +30,10 @@
 <#include "/manage/common/header.ftl"/>
     <div class="content-wrapper">
         <section class="content-header">
-            <h1>群组管理(${model.page.totalCount})</h1>
+            <h1>主题管理(${model.page.totalCount})</h1>
             <ol class="breadcrumb">
                 <li><a href="${managePath}/index"><i class="fa fa-dashboard"></i> 主页</a></li>
-                <li class="active">群组管理</li>
+                <li class="active">主题管理</li>
             </ol>
         </section>
         <section class="content">
@@ -44,8 +44,8 @@
                             <h3 class="box-title">
 
                                 <a href="${managePath}/group/applyAdd" target="_jeesnsOpen"
-                                   title="添加群组" width="1000px" height="600px">
-                                    <span class="label label-info">添加群组</span>
+                                   title="添加主题" width="1000px" height="600px">
+                                    <span class="label label-info">添加主题</span>
                                 </a>
 
                             </h3>
@@ -69,7 +69,7 @@
                                 <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th>群组名字</th>
+                                    <th>主题名字</th>
                                     <th>创建人</th>
                                     <th>标签</th>
                                     <th>创建时间</th>
@@ -104,7 +104,7 @@
                                                 <span class="label label-warning"><i class="fa fa-edit green"></i></span>
                                             </a>
                                             <a class="marg-l-5" target="_jeesnsLink"
-                                               href="${managePath}/group/delete/${group.id}" confirm="确定要删除主题吗？删除后主题文章都会被删除！">
+                                               href="${managePath}/group/delete/${group.id}" confirm="确定要删除主题吗？删除后主题帖子都会被删除！">
                                                 <span class="label label-danger"><i class="fa fa-trash red"></i></span>
                                             </a>
                                         </td>

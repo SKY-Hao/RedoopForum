@@ -25,7 +25,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
- * 前台文章Controller
+ * 前端文档Controller
  * Created by zchuanzhao on 16/9/29.
  */
 @Controller("frontArticleController")
@@ -53,17 +53,17 @@ public class ArticleController extends BaseController {
     @RequestMapping(value="/list",method = RequestMethod.GET)
     public String list(String key, @RequestParam(value = "cid",defaultValue = "0",required = false) Integer cid,
                        @RequestParam(value = "memberId",defaultValue = "0",required = false) Integer memberId, Model model) {
-        /*if (StringUtils.isNotEmpty(key)){
+        if (StringUtils.isNotEmpty(key)){
             try {
                 key = new String(key.getBytes("iso-8859-1"),"utf-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-        }*/
+        }
         Page page = new Page(request);
         ResponseModel responseModel = articleService.listByPage(page,key,cid,1,memberId);
-        System.out.println("key============"+key);
         model.addAttribute("model",responseModel);
+        model.addAttribute("key",key);
 
         //文章栏目列表
         List<ArticleCate> articleCateList = articleCateService.list();
@@ -98,9 +98,16 @@ public class ArticleController extends BaseController {
 
         model.addAttribute("loginUser",loginMember);
 
+
         return jeesnsConfig.getFrontTemplate() + "/cms/detail";
     }
 
+    /**
+     * 去发布文章
+     * 2018年4月11日16:24:03
+     * @param model
+     * @return
+     */
     @RequestMapping(value="/add",method = RequestMethod.GET)
     @Before(UserLoginInterceptor.class)
     public String add(Model model) {
@@ -113,6 +120,13 @@ public class ArticleController extends BaseController {
         return jeesnsConfig.getFrontTemplate() + "/cms/add";
     }
 
+    /**
+     * 保存发布的文章
+     * 2018年4月11日16:24:17
+     * @param article
+     * @param bindingResult
+     * @return
+     */
     @RequestMapping(value="/save",method = RequestMethod.POST)
     @ResponseBody
     public Object save(@Valid Article article, BindingResult bindingResult) {
@@ -136,6 +150,12 @@ public class ArticleController extends BaseController {
         return responseModel;
     }
 
+    /**
+     * 修改文档
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping(value="/edit/{id}",method = RequestMethod.GET)
     @Before(UserLoginInterceptor.class)
     public String edit(@PathVariable("id") int id, Model model){
@@ -145,9 +165,10 @@ public class ArticleController extends BaseController {
             return judgeLoginJump;
         }
         Article article = articleService.findById(id,loginMember);
-        if(article.getMemberId().intValue() != loginMember.getId().intValue()){
+        if(article.getMemberId().intValue() != loginMember.getId().intValue() && loginMember.getIsAdmin() < 2){
             return jeesnsConfig.getFrontTemplate() + ErrorUtil.error(model,-1001,Const.INDEX_ERROR_FTL_PATH);
         }
+
         model.addAttribute("article",article);
         List<ArticleCate> cateList = articleCateService.list();
         model.addAttribute("cateList",cateList);
@@ -155,6 +176,12 @@ public class ArticleController extends BaseController {
         return jeesnsConfig.getFrontTemplate() + "/cms/edit";
     }
 
+    /**
+     * 前端修改文档
+     * @param article
+     * @param bindingResult
+     * @return
+     */
     @RequestMapping(value="/update",method = RequestMethod.POST)
     @ResponseBody
     public Object update(@Valid Article article,BindingResult bindingResult) {
@@ -201,6 +228,11 @@ public class ArticleController extends BaseController {
     }
 
 
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
     @RequestMapping(value="/delete/{id}",method = RequestMethod.GET)
     @ResponseBody
     public Object delete(@PathVariable("id") int id){

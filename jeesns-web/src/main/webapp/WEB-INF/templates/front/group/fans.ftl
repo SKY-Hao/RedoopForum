@@ -46,7 +46,7 @@
                             <div class="ibox-content profile-content">
                             <#list model.data as groupFans>
                                 <div class="group-fans">
-                                    <a href="${basePath}/u/${groupFans.member.id}" target="_blank">
+                                    <a href="${basePath}/user/${groupFans.member.id}" target="_blank">
                                         <div class="group-fans-avatar">
                                             <img class="img-circle" src="${basePath}${groupFans.member.avatar}" width="60px" height="60px"/>
                                         </div>
@@ -80,7 +80,7 @@
                         <div class="group-detail">
                             <p><a href="${basePath}/group/detail/${group.id}"><strong>${group.name}</strong></a></p>
                             <p>${model.data?size}关注</p>
-                            <p><a href="${basePath}/u/${group.creatorMember.id}">${group.creatorMember.name}</a> 创建于${group.createTime?string("yyyy-MM-dd")}</p>
+                            <p><a href="${basePath}/user/${group.creatorMember.id}">${group.creatorMember.name}</a> 创建于${group.createTime?string("yyyy-MM-dd")}</p>
                         </div>
                         <div class="text-left">
                         ${group.introduce!''}

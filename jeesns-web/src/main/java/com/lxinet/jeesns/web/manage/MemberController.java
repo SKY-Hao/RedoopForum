@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 
 /**
- * Created by zchuanzhao on 2016/11/22.
+ * 会员controller
+ * 2018年4月16日16:00:04
  */
 @Controller("manageMemberController")
 @RequestMapping("/")

@@ -12,7 +12,7 @@
 
     <link href="${basePath}/res/new/css/groupCss/group/style.css" rel="stylesheet">
     <link href="${basePath}/res/new/css/pageCss/page.css" rel="stylesheet">
-    <link href="${basePath}/res/new/css/groupCss/group/topic.css" rel="stylesheet">
+    <link href="${basePath}/res/new/css/articleCss/topic.css" rel="stylesheet">
 
 
     <!--[if lt IE 9]>
@@ -33,21 +33,23 @@
 <div class="block clearfix">
     <div class="container clearfix">
         <div class="span8">
-    <#list group as group>
-            <div class="theamInfo">
-                <div class="title">
-                    <img src="${basePath}${group.logo}" style="display:inline-block; float:left; width:50px;"/>
-                    <p style=" margin-left:60px; font-size:20px; line-height:50px;">${group.name}</p>
-                </div>
-                <p>${group.introduce}</p>
-            </div>
-    </#list>
+            <#list group as group>
+                    <div class="theamInfo">
+                        <div class="title">
+                            <img src="${basePath}${group.logo}" style="display:inline-block; float:left; width:50px;"/>
+                            <p style=" margin-left:60px; font-size:20px; line-height:50px;">${group.name}</p>
+                        </div>
+                        <p>${group.introduce}</p>
+                    </div>
+            </#list>
 
             <div class="theamLine">
                 <h3>
                     <a href="/">所有</a></h3>
                 <h3><a href="${basePath}/group/problem" style="margin: 0 10px;">问题</a></h3>
-                <h3><a href="${basePath}/group/article">文档/文章</a></h3>
+                <h3><a href="${basePath}/group/article">文章</a></h3>
+                <h3><a href="${basePath}/article/list">文档</a></h3>
+
             </div>
             <div class="TermCon">
 
@@ -110,59 +112,55 @@
                 </div>
 
             </#list>
-
-
                 <ul class="pager pagination pagination-sm no-margin pull-right"
                     url="${basePath}/"
                     currentPage="${model.page.pageNo}"
                     pageCount="${model.page.totalPage}" style="margin-top: 0px;float: right;">
                 </ul>
-
             </div>
-
-
 
         </div>
 
     <#--热门的帖子文章-->
         <div class="span4" style="margin-top:45px;">
 
-            <div class="widget">
 
-                <h3>热门问题</h3>
-            <#list byGroupStatusList as groupTopic>
-                <div class="question-block">
-                    <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
-                    <div>
-                        <span class="answer">点击：</span>
-                        <span>${groupTopic.viewCount}</span>
-                    </div>
-                </div>
-            </#list>
-            </div>
-            <div class="fengeLine"></div>
             <div class="widget">
                 <h3>热门文章</h3>
-            <#list byGroupStatus as groupTopic>
-                <div class="question-block">
-                    <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
-                    <div>
-                        <span class="answer">点击：</span>
-                        <span>${groupTopic.viewCount}</span>
+                <#list byGroupStatus as groupTopic>
+                    <div class="question-block">
+                        <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
+                        <div>
+                            <span class="answer">点击：</span>
+                            <span>${groupTopic.viewCount}</span>
+                        </div>
                     </div>
-                </div>
-            </#list>
+                </#list>
+            </div>
+
+            <div class="fengeLine"></div>
+            <div class="widget">
+                <h3>热门问题</h3>
+                <#list byGroupStatusList as groupTopic>
+                    <div class="question-block">
+                        <a href="${basePath}/group/topic/${groupTopic.id}">${groupTopic.title}</a>
+                        <div>
+                            <span class="answer">点击：</span>
+                            <span>${groupTopic.viewCount}</span>
+                        </div>
+                    </div>
+                </#list>
             </div>
             <div class="fengeLine"></div>
             <div class="widget">
                 <h3>热门主题</h3>
-            <@group_list status=1 sort='topicCount' num=5 day=30; group>
-                <#list groupList as group>
-                    <div class="tags">
-                        <a href="${basePath}/group/detail/${group.id}">${group.name}</a>
-                    </div>
-                </#list>
-            </@group_list>
+                <@group_list status=1 sort='topicCount' num=5 day=30; group>
+                    <#list groupList as group>
+                        <div class="tags">
+                            <a href="${basePath}/group/detail/${group.id}">${group.name}</a>
+                        </div>
+                    </#list>
+                </@group_list>
             </div>
         </div>
     </div>

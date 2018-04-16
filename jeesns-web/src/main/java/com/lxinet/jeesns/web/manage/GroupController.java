@@ -30,7 +30,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
- * Created by zchuanzhao on 16/12/23.
+ * 主题controller
+ * 2018年4月16日15:57:53
  */
 @Controller("manageGroupController")
 @RequestMapping("/")
@@ -46,7 +47,7 @@ public class GroupController extends BaseController {
     @Resource
     private IMemberService memberService;
     /**
-     * 群组列表
+     * 主题列表
      * @param status
      * @param key
      * @param model
@@ -64,7 +65,7 @@ public class GroupController extends BaseController {
     }
 
     /**
-     * 群组删除
+     * 主题删除
      * @param id
      * @return
      */
@@ -89,7 +90,7 @@ public class GroupController extends BaseController {
     }
 
     /**
-     * 后台去添加群组
+     * 后台去添加主题
      *2017年12月15日11:21:32
      * @param model
      * @return
@@ -101,7 +102,7 @@ public class GroupController extends BaseController {
     }
 
     /**
-     * 后台添加群组保存
+     * 后台添加主题保存
      * 2017年12月15日11:21:37
      * @param group
      * @return
@@ -112,20 +113,11 @@ public class GroupController extends BaseController {
                        @RequestParam(value = "logo", required = false) MultipartFile attach) throws Exception {
 
 
-       /* if(bindingResult.hasErrors()){
-            return new ResponseModel(-1,getErrorMessages(bindingResult));
-        }*/
-
         request.setCharacterEncoding( "utf-8" );
         String logoPath = request.getSession().getServletContext().getRealPath("/");
 
-
         Member loginMember = MemberUtil.getLoginMember(request);
         ResponseModel responseModel = groupService.saveManageGroup(loginMember,group,logoPath,attach);
-       /* if(responseModel.getCode() == 0){
-            //成功并刷新父页面
-            responseModel.setCode(3);
-        }*/
         return responseModel;
     }
 
@@ -194,7 +186,6 @@ public class GroupController extends BaseController {
 
 
 
-
     /**
      * 后台   修改帖子状态
      * @param id
@@ -208,15 +199,15 @@ public class GroupController extends BaseController {
     }
 
     /**
-     * 后台   去添加群组问题帖子
-     *       并查询群组列表
+     * 后台   去添加主题问题帖子
+     *       并查询帖子列表
      * @param model
      * @return
      */
     @RequestMapping(value = "${managePath}/group/index/topicAdd")
     public Object topicAdd (Model model){
-
-        List<GroupTopic> groupList=groupService.list();//群组列表
+        //帖子列表
+        List<GroupTopic> groupList=groupService.list();
         model.addAttribute("groupList",groupList);
 
         return MANAGE_FTL_PATH + "topic/addTopic";

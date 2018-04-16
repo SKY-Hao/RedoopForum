@@ -29,7 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by zchuanzhao on 16/12/26.
+ * 前端主题controller
+ * 2018年4月16日15:24:22
  */
 @Controller("frontGroupController")
 @RequestMapping("/group")
@@ -50,7 +51,7 @@ public class GroupController extends BaseController {
     private IMemberService memberService;
 
     /**
-     * 前台群组列表
+     * 前台主题列表
      * @param key
      * @param model
      * @return
@@ -96,7 +97,7 @@ public class GroupController extends BaseController {
 
 
     /**
-     * 群组申请页
+     * 主题申请页
      * @return
      */
     @RequestMapping(value = "/apply",method = RequestMethod.GET)
@@ -110,7 +111,7 @@ public class GroupController extends BaseController {
     }
 
     /**
-     * 群组申请判断登录并保存
+     * 主题申请判断登录并保存
      * @param group
      * @return
      */
@@ -126,72 +127,11 @@ public class GroupController extends BaseController {
 
 
     /**
-     * 群组详情页面
+     * 主题详情页面
      * @param groupId
      * @param model
      * @return
      */
-   /* @RequestMapping(value = "/detail/{groupId}",method = RequestMethod.GET)
-    public String detail(@PathVariable("groupId") Integer groupId, Model model) {
-        Page page = new Page(request);
-        Group group = groupService.findById(groupId);
-        if(group == null){
-            return jeesnsConfig.getFrontTemplate() + ErrorUtil.error(model,-1002,Const.INDEX_ERROR_FTL_PATH);
-        }
-        model.addAttribute("group",group);
-        Member loginMember = MemberUtil.getLoginMember(request);
-        int memberId = 0;
-        if(loginMember != null){
-            memberId = loginMember.getId();
-        }
-        //判断是否已关注该群组
-        GroupFans groupFans = groupFansService.findByMemberAndGroup(groupId,memberId);
-        if(groupFans == null){
-            model.addAttribute("isfollow",false);
-        }else {
-            model.addAttribute("isfollow",true);
-        }
-        //获取群组帖子列表
-        ResponseModel responseModel = groupTopicService.listByPage(page,null,groupId,1,0);
-        model.addAttribute("model",responseModel);
-
-        String managerIds = group.getManagers();
-        List<Member> managerList = new ArrayList<>();
-        if(StringUtils.isNotEmpty(managerIds)){
-            String[] idArr = managerIds.split(",");
-            for (String id : idArr){
-                Member member = memberService.findById(Integer.parseInt(id));
-                if(member != null){
-                    managerList.add(member);
-                }
-            }
-        }
-        model.addAttribute("managerList",managerList);
-
-        String groupManagers = group.getManagers();
-        String[] groupManagerArr = groupManagers.split(",");
-        if(loginMember == null){
-            model.addAttribute("isManager",0);
-        }else {
-            boolean isManager = false;
-            for (String manager : groupManagerArr){
-                if(loginMember.getId() == Integer.parseInt(manager)){
-                    isManager = true;
-                }
-            }
-            if(isManager || loginMember.getId() == group.getCreator()){
-                model.addAttribute("isManager",1);
-            }
-        }
-        //获取群组粉丝列表,第一页，20条数据
-        Page groupFansPage = new Page(1,20);
-        List<GroupFans> groupFansList = (List<GroupFans>) groupFansService.listByPage(groupFansPage,groupId).getData();
-        model.addAttribute("groupFansList",groupFansList);
-        model.addAttribute("loginUser", loginMember);
-
-        return jeesnsConfig.getFrontTemplate() + "/group/detail";
-    }*/
-
 
     @RequestMapping(value = "/detail/{groupId}",method = RequestMethod.GET)
     public String detail(@PathVariable("groupId") Integer groupId, Model model) {
@@ -202,7 +142,7 @@ public class GroupController extends BaseController {
         }
         model.addAttribute("group",group);
 
-        //获取群组帖子列表
+        //获取主题帖子列表
         ResponseModel responseModel = groupTopicService.listByPage(page,null,groupId,1,0);
         model.addAttribute("model",responseModel);
 
@@ -220,7 +160,7 @@ public class GroupController extends BaseController {
 
 
     /**
-     * 前台修改群组
+     * 前台修改主题
      * @param groupId
      * @param model
      * @return
@@ -261,7 +201,7 @@ public class GroupController extends BaseController {
     }
 
     /**
-     * 前台修改 群组 保存
+     * 前台修改 主题 保存
      * @param group
      * @return
      */
@@ -276,7 +216,7 @@ public class GroupController extends BaseController {
     }
 
     /**
-     * 相对应 群组 的帖子详情
+     * 相对应 主题 的帖子详情
      * @param topicId
      * @param model
      * @return
@@ -293,7 +233,7 @@ public class GroupController extends BaseController {
         archiveService.updateViewCount(groupTopic.getArchiveId());
         model.addAttribute("groupTopic",groupTopic);
 
-        //根据群组的ID查询群组的信息
+        //根据主题的ID查询主题的信息
         Group group = groupService.findById(groupTopic.getGroup().getId());
         if(group == null){
             return jeesnsConfig.getFrontTemplate() + ErrorUtil.error(model,-1000,Const.INDEX_ERROR_FTL_PATH);
@@ -314,7 +254,7 @@ public class GroupController extends BaseController {
                     isManager || loginMember.getId().intValue() == group.getCreator().intValue()){
                 model.addAttribute("isPermission",1);
             }
-            //判断是否已关注该群组
+            //判断是否已关注该主题
             GroupFans groupFans = groupFansService.findByMemberAndGroup(groupTopic.getGroup().getId(),loginMember.getId());
             if(groupFans != null){
                 isfollow = true;
@@ -368,10 +308,6 @@ public class GroupController extends BaseController {
 
 
 
-
-
-
-
     /**
      * 帖子保存发布
      * @param groupTopic
@@ -404,10 +340,7 @@ public class GroupController extends BaseController {
 
         List<Group> groupList = groupService.groupList();
 
-
         GroupTopic groupTopic = groupTopicService.findById(topicId,loginMember);
-        //  System.out.println("=find="+groupTopic);
-        // System.out.println("=findtopic="+groupTopic.getGroup().getId());
 
         if(groupTopic == null){
             return jeesnsConfig.getFrontTemplate() + ErrorUtil.error(model,-1004, Const.INDEX_ERROR_FTL_PATH);
@@ -453,25 +386,11 @@ public class GroupController extends BaseController {
         Member loginMember = MemberUtil.getLoginMember(request);
         ResponseModel responseModel = groupTopicService.indexDelete(request,loginMember,id);
         return responseModel;
-
-       /* if(loginMember == null){
-            return new ResponseModel(-1,"请先登录");
-        }
-        if(loginMember.getIsAdmin() == 0){
-            return new ResponseModel(-1,"权限不足");
-        }
-        ResponseModel responseModel = groupTopicService.delete(loginMember,id);;
-        if(responseModel.getCode() > 0){
-            responseModel.setCode(2);
-            responseModel.setUrl(request.getContextPath() + "/group/topicList");
-        }
-        return responseModel;*/
-
     }
 
 
     /**
-     * 关注群组
+     * 关注主题
      * @param groupId
      * @return
      */
@@ -486,7 +405,7 @@ public class GroupController extends BaseController {
     }
 
     /**
-     * 取消关注群组
+     * 取消关注主题
      * @param groupId
      * @return
      */
@@ -546,14 +465,14 @@ public class GroupController extends BaseController {
         if(loginMember != null){
             memberId = loginMember.getId();
         }
-        //判断是否已关注该群组
+        //判断是否已关注该主题
         GroupFans groupFans = groupFansService.findByMemberAndGroup(groupId,memberId);
         if(groupFans == null){
             model.addAttribute("isfollow",false);
         }else {
             model.addAttribute("isfollow",true);
         }
-        //获取群组帖子列表
+        //获取主题帖子列表
         ResponseModel responseModel = groupTopicService.listByPage(page,null,groupId,0,0);
         model.addAttribute("model",responseModel);
         String managerIds = group.getManagers();
@@ -589,7 +508,7 @@ public class GroupController extends BaseController {
             return jeesnsConfig.getFrontTemplate() + ErrorUtil.error(model,-1002,Const.INDEX_ERROR_FTL_PATH);
         }
         model.addAttribute("group",group);
-        //获取群组粉丝列表,第一页，20条数据
+        //获取主题粉丝列表,第一页，20条数据
         ResponseModel<GroupFans> responseModel = groupFansService.listByPage(page,groupId);
         model.addAttribute("model",responseModel);
         return jeesnsConfig.getFrontTemplate() + "/group/fans";
@@ -659,7 +578,6 @@ public class GroupController extends BaseController {
 
         List<Group> groupList = groupService.groupList();
         model.addAttribute("groupLists",groupList);
-
 
         return jeesnsConfig.getFrontTemplate() + "/group/topic/list";
     }
@@ -747,8 +665,7 @@ public class GroupController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/article",method = RequestMethod.GET)
-    public String article(@RequestParam(value = "key",required = false,defaultValue = "") String key, Integer cateid,Model model
-    ) {
+    public String article(@RequestParam(value = "key",required = false,defaultValue = "") String key, Integer cateid,Model model) {
         if (StringUtils.isNotEmpty(key)){
             try {
                 key = new String(key.getBytes("iso-8859-1"),"utf-8");
@@ -765,15 +682,12 @@ public class GroupController extends BaseController {
         //前台所有帖子列表
         ResponseModel groupTopicModel = groupTopicService.solrWenZhang(1,page,key);
         model.addAttribute("model",groupTopicModel);
-
         //热门问题帖子
         List<GroupTopic> byGroupStatusList=groupTopicService.byGroupStatus();
         model.addAttribute("byGroupStatusList",byGroupStatusList);
-
         //热门文章帖子
         List<GroupTopic> byGroupStatus=groupTopicService.byGroupStatusList();
         model.addAttribute("byGroupStatus",byGroupStatus);
-
 
         return jeesnsConfig.getFrontTemplate() + "/index";
     }

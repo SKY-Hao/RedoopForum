@@ -6,7 +6,6 @@ import com.lxinet.jeesns.dao.cms.IArticleDao;
 import com.lxinet.jeesns.model.cms.Article;
 import com.lxinet.jeesns.model.common.Archive;
 import com.lxinet.jeesns.model.member.Member;
-import com.lxinet.jeesns.model.weibo.Weibo;
 import com.lxinet.jeesns.service.cms.IArticleCommentService;
 import com.lxinet.jeesns.service.cms.IArticleService;
 import com.lxinet.jeesns.core.dto.ResponseModel;
@@ -81,7 +80,7 @@ public class ArticleServiceImpl implements IArticleService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        archive.setPostType(1);
+        archive.setPostType(1);//1为文章   2为群组
         if(member.getIsAdmin() == 0 && "0".equals(config.get(ConfigUtil.CMS_POST_REVIEW))){
             article.setStatus(0);
         }else {
@@ -101,12 +100,12 @@ public class ArticleServiceImpl implements IArticleService {
                 }
                 actionLogService.save(member.getCurrLoginIp(),member.getId(), ActionUtil.POST_ARTICLE,"", ActionLogType.ARTICLE.getValue(),article.getId());
                 if (article.getStatus() == 0){
-                    return new ResponseModel(0,"文章发布成功，请等待审核");
+                    return new ResponseModel(0,"文档发布成功，请等待审核");
                 }
-                return new ResponseModel(0,"文章发布成功");
+                return new ResponseModel(0,"文档发布成功");
             }
         }
-        return new ResponseModel(-1,"文章发布失败");
+        return new ResponseModel(-1,"文档发布失败");
     }
 
     @Override
@@ -158,7 +157,7 @@ public class ArticleServiceImpl implements IArticleService {
             }
             return responseModel;
         }
-        return new ResponseModel(-1,"文章不存在");
+        return new ResponseModel(-1,"文档不存在");
     }
 
     @Override
@@ -174,6 +173,11 @@ public class ArticleServiceImpl implements IArticleService {
             return new ResponseModel(-2);
         }
         article.setArchiveId(findArticle.getArchiveId());
+
+        if(article.getViewCount()==null){
+            article.setViewCount(article.getViewCount());
+        }
+
         Archive archive = new Archive();
         try {
             //复制属性值
@@ -191,28 +195,34 @@ public class ArticleServiceImpl implements IArticleService {
             //更新栏目
             findArticle.setCateId(article.getCateId());
             articleDao.update(findArticle);
-            return new ResponseModel(0,"更新成功");
+            return new ResponseModel(0,"文档更新成功");
         }
-        return new ResponseModel(-1,"更新失败");
+        return new ResponseModel(-1,"文档更新失败");
     }
 
+    /**
+     * 删除文档
+     * @param member
+     * @param id
+     * @return
+     */
     @Override
     @Transactional
     public ResponseModel delete(Member member,int id) {
         Article article = this.findById(id);
         if (article == null){
-            return new ResponseModel(-1,"文章不存在");
+            return new ResponseModel(-1,"文档不存在");
         }
-        int result = articleDao.delete(id);
-        if(result == 1){
+            articleDao.delete(id);
+        //if(result == 1){
             //扣除积分
-            scoreDetailService.scoreCancelBonus(member.getId(),ScoreRuleConsts.ARTICLE_SUBMISSIONS,id);
+          //  scoreDetailService.scoreCancelBonus(member.getId(),ScoreRuleConsts.ARTICLE_SUBMISSIONS,id);
             archiveService.delete(article.getArchiveId());
             articleCommentService.deleteByArticle(id);
             actionLogService.save(member.getCurrLoginIp(),member.getId(), ActionUtil.DELETE_ARTICLE,"ID："+article.getId()+"，标题："+article.getTitle());
             return new ResponseModel(1,"删除成功");
-        }
-        return new ResponseModel(-1,"删除失败");
+        //}
+        //return new ResponseModel(-1,"删除失败");
     }
 
     public Article atFormat(Article article){

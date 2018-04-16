@@ -117,10 +117,10 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
             int result = groupTopicDao.save(groupTopic);
             if(result == 1){
                 //@会员处理并发送系统消息
-             //   messageService.atDeal(member.getId(),groupTopic.getContent(), AppTag.GROUP, MessageType.GROUP_TOPIC_REFER,groupTopic.getId());
+                messageService.atDeal(member.getId(),groupTopic.getContent(), AppTag.GROUP, MessageType.GROUP_TOPIC_REFER,groupTopic.getId());
                 //群组发帖奖励
-             //  scoreDetailService.scoreBonus(member.getId(), ScoreRuleConsts.GROUP_POST, groupTopic.getId());
-              //  actionLogService.save(member.getCurrLoginIp(),member.getId(), ActionUtil.POST_GROUP_TOPIC,"", ActionLogType.GROUP_TOPIC.getValue(),groupTopic.getId());
+               scoreDetailService.scoreBonus(member.getId(), ScoreRuleConsts.GROUP_POST, groupTopic.getId());
+                actionLogService.save(member.getCurrLoginIp(),member.getId(), ActionUtil.POST_GROUP_TOPIC,"", ActionLogType.GROUP_TOPIC.getValue(),groupTopic.getId());
                 if (groupTopic.getStatus() == 0){
                     //System.out.println("保存状态==="+groupTopic.getStatus());
                     //System.out.println("贴子ID==="+groupTopic.getId());
@@ -169,18 +169,38 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
 
         GroupTopic findGroupTopic = this.findById(groupTopic.getId(),member);
 
+
         if(findGroupTopic == null){
             return new ResponseModel(-2);
         }
 
         System.out.println("isadmin===="+member.getIsAdmin());
 
+
         if(member.getId().intValue() != findGroupTopic.getMember().getId().intValue() && member.getIsAdmin()>2){
             return new ResponseModel(-1,"没有权限");
         }
 
-        groupTopic.setArchiveId(findGroupTopic.getArchiveId());//把查到文档id放到帖子表里面
-       // groupTopic.setViewCount(findGroupTopic.getViewCount());//把查到的查看次数放到帖子表里面
+        //把查到文档id放到帖子表里面
+        groupTopic.setArchiveId(findGroupTopic.getArchiveId());
+
+
+        System.out.println("浏览次数GroupTopic"+groupTopic.getViewCount());
+        System.out.println("浏览次数"+findGroupTopic.getViewCount());
+
+        if(groupTopic.getViewCount()==null){
+            groupTopic.setViewCount(findGroupTopic.getViewCount());
+        }
+
+        System.out.println("浏览次数二"+groupTopic.getViewCount());
+
+
+
+
+        //把查到的查看次数放到帖子表里面
+        //groupTopic.setViewCount(findGroupTopic.getViewCount());
+
+
 
         Archive archive = new Archive();
         try {
@@ -498,7 +518,7 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
     }
 
     /**
-     * 首页所有帖子
+     * 首页所有帖子/文档
      *2018年1月5日09:01:18更新
      * @param status
      * @param page

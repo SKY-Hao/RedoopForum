@@ -37,7 +37,7 @@
             </h4>
             <ol class="breadcrumb">
                 <li><a href="${managePath}/index"><i class="fa fa-dashboard"></i> 主页</a></li>
-                <li class="active">文章栏目</li>
+                <li class="active">文档栏目</li>
             </ol>
         </section>
         <section class="content">

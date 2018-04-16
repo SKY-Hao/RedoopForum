@@ -1,19 +1,22 @@
 package com.lxinet.jeesns.service.common.impl;
 
-import com.lxinet.jeesns.dao.common.IArchiveDao;
-import com.lxinet.jeesns.model.common.Archive;
-import com.lxinet.jeesns.service.common.IArchiveFavorService;
-import com.lxinet.jeesns.service.common.IArchiveService;
 import com.lxinet.jeesns.core.dto.ResponseModel;
+import com.lxinet.jeesns.core.model.Page;
 import com.lxinet.jeesns.core.utils.HtmlUtil;
 import com.lxinet.jeesns.core.utils.StringUtils;
+import com.lxinet.jeesns.dao.common.IArchiveDao;
+import com.lxinet.jeesns.model.common.Archive;
 import com.lxinet.jeesns.model.member.Member;
+import com.lxinet.jeesns.service.common.IArchiveFavorService;
+import com.lxinet.jeesns.service.common.IArchiveService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by zchuanzhao on 2016/10/14.
@@ -92,6 +95,8 @@ public class ArchiveServiceImpl implements IArchiveService {
         return responseModel;
     }
 
+
+
     @Override
     public boolean update(Member member, Archive archive) {
         Archive findArchive = this.findByArchiveId(archive.getArchiveId());
@@ -149,5 +154,41 @@ public class ArchiveServiceImpl implements IArchiveService {
     public boolean delete(int id) {
         return archiveDao.delete(id) == 1;
     }
+
+
+
+
+
+
+
+   /* @Override
+    public ResponseModel list(int status, Page page, String key) {
+
+        if (StringUtils.isNotBlank(key)){
+            key = "%"+key+"%";
+        }
+        List<Archive> list = archiveDao.list(page, key,status);
+        ResponseModel model = new ResponseModel(0,page);
+        model.setData(list);
+        return model;
+    }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

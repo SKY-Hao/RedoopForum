@@ -10,8 +10,12 @@
     <meta name="author" content="JEESNS"/>-->
     <link rel="shortcut icon" href="${basePath}/logo.ico">
 
-    <link href="${basePath}/res/common/css/zui.min.css" rel="stylesheet">
-    <link href="${basePath}/res/front/css/app.css" rel="stylesheet">
+    <link href="${basePath}/res/plugins/makedown/js/bootstrap.min.js" rel="stylesheet">
+    <link href="${basePath}/res/plugins/makedown/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${basePath}/res/new/css/articleCss/markDownStrle.css" rel="stylesheet">
+    <link href="${basePath}/res/new/css/articleCss/topic.css" rel="stylesheet">
+    <link href="${basePath}/res/new/css/pageCss/page.css" rel="stylesheet">
+
     <!--[if lt IE 9]>
     <script src="${basePath}/res/common/js/html5shiv.min.js"></script>
     <script src="${basePath}/res/common/js/respond.min.js"></script>
@@ -26,174 +30,131 @@
         var articleId = ${article.id};
     </script>
     <script src="${basePath}/res/front/js/cms.js"></script>
+
 </head>
 <body class="gray-bg">
-<#include "/${frontTemplate}/common/header.ftl"/>
+<#include "/${frontTemplate}/common/newCommon/cmsHeaderMarkDown.ftl"/>
 <div class="container">
     <div class="main-content">
         <div class="row">
-            <#--左侧-->
-            <div class="col-md-8">
-                <article class="article article-detail">
-                    <header>
-                        <#--标题-->
-                        <h1 class="text-center">${article.title}</h1>
-                        <span class="dl-inline">
-                            <dt></dt>
-                            <dd>
-                                <a href="${basePath}/article/list?cid=${article.articleCate.id}">
-                                    <span class="label label-warning" style="margin-right: 10px;"><#--文章属于的栏目名称-->
-                                        <i class="icon icon-list-ul"></i>
-                                        ${article.articleCate.name}
-                                    </span>
+
+            <div class="span8" style="width: 85%;margin-left: 8%;">
+                <div class="theamLine">
+                    <h3><a href="/">所有</a></h3>
+                    <h3><a href="${basePath}/group/problem" style="margin: 0 10px;">问题</a></h3>
+                    <h3><a href="${basePath}/group/article">文章</a></h3>
+                    <h3 style="border-bottom: 2px solid #ca1828;"><a href="${basePath}/article/list">文档</a></h3>
+                </div>
+                <div class="TermCon">
+                    <div class="author clearfix">
+                        <div class="detailInfo">
+                            <h4> ${article.title}</h4>
+                            <p style="width:150px;"><b>Author:</b>${article.member.name}</p>
+                            <p style="width:150px;"><b>Time:</b>${article.createTime?string('yyyy-MM-dd HH:mm')}</p>
+                            <div class="counts">
+                                <a class="discu" title="评论">${article.topicComment}</a>
+                            <#--选择喜欢不喜欢-->
+                            <#if article.isFavor == 0>
+                                <a class="btn btn-danger btn-article-favor btn-article-unfavor topic-favor" href="javascript:void(0)" article-id="${article.id}" title="喜欢" id="like">
+                                    <i class="icon-heart-empty"></i>${article.favor}
                                 </a>
-                                <span class="label label-danger" style="margin-right: 10px;"><#--查看次数-->
-                                    <i class="icon-eye-open"></i>
-                                    ${article.viewCount}
-                                </span>
-                                <i class="icon icon-time"></i>
-                                ${article.createTime?string('yyyy-MM-dd HH:mm')}<#--创建时间-->
-                            </dd>
-                            <dt></dt>
-                            <dd class="pull-right">
-                                <#if loginUser?? && (loginUser.id == article.memberId || loginUser.isAdmin &gt; 0)>
-                                    <div class="dropdown dropdown-hover">
-                                        <button class="btn" type="button" data-toggle="dropdown">操作 <span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <#if loginUser.id == article.memberId>
-                                                <li><a href="${basePath}/article/edit/${article.id}">编辑</a></li>
-                                            </#if>
-                                            <li><a href="${basePath}/article/delete/${article.id}" confirm="确定要删除文章吗？" target="_jeesnsLink">删除</a></li>
+                            <#else>
+                                <a class="btn btn-danger btn-article-favor topic-favor" href="javascript:void(0)" article-id="${article.id}" title="喜欢" id="like">
+                                    <i class="icon-heart"></i>${article.favor}
+                                </a>
+                            </#if>
+                                <a class="views" title="阅读" style="padding-top: 3px">${article.viewCount}</a>
+                            </div>
 
-                                        </ul>
-                                    </div>
-                                </#if>
-                            </dd>
-                        </span>
-                    </header>
-                    <@ads id=2><#--广告-->
-                        <#include "/tp/ad.ftl"/>
-                    </@ads>
-                    <section class="content"><#--文章内容-->
-                        ${article.content}
-                    </section>
-
-                    <div class="text-center">
-                        <#if article.isFavor == 0>
-                            <a class="btn btn-danger btn-article-favor btn-article-unfavor article-favor" href="javascript:void(0)" article-id="${article.id}">
-                                <i class="icon-heart-empty"></i> 喜欢 | ${article.favor}
-                            </a>
-                        <#else>
-                            <a class="btn btn-danger btn-article-favor article-favor" href="javascript:void(0)" article-id="${article.id}">
-                                <i class="icon-heart"></i> 喜欢 | ${article.favor}
-                            </a>
-                        </#if>
+                            <#if loginUser?? && (loginUser.id == article.memberId || loginUser.isAdmin >= 2)>
+                                <div style="width: 190px;float: right;margin-top: -47px; height: 20px;">
+                                    <a href="${basePath}/article/edit/${article.id}" class="btn" style="margin-top: 13px;height: 20px;background-color: #ca1828;line-height: 8px;color: #fff">Edit</a>
+                                    <a href="${basePath}/article/delete/${article.id}" class="btn" confirm="确定要删除帖子吗？" target="_jeesnsLink" style="margin-top: 13px;height: 20px;background-color: #ca1828;line-height: 8px;color: #fff">Delete</a>
+                                </div>
+                            </#if>
+                        </div>
                     </div>
-                </article>
-                <#--广告-->
-                <@ads id=2>
-                    <#include "/tp/ad.ftl"/>
-                </@ads>
-                <#--文章评论-->
-                <div class="comments panel">
-                    <div class="panel-heading">文章评论</div>
-                    <header>
-                        <div class="reply-form">
-                            <form class="form-horizontal jeesns_form" action="${basePath}/article/comment/${article.id}" method="post">
-                                <div class="form-group">
-                                    <textarea name="content" class="form-control new-comment-text" rows="2" placeholder="撰写评论..."></textarea>
-                                </div>
-                                <div class="form-group comment-user">
-                                    <input type="submit" value="评论" class="pull-right btn btn-primary mg-t-10 jeesns-submit">
-                                </div>
+                    <div class="detailContent">
+                        ${article.htmlcontent}
+                    </div>
+
+                    <div class="detailDiscu">
+                        <p class="theamTag">文档栏目：<a href="${basePath}/article/list?cid=${article.articleCate.id}">${article.articleCate.name}</a></p>
+                        <a href="#jump" class="addBtn">评论</a>
+
+                        <section class="comments-list" id="commentList">
+
+                        </section>
+                        <button class="btn btn-primary btn-block m" id="moreComment" style="display: none"><i
+                                class="fa fa-arrow-down"></i> 加载更多
+                        </button>
+
+                        <div class="publishCon clearfix" id="jump">
+                            <h4>评论</h4>
+                            <form class="form-horizontal jeesns_form"
+                                  action="${basePath}/article/comment/${article.id}" method="post">
+
+                                <textarea name="content" rows="2"  class="discuContent" placeholder="撰写评论..."></textarea>
+
+                                <input type="submit" value="发布" class="pull-right btn btn-primary mg-t-10 jeesns-submit" style="float:right;">
                             </form>
                         </div>
-                    </header>
-                    <section class="comments-list" id="commentList"></section>
-                    <button class="btn btn-primary btn-block m" id="moreComment" style="display: none">
-                        <i class="fa fa-arrow-down"></i>
-                        加载更多
-                    </button>
+                    </div>
                 </div>
             </div>
+
+
             <#--右侧-->
-            <div class="col-md-4">
-                <div class="panel">
-                    <div class="panel-body weibo-author">
-                        <div class="avatar">
-                            <a href="${basePath}/u/${article.member.id}" target="_blank">
-                                <img alt="image" class="img-circle mg-l-30" src="${basePath}${article.member.avatar}"/>
-                            </a>
-                        </div>
-                        <div class="name">
-                            <a href="${basePath}/u/${article.member.id}"target="_blank">${article.member.name}</a>
-                        </div>
-                        <div class="info">
-                            <p>
-                                <a href="${basePath}/u/${article.member.id}/home/follows">${article.member.follows}
-                                    关注
-                                </a> /
-                                <a href="${basePath}/u/${article.member.id}/home/fans">${article.member.fans}
-                                    粉丝
-                                </a>
-                            </p>
-                            <p>
-                            ${article.member.introduce}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel">
-                    <div class="panel-heading">
-                        文章栏目
-                    </div>
-                    <div class="panel-body">
-                        <a href="${basePath}/article/list" class="btn btn-primary">全部</a>
-                    <#list articleCateList as articleCate>
-                        <a href="${basePath}/article/list?cid=${articleCate.id}"
-                           class="btn btn-primary">${articleCate.name}</a>
-                    </#list>
-                    </div>
-                </div>
-                <@ads id=1>
-                    <#include "/tp/ad.ftl"/>
-                </@ads>
-                <div class="panel">
-                    <div class="panel-heading">
-                        最新文章
-                    </div>
-                    <div class="panel-body article-hot-list">
-                        <ul>
-                        <@cms_article_list cid=0 sort='id' num=10; article>
-                            <#list articleList as article>
-                                <li><i class="icon-hand-right main-text-color"></i> <a
-                                        href="${basePath}/article/detail/${article.id}">${article.title}</a></li>
-                            </#list>
-                        </@cms_article_list>
-                        </ul>
-                    </div>
-                </div>
-                <div class="panel">
-                    <div class="panel-heading">
-                        热门文章
-                    </div>
-                    <div class="panel-body article-hot-list">
-                        <ul>
-                        <@cms_article_list cid=0 sort='view-count' num=10 day=30; article>
-                            <#list articleList as article>
-                                <li><i class="icon-hand-right main-text-color"></i> <a
-                                        href="${basePath}/article/detail/${article.id}">${article.title}</a></li>
-                            </#list>
-                        </@cms_article_list>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <#--  <div class="col-md-4">
+              <div class="panel">
+                  <div class="panel-heading">
+                      文章栏目
+                  </div>
+                  <div class="panel-body">
+                          <a href="${basePath}/article/list" class="btn btn-primary">全部</a>
+                          <#list articleCateList as articleCate>
+                              <a href="${basePath}/article/list?cid=${articleCate.id}"
+                                 class="btn btn-primary">${articleCate.name}</a>
+                          </#list>
+                  </div>
+              </div>
+
+              <div class="panel">
+                  <div class="panel-heading">
+                      最新文章
+                  </div>
+                  <div class="panel-body article-hot-list">
+                      <ul>
+                          <@cms_article_list cid=0 sort='id' num=10; article>
+                              <#list articleList as article>
+                                  <li><i class="icon-hand-right main-text-color"></i> <a
+                                          href="${basePath}/article/detail/${article.id}">${article.title}</a></li>
+                              </#list>
+                          </@cms_article_list>
+                      </ul>
+                  </div>
+              </div>
+              <div class="panel">
+                  <div class="panel-heading">
+                      热门文章
+                  </div>
+                  <div class="panel-body article-hot-list">
+                      <ul>
+                          <@cms_article_list cid=0 sort='view_count' num=10 day=30; article>
+                              <#list articleList as article>
+                                  <li><i class="icon-hand-right main-text-color"></i>
+                                      <a href="${basePath}/article/detail/${article.id}">${article.title}</a></li>
+                              </#list>
+                          </@cms_article_list>
+                      </ul>
+                  </div>
+              </div>
+          </div>-->
         </div>
     </div>
 
 </div>
-<#include "/${frontTemplate}/common/footer.ftl"/>
+<#include "/${frontTemplate}/common/newCommon/footer.ftl"/>
 <script>
     $(document).ready(function () {
         var pageNo = 1;
@@ -202,7 +163,7 @@
             pageNo++;
             cms.commentList(articleId, pageNo);
         });
-        $(".article-favor").click(function () {
+        $(".topic-favor").click(function () {
             cms.favor($(this), "${basePath}")
         });
     });

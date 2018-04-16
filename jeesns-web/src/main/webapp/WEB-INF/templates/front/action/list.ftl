@@ -39,14 +39,14 @@
                 <div class="items">
                 <#list model.data as actionLog>
                     <div class="comment">
-                        <a href="${basePath}/u/${actionLog.member.id}" class="avatar" target="_blank">
+                        <a href="${basePath}/user/${actionLog.member.id}" class="avatar" target="_blank">
                             <img src="${basePath}${actionLog.member.avatar!''}" class="icon-camera-retro icon-2x">
                         </a>
                         <div class="content">
                             <div class="pull-right text-muted timeago" datetime="${actionLog.createTime?string('yyyy-MM-dd HH:mm:ss')}"></div>
                             <div>
-                                <a href="${basePath}/u/${actionLog.member.id}" target="_blank">
-                                    <strong><a href="${basePath}/u/${actionLog.member.id}">${actionLog.member.name}</a> </strong>于${actionLog.createTime?string('yyyy-MM-dd HH:mm')}${actionLog.action.log}：<br/>
+                                <a href="${basePath}/user/${actionLog.member.id}" target="_blank">
+                                    <strong><a href="${basePath}/user/${actionLog.member.id}">${actionLog.member.name}</a> </strong>于${actionLog.createTime?string('yyyy-MM-dd HH:mm')}${actionLog.action.log}：<br/>
                                 </a>
                             </div>
                             <div class="text emoji-render-content">
