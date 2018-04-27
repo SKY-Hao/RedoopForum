@@ -80,7 +80,7 @@ public class ArticleServiceImpl implements IArticleService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        archive.setPostType(1);//1为文章   2为群组
+        archive.setPost_type(1);//1为文档   2为主题
         if(member.getIsAdmin() == 0 && "0".equals(config.get(ConfigUtil.CMS_POST_REVIEW))){
             article.setStatus(0);
         }else {

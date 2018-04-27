@@ -96,7 +96,7 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        archive.setPostType(2);//1为文章   2为群组
+        archive.setPost_type(0);//1为文档   0主题
         //保存文档
         if(archiveService.save(member,archive)){
           /*
@@ -490,12 +490,13 @@ public class GroupTopicServiceImpl implements IGroupTopicService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        archive.setPostType(2);//2代表帖子  1代表文章
+
         if(member.getIsAdmin() >=1 && "0".equals(config.get(ConfigUtil.CMS_POST_REVIEW))){
             groupTopic.setStatus(0);
         }else {
             groupTopic.setStatus(1);
         }
+        archive.setPost_type(0);//0代表帖子  1代表文档
         //保存文档
         if(archiveService.save(member,archive)){
             //保存帖子

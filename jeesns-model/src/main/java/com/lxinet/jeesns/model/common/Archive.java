@@ -17,7 +17,7 @@ import java.util.Date;
 public class Archive implements Serializable {
     private Integer archiveId;
 
-    private Integer postType;//发布类型，1是普通文章，2是群组文章
+    private Integer post_type;//发布类型，1是普通文章，2是群组文章
 
     @NotBlank(message = "文章标题不能为空")
     private String title;   //标题
@@ -231,13 +231,6 @@ public class Archive implements Serializable {
         this.content = content;
     }
 
-    public Integer getPostType() {
-        return postType;
-    }
-
-    public void setPostType(Integer postType) {
-        this.postType = postType;
-    }
 
     public Member getMember() {
         return member;
@@ -249,6 +242,14 @@ public class Archive implements Serializable {
 
     public Integer getFavor() {
         return favor;
+    }
+
+    public Integer getPost_type() {
+        return post_type;
+    }
+
+    public void setPost_type(Integer post_type) {
+        this.post_type = post_type;
     }
 
     public void setFavor(Integer favor) {
