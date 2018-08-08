@@ -29,7 +29,7 @@
         var groupTopicId = ${groupTopic.id};
     </script>
     <script src="${basePath}/res/front/js/group.js"></script>
-   <script src="${basePath}/res/plugins/makedown/js/bootstrap.min.js"></script>
+    <script src="${basePath}/res/plugins/makedown/js/bootstrap.min.js"></script>
     <script src="${basePath}/res/plugins/makedown/js/editormd.min.js"></script>
 
 
