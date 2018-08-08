@@ -65,3 +65,4 @@ RedoopForum是一款基于JAVA企业级平台研发的社交管理系统
 7. 部署项目。将项目部署到Tomcat7或以上版本，启动Tomcat。
 8. 访问系统。前台地址：[http://www.redoop.net](http://www.redoop.net)；用户名：admin，密码：redoopadmin，登录成功之后，在右上角展开有个'管理'，点击即可进入后台管理。
 9. 访问系统。后台地址：http://www.redoop.net/manage/index/; 用户名:admin 密码redoopadmin
+"# RedoopForum" 
