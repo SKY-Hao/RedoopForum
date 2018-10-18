@@ -64,5 +64,5 @@ RedoopForum是一款基于JAVA企业级平台研发的社交管理系统
 6. 编译项目。在eclipse中，右键点击项目名，选择`Run as` - `Maven build...`，`Goals`填入`clean package`，然后点击`Run`，第一次运行需要下载jar包，请耐心等待。
 7. 部署项目。将项目部署到Tomcat7或以上版本，启动Tomcat。
 8. 访问系统。前台地址：[http://www.redoop.net](http://www.redoop.net)；
-9. 访问系统。后台地址：http://www.redoop.net/manage/index/; 
+
 "# RedoopForum" 
