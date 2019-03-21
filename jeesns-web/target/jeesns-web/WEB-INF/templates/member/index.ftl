@@ -79,11 +79,11 @@
                                 <span  style="color: #bababa;">粉丝</span>
                                 <a href="${basePath}/user/${loginUser.id}/home/fans">${loginUser.fans}</a>
                             </div>
-                            <div class="follows">
+                            <#--<div class="follows">
                                 <span  style="color: #bababa;">积分</span>
-                                <#--<a href="${basePath}/member/scoreDetail/list">${loginUser.score}</a>-->
+                                &lt;#&ndash;<a href="${basePath}/member/scoreDetail/list">${loginUser.score}</a>&ndash;&gt;
                                 <a>${loginUser.score}</a>
-                            </div>
+                            </div>-->
                             <div class="login-info"  style="color: #bababa;">
                                 加入时间:${loginUser.createTime?string('yyyy-MM-dd')}
                                 最近登录:<#if loginUser.currLoginTime??>${loginUser.currLoginTime?string('yyyy-MM-dd')}<#else>未登陆过</#if>
@@ -139,7 +139,7 @@
                                 <a href="${basePath}/user/${loginUser.id}/home/groupTopic">
                                     <div class="feed-element">
                                         <div class="media-body">
-                                            主题帖子
+                                            帖子
                                         </div>
                                     </div>
                                 </a>
